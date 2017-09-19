@@ -1,0 +1,3 @@
+/home/nw/plt-kit/CMakeFiles/edit_cache.dir
+/home/nw/plt-kit/CMakeFiles/rebuild_cache.dir
+/home/nw/plt-kit/CMakeFiles/client.dir
