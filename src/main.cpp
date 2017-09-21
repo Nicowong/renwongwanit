@@ -22,7 +22,7 @@ int main(int argc,char* argv[])
     exemple.setX(53);
 
     cout << "It works !" << endl;
-    cout << "Hello world !" << endl;
+    cout << "Bonjour le monde !" << endl;
 
     return 0;
 }
