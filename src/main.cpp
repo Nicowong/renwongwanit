@@ -11,6 +11,8 @@ void testSFML() {
 
 #include "state.h"
 
+#include "definitions.h"
+
 using namespace std;
 using namespace state;
 
@@ -20,6 +22,7 @@ int main(int argc,char* argv[])
     exemple.setX(53);
 
     cout << "It works !" << endl;
+    cout << "Hello world !" << endl;
 
     return 0;
 }
