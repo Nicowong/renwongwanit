@@ -20,6 +20,7 @@ int main(int argc,char* argv[])
     exemple.setX(53);
 
     cout << "It works !" << endl;
+    cout << "Bonjour le monde ! src/client/main.cpp" << endl;
 
     return 0;
 }
