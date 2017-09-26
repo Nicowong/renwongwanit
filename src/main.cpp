@@ -1,4 +1,3 @@
-#include <cstdlib>
 #include <iostream>
 
 // Les lignes suivantes ne servent qu'à vérifier que la compilation avec SFML fonctionne
@@ -14,7 +13,7 @@ void testSFML() {
 #include "definitions.h"
 
 using namespace std;
-//using namespace state;
+using namespace state;
 
 int main(int argc,char* argv[]) 
 {
@@ -22,7 +21,7 @@ int main(int argc,char* argv[])
     exemple.setX(53);
 
     cout << "It works !" << endl;
-    cout << "Bonjour le monde ! src/main.cpp" << endl;
+    cout << "Bonjour le monde !" << endl;
 
     return 0;
 }

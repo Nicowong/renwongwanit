@@ -20,6 +20,7 @@ int main(int argc,char* argv[])
     exemple.setX(53);
 
     cout << "It works !" << endl;
+<<<<<<< HEAD
     cout << "Bonjour le monde ! src/client/main.cpp" << endl;
     
     /*-----------------TEST SFML----------------*/
@@ -54,6 +55,8 @@ int main(int argc,char* argv[])
         
         sf::sleep(sf::seconds(1.0f));
     }
+=======
+>>>>>>> parent of 0d24730... compilation reussie
 
     return 0;
 }
