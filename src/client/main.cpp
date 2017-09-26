@@ -24,7 +24,7 @@ int main(int argc,char* argv[])
     
     /*-----------------TEST SFML----------------*/
 
-    sf::RenderWindow window(sf::VideoMode(200, 200), "SFML works!");
+    sf::RenderWindow window(sf::VideoMode(200, 200), "SFML works!", sf::Style::Default);
     sf::CircleShape shapeG(100.f);
     shapeG.setFillColor(sf::Color::Green);
     
