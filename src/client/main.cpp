@@ -9,21 +9,21 @@ void testSFML() {
 
 // Fin test SFML
 
-#include "state.h"
+//#include "state.h"
 
 using namespace std;
-using namespace state;
+//using namespace state;
 
 int main(int argc,char* argv[]) 
 {
-    Exemple exemple;
-    exemple.setX(53);
+    //Exemple exemple;
+    //exemple.setX(53);
 
-    cout << "It works !" << endl;
+    //cout << "It works !" << endl;
     cout << "Bonjour le monde ! src/client/main.cpp" << endl;
     
     /*-----------------TEST SFML----------------*/
-
+/*
     sf::RenderWindow window(sf::VideoMode(200, 200), "SFML works!", sf::Style::Default);
     sf::CircleShape shapeG(100.f);
     shapeG.setFillColor(sf::Color::Green);
@@ -54,6 +54,6 @@ int main(int argc,char* argv[])
         
         sf::sleep(sf::seconds(1.0f));
     }
-
+*/
     return 0;
 }
