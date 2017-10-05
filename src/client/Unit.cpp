@@ -47,12 +47,20 @@ Unit::Unit (int x, int y, UnitType uType, UnitTeam team):
     }
 }
 
-UnitType Unit::getUnitType(){
+UnitType Unit::getUnitType()const{
     return unitType ;
 }
-UnitTeam Unit::getTeam(){
+UnitTeam Unit::getUnitTeam()const{
     return unitTeam ;
 }
+
+void Unit::setUnitType(UnitType unitType){
+    this->unitType = unitType ;
+}
+void Unit::setUnitTeam(UnitTeam unitTeam){
+    this->unitTeam = unitTeam ;
+}
+
 int Unit::getX() const{
     return x ;
 }
