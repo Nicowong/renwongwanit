@@ -15,22 +15,19 @@ namespace state {
   protected:
     int x;
     int y;
-    int capturePoints ;
-    BuildingType buildingType;
-    BuildingTeam buildingTeam;
+    int capturePoints     = 20;
     // Operations
   public:
-
-    // Setters and Getters
     BuildingType getBuildingType ();
     BuildingTeam getTeam ();
+    bool isInCapture ();
+    // Setters and Getters
     int getX() const;
-    void setX(int X);
+    void setX(int x);
     int getY() const;
-    void setY(int Y);
+    void setY(int y);
     int getCapturePoints() const;
     void setCapturePoints(int capturePoints);
-    bool isInCapture ();
   };
 
 };

@@ -19,29 +19,27 @@ namespace state {
     int ammo;
     int fuel;
     int vision;
-    UnitType unittype;
-    UnitTeam unitteam;
     // Operations
   public:
     UnitType getUnitType ();
     UnitTeam getTeam ();
     bool isInfantry ();
-    //bool isCapturing ();
+    bool isCapturing ();
     bool isRanged ();
     bool isTransporter ();
     // Setters and Getters
     int getX() const;
-    void setX(int X);
+    void setX(int x);
     int getY() const;
-    void setY(int Y);
+    void setY(int y);
     int getHealth() const;
-    void setHealth(int Health);
+    void setHealth(int health);
     int getAmmo() const;
-    void setAmmo(int Ammo);
+    void setAmmo(int ammo);
     int getFuel() const;
-    void setFuel(int Fuel);
+    void setFuel(int fuel);
     int getVision() const;
-    void setVision(int Vision);
+    void setVision(int vision);
   };
 
 };
