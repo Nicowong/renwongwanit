@@ -19,9 +19,9 @@ namespace state {
     // Associations
     // Attributes
   protected:
-    int PlayerID;
-    std::vector<Unit*> UnitList;
-    std::vector<Building*> BuildingList;
+    int playerID;
+    std::vector<Unit*> unitList;
+    std::vector<Building*> buildingList;
     // Operations
   public:
     Building* getBuilding (int i);

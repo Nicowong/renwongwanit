@@ -21,17 +21,17 @@ Unit* Cell::getUnit(){
     return unit ;
 }
 CellType Cell::getCellType(){
-    return cellType;
+    return cellType ;
 }
 int Cell::getX() const{
-    return x;
+    return x ;
 }
 void Cell::setX(int X){
-    x=X;
+    x = X;
 }
 int Cell::getY() const{
-    return y;
+    return y ;
 }
 void Cell::setY(int Y){
-    y=Y;
+    y = Y ;
 }
