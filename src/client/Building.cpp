@@ -11,7 +11,8 @@
  * Created on October 3, 2017, 4:32 PM
  */
 
-#include "Building.h"
+#include "../shared/state/Building.h"
+
 using namespace state ;
 
 

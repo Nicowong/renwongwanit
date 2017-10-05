@@ -3,8 +3,8 @@
 #define STATE__UNIT__H
 
 
-#include "UnitType.h"
 #include "UnitTeam.h"
+#include "UnitType.h"
 
 namespace state {
 
@@ -19,6 +19,8 @@ namespace state {
     int ammo;
     int fuel;
     int vision;
+    UnitTeam unitTeam;
+    UnitType unitType;
     // Operations
   public:
     UnitType getUnitType ();
@@ -40,6 +42,9 @@ namespace state {
     void setFuel(int fuel);
     int getVision() const;
     void setVision(int vision);
+    UnitTeam getUnitTeam() const;
+    void setUnitTeam(UnitTeam unitTeam);
+    void setUnitType(UnitType unitType);
   };
 
 };

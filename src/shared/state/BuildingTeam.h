@@ -6,9 +6,9 @@
 namespace state {
 
   enum BuildingTeam {
-    Neutral     = 0,
-    Player1     = 1,
-    Player2     = 2
+    BT_NEUTRAL     = 0,
+    BT_PLAYER1     = 1,
+    BT_PLAYER2     = 2
   };
 
 };

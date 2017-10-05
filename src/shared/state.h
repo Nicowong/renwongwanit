@@ -2,13 +2,13 @@
 #ifndef __STATE__H
 #define __STATE__H
 
-#include "state/CellType.h"
-#include "state/BuildingType.h"
 #include "state/BuildingTeam.h"
+#include "state/BuildingType.h"
 #include "state/Building.h"
-#include "state/UnitType.h"
 #include "state/UnitTeam.h"
+#include "state/UnitType.h"
 #include "state/Unit.h"
+#include "state/CellType.h"
 #include "state/Cell.h"
 #include "state/Player.h"
 #include "state/State.h"

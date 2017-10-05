@@ -11,7 +11,7 @@
  * Created on October 4, 2017, 11:45 AM
  */
 
-#include "Player.h"
+#include "../shared/state/Player.h"
 using namespace state;
 Building* Player::getBuilding(int i){
     return buildingList[i];

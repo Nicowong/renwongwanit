@@ -3,8 +3,8 @@
 #define STATE__BUILDING__H
 
 
-#include "BuildingType.h"
 #include "BuildingTeam.h"
+#include "BuildingType.h"
 
 namespace state {
 
@@ -16,6 +16,8 @@ namespace state {
     int x;
     int y;
     int capturePoints     = 20;
+    BuildingTeam buildingTeam;
+    BuildingType buildingType;
     // Operations
   public:
     BuildingType getBuildingType ();
@@ -28,6 +30,9 @@ namespace state {
     void setY(int y);
     int getCapturePoints() const;
     void setCapturePoints(int capturePoints);
+    BuildingTeam getBuildingTeam() const;
+    void setBuildingTeam(BuildingTeam buildingTeam);
+    void setBuildingType(BuildingType buildingType);
   };
 
 };

@@ -2,15 +2,16 @@
 #ifndef STATE__CELL__H
 #define STATE__CELL__H
 
+#include <memory>
 
 namespace state {
   class Building;
   class Unit;
 }
 
-#include "CellType.h"
 #include "Building.h"
 #include "Unit.h"
+#include "CellType.h"
 
 namespace state {
 
@@ -21,6 +22,9 @@ namespace state {
   protected:
     int x;
     int y;
+    std::unique_ptr<Building> building;
+    std::unique_ptr<Unit> unit;
+    CellType cellType;
     // Operations
   public:
     Building* getBuilding ();
@@ -31,6 +35,9 @@ namespace state {
     void setX(int x);
     int getY() const;
     void setY(int y);
+    void setBuilding(const std::unique_ptr<Building>& building);
+    void setUnit(const std::unique_ptr<Unit>& unit);
+    void setCellType(CellType cellType);
   };
 
 };

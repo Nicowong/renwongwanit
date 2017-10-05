@@ -6,11 +6,11 @@
 namespace state {
 
   enum BuildingType {
-    BASE     = 0,
-    CITY     = 1,
-    FACTORY     = 2,
-    AIRPORT     = 3,
-    SEAPORT     = 4
+    BT_BASE     = 0,
+    BT_CITY     = 1,
+    BT_FACTORY     = 2,
+    BT_AIRPORT     = 3,
+    BT_SEAPORT     = 4
   };
 
 };
