@@ -14,12 +14,20 @@
 #include "../shared/state/Player.h"
 using namespace state;
 Building* Player::getBuilding(int i){
-    return buildingList[i];
+    return BuildingList[i];
 }
 Unit* Player::getUnit(int i){
-    return unitList[i];
+    return UnitList[i];
 }
 int Player::getPlayerID() const{
     return PlayerID;
 }
-
+void Player::setPlayerID(int playerID){
+    PlayerID = playerID;
+}
+void Player::setUnitList(const std::vector<Unit*>& unitList){
+    unitList=UnitList;
+}
+void Player::setBuildingList(const std::vector<Building*>& buildingList){
+    buildingList=BuildingList;
+}

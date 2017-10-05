@@ -20,15 +20,15 @@ namespace state {
     // Attributes
   protected:
     int PlayerID;
-    std::vector<Unit*> unitList;
-    std::vector<Building*> buildingList;
+    std::vector<Unit*> UnitList;
+    std::vector<Building*> BuildingList;
     // Operations
   public:
     Building* getBuilding (int i);
     Unit* getUnit (int i);
     // Setters and Getters
     int getPlayerID() const;
-    void setPlayerID(int PlayerID);
+    void setPlayerID(int playerID);
     const std::vector<Unit*>& getUnitList() const;
     void setUnitList(const std::vector<Unit*>& unitList);
     const std::vector<Building*>& getBuildingList() const;
