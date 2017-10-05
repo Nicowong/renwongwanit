@@ -19,7 +19,7 @@ namespace state {
     // Attributes
   protected:
     int PlayerID;
-    vector<unique_ptr<Unit>> unitList;
+    vector<unit*> unitList;
     vector<unique_ptr<Building>> buildingList;
     // Operations
   public:

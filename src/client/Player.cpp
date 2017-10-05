@@ -13,4 +13,13 @@
 
 #include "Player.h"
 using namespace state;
+Building* Player::getBuilding(int i){
+    return buildingList[i];
+}
+Unit* Player::getUnit(int i){
+    return unitList[i];
+}
+int Player::getPlayerID() const{
+    return PlayerID;
+}
 
