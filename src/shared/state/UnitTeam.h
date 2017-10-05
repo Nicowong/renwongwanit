@@ -6,8 +6,8 @@
 namespace state {
 
   enum UnitTeam {
-    Player1     = 1,
-    Player2     = 2
+    UT_PLAYER1     = 1,
+    UT_PLAYER2     = 2
   };
 
 };

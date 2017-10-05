@@ -11,14 +11,14 @@
  * Created on October 3, 2017, 5:13 PM
  */
 
-#include "Unit.h"
+#include "../shared/state/Unit.h"
 using namespace state ;
 
 UnitType Unit::getUnitType(){
-    return unittype;
+    return unitType;
 }
 UnitTeam Unit::getTeam(){
-    return unitteam;
+    return unitTeam;
 }
 int Unit::getX() const{
     return x;
@@ -57,18 +57,24 @@ void Unit::setVision(int Vision){
     vision=Vision;
 }
 bool Unit::isInfantry(){
-    if(unittype=0 ||unittype =1 ) return true;
-    else return false;
+    if(unitType==0 || unitType==1)
+        return true;
+    else
+        return false;
 }
 /*
 bool Unit::isCapturing(){
     
 }*/
 bool Unit::isRanged(){
-    if(unittype=7||unittype=8||unittype=9||unittype=14) return true;
-    else return false;
+    if(unitType==7 || unitType==8 || unitType==9 || unitType==14)
+        return true;
+    else
+        return false;
 }
 bool Unit::isTransporter(){
-    if(unittype=5||unittype=13||unittype=16) return true;
-    else return false;
+    if(unitType==5 || unitType==13 || unitType==16)
+        return true;
+    else
+        return false;
 }

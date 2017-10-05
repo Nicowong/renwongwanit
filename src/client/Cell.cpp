@@ -11,17 +11,17 @@
  * Created on October 4, 2017, 11:23 AM
  */
 
-#include "Cell.h"
+#include "../shared/state/Cell.h"
 using namespace state;
 
 Building* Cell::getBuilding(){
-    return building;
+    return nullptr ;//building;
 }
 Unit* Cell::getUnit(){
-    return unit;
+    return nullptr ;//unit;
 }
 CellType Cell::getCellType(){
-    return celltype;
+    return cellType;
 }
 int Cell::getX() const{
     return x;

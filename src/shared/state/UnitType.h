@@ -6,24 +6,24 @@
 namespace state {
 
   enum UnitType {
-    INFANTRY     = 0,
-    MECH     = 1,
-    RECON     = 2,
-    TANK     = 3,
-    TANKM     = 4,
-    APC     = 5,
-    AATANK     = 6,
-    AAMISSILELAUNCHER     = 7,
-    ARTILLERY     = 8,
-    MISSILELAUNCHER     = 9,
-    FIGHTER     = 10,
-    BOMBER     = 11,
-    BATTELHELI     = 12,
-    TRANSPORTHELI     = 13,
-    BATTLESHIP     = 14,
-    CRUISER     = 15,
-    LANDER     = 16,
-    SUBMARINE     = 17
+    UT_INFANTRY     = 0,
+    UT_MECH     = 1,
+    UT_RECON     = 2,
+    UT_TANK     = 3,
+    UT_TANKM     = 4,
+    UT_APC     = 5,
+    UT_AATANK     = 6,
+    UT_AAMISSILELAUNCHER     = 7,
+    UT_ARTILLERY     = 8,
+    UT_MISSILELAUNCHER     = 9,
+    UT_FIGHTER     = 10,
+    UT_BOMBER     = 11,
+    UT_BATTELHELI     = 12,
+    UT_TRANSPORTHELI     = 13,
+    UT_BATTLESHIP     = 14,
+    UT_CRUISER     = 15,
+    UT_LANDER     = 16,
+    UT_SUBMARINE     = 17
   };
 
 };

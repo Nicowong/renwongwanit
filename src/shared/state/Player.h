@@ -2,6 +2,8 @@
 #ifndef STATE__PLAYER__H
 #define STATE__PLAYER__H
 
+#include <vector>
+#include <memory>
 
 namespace state {
   class Building;
@@ -19,8 +21,8 @@ namespace state {
     // Attributes
   protected:
     int PlayerID;
-    vector<unique_ptr<Unit>> unitList;
-    vector<unique_ptr<Building>> buildingList;
+    std::vector<std::unique_ptr<Unit>> unitList;
+    std::vector<std::unique_ptr<Building>> buildingList;
     // Operations
   public:
     Building* getBuilding (int i);
@@ -28,10 +30,10 @@ namespace state {
     // Setters and Getters
     int getPlayerID() const;
     void setPlayerID(int PlayerID);
-    const vector<unique_ptr<Unit>>& getUnitList() const;
-    void setUnitList(const vector<unique_ptr<Unit>>& unitList);
-    const vector<unique_ptr<Building>>& getBuildingList() const;
-    void setBuildingList(const vector<unique_ptr<Building>>& buildingList);
+    const std::vector<std::unique_ptr<Unit>>& getUnitList() const;
+    void setUnitList(const std::vector<std::unique_ptr<Unit>>& unitList);
+    const std::vector<std::unique_ptr<Building>>& getBuildingList() const;
+    void setBuildingList(const std::vector<std::unique_ptr<Building>>& buildingList);
   };
 
 };
