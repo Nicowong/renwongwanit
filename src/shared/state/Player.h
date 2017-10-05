@@ -24,6 +24,9 @@ namespace state {
     std::vector<Building*> buildingList;
     // Operations
   public:
+    Player ();
+    Player (int pId);
+    ~Player ();
     Building* getBuilding (int i);
     Unit* getUnit (int i);
     // Setters and Getters

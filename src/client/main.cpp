@@ -1,4 +1,5 @@
 #include <iostream>
+#include <string>
 
 // Les lignes suivantes ne servent qu'à vérifier que la compilation avec SFML fonctionne
 #include <SFML/Graphics.hpp>
@@ -9,18 +10,51 @@ void testSFML() {
 
 // Fin test SFML
 
-//#include "state.h"
+#include "state.h"
 
-using namespace std;
-//using namespace state;
+//using namespace std;
+using namespace state;
 
-int main(int argc,char* argv[]) 
-{
-    //Exemple exemple;
-    //exemple.setX(53);
+/*--- Prototype des fonctions de test ---*/
+void testUnit();
+void testBuilding();
 
-    //cout << "It works !" << endl;
-    cout << "Bonjour le monde ! src/client/main.cpp" << endl;
+
+/*--- Fonction main ---*/
+
+int main(int argc,char* argv[]) {
+    int retVal = -1 ;
+    std::cout << "Bonjour le monde !" << std::endl ;
+    
+    for(int i=0 ; i<argc ; i++)
+        std::cout << "argc = " << argc << " ; argv[" << i << "]: " << argv[i] << std::endl ;
+    
+    for(int i=1 ; i<argc ; i++){
+        std::cout << ">>>argv["<<i<<"] : "<<argv[i] << std::endl;
+        if(std::string(argv[i])=="state"){
+            testUnit();
+        }else{
+            std::cout << "Error : command not found." << std::endl ;
+        }
+    }
+    
+    return retVal;
+}
+
+/*--- Fonctions de test ---*/
+
+void testUnit(){
+    std::cout<< "Creation de Unit par defaut."<< std::endl ;
+    Unit unit ;
+    std::cout<< "type : " << unit.getUnitType() << std::endl ;
+    std::cout<< "team : " << unit.getTeam() << std::endl ;
+    std::cout<< "x : " << unit.getX() << " ; y : " << unit.getY() << std::endl ;
+    
+    
+}
+
+
+
     
     /*-----------------TEST SFML----------------*/
 /*
@@ -55,5 +89,3 @@ int main(int argc,char* argv[])
         sf::sleep(sf::seconds(1.0f));
     }
 */
-    return 0;
-}

@@ -23,9 +23,10 @@ namespace state {
   protected:
     std::vector<Unit*> unitList;
     std::vector<Building*> buildingList;
-    Cell[][] map;
+    Cell* board;
     // Operations
   public:
+    State ();
     Cell getCell (int x, int y);
     Building* getBuilding (int x, int y);
     Building* getBuilding (int i);
@@ -36,8 +37,8 @@ namespace state {
     void setUnitList(const std::vector<Unit*>& unitList);
     const std::vector<Building*>& getBuildingList() const;
     void setBuildingList(const std::vector<Building*>& buildingList);
-    const Cell[][]& getMap() const;
-    void setMap(const Cell[][]& map);
+    const Cell*& getBoard() const;
+    void setBoard(const Cell*& board);
   };
 
 };

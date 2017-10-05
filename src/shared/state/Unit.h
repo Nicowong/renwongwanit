@@ -15,7 +15,7 @@ namespace state {
   protected:
     int x;
     int y;
-    int health     = 100;
+    int health;
     int ammo;
     int fuel;
     int vision;
@@ -23,6 +23,8 @@ namespace state {
     UnitType unitType;
     // Operations
   public:
+    Unit ( );
+    Unit (int x, int y, UnitType uType, UnitTeam team);
     UnitType getUnitType ();
     UnitTeam getTeam ();
     bool isInfantry ();

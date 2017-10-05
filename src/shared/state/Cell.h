@@ -26,6 +26,8 @@ namespace state {
     CellType cellType;
     // Operations
   public:
+    Cell ();
+    Cell (CellType cType, int x = 0, int y = 0);
     Building* getBuilding ();
     Unit* getUnit ();
     CellType getCellType ();

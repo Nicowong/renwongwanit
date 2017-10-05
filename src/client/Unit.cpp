@@ -11,8 +11,41 @@
  * Created on October 3, 2017, 5:13 PM
  */
 
+#include <iostream>
+
 #include "../shared/state/Unit.h"
 using namespace state ;
+
+Unit::Unit():
+    Unit(0,0,UT_INFANTRY, UT_PLAYER1){
+    
+    std::cout<< "Unit::Unit()" << std::endl ;
+}
+
+Unit::Unit (int x, int y, UnitType uType, UnitTeam team):
+    x(x), y(y), health(100), ammo(0), fuel(1), vision(1), unitTeam(team), unitType(uType){
+    
+    switch(unitType){
+        case UT_INFANTRY :
+            ammo = 99 ;
+            fuel = 99 ;
+            vision = 2 ;
+            break;
+        case UT_MECH :
+            ammo = 6 ;
+            fuel = 70 ;
+            vision = 2 ;
+            break;
+        case UT_RECON :
+            ammo = 12 ;
+            fuel = 99 ;
+            vision = 5 ;
+            break;
+        default:
+            std::cout << "In Unit::Unit(int,int,UnitType,UnitTeam), error : unitType not found." << std::endl;
+            break;
+    }
+}
 
 UnitType Unit::getUnitType(){
     return unitType ;
