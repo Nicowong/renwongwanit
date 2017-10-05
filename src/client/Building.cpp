@@ -20,27 +20,29 @@ BuildingType Building::getBuildingType(){
     return buildingType ;
 }
 BuildingTeam Building::getTeam(){
-    return buildingTeam;
+    return buildingTeam ;
 }
 int Building::getX() const{
-    return x;
+    return x ;
 }
 void Building::setX(int X){
-    x=X;
+    x = X;
 }
 int Building::getY() const{
-    return y;
+    return y ;
 }
 void Building::setY(int Y){
-    y=Y;
+    y = Y ;
 }
 int Building::getCapturePoints() const{
-    return capturePoints;
+    return capturePoints ;
 }
 void Building::setCapturePoints(int CapturePoints){
-    capturePoints=CapturePoints;
+    capturePoints = CapturePoints ;
 }
 bool Building::isInCapture(){
-    if (capturePoints< 20) return true;
-    else return false;
+    if (capturePoints < 20)
+        return true;
+    else
+        return false;
 }

@@ -14,3 +14,31 @@
 #include "../shared/state/Player.h"
 using namespace state;
 
+Building* Player::getBuilding (int i){
+    return buildingList[i];
+}
+
+Unit* Player::getUnit (int i){
+    return unitList[i];
+}
+    // Setters and Getters
+int Player::getPlayerID() const{
+    return playerID ;
+}
+
+void Player::setPlayerID(int PlayerID){
+    this->playerID = playerID ;
+}
+
+const std::vector<Unit*>& Player::getUnitList()const{
+    return unitList ;
+}
+void Player::setUnitList(const std::vector<Unit*>& unitList){
+    this->unitList = unitList ;
+}
+const std::vector<Building*>& Player::getBuildingList()const{
+    return buildingList ;
+}
+void Player::setBuildingList(const std::vector<Building*>& buildingList){
+    this->buildingList = buildingList ;
+}

@@ -19,7 +19,7 @@ namespace state {
     // Associations
     // Attributes
   protected:
-    int PlayerID;
+    int playerID;
     std::vector<Unit*> unitList;
     std::vector<Building*> buildingList;
     // Operations
@@ -28,7 +28,7 @@ namespace state {
     Unit* getUnit (int i);
     // Setters and Getters
     int getPlayerID() const;
-    void setPlayerID(int PlayerID);
+    void setPlayerID(int playerID);
     const std::vector<Unit*>& getUnitList() const;
     void setUnitList(const std::vector<Unit*>& unitList);
     const std::vector<Building*>& getBuildingList() const;

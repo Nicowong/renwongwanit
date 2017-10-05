@@ -15,46 +15,46 @@
 using namespace state ;
 
 UnitType Unit::getUnitType(){
-    return unitType;
+    return unitType ;
 }
 UnitTeam Unit::getTeam(){
-    return unitTeam;
+    return unitTeam ;
 }
 int Unit::getX() const{
-    return x;
+    return x ;
 }
 void Unit::setX(int X){
-    x=X;
+    x = X ;
 }
 int Unit::getY() const{
-    return y;
+    return y ;
 }
 void Unit::setY(int Y){
-    y=Y;
+    y = Y ;
 }
 int Unit::getHealth() const{
-    return health;
+    return health ;
 }
 void Unit::setHealth(int Health){
-    health=Health;
+    health = Health ;
 }
 int Unit::getAmmo() const{
-    return ammo;
+    return ammo ;
 }
 void Unit::setAmmo(int Ammo){
-    ammo=Ammo;
+    ammo = Ammo ;
 }
 int Unit::getFuel() const{
-    return fuel;
+    return fuel ;
 }
 void Unit::setFuel(int Fuel){
-    fuel=Fuel;
+    fuel = Fuel ;
 }
 int Unit::getVision() const{
-    return vision;
+    return vision ;
 }
 void Unit::setVision(int Vision){
-    vision=Vision;
+    vision = Vision ;
 }
 bool Unit::isInfantry(){
     if(unitType==0 || unitType==1)
