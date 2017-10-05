@@ -15,10 +15,10 @@
 using namespace state;
 
 Building* Cell::getBuilding(){
-    return nullptr ;//building;
+    return building ;
 }
 Unit* Cell::getUnit(){
-    return nullptr ;//unit;
+    return unit ;
 }
 CellType Cell::getCellType(){
     return cellType;

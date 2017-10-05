@@ -3,12 +3,11 @@
 #define STATE__STATE__H
 
 #include <vector>
-#include <memory>
 
 namespace state {
-  class Cell;
-  class Building;
   class Unit;
+  class Building;
+  class Cell;
   class Player;
 }
 
@@ -22,8 +21,8 @@ namespace state {
     // Associations
     // Attributes
   protected:
-    std::vector<std::unique_ptr<Unit>> unitList;
-    std::vector<std::unique_ptr<Building>> buildingList;
+    std::vector<Unit*> unitList;
+    std::vector<Building*> buildingList;
     Cell[][] map;
     // Operations
   public:
@@ -33,10 +32,10 @@ namespace state {
     Unit* getUnit (int x, int y);
     Unit* getUnit (int i);
     // Setters and Getters
-    const std::vector<std::unique_ptr<Unit>>& getUnitList() const;
-    void setUnitList(const std::vector<std::unique_ptr<Unit>>& unitList);
-    const std::vector<std::unique_ptr<Building>>& getBuildingList() const;
-    void setBuildingList(const std::vector<std::unique_ptr<Building>>& buildingList);
+    const std::vector<Unit*>& getUnitList() const;
+    void setUnitList(const std::vector<Unit*>& unitList);
+    const std::vector<Building*>& getBuildingList() const;
+    void setBuildingList(const std::vector<Building*>& buildingList);
     const Cell[][]& getMap() const;
     void setMap(const Cell[][]& map);
   };
