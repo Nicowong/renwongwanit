@@ -46,6 +46,17 @@ int main(int argc,char* argv[]) {
             testCell();
         //commande RENDER pour les tests de rendus
         }else if(std::string(argv[i])=="render"){
+            sf::Window window(sf::VideoMode(400,300), "My window");
+            
+            while(window.isOpen()){
+                //check event
+                sf::Event event ;
+                while(window.pollEvent(event)){
+                    //close request
+                    if(event.type == sf::Event::Closed)
+                        window.close();
+                }
+            }
             
         //Pas de commande
         }else{
