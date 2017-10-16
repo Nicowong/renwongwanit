@@ -15,11 +15,13 @@ namespace state {
   protected:
     int x;
     int y;
-    int capturePoints     = 20;
+    int capturePoints;
     BuildingTeam buildingTeam;
     BuildingType buildingType;
     // Operations
   public:
+    Building ();
+    Building (int x, int y, BuildingType bType, BuildingTeam team);
     BuildingType getBuildingType ();
     BuildingTeam getTeam ();
     bool isInCapture ();

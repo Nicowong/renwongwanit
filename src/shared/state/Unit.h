@@ -15,7 +15,7 @@ namespace state {
   protected:
     int x;
     int y;
-    int health     = 100;
+    int health;
     int ammo;
     int fuel;
     int vision;
@@ -23,8 +23,8 @@ namespace state {
     UnitType unitType;
     // Operations
   public:
-    UnitType getUnitType ();
-    UnitTeam getTeam ();
+    Unit ( );
+    Unit (int x, int y, UnitType uType, UnitTeam team);
     bool isInfantry ();
     bool isCapturing ();
     bool isRanged ();
@@ -44,6 +44,7 @@ namespace state {
     void setVision(int vision);
     UnitTeam getUnitTeam() const;
     void setUnitTeam(UnitTeam unitTeam);
+    UnitType getUnitType() const;
     void setUnitType(UnitType unitType);
   };
 

@@ -1,4 +1,5 @@
 #include <iostream>
+#include <string>
 
 // Les lignes suivantes ne servent qu'à vérifier que la compilation avec SFML fonctionne
 #include <SFML/Graphics.hpp>
@@ -9,18 +10,75 @@ void testSFML() {
 
 // Fin test SFML
 
-//#include "state.h"
+#include "state.h"
 
-using namespace std;
-//using namespace state;
+//using namespace std;
+using namespace state;
 
-int main(int argc,char* argv[]) 
-{
-    //Exemple exemple;
-    //exemple.setX(53);
+/*--- Prototype des fonctions de test ---*/
+void testUnit();
+void unitShow(const Unit& unit);
+void testBuilding();
 
-    //cout << "It works !" << endl;
-    cout << "Bonjour le monde ! src/client/main.cpp" << endl;
+
+/*--- Fonction main ---*/
+
+int main(int argc,char* argv[]) {
+    int retVal = -1 ;
+    std::cout << "Bonjour le monde !" << std::endl ;
+    
+    for(int i=0 ; i<argc ; i++)
+        std::cout << "argc = " << argc << " ; argv[" << i << "]: " << argv[i] << std::endl<<std::endl ;
+    
+    for(int i=1 ; i<argc ; i++){
+        std::cout << std::endl << ">>>argv["<<i<<"] : "<<argv[i] << std::endl;
+        if(std::string(argv[i])=="state"){
+            testUnit();
+        }else{
+            std::cout << "Error : command not found." << std::endl ;
+        }
+    }
+    
+    return retVal;
+}
+
+/*--- Fonctions de test ---*/
+void unitShow(const Unit& unit){
+    std::cout << std::endl ;
+    std::cout<< "type : " << unit.getUnitType() << std::endl ;
+    std::cout<< "team : " << unit.getUnitTeam() << std::endl ;
+    std::cout<< "x : " << unit.getX() << " ; y : " << unit.getY() << std::endl ;
+    std::cout<< "health : " << unit.getHealth() << " ; ammo : " << unit.getAmmo() << std::endl;
+    std::cout<< "fuel : " << unit.getFuel() << " ; vision : " << unit.getVision() << std::endl ;
+}
+void testUnit(){
+    std::cout<< "Creation de Unit par defaut."<< std::endl ;
+    Unit unit ;
+    unitShow(unit);
+    
+    std::cout<< std::endl << "Changement de valeurs attribut."<<std::endl ;
+    unit.setX(10);
+    unit.setY(12);
+    unit.setAmmo(50);
+    unit.setFuel(25);
+    unit.setUnitTeam(UT_PLAYER2);
+    unit.setUnitType(UT_RECON);
+    unit.setVision(4);
+    unitShow(unit);
+    
+    std::cout<< std::endl << "Creation de Unit de type INFANTRY."<<std::endl ;
+    Unit unitInf(3,4, UT_INFANTRY, UT_PLAYER2);
+    unitShow(unitInf);
+    std::cout<< std::endl << "Creation de Unit de type MECH."<<std::endl ;
+    Unit unitMech(5,6, UT_MECH, UT_PLAYER1);
+    unitShow(unitMech);
+    std::cout<< std::endl << "Creation de Unit de type RECON."<<std::endl ;
+    Unit unitRecon(7,8, UT_RECON, UT_PLAYER2);
+    unitShow(unitRecon);
+}
+
+
+
     
     /*-----------------TEST SFML----------------*/
 /*
@@ -55,5 +113,3 @@ int main(int argc,char* argv[])
         sf::sleep(sf::seconds(1.0f));
     }
 */
-    return 0;
-}
