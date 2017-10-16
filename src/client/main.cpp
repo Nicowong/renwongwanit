@@ -12,7 +12,7 @@ void testSFML() {
 
 #include "state.h"
 
-//using namespace std;
+using namespace std;
 using namespace state;
 
 /*--- Prototype des fonctions de test ---*/
@@ -28,6 +28,7 @@ int main(int argc,char* argv[]) {
     int retVal = -1 ;
     std::cout << "Bonjour le monde !" << std::endl ;
     
+    // affichage de la liste des arguments
     for(int i=0 ; i<argc ; i++)
         std::cout << "argc = " << argc << " ; argv[" << i << "]: " << argv[i] << std::endl<<std::endl ;
     
@@ -43,11 +44,14 @@ int main(int argc,char* argv[]) {
         //commande RENDER pour les tests de rendus
         }else if(std::string(argv[i])=="render"){
             
+        //Pas de commande
         }else{
             std::cout << "Error : command not found." << std::endl ;
         }
     }
     
+    
+    std::cout << endl ;
     return retVal;
 }
 
@@ -60,6 +64,14 @@ void unitShow(const Unit& unit){
     std::cout<< "health : " << unit.getHealth() << " ; ammo : " << unit.getAmmo() << std::endl;
     std::cout<< "fuel : " << unit.getFuel() << " ; vision : " << unit.getVision() << std::endl ;
 }
+void buildingShow(const Building& b){
+    std::cout<< std::endl ;
+    std::cout<< "type : " << b.getBuildingType() << std::endl ;
+    std::cout<< "team : " << b.getBuildingTeam() << std::endl ;
+    std::cout<< "x : " << b.getX() << " ; y : " << b.getY() << std::endl ;
+    std::cout<< "capture : " << b.getCapturePoints() << std::endl;
+}
+  
 void testUnit(){
     std::cout<< "Creation de Unit par defaut."<< std::endl ;
     Unit unit ;
@@ -91,17 +103,16 @@ void testBuilding(){
     Building b1 ;
     buildingShow(b1);
     
+    std::cout<< "Changement d'attribut" << endl << endl;
     
+    b1.setX(1);
+    b1.setY(2);
+    b1.setCapturePoints(10);
+    b1.setBuildingTeam(BT_PLAYER1);
+    b1.setBuildingType(BT_BASE);
+    buildingShow(b1);
 }
-
-void buildingShow(const Building& b){
-    std::cout << std::endl ;
-    std::cout<< "type : " << b.getBuildingType() << std::endl ;
-    std::cout<< "team : " << b.getBuildingTeam() << std::endl ;
-    std::cout<< "x : " << b.getX() << " ; y : " << b.getY() << std::endl ;
-    std::cout<< "capture : " << b.getCapturePoints() << std::endl;
-}
-    
+  
     /*-----------------TEST SFML----------------*/
 /*
     sf::RenderWindow window(sf::VideoMode(200, 200), "SFML works!", sf::Style::Default);

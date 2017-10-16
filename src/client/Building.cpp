@@ -16,17 +16,19 @@
 using namespace state ;
 
 
+Building::Building():Building(0,0, BT_CITY, BT_NEUTRAL){}
+
 Building::Building(int x, int y, BuildingType bType, BuildingTeam team):
     x(x), y(y), capturePoints(20), buildingTeam(team), buildingType(bType){}
 
-Building::Building():Building(0,0, BT_CITY, BT_NEUTRAL){}
+bool Building::isInCapture()const{
+    if (capturePoints < 20)
+        return true;
+    else
+        return false;
+}
 
-BuildingType Building::getBuildingType() const{
-    return buildingType ;
-}
-BuildingTeam Building::getBuildingTeam() const{
-    return buildingTeam ;
-}
+//Setters and Getters
 int Building::getX() const{
     return x ;
 }
@@ -39,15 +41,21 @@ int Building::getY() const{
 void Building::setY(int Y){
     y = Y ;
 }
+BuildingTeam Building::getBuildingTeam() const{
+    return buildingTeam ;
+}
+void Building::setBuildingTeam(BuildingTeam buildingTeam){
+    buildingTeam = buildingTeam ;
+}
+BuildingType Building::getBuildingType() const{
+    return buildingType ;
+}
+void Building::setBuildingType(BuildingType buildingType){
+    buildingType = buildingType ;
+}
 int Building::getCapturePoints() const{
     return capturePoints ;
 }
 void Building::setCapturePoints(int CapturePoints){
     capturePoints = CapturePoints ;
-}
-bool Building::isInCapture()const{
-    if (capturePoints < 20)
-        return true;
-    else
-        return false;
 }

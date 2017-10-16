@@ -17,14 +17,14 @@
 using namespace state ;
 
 Unit::Unit():
-    Unit(0,0,UT_INFANTRY, UT_PLAYER1){
-    
+    Unit(0,0,UT_INFANTRY, UT_PLAYER1)
+{
     std::cout<< "Unit::Unit()" << std::endl ;
 }
 
 Unit::Unit (int x, int y, UnitType uType, UnitTeam team):
-    x(x), y(y), health(100), ammo(0), fuel(1), vision(1), unitTeam(team), unitType(uType){
-    
+    x(x), y(y), health(100), ammo(0), fuel(1), vision(1), unitTeam(team), unitType(uType)
+{
     switch(unitType){
         case UT_INFANTRY :
             ammo = 99 ;
@@ -47,20 +47,26 @@ Unit::Unit (int x, int y, UnitType uType, UnitTeam team):
     }
 }
 
-UnitType Unit::getUnitType()const{
-    return unitType ;
+bool Unit::isInfantry()const{
+    if(unitType==0 || unitType==1)
+        return true;
+    else
+        return false;
 }
-UnitTeam Unit::getUnitTeam()const{
-    return unitTeam ;
+bool Unit::isRanged()const{
+    if(unitType==7 || unitType==8 || unitType==9 || unitType==14)
+        return true;
+    else
+        return false;
+}
+bool Unit::isTransporter()const{
+    if(unitType==5 || unitType==13 || unitType==16)
+        return true;
+    else
+        return false;
 }
 
-void Unit::setUnitType(UnitType unitType){
-    this->unitType = unitType ;
-}
-void Unit::setUnitTeam(UnitTeam unitTeam){
-    this->unitTeam = unitTeam ;
-}
-
+//Setters and Getters
 int Unit::getX() const{
     return x ;
 }
@@ -72,6 +78,18 @@ int Unit::getY() const{
 }
 void Unit::setY(int Y){
     y = Y ;
+}
+void Unit::setUnitTeam(UnitTeam unitTeam){
+    this->unitTeam = unitTeam ;
+}
+UnitTeam Unit::getUnitTeam()const{
+    return unitTeam ;
+}
+void Unit::setUnitType(UnitType unitType){
+    this->unitType = unitType ;
+}
+UnitType Unit::getUnitType()const{
+    return unitType ;
 }
 int Unit::getHealth() const{
     return health ;
@@ -97,25 +115,7 @@ int Unit::getVision() const{
 void Unit::setVision(int Vision){
     vision = Vision ;
 }
-bool Unit::isInfantry()const{
-    if(unitType==0 || unitType==1)
-        return true;
-    else
-        return false;
-}
 /*
 bool Unit::isCapturing(){
     
 }*/
-bool Unit::isRanged()const{
-    if(unitType==7 || unitType==8 || unitType==9 || unitType==14)
-        return true;
-    else
-        return false;
-}
-bool Unit::isTransporter()const{
-    if(unitType==5 || unitType==13 || unitType==16)
-        return true;
-    else
-        return false;
-}
