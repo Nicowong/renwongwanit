@@ -27,11 +27,11 @@ namespace state {
     // Operations
   public:
     State ();
-    Cell getCell (int x, int y);
-    Building* getBuilding (int x, int y);
-    Building* getBuilding (int i);
-    Unit* getUnit (int x, int y);
-    Unit* getUnit (int i);
+    const Cell& getCell (int x, int y) const;
+    const Building& getBuilding (int x, int y) const;
+    const Building& getBuilding (int i) const;
+    const Unit& getUnit (int x, int y) const;
+    const Unit& getUnit (int i) const;
     // Setters and Getters
     const std::vector<Unit*>& getUnitList() const;
     void setUnitList(const std::vector<Unit*>& unitList);

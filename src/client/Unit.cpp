@@ -97,7 +97,7 @@ int Unit::getVision() const{
 void Unit::setVision(int Vision){
     vision = Vision ;
 }
-bool Unit::isInfantry(){
+bool Unit::isInfantry()const{
     if(unitType==0 || unitType==1)
         return true;
     else
@@ -107,13 +107,13 @@ bool Unit::isInfantry(){
 bool Unit::isCapturing(){
     
 }*/
-bool Unit::isRanged(){
+bool Unit::isRanged()const{
     if(unitType==7 || unitType==8 || unitType==9 || unitType==14)
         return true;
     else
         return false;
 }
-bool Unit::isTransporter(){
+bool Unit::isTransporter()const{
     if(unitType==5 || unitType==13 || unitType==16)
         return true;
     else

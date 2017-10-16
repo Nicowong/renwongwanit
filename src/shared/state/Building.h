@@ -22,9 +22,7 @@ namespace state {
   public:
     Building ();
     Building (int x, int y, BuildingType bType, BuildingTeam team);
-    BuildingType getBuildingType ();
-    BuildingTeam getTeam ();
-    bool isInCapture ();
+    bool isInCapture () const;
     // Setters and Getters
     int getX() const;
     void setX(int x);
@@ -34,6 +32,7 @@ namespace state {
     void setCapturePoints(int capturePoints);
     BuildingTeam getBuildingTeam() const;
     void setBuildingTeam(BuildingTeam buildingTeam);
+    BuildingType getBuildingType() const;
     void setBuildingType(BuildingType buildingType);
   };
 

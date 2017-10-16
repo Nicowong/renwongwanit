@@ -16,10 +16,15 @@
 using namespace state ;
 
 
-BuildingType Building::getBuildingType(){
+Building::Building(int x, int y, BuildingType bType, BuildingTeam team):
+    x(x), y(y), capturePoints(20), buildingTeam(team), buildingType(bType){}
+
+Building::Building():Building(0,0, BT_CITY, BT_NEUTRAL){}
+
+BuildingType Building::getBuildingType() const{
     return buildingType ;
 }
-BuildingTeam Building::getTeam(){
+BuildingTeam Building::getBuildingTeam() const{
     return buildingTeam ;
 }
 int Building::getX() const{
@@ -40,7 +45,7 @@ int Building::getCapturePoints() const{
 void Building::setCapturePoints(int CapturePoints){
     capturePoints = CapturePoints ;
 }
-bool Building::isInCapture(){
+bool Building::isInCapture()const{
     if (capturePoints < 20)
         return true;
     else

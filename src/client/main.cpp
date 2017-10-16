@@ -19,6 +19,7 @@ using namespace state;
 void testUnit();
 void unitShow(const Unit& unit);
 void testBuilding();
+void buildingShow(const Building& b);
 
 
 /*--- Fonction main ---*/
@@ -32,8 +33,16 @@ int main(int argc,char* argv[]) {
     
     for(int i=1 ; i<argc ; i++){
         std::cout << std::endl << ">>>argv["<<i<<"] : "<<argv[i] << std::endl;
+        
+        //command STATE pour les tests unitaires
         if(std::string(argv[i])=="state"){
             testUnit();
+            std::cout << "-------------------------" <<std::endl;
+            testBuilding();
+            
+        //commande RENDER pour les tests de rendus
+        }else if(std::string(argv[i])=="render"){
+            
         }else{
             std::cout << "Error : command not found." << std::endl ;
         }
@@ -44,7 +53,7 @@ int main(int argc,char* argv[]) {
 
 /*--- Fonctions de test ---*/
 void unitShow(const Unit& unit){
-    std::cout << std::endl ;
+    std::cout<< std::endl ;
     std::cout<< "type : " << unit.getUnitType() << std::endl ;
     std::cout<< "team : " << unit.getUnitTeam() << std::endl ;
     std::cout<< "x : " << unit.getX() << " ; y : " << unit.getY() << std::endl ;
@@ -77,8 +86,21 @@ void testUnit(){
     unitShow(unitRecon);
 }
 
+void testBuilding(){
+    std::cout << "Creation de Building par defaut" << std::endl ;
+    Building b1 ;
+    buildingShow(b1);
+    
+    
+}
 
-
+void buildingShow(const Building& b){
+    std::cout << std::endl ;
+    std::cout<< "type : " << b.getBuildingType() << std::endl ;
+    std::cout<< "team : " << b.getBuildingTeam() << std::endl ;
+    std::cout<< "x : " << b.getX() << " ; y : " << b.getY() << std::endl ;
+    std::cout<< "capture : " << b.getCapturePoints() << std::endl;
+}
     
     /*-----------------TEST SFML----------------*/
 /*

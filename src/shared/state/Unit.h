@@ -25,10 +25,10 @@ namespace state {
   public:
     Unit ( );
     Unit (int x, int y, UnitType uType, UnitTeam team);
-    bool isInfantry ();
-    bool isCapturing ();
-    bool isRanged ();
-    bool isTransporter ();
+    bool isInfantry () const;
+    bool isCapturing () const;
+    bool isRanged () const;
+    bool isTransporter () const;
     // Setters and Getters
     int getX() const;
     void setX(int x);
