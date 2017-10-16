@@ -30,7 +30,7 @@ namespace state {
     Cell (CellType cType, int x = 0, int y = 0);
     Building* getBuilding ();
     Unit* getUnit ();
-    CellType getCellType ();
+    CellType getCellType () const;
     // Setters and Getters
     int getX() const;
     void setX(int x);
