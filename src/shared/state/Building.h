@@ -15,9 +15,9 @@ namespace state {
   protected:
     int x;
     int y;
-    int capturePoints;
     BuildingTeam buildingTeam;
     BuildingType buildingType;
+    int capturePoints;
     // Operations
   public:
     Building ();
@@ -28,12 +28,12 @@ namespace state {
     void setX(int x);
     int getY() const;
     void setY(int y);
-    int getCapturePoints() const;
-    void setCapturePoints(int capturePoints);
     BuildingTeam getBuildingTeam() const;
     void setBuildingTeam(BuildingTeam buildingTeam);
     BuildingType getBuildingType() const;
     void setBuildingType(BuildingType buildingType);
+    int getCapturePoints() const;
+    void setCapturePoints(int capturePoints);
   };
 
 };
