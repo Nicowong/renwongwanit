@@ -23,7 +23,7 @@ Unit::Unit():
 }
 
 Unit::Unit (int x, int y, UnitType uType, UnitTeam team):
-    x(x), y(y), health(100), ammo(0), fuel(1), vision(1), unitTeam(team), unitType(uType)
+    x(x), y(y), unitTeam(team), unitType(uType), health(100), ammo(0), fuel(1), vision(1)
 {
     switch(unitType){
         case UT_INFANTRY :
@@ -48,19 +48,19 @@ Unit::Unit (int x, int y, UnitType uType, UnitTeam team):
 }
 
 bool Unit::isInfantry()const{
-    if(unitType==0 || unitType==1)
+    if(unitType==UT_INFANTRY || unitType==UT_MECH)
         return true;
     else
         return false;
 }
 bool Unit::isRanged()const{
-    if(unitType==7 || unitType==8 || unitType==9 || unitType==14)
+    if(unitType==UT_AAMISSILELAUNCHER || unitType==UT_ARTILLERY || unitType==UT_MISSILELAUNCHER || unitType==UT_BATTLESHIP)
         return true;
     else
         return false;
 }
 bool Unit::isTransporter()const{
-    if(unitType==5 || unitType==13 || unitType==16)
+    if(unitType==UT_APC || unitType==UT_TRANSPORTHELI || unitType==UT_LANDER)
         return true;
     else
         return false;

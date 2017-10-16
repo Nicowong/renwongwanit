@@ -19,7 +19,7 @@ using namespace state ;
 Building::Building():Building(0,0, BT_CITY, BT_NEUTRAL){}
 
 Building::Building(int x, int y, BuildingType bType, BuildingTeam team):
-    x(x), y(y), capturePoints(20), buildingTeam(team), buildingType(bType){}
+    x(x), y(y), buildingTeam(team), buildingType(bType), capturePoints(20){}
 
 bool Building::isInCapture()const{
     if (capturePoints < 20)
