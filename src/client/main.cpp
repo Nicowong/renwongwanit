@@ -162,9 +162,9 @@ void testCell(){
     
     cell.setBuilding(&b2);
     cell.setCellType(CT_FOREST);
-    cell.setUnit(unit&);
+    cell.setUnit(&unit);
     cell.setX(11);
-    cell.getY(5);
+    cell.setY(5);
     
 }
   

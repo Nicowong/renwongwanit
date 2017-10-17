@@ -28,16 +28,16 @@ namespace state {
   public:
     Cell ();
     Cell (CellType cType, int x = 0, int y = 0);
-    Building* getBuilding ()const;
-    Unit* getUnit ()const;
-    CellType getCellType () const;
+    Building* getBuilding () const;
+    void setBuilding (Building* building);
+    Unit* getUnit () const;
+    void setUnit (Unit* unit);
     // Setters and Getters
     int getX() const;
     void setX(int x);
     int getY() const;
     void setY(int y);
-    void setBuilding(const Building*& building);
-    void setUnit(const Unit*& unit);
+    CellType getCellType() const;
     void setCellType(CellType cellType);
   };
 

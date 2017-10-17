@@ -14,25 +14,18 @@
 #include "../shared/state/Cell.h"
 using namespace state;
 
-Cell::Cell(){
+Cell::Cell():
+    Cell(CT_GROUND, 0, 0)
+{
     
 }
-Cell::Cell (CellType cType, int x, int y ){
+Cell::Cell (CellType cType, int x, int y ): 
+    x(x), y(y), building(nullptr), unit(nullptr), cellType(cType)
+{
     
 }
 
-Building* Cell::getBuilding()const{
-    return building ;
-}
-void Cell::setBuilding(const Building*& building){
-    //this->building = building ;
-}
-Unit* Cell::getUnit()const{
-    return unit ;
-}
-CellType Cell::getCellType()const{
-    return cellType ;
-}
+//Getters and Setters
 int Cell::getX() const{
     return x ;
 }
@@ -44,4 +37,24 @@ int Cell::getY() const{
 }
 void Cell::setY(int Y){
     y = Y ;
+}
+
+Building* Cell::getBuilding () const{
+    return building ;
+}
+void Cell::setBuilding (Building* building){
+    this->building = building ;
+}
+Unit* Cell::getUnit () const{
+    return unit ;
+}
+void Cell::setUnit (Unit* unit){
+    this->unit = unit ;
+}
+    
+CellType Cell::getCellType() const{
+    return cellType ;
+}
+void Cell::setCellType(CellType cellType){
+    this->cellType = cellType ;
 }
