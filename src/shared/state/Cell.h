@@ -28,8 +28,8 @@ namespace state {
   public:
     Cell ();
     Cell (CellType cType, int x = 0, int y = 0);
-    Building* getBuilding ();
-    Unit* getUnit ();
+    Building* getBuilding ()const;
+    Unit* getUnit ()const;
     CellType getCellType () const;
     // Setters and Getters
     int getX() const;
