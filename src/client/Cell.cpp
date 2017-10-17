@@ -14,13 +14,23 @@
 #include "../shared/state/Cell.h"
 using namespace state;
 
-Building* Cell::getBuilding(){
+Cell::Cell(){
+    
+}
+Cell::Cell (CellType cType, int x, int y ){
+    
+}
+
+Building* Cell::getBuilding()const{
     return building ;
 }
-Unit* Cell::getUnit(){
+void Cell::setBuilding(const Building*& building){
+    //this->building = building ;
+}
+Unit* Cell::getUnit()const{
     return unit ;
 }
-CellType Cell::getCellType(){
+CellType Cell::getCellType()const{
     return cellType ;
 }
 int Cell::getX() const{

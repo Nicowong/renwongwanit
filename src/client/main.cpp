@@ -20,6 +20,8 @@ void testUnit();
 void unitShow(const Unit& unit);
 void testBuilding();
 void buildingShow(const Building& b);
+void testCell();
+void cellShow(const Cell& c);
 
 
 /*--- Fonction main ---*/
@@ -40,7 +42,8 @@ int main(int argc,char* argv[]) {
             testUnit();
             std::cout << "-------------------------" <<std::endl;
             testBuilding();
-            
+            std::cout << "-------------------------" <<std::endl;
+            testCell();
         //commande RENDER pour les tests de rendus
         }else if(std::string(argv[i])=="render"){
             sf::RenderWindow window(sf::VideoMode(400,300), "My window");
@@ -86,6 +89,13 @@ void buildingShow(const Building& b){
     std::cout<< "x : " << b.getX() << " ; y : " << b.getY() << std::endl ;
     std::cout<< "capture : " << b.getCapturePoints() << std::endl;
 }
+void cellShow(const Cell& cell){
+    std::cout<<std::endl;
+    std::cout<<"type : "<<cell.getCellType()<<std::endl;
+    std::cout<<"building : "<<cell.getBuilding()<<std::endl;
+    std::cout<<"unit : "<<cell.getUnit()<<std::endl;
+    std::cout<< "x : " << cell.getX() << " ; y : " << cell.getY() << std::endl ;
+}
   
 void testUnit(){
     std::cout<< "Creation de Unit par defaut."<< std::endl ;
@@ -126,6 +136,36 @@ void testBuilding(){
     b1.setBuildingTeam(BT_PLAYER1);
     b1.setBuildingType(BT_BASE);
     buildingShow(b1);
+}
+void testCell(){
+    std::cout<<"Creation de Cell par defaut"<<std::endl;
+    Cell cell;
+    cellShow(cell);
+    
+    Building b2;
+    b2.setX(1);
+    b2.setY(2);
+    b2.setCapturePoints(10);
+    b2.setBuildingTeam(BT_PLAYER1);
+    b2.setBuildingType(BT_BASE);
+    
+    Unit unit;
+    unit.setX(10);
+    unit.setY(12);
+    unit.setAmmo(50);
+    unit.setFuel(25);
+    unit.setUnitTeam(UT_PLAYER2);
+    unit.setUnitType(UT_RECON);
+    unit.setVision(4);
+    unitShow(unit);
+    
+    
+    cell.setBuilding(&b2);
+    cell.setCellType(CT_FOREST);
+    cell.setUnit(unit&);
+    cell.setX(11);
+    cell.getY(5);
+    
 }
   
     /*-----------------TEST SFML----------------*/
