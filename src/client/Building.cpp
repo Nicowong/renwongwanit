@@ -45,17 +45,17 @@ BuildingTeam Building::getBuildingTeam() const{
     return buildingTeam ;
 }
 void Building::setBuildingTeam(BuildingTeam buildingTeam){
-    buildingTeam = buildingTeam ;
+    this->buildingTeam = buildingTeam ;
 }
 BuildingType Building::getBuildingType() const{
     return buildingType ;
 }
 void Building::setBuildingType(BuildingType buildingType){
-    buildingType = buildingType ;
+    this->buildingType = buildingType ;
 }
 int Building::getCapturePoints() const{
     return capturePoints ;
 }
 void Building::setCapturePoints(int CapturePoints){
-    capturePoints = CapturePoints ;
+    this->capturePoints = CapturePoints ;
 }

@@ -95,25 +95,25 @@ int Unit::getHealth() const{
     return health ;
 }
 void Unit::setHealth(int Health){
-    health = Health ;
+    this->health = Health ;
 }
 int Unit::getAmmo() const{
     return ammo ;
 }
 void Unit::setAmmo(int Ammo){
-    ammo = Ammo ;
+    this->ammo = Ammo ;
 }
 int Unit::getFuel() const{
     return fuel ;
 }
 void Unit::setFuel(int Fuel){
-    fuel = Fuel ;
+    this->fuel = Fuel ;
 }
 int Unit::getVision() const{
     return vision ;
 }
 void Unit::setVision(int Vision){
-    vision = Vision ;
+    this->vision = Vision ;
 }
 /*
 bool Unit::isCapturing(){
