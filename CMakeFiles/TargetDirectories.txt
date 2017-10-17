@@ -1,3 +1,0 @@
-/home/ren/Desktop/IS/renwongwanit/CMakeFiles/rebuild_cache.dir
-/home/ren/Desktop/IS/renwongwanit/CMakeFiles/edit_cache.dir
-/home/ren/Desktop/IS/renwongwanit/CMakeFiles/client.dir
