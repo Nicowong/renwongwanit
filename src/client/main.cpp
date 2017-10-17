@@ -99,8 +99,6 @@ void buildingShow(const Building& b){
 void cellShow(const Cell& cell){
     std::cout<<std::endl;
     std::cout<<"type : "<<cell.getCellType()<<std::endl;
-    std::cout<<"building : "<<cell.getBuilding()<<std::endl;
-    std::cout<<"unit : "<<cell.getUnit()<<std::endl;
     std::cout<< "x : " << cell.getX() << " ; y : " << cell.getY() << std::endl ;
 }
   
@@ -147,7 +145,6 @@ void testBuilding(){
 void testCell(){
     std::cout<<"Creation de Cell par defaut"<<std::endl;
     Cell cell;
-    cellShow(cell);
     
     Building b2;
     b2.setX(1);
@@ -155,7 +152,8 @@ void testCell(){
     b2.setCapturePoints(10);
     b2.setBuildingTeam(BT_PLAYER1);
     b2.setBuildingType(BT_BASE);
-    
+   
+        
     Unit unit;
     unit.setX(10);
     unit.setY(12);
@@ -164,14 +162,19 @@ void testCell(){
     unit.setUnitTeam(UT_PLAYER2);
     unit.setUnitType(UT_RECON);
     unit.setVision(4);
-    unitShow(unit);
     
+    //show data of unit and building 
+    unitShow(unit);
+    std::cout<<"-------------------------"<<std::endl;
+    buildingShow(b2);
+    std::cout<<"-------------------------"<<std::endl;
     
     cell.setBuilding(&b2);
     cell.setCellType(CT_FOREST);
     cell.setUnit(&unit);
     cell.setX(11);
     cell.setY(5);
+    cellShow(cell);
     
 }
   

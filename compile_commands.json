@@ -1,0 +1,27 @@
+[
+{
+  "directory": "/home/ren/Desktop/IS/renwongwanit",
+  "command": "/usr/bin/g++    -I/home/ren/Desktop/IS/renwongwanit/src/client -I/home/ren/Desktop/IS/renwongwanit/src/server -I/home/ren/Desktop/IS/renwongwanit/src/shared   -Wall -std=c++11 -pthread -g -O3 -DNDEBUG   -std=gnu++11 -o CMakeFiles/client.dir/src/client/Unit.cpp.o -c /home/ren/Desktop/IS/renwongwanit/src/client/Unit.cpp",
+  "file": "/home/ren/Desktop/IS/renwongwanit/src/client/Unit.cpp"
+},
+{
+  "directory": "/home/ren/Desktop/IS/renwongwanit",
+  "command": "/usr/bin/g++    -I/home/ren/Desktop/IS/renwongwanit/src/client -I/home/ren/Desktop/IS/renwongwanit/src/server -I/home/ren/Desktop/IS/renwongwanit/src/shared   -Wall -std=c++11 -pthread -g -O3 -DNDEBUG   -std=gnu++11 -o CMakeFiles/client.dir/src/client/Cell.cpp.o -c /home/ren/Desktop/IS/renwongwanit/src/client/Cell.cpp",
+  "file": "/home/ren/Desktop/IS/renwongwanit/src/client/Cell.cpp"
+},
+{
+  "directory": "/home/ren/Desktop/IS/renwongwanit",
+  "command": "/usr/bin/g++    -I/home/ren/Desktop/IS/renwongwanit/src/client -I/home/ren/Desktop/IS/renwongwanit/src/server -I/home/ren/Desktop/IS/renwongwanit/src/shared   -Wall -std=c++11 -pthread -g -O3 -DNDEBUG   -std=gnu++11 -o CMakeFiles/client.dir/src/client/Building.cpp.o -c /home/ren/Desktop/IS/renwongwanit/src/client/Building.cpp",
+  "file": "/home/ren/Desktop/IS/renwongwanit/src/client/Building.cpp"
+},
+{
+  "directory": "/home/ren/Desktop/IS/renwongwanit",
+  "command": "/usr/bin/g++    -I/home/ren/Desktop/IS/renwongwanit/src/client -I/home/ren/Desktop/IS/renwongwanit/src/server -I/home/ren/Desktop/IS/renwongwanit/src/shared   -Wall -std=c++11 -pthread -g -O3 -DNDEBUG   -std=gnu++11 -o CMakeFiles/client.dir/src/client/main.cpp.o -c /home/ren/Desktop/IS/renwongwanit/src/client/main.cpp",
+  "file": "/home/ren/Desktop/IS/renwongwanit/src/client/main.cpp"
+},
+{
+  "directory": "/home/ren/Desktop/IS/renwongwanit",
+  "command": "/usr/bin/g++    -I/home/ren/Desktop/IS/renwongwanit/src/client -I/home/ren/Desktop/IS/renwongwanit/src/server -I/home/ren/Desktop/IS/renwongwanit/src/shared   -Wall -std=c++11 -pthread -g -O3 -DNDEBUG   -std=gnu++11 -o CMakeFiles/client.dir/src/client/Player.cpp.o -c /home/ren/Desktop/IS/renwongwanit/src/client/Player.cpp",
+  "file": "/home/ren/Desktop/IS/renwongwanit/src/client/Player.cpp"
+}
+]
