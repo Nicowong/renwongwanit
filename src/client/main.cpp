@@ -46,7 +46,14 @@ int main(int argc,char* argv[]) {
             testCell();
         //commande RENDER pour les tests de rendus
         }else if(std::string(argv[i])=="render"){
-            sf::RenderWindow window(sf::VideoMode(400,300), "My window");
+            sf::RenderWindow window(sf::VideoMode(480,320), "My window - test sprite");
+            
+            sf::Texture tex_road;
+            sf::Texture tex_inftred ;
+            
+            if(!tex_road.loadFromFile("res/road_5.png")){
+                cout<< "couldn't load texture" << endl ;
+            }
             
             while(window.isOpen()){
                 //check event
