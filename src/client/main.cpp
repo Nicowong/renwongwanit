@@ -43,7 +43,7 @@ int main(int argc,char* argv[]) {
             
         //commande RENDER pour les tests de rendus
         }else if(std::string(argv[i])=="render"){
-            sf::Window window(sf::VideoMode(400,300), "My window");
+            sf::RenderWindow window(sf::VideoMode(400,300), "My window");
             
             while(window.isOpen()){
                 //check event
@@ -53,6 +53,10 @@ int main(int argc,char* argv[]) {
                     if(event.type == sf::Event::Closed)
                         window.close();
                 }
+                
+                window.clear(sf::Color::Black);
+                
+                window.display();
             }
             
         //Pas de commande
