@@ -15,20 +15,15 @@ void testSFML() {
 using namespace std;
 using namespace state;
 
-/*--- Prototype des fonctions de test ---*/
-void testUnit();
-void unitShow(const Unit& unit);
-void testBuilding();
-void buildingShow(const Building& b);
-void testCell();
-void cellShow(const Cell& c);
-
+/*fonctions de test unitaire*/
+void testHello();
+void testState();
+void testRender();
 
 /*--- Fonction main ---*/
 
 int main(int argc,char* argv[]) {
     int retVal = -1 ;
-    std::cout << "Bonjour le monde !" << std::endl ;
     
     // affichage de la liste des arguments
     for(int i=0 ; i<argc ; i++)
@@ -38,79 +33,17 @@ int main(int argc,char* argv[]) {
         std::cout << std::endl << ">>>argv["<<i<<"] : "<<argv[i] << std::endl;
         
         //command STATE pour les tests unitaires
-        if(std::string(argv[i])=="state"){
-            testUnit();
-            std::cout << "-------------------------" <<std::endl;
-            testBuilding();
-            std::cout << "-------------------------" <<std::endl;
-            testCell();
+        // --- test hello
+        if(std::string(argv[i])=="hello"){
+            testHello();
+        }
+        // --- test state
+        else if(std::string(argv[i])=="state"){
+            testState();
+        }
         //commande RENDER pour les tests de rendus
-        }else if(std::string(argv[i])=="render"){
-            sf::RenderWindow window(sf::VideoMode(480,320), "My window - test sprite");
-            
-            window.setFramerateLimit(60);
-            
-            sf::Texture tex_road;
-            sf::Texture tex_inftRed ;
-            
-            if(!tex_road.loadFromFile("res/road_5.png"))
-                cout<< "couldn't load texture res/road_5.png" << endl ;
-            if(!tex_inftRed.loadFromFile("res/infantry_red.png"))
-                cout<< "couldn't load texture res/infantry_red.png" << endl ;
-            
-            sf::Sprite spr_road ;
-            sf::Sprite spr_inftrRed;
-            spr_road.setTexture(tex_road);
-            spr_inftrRed.setTexture(tex_inftRed);
-            
-            spr_road.setPosition(sf::Vector2f(0,0));
-            spr_inftrRed.setPosition(sf::Vector2f(16,0));
-            
-            while(window.isOpen()){
-                //check event
-                sf::Event event ;
-                while(window.pollEvent(event)){
-                    
-                    switch(event.type){
-                        case sf::Event::Closed :    //close request
-                            window.close();
-                            break;
-                        case sf::Event::KeyReleased :        //Keyboard Commands
-                            switch(event.key.code){
-                                case sf::Keyboard::Right :
-                                    spr_inftrRed.move(sf::Vector2f(16,0));
-                                    break;
-                                case sf::Keyboard::Down :
-                                    spr_inftrRed.move(sf::Vector2f(0,16));
-                                    break;
-                                case sf::Keyboard::Left :
-                                    spr_inftrRed.move(sf::Vector2f(-16,0));
-                                    break;
-                                case sf::Keyboard::Up :
-                                    spr_inftrRed.move(sf::Vector2f(0,-16));
-                                    break;
-                                    
-                                default :
-                                    break;
-                            }
-                            break;
-                            
-                        default :
-                            break;
-                    }
-                }
-                
-                window.clear(sf::Color::Black);
-                
-                for(int x=0 ; x<30 ; x++)
-                    for(int y=0 ; y<20 ; y++){
-                        spr_road.setPosition(sf::Vector2f(x*16, y*16));
-                        window.draw(spr_road);
-                    }
-                window.draw(spr_inftrRed);
-                
-                window.display();
-            }
+        else if(std::string(argv[i])=="render"){
+            testRender();
             
         //Pas de commande
         }else{
@@ -118,139 +51,8 @@ int main(int argc,char* argv[]) {
         }
     }
     
-    
     std::cout << endl ;
+    
+    retVal = 0;
     return retVal;
 }
-
-/*--- Fonctions de test ---*/
-void unitShow(const Unit& unit){
-    std::cout<< std::endl ;
-    std::cout<< "type : " << unit.getUnitType() << std::endl ;
-    std::cout<< "team : " << unit.getUnitTeam() << std::endl ;
-    std::cout<< "x : " << unit.getX() << " ; y : " << unit.getY() << std::endl ;
-    std::cout<< "health : " << unit.getHealth() << " ; ammo : " << unit.getAmmo() << std::endl;
-    std::cout<< "fuel : " << unit.getFuel() << " ; vision : " << unit.getVision() << std::endl ;
-}
-void buildingShow(const Building& b){
-    std::cout<< std::endl ;
-    std::cout<< "type : " << b.getBuildingType() << std::endl ;
-    std::cout<< "team : " << b.getBuildingTeam() << std::endl ;
-    std::cout<< "x : " << b.getX() << " ; y : " << b.getY() << std::endl ;
-    std::cout<< "capture : " << b.getCapturePoints() << std::endl;
-}
-void cellShow(const Cell& cell){
-    std::cout<<std::endl;
-    std::cout<<"type : "<<cell.getCellType()<<std::endl;
-    std::cout<< "x : " << cell.getX() << " ; y : " << cell.getY() << std::endl ;
-}
-  
-void testUnit(){
-    std::cout<< "Creation de Unit par defaut."<< std::endl ;
-    Unit unit ;
-    unitShow(unit);
-    
-    std::cout<< std::endl << "Changement de valeurs attribut."<<std::endl ;
-    unit.setX(10);
-    unit.setY(12);
-    unit.setAmmo(50);
-    unit.setFuel(25);
-    unit.setUnitTeam(UT_PLAYER2);
-    unit.setUnitType(UT_RECON);
-    unit.setVision(4);
-    unitShow(unit);
-    
-    std::cout<< std::endl << "Creation de Unit de type INFANTRY."<<std::endl ;
-    Unit unitInf(3,4, UT_INFANTRY, UT_PLAYER2);
-    unitShow(unitInf);
-    std::cout<< std::endl << "Creation de Unit de type MECH."<<std::endl ;
-    Unit unitMech(5,6, UT_MECH, UT_PLAYER1);
-    unitShow(unitMech);
-    std::cout<< std::endl << "Creation de Unit de type RECON."<<std::endl ;
-    Unit unitRecon(7,8, UT_RECON, UT_PLAYER2);
-    unitShow(unitRecon);
-}
-
-void testBuilding(){
-    std::cout << "Creation de Building par defaut" << std::endl ;
-    Building b1 ;
-    buildingShow(b1);
-    
-    std::cout<< "Changement d'attribut" << endl << endl;
-    
-    b1.setX(1);
-    b1.setY(2);
-    b1.setCapturePoints(10);
-    b1.setBuildingTeam(BT_PLAYER1);
-    b1.setBuildingType(BT_BASE);
-    buildingShow(b1);
-}
-void testCell(){
-    std::cout<<"Creation de Cell par defaut"<<std::endl;
-    Cell cell;
-    
-    Building b2;
-    b2.setX(1);
-    b2.setY(2);
-    b2.setCapturePoints(10);
-    b2.setBuildingTeam(BT_PLAYER1);
-    b2.setBuildingType(BT_BASE);
-   
-        
-    Unit unit;
-    unit.setX(10);
-    unit.setY(12);
-    unit.setAmmo(50);
-    unit.setFuel(25);
-    unit.setUnitTeam(UT_PLAYER2);
-    unit.setUnitType(UT_RECON);
-    unit.setVision(4);
-    
-    //show data of unit and building 
-    unitShow(unit);
-    std::cout<<"-------------------------"<<std::endl;
-    buildingShow(b2);
-    std::cout<<"-------------------------"<<std::endl;
-    
-    cell.setBuilding(&b2);
-    cell.setCellType(CT_FOREST);
-    cell.setUnit(&unit);
-    cell.setX(11);
-    cell.setY(5);
-    cellShow(cell);
-    
-}
-  
-    /*-----------------TEST SFML----------------*/
-/*
-    sf::RenderWindow window(sf::VideoMode(200, 200), "SFML works!", sf::Style::Default);
-    sf::CircleShape shapeG(100.f);
-    shapeG.setFillColor(sf::Color::Green);
-    
-    sf::CircleShape shapeR(100.f);
-    shapeR.setFillColor(sf::Color::Red);
-    
-    int i = 0 ;
-    
-    while (window.isOpen())
-    {
-        sf::Event event;
-        while (window.pollEvent(event))
-        {
-            if (event.type == sf::Event::Closed)
-                window.close();
-        }
-
-        window.clear();
-        if(i == 0){
-            window.draw(shapeG);
-            i=1;
-        }else{
-            window.draw(shapeR);
-            i=0;
-        }
-        window.display();
-        
-        sf::sleep(sf::seconds(1.0f));
-    }
-*/
