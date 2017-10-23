@@ -9,7 +9,7 @@ using namespace state ;
 void testRender(){
     sf::RenderWindow window(sf::VideoMode(480,320), "My window - test sprite");
     
-    window.setFramerateLimit(60);
+    //window.setFramerateLimit(60);
     
     sf::Texture tex_road;
     sf::Texture tex_inftRed ;
