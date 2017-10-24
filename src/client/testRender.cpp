@@ -1,6 +1,7 @@
 #include <iostream>
 #include <cstdlib>
 #include <SFML/Graphics.hpp>
+#include <fstream>
 
 #include "state.h"
 
@@ -13,17 +14,23 @@
 using namespace std ;
 using namespace state ;
 
-int* generateMap();
+int* generateMap(string fname = "level.txt");
 int generateCell();
 void generateRoad(int x, int y, int* map);
+void saveMap(int *map, int w, int h, string fname="level.txt");
+int* loadMap(string fname="level.txt");
 
-void testRender(){
+void testRender(int mode, string fname){
     srand(time(NULL));
     
     //window.setFramerateLimit(60);
     
     cout << "Generation de terrain ..." << endl ;
-    int *tileMap = generateMap();
+    int *tileMap ;
+    //if(mode == 0)
+        tileMap = generateMap(fname);
+    //else
+        //tileMap = loadMap(fname);
     cout << "Generation terminee" << endl ;
     
     sf::Texture tex_tileset ;
@@ -118,7 +125,7 @@ void testRender(){
     
 }
 
-int* generateMap(){
+int* generateMap(string fname){
     int *tileMap = new int[WIDTH * HEIGHT];
     
     for(int i=0 ; i<WIDTH ; i++)
@@ -126,21 +133,19 @@ int* generateMap(){
             tileMap[i + j*WIDTH] = generateCell() ; // plaine, foret, montagne, mer
         }
     
-    for(int n=0 ; n<RDMAPGENITER ; n++){
+    for(int n=0 ; n<RDMAPGENITER ; n++){    //traitement de carte (homogeneisation)
         int x = rand()%WIDTH ; // selectionne une case
         int y = rand()%HEIGHT ;
         
-        int luck = rand()%2 ;   //si pile : prend la valeur d'un voisin, sinon rien
-        if(luck == 1){
-            int vh, pm ;
-            do{
-                vh = rand()%2 ; //choix du voisin : vertical ou horizontal
-                pm = (rand()%2) *2 -1 ;
-            }while((vh==0 && (x+pm<0 || x+pm>=WIDTH)) || (vh==1 && (y+pm<0 || y+pm>=HEIGHT)));
-            if(vh == 0 )
-                tileMap[x+y*WIDTH] = tileMap[x+pm +y*WIDTH];
+        if(rand()%100 < 60){ //prend la valeur d'un voisin, sinon rien
+            int vx=x, vy=y ;
+            if(rand()%2==0)
+                vx += (rand()%2)*2 -1 ;
             else
-                tileMap[x+y*WIDTH] = tileMap[x+(y+pm)*WIDTH];
+                vy += (rand()%2)*2 -1 ;
+            
+            if(vx>=0 && vx<WIDTH && vy>=0 && vy<HEIGHT)
+                tileMap[vx + vy*WIDTH] = tileMap[x + y*WIDTH];
         }
         if(n%(RDMAPGENITER/10) == 0)
             cout << "." ;
@@ -161,6 +166,8 @@ int* generateMap(){
     
     generateRoad(x, y, tileMap);
     tileMap[x+y*WIDTH] = CT_BASE ;
+    
+    saveMap(tileMap, WIDTH, HEIGHT, fname);
     
     return tileMap ;
 }
@@ -195,4 +202,16 @@ void generateRoad(int x, int y, int* map){
     }while(rand()%100<75);
     if(rand()%100 < 75)
         map[x+y*WIDTH] = CT_BUILDING ;
+}
+
+void saveMap(int *map, int w, int h, string fname){
+    ofstream file;
+    file.open(fname.c_str());
+    file << w << "\n" << h << "\n" ;
+    for(int j=0 ; j<h ; j++){
+        for(int i=0 ; i<w ; i++)
+            file << map[i+j*w];
+        file << "\n" ;
+    }
+    file.close();
 }
