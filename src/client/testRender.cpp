@@ -6,13 +6,14 @@
 
 #define WIDTH 30
 #define HEIGHT 20
-#define RDMAPGENITER 4800
+#define RDMAPGENITER 6000
 
 using namespace std ;
 using namespace state ;
 
 int* generateMap();
 int generateCell();
+void generateRoad(int x, int y, int* map);
 
 void testRender(){
     srand(time(NULL));
@@ -145,22 +146,51 @@ int* generateMap(){
     
     cout << endl ;
     
+    // placement de villes, routes
+    do{
+        int x = rand()%WIDTH ;
+        int y = rand()%HEIGHT ;
+        tileMap[x+y*WIDTH] = CT_BUILDING ;
+        generateRoad(x, y, tileMap);
+    }while(rand()%100 < 95);
+    
     int x = rand()%WIDTH ; //placement du QG
     int y = rand()%HEIGHT ;
     
     tileMap[x+y*WIDTH] = CT_BASE ;
+    generateRoad(x, y, tileMap);
     
     return tileMap ;
 }
 
 int generateCell(){
-    int ct = rand()%100 ;
-    if(ct < 35)
+    const int pG=40, pS=15, pM=15, pF=20 ;
+    int ct = rand()%(pG+pS+pM+pF) ;
+    if(ct < pG)
         return CT_GROUND ;
-    else if(ct < 65)
+    else if(ct < pG+pS)
         return CT_SEA ;
-    else if(ct < 80)
+    else if(ct < pG+pS+pM)
         return CT_MOUNTAIN ;
     else
         return CT_FOREST ;
+}
+
+void generateRoad(int x, int y, int* map){
+    do{
+        if(rand()%2 == 0)
+            x = x+ (rand()%2)*2-1;
+        else
+            y = y+ (rand()%2)*2-1;
+            
+        if(x<0 || y<0 || x>=WIDTH || y>=HEIGHT)
+            break;
+            
+        if(map[x+y*WIDTH]==CT_SEA)
+            map[x+y*WIDTH]=CT_BRIDGE ;
+        else
+            map[x+y*WIDTH]=CT_ROAD ;
+    }while(rand()%100<75);
+    if(rand()%100 < 75)
+        map[x+y*WIDTH] = CT_BUILDING ;
 }
