@@ -4,6 +4,8 @@
 
 #include "state.h"
 
+#define WINWIDTH 480
+#define WINHEIGHT 320
 #define WIDTH 30
 #define HEIGHT 20
 #define RDMAPGENITER 6000
@@ -68,7 +70,7 @@ void testRender(){
     
     cout << "Chargement des textures termine, ouverture de fenetre" << endl ;
     
-    sf::RenderWindow window(sf::VideoMode(480,320), "My window - test sprite");
+    sf::RenderWindow window(sf::VideoMode(WINWIDTH, WINHEIGHT), "My window - test sprite");
     
     while(window.isOpen()){
         //check event
@@ -152,13 +154,13 @@ int* generateMap(){
         int y = rand()%HEIGHT ;
         tileMap[x+y*WIDTH] = CT_BUILDING ;
         generateRoad(x, y, tileMap);
-    }while(rand()%100 < 95);
+    }while(rand()%100 < 90);
     
     int x = rand()%WIDTH ; //placement du QG
     int y = rand()%HEIGHT ;
     
-    tileMap[x+y*WIDTH] = CT_BASE ;
     generateRoad(x, y, tileMap);
+    tileMap[x+y*WIDTH] = CT_BASE ;
     
     return tileMap ;
 }
