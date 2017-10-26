@@ -19,13 +19,13 @@ namespace render {
     Tile (int x, int y, int w, int h);
     // Setters and Getters
     int getX() const;
-    void setX(int x);
-    const int & getY() const;
-    void setY(const int & y);
-    const int & getWidth() const;
-    void setWidth(const int & width);
+    void setX(const int x);
+    const int getY() const;
+    void setY(const int y);
+    const int getWidth() const;
+    void setWidth(const int width);
     int getHeight() const;
-    void setHeight(int height);
+    void setHeight(const int height);
   };
 
 };

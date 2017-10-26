@@ -21,7 +21,7 @@ namespace render {
     // Operations
   public:
     void loadTexture (const std::string& image_file);
-    void initQuads ( count);
+    void initQuads (int count);
     void setUnitLocation (int i, int x, int y);
     void setUnitTexture (int i, const Unit& unit);
     void setBuildingLocation (int i, int x, int y);

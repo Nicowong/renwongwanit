@@ -28,9 +28,9 @@ namespace render {
     const Cell& cell;
     // Operations
   public:
-    virtual CellLayer (const cell:Cell& cell);
-    UnitLayer (const unit:Unit& unit);
-    BuildingLayer (const building:Building& building);
+    virtual CellLayer (const cell::Cell& cell);
+    UnitLayer (const unit::Unit& unit);
+    BuildingLayer (const building::Building& building);
     virtual void initSurface ();
   protected:
     virtual void printUnit () = 0;

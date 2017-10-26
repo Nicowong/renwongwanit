@@ -18,7 +18,7 @@ namespace render {
     // Operations
   public:
     ~TileSet ();
-    int const getCellWith ();
+    int const getCellWidth ();
     int const getCellHeight ();
     const std::string const getImageFile ();
     const Tile& const getTile (const state::Element& e);
