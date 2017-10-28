@@ -10,27 +10,27 @@ using namespace render;
 
 CellTileSet::CellTileSet(){}
 
-CellTileSet::getCellHeight(){
+/*int CellTileSet::getCellHeight()const{
     return cellHeight;
-}
+}*/
 
-CellTileSet::setCellHeight(int cellHeight){
+/*void CellTileSet::setCellHeight(int cellHeight){
     this->cellHeight=cellHeight;
-}
+}*/
 
-CellTileSet::getCellWidth(){
-    return cellWidth;
-}
+/*int CellTileSet::getCellWidth()const{
+    return tileWidth;
+}*/
 
-CellTileSet::setCellWidth(int cellWidth){
+/*void CellTileSet::setCellWidth(int cellWidth){
     this->cellWidth=cellWidth;
-}
+}*/
 
-CellTileSet::getImageFile(){
+/*int CellTileSet::getImageFile()const{
     return imageFile;
-}
+}*/
 
-CellTileSet::setImageFIle(std::string imageFile){
+/*void CellTileSet::setImageFIle(std::string imageFile){
     this->imageFile=imageFile;
-}
+}*/
 

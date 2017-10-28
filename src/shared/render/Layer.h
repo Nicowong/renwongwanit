@@ -20,17 +20,16 @@ namespace render {
     // Associations
     // Attributes
   protected:
-    std::unique_ptr<Surface> surfaceTab;
-    std::shared_ptr<TileSet> tilesetTab;
-    const Surface* const surface;
+    std::unique_ptr<Surface> surface;
+    std::shared_ptr<TileSet> tileset;
     // Operations
   public:
     Layer ();
     virtual ~Layer ();
     const Surface* const getSurface ();
-    void setSurface(Surface* surface);
+    void setSurface ( surface:Surface*);
     void initSurface ();
-    void printText(int x, int y, const std::string& msg);
+    printText (int x, int y, const std::string& msg);
     // Setters and Getters
     const std::shared_ptr<TileSet>& getTileset() const;
     void setTileset(const std::shared_ptr<TileSet>& tileset);

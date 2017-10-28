@@ -7,34 +7,34 @@
 using namespace std;
 using namespace render;
 
-Tile::getX() const{
+int Tile::getX() const{
     return x;
 }
 
-Tile::setX(const int x){
+void Tile::setX(const int x){
     this->x=x;
 }
 
-Tile::getY() const{
+int Tile::getY() const{
     return y;
 }
 
-Tile::setY(const int y){
+void Tile::setY(const int y){
     this->y=y;
 }
 
-Tile::getWidth(){
-    return width;
+int Tile::getW()const{
+    return w;
 }
 
-Tile::setWidth(const int width){
-    this->width=width;
+void Tile::setW(const int width){
+    this->w=width;
 }
 
-Tile::getHeight() const{
-    return height;
+int Tile::getH() const{
+    return h;
 }
 
-Tile::setHeight(const int height){
-    this->height=height;
+void Tile::setH(const int height){
+    this->h=height;
 }

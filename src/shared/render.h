@@ -9,7 +9,7 @@
 #include "render/StateLayer.h"
 #include "render/CellTileSet.h"
 #include "render/Scene.h"
-#include "render/ElementTabLayer.h"
+#include "render/InterfaceLayer.h"
 #include "render/UnitTileSet.h"
 #include "render/BuildingTileSet.h"
 #endif

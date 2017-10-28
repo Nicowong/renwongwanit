@@ -21,20 +21,12 @@ namespace render {
   class CellTileSet : public render::TileSet {
     // Attributes
   public:
-    std::vector<Cell> cells;
-    int const cellWidth;
-    int const cellHeight;
-    const std::string const imageFile;
+    std::vector<state::Cell> cells;
     // Operations
   public:
     CellTileSet ();
-    int const getCellWidth ();
-    void setCellWidth(int cellWidth);
-    int const getCellHeight ();
-    void setCellHeight(int cellHeight);
-    const std::string const getImageFile ();
-    void setImageFIle(std::string imageFile);
-    //const Cell& const getCellTile (char c);
+    std::string getImageFile () const;
+    state::Cell& getCellTile (char c) const;
     // Setters and Getters
   };
 

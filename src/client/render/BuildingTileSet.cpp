@@ -9,27 +9,27 @@ using namespace std;
 using namespace state;
 using namespace render;
 
-BuildingTileSet::BuildingTIleSet(){}
-int const BuildingTileSet::getBuildingWidth(){
+BuildingTileSet::BuildingTileSet(){}
+/*int BuildingTileSet::getBuildingWidth()const{
     return buildingWidth;
-}
+}*/
 
-BuildingTileSet::setBuildingWidth(const int buildingWidth){
+/*void BuildingTileSet::setBuildingWidth(const int buildingWidth){
     this->buildingWidth=buildingWidth;
-}
+}*/
 
-BuildingTileSet::getBuildingHeight(){
+/*int BuildingTileSet::getBuildingHeight()const{
     return buildingHeight;
-}
+}*/
 
-BuildingTileSet::setBuildingHeight(const int buildingHeight){
+/*BuildingTileSet::setBuildingHeight(const int buildingHeight){
     this->buildingHeight=buildingHeight;
-}
+}*/
 
-BuildingTileSet::getImageFile() const{
+std::string getImageFile () const{
     return imageFile;
 }
 
-BuildingTileSet::setImageFile(std::string imageFile) const{
+/*BuildingTileSet::setImageFile(std::string imageFile) const{
     this->imageFile = imageFile;
-}
+}*/

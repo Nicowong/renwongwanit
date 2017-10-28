@@ -13,8 +13,8 @@ namespace render {
 }
 
 #include "Layer.h"
-#include "state/Unit.h"
 #include "state/Building.h"
+#include "state/Unit.h"
 
 namespace render {
 
@@ -23,14 +23,14 @@ namespace render {
     // Associations
     // Attributes
   private:
-    const Unit& unit;
-    const Building& building;
-    const Cell& cell;
+    const Unit& unitLayer;
+    const Building& buildingLayer;
+    const Cell& cellLayer;
     // Operations
   public:
-    virtual CellLayer (const cell::Cell& cell);
-    UnitLayer (const unit::Unit& unit);
-    BuildingLayer (const building::Building& building);
+    virtual CellLayer (const cell:Cell& cell);
+    UnitLayer (const unit:Unit& unit);
+    BuildingLayer (const building:Building& building);
     virtual void initSurface ();
   protected:
     virtual void printUnit () = 0;

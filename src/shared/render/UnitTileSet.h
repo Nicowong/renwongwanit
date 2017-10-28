@@ -21,20 +21,12 @@ namespace render {
   class UnitTileSet : public render::TileSet {
     // Attributes
   public:
-    std::vector<Unit> units;
-    int const unitWidth;
-    int const unitHeight;
-    const std::string const imageFile;
+    std::vector<state::Unit> units;
     // Operations
   public:
     UnitTileSet ();
-    int const getUnitWidth ();
-    void setUnitWidth(int const unitWidth);
-    int const getUnitHeight();
-    void getUnitHeight(int const unitHeight);
-    const std::string const getImageFile ();
-    void settImageFile(std::string const imageFile);
-    const Unit& const getUnitTile (char u);
+    std::string getImageFile () const;
+    state::Unit& getUnitTile (char u) const;
     // Setters and Getters
   };
 

@@ -2,6 +2,7 @@
 #ifndef RENDER__TILESET__H
 #define RENDER__TILESET__H
 
+#include <vector>
 #include <string>
 
 namespace render {
@@ -15,14 +16,22 @@ namespace render {
   /// class TileSet - 
   class TileSet {
     // Associations
+    // Attributes
+  protected:
+    std::vector<Tile> tiles;
+    int tileWidth     = 16;
+    int tileHeight     = 16;
     // Operations
   public:
     ~TileSet ();
-    int const getCellWidth ();
-    int const getCellHeight ();
-    const std::string const getImageFile ();
-    const Tile& const getTile (const state::Element& e);
+    int getTileWidth () const;
+    int getTileHeight () const;
+    std::string getImageFile () const;
     // Setters and Getters
+    const std::vector<Tile>& getTiles() const;
+    void setTiles(const std::vector<Tile>& tiles);
+    void setTileWidth(int tileWidth);
+    void setTileHeight(int tileHeight);
   };
 
 };

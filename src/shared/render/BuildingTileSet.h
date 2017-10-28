@@ -2,6 +2,7 @@
 #ifndef RENDER__BUILDINGTILESET__H
 #define RENDER__BUILDINGTILESET__H
 
+#include <vector>
 #include <string>
 
 namespace state {
@@ -19,21 +20,16 @@ namespace render {
   /// class BuildingTileSet - 
   class BuildingTileSet : public render::TileSet {
     // Attributes
-  public:
-    std::vector<Building> buildings;
-    int const buildingWidth;
-    int const buildingHeight;
-    std::string const imageFile;
+  protected:
+    std::vector<state::Building> buildings;
     // Operations
   public:
-    BuildingTIleSet ();
-    int const getBuildingWidth ();
-    void setBuildingWidth(int const buildingWidth);
-    int const getBuildingHeight ();
-    void setBuildingHeight(int const buildingHeight);
-    const std::string const getImageFile ();
-    void setImageFile(std::string imageFile);
+    BuildingTileSet ();
+    std::string getImageFile () const;
+    state::Building& getBuildingTile (char b) const;
     // Setters and Getters
+    const std::vector<state::Building>& getBuildings() const;
+    void setBuildings(const std::vector<state::Building>& buildings);
   };
 
 };

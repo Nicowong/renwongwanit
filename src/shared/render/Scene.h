@@ -18,15 +18,10 @@ namespace sf {
 }
 
 #include "StateLayer.h"
-#include "state/Unit.h"
 #include "state/Building.h"
 #include "state/Cell.h"
+#include "state/Unit.h"
 
-namespace state {
-  class Unit;
-  class Building;
-  class Cell;
-};
 namespace render {
 
   /// class Scene - 
@@ -44,9 +39,7 @@ namespace render {
   public:
     Scene (const Cell& cell, const Building& building, const Unit& unit);
     size_t const getWidth ();
-    void setWidth(size_t width);
     size_t const getHeight ();
-    void setHeight(size_t height);
     void draw (sf::RenderWindow window);
     // Setters and Getters
   };
