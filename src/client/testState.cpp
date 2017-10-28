@@ -25,15 +25,15 @@ void testState(){
 void unitShow(const Unit& unit){
     std::cout<< std::endl ;
     std::cout<< "type : " << unit.getUnitType() << std::endl ;
-    std::cout<< "team : " << unit.getUnitTeam() << std::endl ;
+    std::cout<< "team : " << unit.getTeam() << std::endl ;
     std::cout<< "x : " << unit.getX() << " ; y : " << unit.getY() << std::endl ;
     std::cout<< "health : " << unit.getHealth() << " ; ammo : " << unit.getAmmo() << std::endl;
     std::cout<< "fuel : " << unit.getFuel() << " ; vision : " << unit.getVision() << std::endl ;
 }
 void buildingShow(const Building& b){
     std::cout<< std::endl ;
-    std::cout<< "type : " << b.getBuildingType() << std::endl ;
-    std::cout<< "team : " << b.getBuildingTeam() << std::endl ;
+    std::cout<< "type : " << b.getCellType() << std::endl ;
+    std::cout<< "team : " << b.getTeam() << std::endl ;
     std::cout<< "x : " << b.getX() << " ; y : " << b.getY() << std::endl ;
     std::cout<< "capture : " << b.getCapturePoints() << std::endl;
 }
@@ -53,19 +53,19 @@ void testUnit(){
     unit.setY(12);
     unit.setAmmo(50);
     unit.setFuel(25);
-    unit.setUnitTeam(UT_PLAYER2);
+    unit.setTeam(PLAYER2);
     unit.setUnitType(UT_RECON);
     unit.setVision(4);
     unitShow(unit);
     
     std::cout<< std::endl << "Creation de Unit de type INFANTRY."<<std::endl ;
-    Unit unitInf(3,4, UT_INFANTRY, UT_PLAYER2);
+    Unit unitInf(PLAYER2, UT_INFANTRY, 3,4);
     unitShow(unitInf);
     std::cout<< std::endl << "Creation de Unit de type MECH."<<std::endl ;
-    Unit unitMech(5,6, UT_MECH, UT_PLAYER1);
+    Unit unitMech(PLAYER1, UT_MECH, 5,6);
     unitShow(unitMech);
     std::cout<< std::endl << "Creation de Unit de type RECON."<<std::endl ;
-    Unit unitRecon(7,8, UT_RECON, UT_PLAYER2);
+    Unit unitRecon(PLAYER2, UT_RECON, 7,8);
     unitShow(unitRecon);
 }
 
@@ -79,8 +79,8 @@ void testBuilding(){
     b1.setX(1);
     b1.setY(2);
     b1.setCapturePoints(10);
-    b1.setBuildingTeam(BT_PLAYER1);
-    b1.setBuildingType(BT_BASE);
+    b1.setTeam(PLAYER1);
+    b1.setCellType(CT_BASE);
     buildingShow(b1);
 }
 void testCell(){
@@ -91,8 +91,8 @@ void testCell(){
     b2.setX(1);
     b2.setY(2);
     b2.setCapturePoints(10);
-    b2.setBuildingTeam(BT_PLAYER1);
-    b2.setBuildingType(BT_BASE);
+    b2.setTeam(PLAYER1);
+    b2.setCellType(CT_BASE);
    
         
     Unit unit;
@@ -100,7 +100,7 @@ void testCell(){
     unit.setY(12);
     unit.setAmmo(50);
     unit.setFuel(25);
-    unit.setUnitTeam(UT_PLAYER2);
+    unit.setTeam(PLAYER2);
     unit.setUnitType(UT_RECON);
     unit.setVision(4);
     
@@ -110,9 +110,6 @@ void testCell(){
     buildingShow(b2);
     std::cout<<"-------------------------"<<std::endl;
     
-    cell.setBuilding(&b2);
-    cell.setCellType(CT_FOREST);
-    cell.setUnit(&unit);
     cell.setX(11);
     cell.setY(5);
     cellShow(cell);

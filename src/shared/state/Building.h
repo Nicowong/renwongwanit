@@ -3,35 +3,26 @@
 #define STATE__BUILDING__H
 
 
-#include "BuildingTeam.h"
-#include "BuildingType.h"
+namespace state {
+  class Cell;
+}
+
+#include "Team.h"
+#include "CellType.h"
+#include "Cell.h"
 
 namespace state {
 
   /// class Building - 
-  class Building {
-    // Associations
+  class Building : public state::Cell {
     // Attributes
   protected:
-    int x;
-    int y;
-    BuildingTeam buildingTeam;
-    BuildingType buildingType;
     int capturePoints;
     // Operations
   public:
-    Building ();
-    Building (int x, int y, BuildingType bType, BuildingTeam team);
+    Building (Team team = NEUTRAL, CellType type = CT_CITY, int x = 0, int y = 0);
     bool isInCapture () const;
     // Setters and Getters
-    int getX() const;
-    void setX(int x);
-    int getY() const;
-    void setY(int y);
-    BuildingTeam getBuildingTeam() const;
-    void setBuildingTeam(BuildingTeam buildingTeam);
-    BuildingType getBuildingType() const;
-    void setBuildingType(BuildingType buildingType);
     int getCapturePoints() const;
     void setCapturePoints(int capturePoints);
   };

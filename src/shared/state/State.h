@@ -3,15 +3,14 @@
 #define STATE__STATE__H
 
 #include <vector>
+#include <string>
 
 namespace state {
-  class Unit;
-  class Building;
-  class Cell;
+  class ElementTab;
   class Player;
 }
 
-#include "Cell.h"
+#include "ElementTab.h"
 #include "Player.h"
 
 namespace state {
@@ -21,24 +20,24 @@ namespace state {
     // Associations
     // Attributes
   protected:
-    std::vector<Unit*> unitList;
-    std::vector<Building*> buildingList;
-    Cell* board;
+    int w;
+    int h;
+    ElementTab cellTab;
+    std::vector<Player> players;
     // Operations
   public:
+    State (std::string levelFile);
     State ();
-    const Cell& getCell (int x, int y) const;
-    const Building& getBuilding (int x, int y) const;
-    const Building& getBuilding (int i) const;
-    const Unit& getUnit (int x, int y) const;
-    const Unit& getUnit (int i) const;
+    ElementTab& getUnitTab () const;
     // Setters and Getters
-    const std::vector<Unit*>& getUnitList() const;
-    void setUnitList(const std::vector<Unit*>& unitList);
-    const std::vector<Building*>& getBuildingList() const;
-    void setBuildingList(const std::vector<Building*>& buildingList);
-    const Cell*& getBoard() const;
-    void setBoard(const Cell*& board);
+    int getW() const;
+    void setW(int w);
+    int getH() const;
+    void setH(int h);
+    const ElementTab& getCellTab() const;
+    void setCellTab(const ElementTab& cellTab);
+    const std::vector<Player>& getPlayers() const;
+    void setPlayers(const std::vector<Player>& players);
   };
 
 };

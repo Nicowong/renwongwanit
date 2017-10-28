@@ -157,7 +157,7 @@ int* generateMap(string fname){
     do{
         int x = rand()%WIDTH ;
         int y = rand()%HEIGHT ;
-        tileMap[x+y*WIDTH] = CT_BUILDING ;
+        tileMap[x+y*WIDTH] = CT_CITY ;
         generateRoad(x, y, tileMap);
     }while(rand()%100 < 90);
     
@@ -176,7 +176,7 @@ int generateCell(){
     const int pG=40, pS=15, pM=15, pF=20 ;
     int ct = rand()%(pG+pS+pM+pF) ;
     if(ct < pG)
-        return CT_GROUND ;
+        return CT_PLAIN ;
     else if(ct < pG+pS)
         return CT_SEA ;
     else if(ct < pG+pS+pM)
@@ -201,7 +201,7 @@ void generateRoad(int x, int y, int* map){
             map[x+y*WIDTH]=CT_ROAD ;
     }while(rand()%100<75);
     if(rand()%100 < 75)
-        map[x+y*WIDTH] = CT_BUILDING ;
+        map[x+y*WIDTH] = CT_CITY ;
 }
 
 void saveMap(int *map, int w, int h, string fname){

@@ -3,19 +3,21 @@
 #define STATE__UNIT__H
 
 
-#include "UnitTeam.h"
+namespace state {
+  class Element;
+}
+
 #include "UnitType.h"
+#include "Team.h"
+#include "Element.h"
 
 namespace state {
 
   /// class Unit - 
-  class Unit {
+  class Unit : public state::Element {
     // Associations
     // Attributes
   protected:
-    int x;
-    int y;
-    UnitTeam unitTeam;
     UnitType unitType;
     int health;
     int ammo;
@@ -23,19 +25,12 @@ namespace state {
     int vision;
     // Operations
   public:
-    Unit ( );
-    Unit (int x, int y, UnitType uType, UnitTeam team);
+    Unit (Team team = PLAYER1, UnitType utype = UT_INFANTRY, int x = 0, int y = 0);
     bool isInfantry () const;
-    bool isCapturing () const;
     bool isRanged () const;
     bool isTransporter () const;
+    bool isCapturing () const;
     // Setters and Getters
-    int getX() const;
-    void setX(int x);
-    int getY() const;
-    void setY(int y);
-    UnitTeam getUnitTeam() const;
-    void setUnitTeam(UnitTeam unitTeam);
     UnitType getUnitType() const;
     void setUnitType(UnitType unitType);
     int getHealth() const;

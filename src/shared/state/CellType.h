@@ -6,15 +6,18 @@
 namespace state {
 
   enum CellType {
-    CT_GROUND     = 0,
+    CT_PLAIN     = 0,
     CT_ROAD     = 1,
     CT_FOREST     = 2,
     CT_MOUNTAIN     = 3,
     CT_RIVER     = 4,
     CT_BRIDGE     = 5,
     CT_SEA     = 6,
-    CT_BUILDING     = 7,
-    CT_BASE     = 8
+    CT_CITY     = 7,
+    CT_BASE     = 8,
+    CT_FACTORY     = 9,
+    CT_AIRPORT     = 10,
+    CT_SEAPORT     = 11
   };
 
 };

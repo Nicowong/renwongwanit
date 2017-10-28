@@ -2,15 +2,12 @@
 #ifndef STATE__PLAYER__H
 #define STATE__PLAYER__H
 
-#include <vector>
 
 namespace state {
-  class Unit;
-  class Building;
+  class ElementTab;
 }
 
-#include "Building.h"
-#include "Unit.h"
+#include "ElementTab.h"
 
 namespace state {
 
@@ -19,23 +16,13 @@ namespace state {
     // Associations
     // Attributes
   protected:
-    int playerID;
-    std::vector<Unit*> unitList;
-    std::vector<Building*> buildingList;
-    // Operations
-  public:
-    Player ();
-    Player (int pId);
-    ~Player ();
-    Building* getBuilding (int i);
-    Unit* getUnit (int i);
+    ElementTab unitTab;
+    int money;
     // Setters and Getters
-    int getPlayerID() const;
-    void setPlayerID(int playerID);
-    const std::vector<Unit*>& getUnitList() const;
-    void setUnitList(const std::vector<Unit*>& unitList);
-    const std::vector<Building*>& getBuildingList() const;
-    void setBuildingList(const std::vector<Building*>& buildingList);
+    const ElementTab& getUnitTab() const;
+    void setUnitTab(const ElementTab& unitTab);
+    int getMoney() const;
+    void setMoney(int money);
   };
 
 };

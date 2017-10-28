@@ -4,39 +4,24 @@
 
 
 namespace state {
-  class Building;
-  class Unit;
+  class Element;
 }
 
 #include "CellType.h"
-#include "Building.h"
-#include "Unit.h"
+#include "Element.h"
 
 namespace state {
 
   /// class Cell - 
-  class Cell {
+  class Cell : public state::Element {
     // Associations
     // Attributes
   protected:
-    int x;
-    int y;
-    Building* building;
-    Unit* unit;
     CellType cellType;
     // Operations
   public:
-    Cell ();
-    Cell (CellType cType, int x = 0, int y = 0);
-    Building* getBuilding () const;
-    void setBuilding (Building* building);
-    Unit* getUnit () const;
-    void setUnit (Unit* unit);
+    Cell (CellType cellType = CT_PLAIN, int x = 0, int y = 0);
     // Setters and Getters
-    int getX() const;
-    void setX(int x);
-    int getY() const;
-    void setY(int y);
     CellType getCellType() const;
     void setCellType(CellType cellType);
   };
