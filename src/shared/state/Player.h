@@ -16,11 +16,11 @@ namespace state {
     // Associations
     // Attributes
   protected:
-    ElementTab unitTab;
+    ElementTab* unitTab;
     int money;
     // Setters and Getters
-    const ElementTab& getUnitTab() const;
-    void setUnitTab(const ElementTab& unitTab);
+    const ElementTab*& getUnitTab() const;
+    void setUnitTab(const ElementTab*& unitTab);
     int getMoney() const;
     void setMoney(int money);
   };

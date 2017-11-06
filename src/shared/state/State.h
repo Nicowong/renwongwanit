@@ -10,8 +10,8 @@ namespace state {
   class Player;
 }
 
-#include "ElementTab.h"
 #include "Player.h"
+#include "ElementTab.h"
 
 namespace state {
 
@@ -22,7 +22,7 @@ namespace state {
   protected:
     int w;
     int h;
-    ElementTab cellTab;
+    ElementTab* cellTab;
     std::vector<Player> players;
     // Operations
   public:
@@ -34,8 +34,8 @@ namespace state {
     void setW(int w);
     int getH() const;
     void setH(int h);
-    const ElementTab& getCellTab() const;
-    void setCellTab(const ElementTab& cellTab);
+    const ElementTab*& getCellTab() const;
+    void setCellTab(const ElementTab*& cellTab);
     const std::vector<Player>& getPlayers() const;
     void setPlayers(const std::vector<Player>& players);
   };
