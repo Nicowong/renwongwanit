@@ -7,7 +7,7 @@ Element::Element (TypeId type, Team team, int x, int y):
     type(type), team(team), x(x), y(y){
     
 }
-bool const Element::isUnit (){
+bool Element::isUnit ()const{
     return type==T_UNIT ;
 }
 // Setters and Getters

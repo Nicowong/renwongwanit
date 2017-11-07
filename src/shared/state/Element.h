@@ -20,7 +20,7 @@ namespace state {
     // Operations
   public:
     Element (TypeId type, Team team = NONE, int x = 0, int y = 0);
-    bool const isUnit ();
+    bool isUnit () const;
     // Setters and Getters
     TypeId getType() const;
     void setType(TypeId type);

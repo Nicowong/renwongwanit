@@ -2,6 +2,7 @@
 #ifndef STATE__ELEMENTTAB__H
 #define STATE__ELEMENTTAB__H
 
+#include <stdlib.h>
 #include <vector>
 
 namespace state {
@@ -17,26 +18,30 @@ namespace state {
     // Associations
     // Attributes
   protected:
-    int width;
-    int height;
+    size_t w;
+    size_t h;
     std::vector<Element*> elemList;
     std::vector<Element*> elemTab;
     // Operations
   public:
-    ElementTab (int w, int h);
+    ElementTab (size_t w, size_t h);
+    size_t getTabIndex (const Element* elem) const;
+    size_t getTabIndex (size_t x, size_t y) const;
     void addElem (Element* elem);
-    Element* getElem (int i);
-    const Element* operator[] (int i) const;
-    Element* operator[] (int i);
-    const Element* getElem (int x, int y) const;
-    Element* getElem (int x, int y);
+    const Element* getElem (size_t i) const;
+    Element* getElem (size_t i);
+    const Element* operator[] (size_t i) const;
+    Element* operator[] (size_t i);
+    const Element* getElem (size_t x, size_t y) const;
+    Element* getElem (size_t x, size_t y);
     void eraseElem (int i);
-    void eraseElem (int x, int y);
+    void eraseElem (size_t x, size_t y);
+    void moveElem (size_t x1, size_t y1, size_t x2, size_t y2);
     // Setters and Getters
-    int getWidth() const;
-    void setWidth(int width);
-    int getHeight() const;
-    void setHeight(int height);
+    const size_t& getW() const;
+    void setW(const size_t& w);
+    const size_t& getH() const;
+    void setH(const size_t& h);
     const std::vector<Element*>& getElemList() const;
     void setElemList(const std::vector<Element*>& elemList);
     const std::vector<Element*>& getElemTab() const;
