@@ -7,7 +7,7 @@ namespace engine {
   class Command;
 }
 
-#include "state/UnitType.h"
+#include "state/Unit.h"
 #include "Command.h"
 
 namespace engine {
@@ -19,7 +19,7 @@ namespace engine {
     int elementID;
     // Operations
   public:
-    void attackCommand (int elementID, UnitType unit);
+    void attackCommand (int elementID, Unit unit);
     CommandTypeId const getTypeID ();
     void excute (state::State& state);
     // Setters and Getters

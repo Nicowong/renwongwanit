@@ -3,7 +3,12 @@
 #define ENGINE__RECHARGECOMMAND__H
 
 
-#include "state/UnitType.h"
+namespace engine {
+  class Command;
+}
+
+#include "state/Unit.h"
+#include "Command.h"
 
 namespace engine {
 
@@ -14,7 +19,7 @@ namespace engine {
     int elementID;
     // Operations
   public:
-    void RechargeCommand (int elementID, UnitType unit);
+    void RechargeCommand (int elementID, Unit unit);
     CommandTypeId const getTypeID ();
     void excute (state::State& state);
     // Setters and Getters

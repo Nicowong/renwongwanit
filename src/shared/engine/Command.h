@@ -10,7 +10,7 @@ namespace engine {
   class Engine;
 }
 
-#include "state/state.h"
+#include "state.h"
 #include "CommandTypeId.h"
 #include "Engine.h"
 
