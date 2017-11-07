@@ -16,13 +16,25 @@ namespace state {
     // Associations
     // Attributes
   protected:
-    ElementTab* unitTab;
+    ElementTab unitTab;
     int money;
+    int unitCount;
+    int buildingCount;
+    bool startWithBase;
+    bool startWithUnit;
     // Setters and Getters
-    const ElementTab*& getUnitTab() const;
-    void setUnitTab(const ElementTab*& unitTab);
+    const ElementTab& getUnitTab() const;
+    void setUnitTab(const ElementTab& unitTab);
     int getMoney() const;
     void setMoney(int money);
+    int getUnitCount() const;
+    void setUnitCount(int unitCount);
+    int getBuildingCount() const;
+    void setBuildingCount(int buildingCount);
+    bool getStartWithBase() const;
+    void setStartWithBase(bool startWithBase);
+    bool getStartWithUnit() const;
+    void setStartWithUnit(bool startWithUnit);
   };
 
 };

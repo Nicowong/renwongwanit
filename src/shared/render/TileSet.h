@@ -11,8 +11,8 @@ namespace state {
   class Element;
 }
 
-#include "state/Element.h"
 #include "Tile.h"
+#include "state/Element.h"
 
 namespace render {
 
@@ -22,8 +22,8 @@ namespace render {
   public:
     virtual int getCellWidth () const;
     virtual int getCellHeight () const;
-    virtual std::string getFile () const = 0;
-    virtual const Tile& getTile (int id) const;
+    virtual std::string getFile () const;
+    virtual const Tile getTile (int id) const;
     // Setters and Getters
   };
 

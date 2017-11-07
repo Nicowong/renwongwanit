@@ -32,10 +32,24 @@ namespace render {
     sf::Texture texture;
     // Operations
   public:
+    /// init texture from filename
+    /// @param fileName		(???) 
     void loadTexture (const std::string& fileName);
+    /// init n (x4) vertices as quads
+    /// @param n		(???) 
     void initVertices (int n);
+    /// set i-th sprite location to be drawn at on surface (screen)
+    /// @param i		(???) 
+    /// @param x		(???) 
+    /// @param y		(???) 
     void setSpriteLocation (int i, int x, int y);
+    /// set sprite texture from rank (i), and tile information (x, y, w, h) on texture file
+    /// @param i		(???) 
+    /// @param tile		(???) 
     void setSpriteTexture (int i, const Tile& tile);
+    /// draw all quads, textures
+    /// @param target		(???) 
+    /// @param states		(???) 
     void draw (sf::RenderTarget& target, sf::RenderStates states) const;
     // Setters and Getters
     const sf::VertexArray& getVertices() const;

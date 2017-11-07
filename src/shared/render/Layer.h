@@ -3,10 +3,15 @@
 #define RENDER__LAYER__H
 
 #include <memory>
+#include <string>
+#include <SFML/Graphics.hpp>
 
 namespace render {
   class Surface;
   class TileSet;
+};
+namespace sf {
+  class RenderWindow;
 }
 
 #include "Surface.h"
@@ -23,9 +28,10 @@ namespace render {
     std::shared_ptr<TileSet> tileSet;
     // Operations
   public:
-    void update ();
+    const Surface* getSurface () const;
+    void print (int x, int y, std::string text);
+    void draw (sf::RenderWindow& window);
     // Setters and Getters
-    const std::unique_ptr<Surface>& getSurface() const;
     void setSurface(const std::unique_ptr<Surface>& surface);
     const std::shared_ptr<TileSet>& getTileSet() const;
     void setTileSet(const std::shared_ptr<TileSet>& tileSet);

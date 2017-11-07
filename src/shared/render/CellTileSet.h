@@ -9,6 +9,7 @@ namespace render {
   class TileSet;
 }
 
+#include "Tile.h"
 #include "TileSet.h"
 
 namespace render {
@@ -20,7 +21,7 @@ namespace render {
     int getCellWidth () const;
     int getCellHeight () const;
     std::string getFile () const;
-    const Tile& getTile (int id) const;
+    const Tile getTile (int id) const;
     // Setters and Getters
   };
 

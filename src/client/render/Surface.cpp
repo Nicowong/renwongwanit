@@ -3,6 +3,21 @@
 using namespace std ;
 using namespace render ;
 
+/*
+const Surface::sf::VertexArray& getVertices() const{
+    
+}
+void Surface::setVertices(const sf::VertexArray& vertices){
+    
+}
+const Surface::sf::Texture& getTexture() const{
+    
+}
+void Surface::setTexture(const sf::Texture& texture){
+    
+}
+*/
+
 void Surface::loadTexture(const std::string& fileName){
     texture.loadFromFile(fileName);
 }
@@ -21,4 +36,9 @@ void Surface::setSpriteTexture(int i, const Tile& t){
     vertices[i+1].texCoords = sf::Vector2f((t.x+1)*t.w,  t.y   *t.h);
     vertices[i+2].texCoords = sf::Vector2f((t.x+1)*t.w, (t.y+1)*t.h);
     vertices[i+3].texCoords = sf::Vector2f( t.x   *t.w, (t.y+1)*t.h);
+}
+void Surface::draw(sf::RenderTarget& target, sf::RenderStates states)const{
+    states.transform *= getTransform();
+    states.texture = &texture ;
+    target.draw(vertices, states);
 }

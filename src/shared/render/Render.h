@@ -2,12 +2,21 @@
 #ifndef RENDER__RENDER__H
 #define RENDER__RENDER__H
 
+#include <memory>
+#include <SFML/Graphics.hpp>
 
+namespace state {
+  class State;
+};
 namespace render {
   class StatusLayer;
   class BoardLayer;
+};
+namespace sf {
+  class RenderWindow;
 }
 
+#include "state/State.h"
 #include "StatusLayer.h"
 #include "BoardLayer.h"
 
@@ -18,14 +27,17 @@ namespace render {
     // Associations
     // Attributes
   protected:
+    std::shared_ptr<state::State> state;
     StatusLayer statusLayer;
     BoardLayer cellLayer;
     BoardLayer buildingLayer;
     BoardLayer unitLayer;
     // Operations
   public:
-    void draw ();
+    void draw (sf::RenderWindow& window);
     // Setters and Getters
+    const std::shared_ptr<state::State>& getState() const;
+    void setState(const std::shared_ptr<state::State>& state);
     const StatusLayer& getStatusLayer() const;
     void setStatusLayer(const StatusLayer& statusLayer);
     const BoardLayer& getCellLayer() const;
