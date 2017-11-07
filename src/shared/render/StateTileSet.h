@@ -19,7 +19,7 @@ namespace render {
     // Operations
   public:
     int getCellWidth () const;
-    getCellHeight () const;
+    int getCellHeight () const;
     std::string getFile () const;
     const Tile getTile (int i) const;
     // Setters and Getters

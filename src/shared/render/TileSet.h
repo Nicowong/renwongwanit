@@ -20,10 +20,10 @@ namespace render {
   class TileSet {
     // Operations
   public:
-    virtual int getCellWidth () const;
-    virtual int getCellHeight () const;
-    virtual std::string getFile () const;
-    virtual const Tile getTile (int id) const;
+    virtual int getCellWidth () const = 0;
+    virtual int getCellHeight () const = 0;
+    virtual std::string getFile () const = 0;
+    virtual const Tile getTile (int id) const = 0;
     // Setters and Getters
   };
 
