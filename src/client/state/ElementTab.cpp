@@ -132,7 +132,19 @@ void ElementTab::setElemList(const std::vector<Element*>& elemList){
 */
 
 void ElementTab::debug()const{
-    cout << "w:"<<w<<" h:"<<h <<std::endl ;
-    for(size_t i=0 ; i<elemList.size() ; i++);
-        
+    cout << "ElementTab:: void debug()"<<endl ;
+    cout << "w:"<<w<<" h:"<<h <<endl ;
+    cout << "elemList : "<<endl ;
+    for(size_t i=0 ; i<elemList.size() ; i++)
+        cout<< elemList[i]->getType() << "   ";
+    cout << endl ;
+    cout << "elemTab"<< endl ;
+    for(size_t j=0 ; j<h ; j++){
+        for(size_t i=0 ; i<w ; i++)
+            if(elemTab[i]!=nullptr)
+                cout << elemTab[i]->getType() << "   ";
+            else
+                cout << "o  " ;
+        cout << endl ;
+    }
 }

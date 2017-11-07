@@ -11,6 +11,7 @@ void testBuilding();
 void buildingShow(const Building& b);
 void testCell();
 void cellShow(const Cell& c);
+void testElementTab();
 
 // ------------ TEST STATE ---------------
 void testState(){
@@ -19,7 +20,8 @@ void testState(){
     testBuilding();
     std::cout << "-------------------------" <<std::endl;
     testCell();
-    
+    std::cout << "-------------------------" <<std::endl;
+    testElementTab() ;
     
 }
 
@@ -103,4 +105,9 @@ void testCell(){
     cell.debug();
     //cellShow(cell);
     
+}
+void testElementTab(){
+    cout << "Creation de ElementTab(20,30)"<<endl ;
+    ElementTab etab(20,30);
+    etab.debug();
 }
