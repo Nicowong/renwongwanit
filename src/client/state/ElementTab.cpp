@@ -68,27 +68,31 @@ Element* ElementTab::getElem (size_t x, size_t y){
         return nullptr ;
     }
 }
-void ElementTab::eraseElem (int i){
+Element* ElementTab::eraseElem (int i){
     Element *elem = getElem(i);
     if(elem != nullptr){
         elemTab[getTabIndex(elem)] = nullptr ;
-        elemList.erase(elemList.begin()+i);
-        delete elem ;
-    }else
+        elemList[i] = nullptr;
+        return elem ;
+    }else{
         std::cout << "ElementTab::eraseElem error : erasing null elem, i:"<<i<<std::endl ;
+        return nullptr ;
+    }
 }
-void ElementTab::eraseElem (size_t x, size_t y){
+Element* ElementTab::eraseElem (size_t x, size_t y){
     Element *elem = getElem(x,y);
     if(elem != nullptr){
         elemTab[getTabIndex(elem)] = nullptr ;
         size_t i=0 ;
         while(i<elemList.size() && elemList[i]!=elem)
             i++ ;
-        elemList.erase(elemList.begin()+i);
-        delete elem ;
-    }else
+        elemList[i] = nullptr ;
+        return elem ;
+    }else{
         std::cout << "ElementTab::eraseElem error : erasing null elem." ;
         std::cout << "x:"<<x<<",y:"<<y <<std::endl ;
+        return nullptr;
+    }
 }
 void ElementTab::moveElem (size_t x1, size_t y1, size_t x2, size_t y2){
     Element *elem1 = getElem(x1,y1);
@@ -126,3 +130,9 @@ void ElementTab::setElemList(const std::vector<Element*>& elemList){
     
 }
 */
+
+void ElementTab::debug()const{
+    cout << "w:"<<w<<" h:"<<h <<std::endl ;
+    for(size_t i=0 ; i<elemList.size() ; i++);
+        
+}

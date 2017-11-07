@@ -22,6 +22,7 @@ namespace state {
   public:
     Building (Team team = NEUTRAL, CellType type = CT_CITY, int x = 0, int y = 0);
     bool isInCapture () const;
+    void debug () const;
     // Setters and Getters
     int getCapturePoints() const;
     void setCapturePoints(int capturePoints);

@@ -1,3 +1,5 @@
+#include <iostream>
+
 #include "../shared/state/Building.h"
 
 using namespace std ;
@@ -19,4 +21,10 @@ int Building::getCapturePoints() const{
 }
 void Building::setCapturePoints(int capturePoints){
     this->capturePoints = capturePoints ;
+}
+
+void Building::debug()const{
+    std::cout << "Building::" ;
+    Cell::debug();
+    std::cout << "capturePoint : "<<capturePoints << std::endl ;
 }

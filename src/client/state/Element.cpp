@@ -1,3 +1,5 @@
+#include <iostream>
+
 #include "../shared/state/Element.h"
 
 using namespace std ;
@@ -34,4 +36,11 @@ int Element::getY() const{
 }
 void Element::setY(int y){
     this->y = y ;
+}
+
+void Element::debug()const{
+    std::cout << "Element::void debug()const" <<std::endl;
+    std::cout << "typeId : "<<type <<std::endl;
+    std::cout << "team : "<<team <<std::endl;
+    std::cout << "pos(x,y) : "<<x<<","<<y <<std::endl;
 }

@@ -84,3 +84,13 @@ int Unit::getVision() const{
 void Unit::setVision(int vision){
     this->vision = vision ;
 }
+
+void Unit::debug()const{
+    std::cout<< "Unit::";
+    Element::debug();
+    std::cout<< "unitType : "<<unitType <<std::endl ;
+    std::cout<< "health : "<<health <<std::endl ;
+    std::cout<< "ammo : "<<ammo <<std::endl ;
+    std::cout<< "fuel : "<<fuel <<std::endl ;
+    std::cout<< "vision : "<<vision <<std::endl ;
+}

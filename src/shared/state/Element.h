@@ -21,6 +21,7 @@ namespace state {
   public:
     Element (TypeId type, Team team = NONE, int x = 0, int y = 0);
     bool isUnit () const;
+    void debug () const;
     // Setters and Getters
     TypeId getType() const;
     void setType(TypeId type);

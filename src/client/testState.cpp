@@ -19,9 +19,12 @@ void testState(){
     testBuilding();
     std::cout << "-------------------------" <<std::endl;
     testCell();
+    
+    
 }
 
 /*--- implementation ---*/
+/*
 void unitShow(const Unit& unit){
     std::cout<< std::endl ;
     std::cout<< "type : " << unit.getUnitType() << std::endl ;
@@ -42,11 +45,13 @@ void cellShow(const Cell& cell){
     std::cout<<"type : "<<cell.getCellType()<<std::endl;
     std::cout<< "x : " << cell.getX() << " ; y : " << cell.getY() << std::endl ;
 }
-  
+*/
+
 void testUnit(){
     std::cout<< "Creation de Unit par defaut."<< std::endl ;
     Unit unit ;
-    unitShow(unit);
+    unit.debug();
+    //unitShow(unit);
     
     std::cout<< std::endl << "Changement de valeurs attribut."<<std::endl ;
     unit.setX(10);
@@ -56,23 +61,28 @@ void testUnit(){
     unit.setTeam(PLAYER2);
     unit.setUnitType(UT_RECON);
     unit.setVision(4);
-    unitShow(unit);
+    unit.debug();
+    //unitShow(unit);
     
     std::cout<< std::endl << "Creation de Unit de type INFANTRY."<<std::endl ;
     Unit unitInf(PLAYER2, UT_INFANTRY, 3,4);
-    unitShow(unitInf);
+    unitInf.debug();
+    //unitShow(unitInf);
     std::cout<< std::endl << "Creation de Unit de type MECH."<<std::endl ;
     Unit unitMech(PLAYER1, UT_MECH, 5,6);
-    unitShow(unitMech);
+    unitMech.debug();
+    //unitShow(unitMech);
     std::cout<< std::endl << "Creation de Unit de type RECON."<<std::endl ;
     Unit unitRecon(PLAYER2, UT_RECON, 7,8);
-    unitShow(unitRecon);
+    unitRecon.debug();
+    //unitShow(unitRecon);
 }
 
 void testBuilding(){
     std::cout << "Creation de Building par defaut" << std::endl ;
     Building b1 ;
-    buildingShow(b1);
+    b1.debug();
+    //buildingShow(b1);
     
     std::cout<< "Changement d'attribut" << endl << endl;
     
@@ -81,37 +91,16 @@ void testBuilding(){
     b1.setCapturePoints(10);
     b1.setTeam(PLAYER1);
     b1.setCellType(CT_BASE);
-    buildingShow(b1);
+    b1.debug();
+    //buildingShow(b1);
 }
 void testCell(){
     std::cout<<"Creation de Cell par defaut"<<std::endl;
     Cell cell;
     
-    Building b2;
-    b2.setX(1);
-    b2.setY(2);
-    b2.setCapturePoints(10);
-    b2.setTeam(PLAYER1);
-    b2.setCellType(CT_BASE);
-   
-        
-    Unit unit;
-    unit.setX(10);
-    unit.setY(12);
-    unit.setAmmo(50);
-    unit.setFuel(25);
-    unit.setTeam(PLAYER2);
-    unit.setUnitType(UT_RECON);
-    unit.setVision(4);
-    
-    //show data of unit and building 
-    unitShow(unit);
-    std::cout<<"-------------------------"<<std::endl;
-    buildingShow(b2);
-    std::cout<<"-------------------------"<<std::endl;
-    
     cell.setX(11);
     cell.setY(5);
-    cellShow(cell);
+    cell.debug();
+    //cellShow(cell);
     
 }

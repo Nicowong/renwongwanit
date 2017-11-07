@@ -1,3 +1,5 @@
+#include <iostream>
+
 #include "../shared/state/Cell.h"
 using namespace std; 
 using namespace state;
@@ -12,4 +14,10 @@ CellType Cell::getCellType() const{
 }
 void Cell::setCellType(CellType cellType){
     this->cellType = cellType ;
+}
+
+void Cell::debug()const{
+    std::cout << "Cell::";
+    Element::debug();
+    std::cout << "cellType : "<<cellType << std::endl ;
 }

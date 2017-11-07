@@ -30,6 +30,7 @@ namespace state {
     bool isRanged () const;
     bool isTransporter () const;
     bool isCapturing () const;
+    void debug () const;
     // Setters and Getters
     UnitType getUnitType() const;
     void setUnitType(UnitType unitType);

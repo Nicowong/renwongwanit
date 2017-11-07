@@ -21,6 +21,7 @@ namespace state {
     // Operations
   public:
     Cell (CellType cellType = CT_PLAIN, int x = 0, int y = 0);
+    void debug () const;
     // Setters and Getters
     CellType getCellType() const;
     void setCellType(CellType cellType);
