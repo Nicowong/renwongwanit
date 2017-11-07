@@ -12,8 +12,5 @@
 #include "engine/RechargeCommand.h"
 #include "engine/RepaireCommand.h"
 #include "engine/DestroyCommand.h"
-<<<<<<< HEAD
-=======
 #include "engine/LoadCommand.h"
->>>>>>> f4bd69d13f3c442d4db8e7f66ef607a0b7fb144e
 #endif

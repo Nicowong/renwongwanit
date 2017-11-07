@@ -5,29 +5,20 @@
 
 namespace state {
   class state;
-<<<<<<< HEAD
-=======
 };
 namespace engine {
   class Engine;
->>>>>>> f4bd69d13f3c442d4db8e7f66ef607a0b7fb144e
 }
 
 #include "state/state.h"
 #include "CommandTypeId.h"
-<<<<<<< HEAD
-=======
 #include "Engine.h"
->>>>>>> f4bd69d13f3c442d4db8e7f66ef607a0b7fb144e
 
 namespace engine {
 
   /// class Command - 
   class Command {
-<<<<<<< HEAD
-=======
     // Associations
->>>>>>> f4bd69d13f3c442d4db8e7f66ef607a0b7fb144e
     // Operations
   public:
     ~Command ();

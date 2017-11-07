@@ -6,15 +6,6 @@
 namespace engine {
 
   enum CommandTypeId {
-<<<<<<< HEAD
-    ChooseElement     = 0,
-    Attack     = 1,
-    Move     = 2,
-    Capture     = 3,
-    Recharge     = 4,
-    Repaire     = 5,
-    destroy     = 6
-=======
     LOAD     = 0,
     ChooseElement     = 1,
     Attack     = 2,
@@ -23,7 +14,6 @@ namespace engine {
     Recharge     = 5,
     Repaire     = 6,
     destroy     = 7
->>>>>>> f4bd69d13f3c442d4db8e7f66ef607a0b7fb144e
   };
 
 };
