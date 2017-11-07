@@ -6,6 +6,7 @@
 namespace state {
 
   enum TypeId {
+    T_NONE,
     T_UNIT     = 0,
     T_CELL     = 1,
     T_BUILDING     = 2

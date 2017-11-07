@@ -6,6 +6,7 @@
 namespace state {
 
   enum CellType {
+    CT_NONE     = -1,
     CT_PLAIN     = 0,
     CT_ROAD     = 1,
     CT_FOREST     = 2,

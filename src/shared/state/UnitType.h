@@ -6,6 +6,7 @@
 namespace state {
 
   enum UnitType {
+    UT_NONE     = -1,
     UT_INFANTRY     = 0,
     UT_MECH     = 1,
     UT_RECON     = 2,

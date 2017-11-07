@@ -23,6 +23,8 @@ Unit::Unit(Team team, UnitType utype, int x, int y):
             fuel = 99 ;
             vision = 5 ;
             break;
+        case UT_TANK :
+            break;
         default:
             std::cout << "In Unit::Unit(int,int,UnitType,UnitTeam), error : unitType not found." << std::endl;
             break;

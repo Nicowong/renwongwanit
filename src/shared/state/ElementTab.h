@@ -17,20 +17,30 @@ namespace state {
     // Associations
     // Attributes
   protected:
-    int w;
-    int h;
-    std::vector<Element*> tab;
+    int width;
+    int height;
+    std::vector<Element*> elemList;
+    std::vector<Element*> elemTab;
     // Operations
   public:
+    ElementTab (int w, int h);
+    void addElem (Element* elem);
+    Element* getElem (int i);
     const Element* operator[] (int i) const;
     Element* operator[] (int i);
+    const Element* getElem (int x, int y) const;
+    Element* getElem (int x, int y);
+    void eraseElem (int i);
+    void eraseElem (int x, int y);
     // Setters and Getters
-    int getW() const;
-    void setW(int w);
-    int getH() const;
-    void setH(int h);
-    const std::vector<Element*>& getTab() const;
-    void setTab(const std::vector<Element*>& tab);
+    int getWidth() const;
+    void setWidth(int width);
+    int getHeight() const;
+    void setHeight(int height);
+    const std::vector<Element*>& getElemList() const;
+    void setElemList(const std::vector<Element*>& elemList);
+    const std::vector<Element*>& getElemTab() const;
+    void setElemTab(const std::vector<Element*>& elemTab);
   };
 
 };
