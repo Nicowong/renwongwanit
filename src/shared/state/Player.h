@@ -4,33 +4,21 @@
 
 
 namespace state {
-  class ElementTab;
-}
-
-#include "ElementTab.h"
-
-namespace state {
 
   /// class Player - 
   class Player {
-    // Associations
     // Attributes
   protected:
-    ElementTab unitTab;
     int money;
-    int unitCount;
-    int buildingCount;
     bool startWithBase;
     bool startWithUnit;
+    // Operations
+  public:
+    Player (bool wBase, bool wUnit);
+    void modifMoney (int mod);
     // Setters and Getters
-    const ElementTab& getUnitTab() const;
-    void setUnitTab(const ElementTab& unitTab);
     int getMoney() const;
     void setMoney(int money);
-    int getUnitCount() const;
-    void setUnitCount(int unitCount);
-    int getBuildingCount() const;
-    void setBuildingCount(int buildingCount);
     bool getStartWithBase() const;
     void setStartWithBase(bool startWithBase);
     bool getStartWithUnit() const;

@@ -2,7 +2,6 @@
 #ifndef RENDER__LAYER__H
 #define RENDER__LAYER__H
 
-#include <memory>
 #include <string>
 #include <SFML/Graphics.hpp>
 
@@ -24,17 +23,17 @@ namespace render {
     // Associations
     // Attributes
   protected:
-    std::unique_ptr<Surface> surface;
-    std::shared_ptr<TileSet> tileSet;
+    Surface* surface;
+    TileSet* tileSet;
     // Operations
   public:
     const Surface* getSurface () const;
     void print (int x, int y, std::string text);
     void draw (sf::RenderWindow& window);
     // Setters and Getters
-    void setSurface(const std::unique_ptr<Surface>& surface);
-    const std::shared_ptr<TileSet>& getTileSet() const;
-    void setTileSet(const std::shared_ptr<TileSet>& tileSet);
+    void setSurface(const Surface*& surface);
+    const TileSet*& getTileSet() const;
+    void setTileSet(const TileSet*& tileSet);
   };
 
 };

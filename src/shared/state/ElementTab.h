@@ -3,7 +3,6 @@
 #define STATE__ELEMENTTAB__H
 
 #include <vector>
-#include <memory>
 
 namespace state {
   class Element;
@@ -18,14 +17,30 @@ namespace state {
     // Associations
     // Attributes
   protected:
-    std::vector<std::shared_ptr<Element>> tab;
+    int width;
+    int height;
+    std::vector<Element*> elemList;
+    std::vector<Element*> elemTab;
     // Operations
   public:
+    ElementTab (int w, int h);
+    void addElem (Element* elem);
+    Element* getElem (int i);
     const Element* operator[] (int i) const;
     Element* operator[] (int i);
+    const Element* getElem (int x, int y) const;
+    Element* getElem (int x, int y);
+    void eraseElem (int i);
+    void eraseElem (int x, int y);
     // Setters and Getters
-    const std::vector<std::shared_ptr<Element>>& getTab() const;
-    void setTab(const std::vector<std::shared_ptr<Element>>& tab);
+    int getWidth() const;
+    void setWidth(int width);
+    int getHeight() const;
+    void setHeight(int height);
+    const std::vector<Element*>& getElemList() const;
+    void setElemList(const std::vector<Element*>& elemList);
+    const std::vector<Element*>& getElemTab() const;
+    void setElemTab(const std::vector<Element*>& elemTab);
   };
 
 };

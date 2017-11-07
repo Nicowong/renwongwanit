@@ -3,7 +3,6 @@
 #define RENDER__BOARDLAYER__H
 
 #include <vector>
-#include <memory>
 
 namespace state {
   class Element;
@@ -12,7 +11,6 @@ namespace render {
   class Layer;
 }
 
-#include "state/Element.h"
 #include "Layer.h"
 
 namespace render {
@@ -21,7 +19,7 @@ namespace render {
   class BoardLayer : public render::Layer {
     // Operations
   public:
-    void update (const std::vector<std::shared_ptr<state::Element>> tab);
+    void update (const std::vector<state::Element*> tab);
     // Setters and Getters
   };
 

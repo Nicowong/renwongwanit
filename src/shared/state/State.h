@@ -4,18 +4,17 @@
 
 #include <vector>
 #include <string>
-#include <memory>
 
 namespace state {
-  class ElementTab;
   class Player;
+  class ElementTab;
   class Unit;
   class Cell;
 }
 
-#include "ElementTab.h"
-#include "Player.h"
 #include "Team.h"
+#include "Player.h"
+#include "ElementTab.h"
 #include "Unit.h"
 #include "Cell.h"
 
@@ -29,18 +28,17 @@ namespace state {
     int w;
     int h;
     int day     = 0;
-    int unitCount;
-    int buildingCount;
-    ElementTab cellTab;
+    Team turn     = PLAYER1;
     std::vector<Player> players;
+    ElementTab cellTab;
+    ElementTab unitTab;
     // Operations
   public:
     State ();
     State (std::string levelFile);
     void dayUp ();
-    ElementTab& getUnitTab (Team player) const;
-    const std::vector<std::shared_ptr<state::Cell>> getCellLayer () const;
-    const std::vector<std::shared_ptr<state::Unit>> getUnitLayer () const;
+    const std::vector<state::Cell*> getCellLayer () const;
+    const std::vector<state::Unit*> getUnitLayer () const;
     // Setters and Getters
     int getW() const;
     void setW(int w);
@@ -48,14 +46,14 @@ namespace state {
     void setH(int h);
     int getDay() const;
     void setDay(int day);
-    int getUnitCount() const;
-    void setUnitCount(int unitCount);
-    int getBuildingCount() const;
-    void setBuildingCount(int buildingCount);
-    const ElementTab& getCellTab() const;
-    void setCellTab(const ElementTab& cellTab);
+    Team getTurn() const;
+    void setTurn(Team turn);
     const std::vector<Player>& getPlayers() const;
     void setPlayers(const std::vector<Player>& players);
+    const ElementTab& getCellTab() const;
+    void setCellTab(const ElementTab& cellTab);
+    const ElementTab& getUnitTab() const;
+    void setUnitTab(const ElementTab& unitTab);
   };
 
 };

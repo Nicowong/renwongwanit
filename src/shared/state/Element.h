@@ -14,12 +14,12 @@ namespace state {
     // Attributes
   protected:
     TypeId type;
-    Team team     = NEUTRAL;
+    Team team     = NONE;
     int x     = 0;
     int y     = 0;
     // Operations
   public:
-    Element (TypeId type, Team team = NEUTRAL, int x = 0, int y = 0);
+    Element (TypeId type, Team team = NONE, int x = 0, int y = 0);
     bool const isUnit ();
     // Setters and Getters
     TypeId getType() const;
