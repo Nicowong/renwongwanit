@@ -3,6 +3,10 @@
 #define ENGINE__LOADCOMMAND__H
 
 
+namespace state {
+  class State;
+}
+
 namespace engine {
 
   /// class LoadCommand - 

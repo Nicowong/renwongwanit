@@ -2,6 +2,7 @@
 #ifndef STATE__UNIT__H
 #define STATE__UNIT__H
 
+#include <stdlib.h>
 
 namespace state {
   class Element;
@@ -25,7 +26,7 @@ namespace state {
     int vision;
     // Operations
   public:
-    Unit (Team team = PLAYER1, UnitType utype = UT_INFANTRY, int x = 0, int y = 0);
+    Unit (Team team = PLAYER1, UnitType utype = UT_INFANTRY, size_t x = 0, size_t y = 0);
     bool isInfantry () const;
     bool isRanged () const;
     bool isTransporter () const;

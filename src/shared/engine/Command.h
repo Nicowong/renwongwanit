@@ -4,13 +4,13 @@
 
 
 namespace state {
-  class state;
+  class State;
 };
 namespace engine {
   class Engine;
 }
 
-#include "state.h"
+#include "state/State.h"
 #include "CommandTypeId.h"
 #include "Engine.h"
 

@@ -2,6 +2,7 @@
 #ifndef STATE__BUILDING__H
 #define STATE__BUILDING__H
 
+#include <stdlib.h>
 
 namespace state {
   class Cell;
@@ -20,7 +21,7 @@ namespace state {
     int capturePoints;
     // Operations
   public:
-    Building (Team team = NEUTRAL, CellType type = CT_CITY, int x = 0, int y = 0);
+    Building (Team team = NEUTRAL, CellType type = CT_CITY, size_t x = 0, size_t y = 0);
     bool isInCapture () const;
     void debug () const;
     // Setters and Getters

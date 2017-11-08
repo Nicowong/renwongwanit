@@ -2,6 +2,7 @@
 #ifndef STATE__ELEMENT__H
 #define STATE__ELEMENT__H
 
+#include <stdlib.h>
 
 #include "TypeId.h"
 #include "Team.h"
@@ -15,11 +16,11 @@ namespace state {
   protected:
     TypeId type;
     Team team     = NONE;
-    int x     = 0;
-    int y     = 0;
+    size_t x     = 0;
+    size_t y     = 0;
     // Operations
   public:
-    Element (TypeId type, Team team = NONE, int x = 0, int y = 0);
+    Element (TypeId type, Team team = NONE, size_t x = 0, size_t y = 0);
     bool isUnit () const;
     void debug () const;
     // Setters and Getters
@@ -27,10 +28,10 @@ namespace state {
     void setType(TypeId type);
     Team getTeam() const;
     void setTeam(Team team);
-    int getX() const;
-    void setX(int x);
-    int getY() const;
-    void setY(int y);
+    const size_t& getX() const;
+    void setX(const size_t& x);
+    const size_t& getY() const;
+    void setY(const size_t& y);
   };
 
 };

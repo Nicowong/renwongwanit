@@ -108,6 +108,19 @@ void testCell(){
 }
 void testElementTab(){
     cout << "Creation de ElementTab(20,30)"<<endl ;
-    ElementTab etab(20,30);
+    ElementTab etab(16,8);
+    etab.debug();
+    
+    cout << "ajout unite" << endl ;
+    Unit u1(PLAYER1, UT_RECON, 6, 4);
+    Building b1(PLAYER2, CT_BASE, 2,7);
+    Cell c1(CT_PLAIN, 7,7);
+    etab.addElem(&u1);
+    etab.addElem(&b1);
+    etab.addElem(&c1);
+    etab.debug();
+    
+    cout << "suppression" << endl ;
+    etab.eraseElem(1);
     etab.debug();
 }

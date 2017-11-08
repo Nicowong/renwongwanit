@@ -3,6 +3,9 @@
 #define ENGINE__CHOOSEELEMENTCOMMAND__H
 
 
+namespace state {
+  class State;
+};
 namespace engine {
   class Command;
 }

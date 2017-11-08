@@ -3,11 +3,14 @@
 #define ENGINE__CAPTURECOMMAND__H
 
 
+namespace state {
+  class State;
+};
 namespace engine {
   class Command;
 }
 
-#include "state/Cell.h"
+#include "state/CellType.h"
 #include "Command.h"
 
 namespace engine {
@@ -19,7 +22,7 @@ namespace engine {
      charactor;
     // Operations
   public:
-    void CaptureCommand (int elementID, state::Cell cell);
+    void CaptureCommand (int elementID, state::CellType cell);
     commandTypeID const getTypeID ();
     void excute (state::State& state);
     // Setters and Getters

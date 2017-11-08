@@ -18,13 +18,18 @@ size_t ElementTab::getTabIndex(const Element* elem)const{
 }
 //modifiers and accessor to list
 void ElementTab::addElem (Element* elem){
-    if(elemTab[getTabIndex(elem)]==nullptr){
+    if(elem != nullptr && (elem->getX()<0 || elem->getX()>=w || elem->getY()<0 || elem->getY()>=h)){
+        std::cout << "ElementTab::addElem error : added element out of map at " ;
+        std::cout << elem->getX() << ":" << elem->getY() << std::endl ;
+    }
+    else if(elemTab[getTabIndex(elem)]!=nullptr){
+        std::cout << "ElementTab::addElem error : non-null element at " ;
+        std::cout << elem->getX() << ":" << elem->getY() << std::endl ;
+    }
+    else{
         elemList.push_back(elem);
         elemTab[getTabIndex(elem)] = elem ;
     }
-    else
-        std::cout << "ElementTab::addElem error : non-null element at " ;
-        std::cout << elem->getX() << ":" << elem->getY() << std::endl ;
 }
 const Element* ElementTab::getElem (size_t i)const{
     if(i<elemList.size())
@@ -72,7 +77,8 @@ Element* ElementTab::eraseElem (int i){
     Element *elem = getElem(i);
     if(elem != nullptr){
         elemTab[getTabIndex(elem)] = nullptr ;
-        elemList[i] = nullptr;
+        elemList.erase(elemList.begin()+i);
+        //elemList[i] = nullptr;
         return elem ;
     }else{
         std::cout << "ElementTab::eraseElem error : erasing null elem, i:"<<i<<std::endl ;
@@ -136,15 +142,15 @@ void ElementTab::debug()const{
     cout << "w:"<<w<<" h:"<<h <<endl ;
     cout << "elemList : "<<endl ;
     for(size_t i=0 ; i<elemList.size() ; i++)
-        cout<< elemList[i]->getType() << "   ";
+        cout<< elemList[i]->getType() << " ";
     cout << endl ;
     cout << "elemTab"<< endl ;
     for(size_t j=0 ; j<h ; j++){
         for(size_t i=0 ; i<w ; i++)
-            if(elemTab[i]!=nullptr)
-                cout << elemTab[i]->getType() << "   ";
+            if(elemTab[i+j*w]!=nullptr)
+                cout << elemTab[i+j*w]->getType() << "   ";
             else
-                cout << "o  " ;
+                cout << "nul " ;
         cout << endl ;
     }
 }

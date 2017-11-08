@@ -5,7 +5,7 @@
 using namespace std ;
 using namespace state;
 
-Element::Element (TypeId type, Team team, int x, int y):
+Element::Element (TypeId type, Team team, size_t x, size_t y):
     type(type), team(team), x(x), y(y){
     
 }
@@ -25,16 +25,16 @@ Team Element::getTeam() const{
 void Element::setTeam(Team team){
     this->team = team ;
 }
-int Element::getX() const{
+const size_t& Element::getX() const{
     return x ;
 }
-void Element::setX(int x){
+void Element::setX(const size_t& x){
     this->x = x ;
 }
-int Element::getY() const{
+const size_t& Element::getY() const{
     return y ;
 }
-void Element::setY(int y){
+void Element::setY(const size_t& y){
     this->y = y ;
 }
 

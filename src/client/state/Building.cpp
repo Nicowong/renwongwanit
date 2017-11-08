@@ -5,8 +5,9 @@
 using namespace std ;
 using namespace state ;
 
-Building::Building(Team team, CellType type, int x, int y):
-    Cell(type, x,y), capturePoints(20){
+Building::Building(Team team, CellType cellType, size_t x, size_t y):
+    Cell(cellType, x,y), capturePoints(20){
+    this->type = T_BUILDING ;
     this->team = team ;
 }
 bool Building::isInCapture()const{

@@ -2,6 +2,7 @@
 #ifndef STATE__STATE__H
 #define STATE__STATE__H
 
+#include <stdlib.h>
 #include <vector>
 #include <string>
 
@@ -25,8 +26,8 @@ namespace state {
     // Associations
     // Attributes
   protected:
-    int w;
-    int h;
+    size_t w;
+    size_t h;
     int day     = 0;
     Team turn     = PLAYER1;
     std::vector<Player> players;
@@ -40,10 +41,10 @@ namespace state {
     const std::vector<state::Cell*> getCellLayer () const;
     const std::vector<state::Unit*> getUnitLayer () const;
     // Setters and Getters
-    int getW() const;
-    void setW(int w);
-    int getH() const;
-    void setH(int h);
+    const size_t& getW() const;
+    void setW(const size_t& w);
+    const size_t& getH() const;
+    void setH(const size_t& h);
     int getDay() const;
     void setDay(int day);
     Team getTurn() const;

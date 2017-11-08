@@ -5,27 +5,35 @@
 #include <map>
 #include <memory>
 
+namespace state {
+  class State;
+};
 namespace engine {
   class Command;
 }
+
+#include "state/State.h"
 
 namespace engine {
 
   /// class Engine - 
   class Engine {
     // Attributes
-  public:
-    std::map<int,std::shared_ptr<Command>> currentCommands;
-  private:
+  protected:
     state::State currentState;
+    std::map<int,std::shared_ptr<Command>> currentCommands;
     // Operations
   public:
     Engine ();
     ~Engine ();
-    const state::State& const getState ();
+    const state::State& getState () const;
     void addCommand (int priority, Command* cmd);
     void update ();
     // Setters and Getters
+    const state::State& getCurrentState() const;
+    void setCurrentState(const state::State& currentState);
+    const std::map<int,std::shared_ptr<Command>>& getCurrentCommands() const;
+    void setCurrentCommands(const std::map<int,std::shared_ptr<Command>>& currentCommands);
   };
 
 };

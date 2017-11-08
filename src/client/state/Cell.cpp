@@ -4,7 +4,7 @@
 using namespace std; 
 using namespace state;
 
-Cell::Cell (CellType cellType, int x, int y):
+Cell::Cell (CellType cellType, size_t x, size_t y):
     Element(T_CELL, NEUTRAL, x, y), cellType(cellType){
     
 }

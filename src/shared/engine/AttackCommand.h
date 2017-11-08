@@ -3,11 +3,14 @@
 #define ENGINE__ATTACKCOMMAND__H
 
 
+namespace state {
+  class State;
+};
 namespace engine {
   class Command;
 }
 
-#include "state/Unit.h"
+#include "state/UnitType.h"
 #include "Command.h"
 
 namespace engine {
@@ -19,7 +22,7 @@ namespace engine {
     int elementID;
     // Operations
   public:
-    void attackCommand (int elementID, Unit unit);
+    void attackCommand (int elementID, state::UnitType unit);
     CommandTypeId const getTypeID ();
     void excute (state::State& state);
     // Setters and Getters

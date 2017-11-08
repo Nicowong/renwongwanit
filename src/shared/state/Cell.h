@@ -2,6 +2,7 @@
 #ifndef STATE__CELL__H
 #define STATE__CELL__H
 
+#include <stdlib.h>
 
 namespace state {
   class Element;
@@ -20,7 +21,7 @@ namespace state {
     CellType cellType;
     // Operations
   public:
-    Cell (CellType cellType = CT_PLAIN, int x = 0, int y = 0);
+    Cell (CellType cellType = CT_PLAIN, size_t x = 0, size_t y = 0);
     void debug () const;
     // Setters and Getters
     CellType getCellType() const;

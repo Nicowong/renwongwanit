@@ -5,7 +5,7 @@
 using namespace std ;
 using namespace state ;
 
-Unit::Unit(Team team, UnitType utype, int x, int y):
+Unit::Unit(Team team, UnitType utype, size_t x, size_t y):
     Element(T_UNIT, team, x,y), unitType(utype), health(100), ammo(0), fuel(1), vision(1){
     switch(unitType){
         case UT_INFANTRY :
