@@ -24,6 +24,7 @@ namespace state {
     std::vector<Element*> elemTab;
     // Operations
   public:
+    ElementTab ();
     ElementTab (size_t w, size_t h);
     size_t getTabIndex (const Element* elem) const;
     size_t getTabIndex (size_t x, size_t y) const;
@@ -38,6 +39,7 @@ namespace state {
     Element* eraseElem (size_t x, size_t y);
     void moveElem (size_t x1, size_t y1, size_t x2, size_t y2);
     void debug () const;
+    void resize (size_t w, size_t h);
     // Setters and Getters
     const size_t& getW() const;
     void setW(const size_t& w);

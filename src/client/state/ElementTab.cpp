@@ -5,6 +5,7 @@
 using namespace std;
 using namespace state;
 
+ElementTab::ElementTab(): ElementTab(16,16){}
 ElementTab::ElementTab (size_t w, size_t h):
     w(w), h(h){
     elemTab.resize(w*h, nullptr);
@@ -15,6 +16,15 @@ size_t ElementTab::getTabIndex(size_t x, size_t y)const{
 }
 size_t ElementTab::getTabIndex(const Element* elem)const{
     return elem->getX()+elem->getY()*w ;
+}
+
+void ElementTab::resize(size_t width, size_t height){
+    for(size_t i=0 ; i<elemList.size() ; i++){
+        if(elemList[i]->getX() >= width || elemList[i]->getY() >= height)
+            eraseElem(i);
+    }
+    setW(width);
+    setH(height);
 }
 //modifiers and accessor to list
 void ElementTab::addElem (Element* elem){

@@ -9,15 +9,11 @@
 namespace state {
   class Player;
   class ElementTab;
-  class Unit;
-  class Cell;
 }
 
 #include "Team.h"
 #include "Player.h"
 #include "ElementTab.h"
-#include "Unit.h"
-#include "Cell.h"
 
 namespace state {
 
@@ -35,11 +31,10 @@ namespace state {
     ElementTab unitTab;
     // Operations
   public:
-    State ();
+    State (size_t width, size_t height);
     State (std::string levelFile);
-    void dayUp ();
-    const std::vector<state::Cell*> getCellLayer () const;
-    const std::vector<state::Unit*> getUnitLayer () const;
+    void dayIncr ();
+    void turnIncr ();
     // Setters and Getters
     const size_t& getW() const;
     void setW(const size_t& w);
