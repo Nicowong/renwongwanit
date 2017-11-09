@@ -27,13 +27,13 @@ namespace render {
     TileSet* tileSet;
     // Operations
   public:
-    const Surface* getSurface () const;
+    Surface* getSurface () const;
+    void setSurface (Surface* surface);
     void print (int x, int y, std::string text);
     void draw (sf::RenderWindow& window);
+    TileSet* getTileSet () const;
+    void setTileSet (TileSet* tileSet);
     // Setters and Getters
-    void setSurface(const Surface*& surface);
-    const TileSet*& getTileSet() const;
-    void setTileSet(const TileSet*& tileSet);
   };
 
 };

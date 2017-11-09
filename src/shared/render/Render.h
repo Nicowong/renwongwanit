@@ -2,7 +2,6 @@
 #ifndef RENDER__RENDER__H
 #define RENDER__RENDER__H
 
-#include <memory>
 #include <SFML/Graphics.hpp>
 
 namespace state {
@@ -27,7 +26,8 @@ namespace render {
     // Associations
     // Attributes
   protected:
-    std::shared_ptr<state::State> state;
+    /// std::shared_ptr<state::State>
+    state::State state;
     StatusLayer statusLayer;
     BoardLayer cellLayer;
     BoardLayer buildingLayer;
@@ -36,8 +36,8 @@ namespace render {
   public:
     void draw (sf::RenderWindow& window);
     // Setters and Getters
-    const std::shared_ptr<state::State>& getState() const;
-    void setState(const std::shared_ptr<state::State>& state);
+    const state::State& getState() const;
+    void setState(const state::State& state);
     const StatusLayer& getStatusLayer() const;
     void setStatusLayer(const StatusLayer& statusLayer);
     const BoardLayer& getCellLayer() const;
