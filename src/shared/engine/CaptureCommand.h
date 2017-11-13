@@ -19,15 +19,15 @@ namespace engine {
   class CaptureCommand : public engine::Command {
     // Attributes
   protected:
-     charactor;
+     character;
     // Operations
   public:
     void CaptureCommand (int elementID, state::CellType cell);
     commandTypeID const getTypeID ();
     void excute (state::State& state);
     // Setters and Getters
-    const & getCharactor() const;
-    void setCharactor(const & charactor);
+    const & getCharacter() const;
+    void setCharacter(const & character);
   };
 
 };

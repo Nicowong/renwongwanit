@@ -4,6 +4,7 @@
 #include <fstream>
 
 #include "state.h"
+#include "render.h"
 
 #define WINWIDTH 480
 #define WINHEIGHT 320

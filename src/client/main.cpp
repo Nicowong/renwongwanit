@@ -19,6 +19,7 @@ using namespace state;
 void testHello();
 void testState();
 void testRender(int mode=0, string fname="level.txt");
+void testEngine();
 
 /*--- Fonction main ---*/
 
@@ -52,7 +53,9 @@ int main(int argc,char* argv[]) {
             fname = "level.txt";
     
         testRender(mode, fname);
-        
+    //--- ENGINE pour les tests de moteur
+    }else if(string(argv[1])=="engine"){
+        testEngine();
     //Pas de commande
     }else{
         std::cout << "Error : command not found." << std::endl ;
