@@ -75,3 +75,13 @@ const ElementTab& State::getUnitTab() const{
 void State::setUnitTab(const ElementTab& unitTab){
     
 }
+
+void State::debug()const{
+    cout << "State:: void debug()"<<endl ;
+    cout << "w:"<<w<<" h:"<<h <<endl ;
+    cout << "day:"<<day << "turn:Player" <<turn << endl ; 
+    cout << "cellTab : "<<endl ;
+    getCellTab().debug();
+    cout << endl <<"unitTab : "<<endl ;
+    getUnitTab().debug() ;
+}

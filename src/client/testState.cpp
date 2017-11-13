@@ -20,6 +20,9 @@ void testState(){
     std::cout << "-------------------------" <<std::endl;
     testElementTab() ;
     
+    cout<< endl << "<<<Test State>>>" << endl ;
+    State state(16,8);
+    state.debug() ;
 }
 
 // functions

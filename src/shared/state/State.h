@@ -35,6 +35,7 @@ namespace state {
     State (std::string levelFile);
     void dayIncr ();
     void turnIncr ();
+    void debug () const;
     // Setters and Getters
     const size_t& getW() const;
     void setW(const size_t& w);

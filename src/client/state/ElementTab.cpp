@@ -23,6 +23,7 @@ void ElementTab::resize(size_t width, size_t height){
         if(elemList[i]->getX() >= width || elemList[i]->getY() >= height)
             eraseElem(i);
     }
+    
     setW(width);
     setH(height);
 }
