@@ -22,6 +22,7 @@ namespace state {
   public:
     Element (TypeId type, Team team = NONE, size_t x = 0, size_t y = 0);
     bool isUnit () const;
+    bool isBuilding () const;
     void debug () const;
     // Setters and Getters
     TypeId getType() const;

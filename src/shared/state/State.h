@@ -40,6 +40,12 @@ namespace state {
     void dayIncr ();
     void turnIncr ();
     void debug () const;
+    size_t countBuilding (Team player) const;
+    size_t countUnit (Team player) const;
+    ElementTab& getCellTab ();
+    const ElementTab& getCellTab () const;
+    ElementTab& getUnitTab ();
+    const ElementTab& getUnitTab () const;
     // Setters and Getters
     const size_t& getW() const;
     void setW(const size_t& w);
@@ -51,9 +57,7 @@ namespace state {
     void setTurn(Team turn);
     const std::vector<Player>& getPlayers() const;
     void setPlayers(const std::vector<Player>& players);
-    const ElementTab& getCellTab() const;
     void setCellTab(const ElementTab& cellTab);
-    const ElementTab& getUnitTab() const;
     void setUnitTab(const ElementTab& unitTab);
   };
 

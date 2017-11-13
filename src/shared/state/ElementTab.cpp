@@ -165,3 +165,7 @@ void ElementTab::debug()const{
         cout << endl ;
     }
 }
+
+size_t ElementTab::length()const{
+    return elemList.size();
+}

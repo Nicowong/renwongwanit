@@ -12,6 +12,9 @@ Element::Element (TypeId type, Team team, size_t x, size_t y):
 bool Element::isUnit ()const{
     return type==T_UNIT ;
 }
+bool Element::isBuilding()const{
+    return type==T_BUILDING ;
+}
 // Setters and Getters
 TypeId Element::getType() const{
     return type ;

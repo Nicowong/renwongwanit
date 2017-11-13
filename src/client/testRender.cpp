@@ -21,6 +21,8 @@ CellType generateCell();
 void generateRoad(int x, int y, CellType* map);
 void saveMap(CellType *map, int w, int h, string fname="level.txt");
 int* loadMap(string fname="level.txt");
+void generateMap(State &state);
+void generateUnits(State &state);
 
 void testRender(int mode, string fname){
     srand(time(NULL));
@@ -29,6 +31,8 @@ void testRender(int mode, string fname){
     CellType *tileMap = generateMap(WIDTH, HEIGHT, fname);
     state.initCellTab(tileMap);
     
+
+
     delete[] tileMap ;
 }
 
@@ -230,4 +234,11 @@ void saveMap(CellType *map, int w, int h, string fname){
         file << "\n" ;
     }
     file.close();
+}
+
+void generateMap(State &state){
+
+}
+void generateUnits(State &state){
+
 }

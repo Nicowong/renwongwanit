@@ -41,6 +41,23 @@ void State::turnIncr (){
     }
 }
 // Setters and Getters
+size_t State::countBuilding(Team player)const{
+    size_t n=0 ;
+    for(size_t i=0 ; i<cellTab.length() ; i++){
+        if(cellTab[i]->isBuilding() && cellTab[i]->getTeam()==player)
+            n++ ;
+    }
+    return n ;
+}
+size_t State::countUnit(Team player)const{
+    size_t n=0 ;
+    for(size_t i=0 ; i<cellTab.length() ; i++){
+        if(cellTab[i]->isUnit() && cellTab[i]->getTeam()==player)
+            n++ ;
+    }
+    return n ;
+}
+//-
 const size_t& State::getW() const{
     return w ;
 }
@@ -71,13 +88,21 @@ const std::vector<Player>& State::getPlayers() const{
 void State::setPlayers(const std::vector<Player>& players){
     
 }
-const ElementTab& State::getCellTab() const{
+
+ElementTab& State::getCellTab(){
+    return cellTab ;
+}
+const ElementTab& State::getCellTab()const{
     return cellTab ;
 }
 void State::setCellTab(const ElementTab& cellTab){
     
 }
-const ElementTab& State::getUnitTab() const{
+
+ElementTab& State::getUnitTab(){
+    return unitTab ;
+}
+const ElementTab& State::getUnitTab()const{
     return unitTab ;
 }
 void State::setUnitTab(const ElementTab& unitTab){
