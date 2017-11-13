@@ -1,4 +1,4 @@
-#include "../shared/render/CellTileSet.h"
+#include "CellTileSet.h"
 
 using namespace std ;
 using namespace render ;

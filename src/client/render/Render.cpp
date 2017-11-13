@@ -1,6 +1,6 @@
 #include <iostream>
 
-#include "../shared/render/Render.h"
+#include "Render.h"
 
 using namespace std ;
 using namespace render ;

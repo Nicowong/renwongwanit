@@ -1,4 +1,4 @@
-#include "../shared/render/StateTileSet.h"
+#include "StateTileSet.h"
 //
 using namespace std ;
 using namespace render ;

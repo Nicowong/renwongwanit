@@ -1,4 +1,4 @@
-#include "../shared/render/Surface.h"
+#include "Surface.h"
 
 using namespace std ;
 using namespace render ;

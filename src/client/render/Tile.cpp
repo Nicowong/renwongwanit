@@ -1,4 +1,4 @@
-#include "../shared/render/Tile.h"
+#include "Tile.h"
 
 using namespace std ;
 using namespace render ;

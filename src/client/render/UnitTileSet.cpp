@@ -1,4 +1,4 @@
-#include "../shared/render/UnitTileSet.h"
+#include "UnitTileSet.h"
 //
 using namespace std ;
 using namespace render ;

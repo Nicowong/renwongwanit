@@ -6,11 +6,8 @@ using namespace state ;
 
 /*--- Prototype des fonctions de test state ---*/
 void testUnit();
-void unitShow(const Unit& unit);
 void testBuilding();
-void buildingShow(const Building& b);
 void testCell();
-void cellShow(const Cell& c);
 void testElementTab();
 
 // ------------ TEST STATE ---------------
@@ -25,30 +22,7 @@ void testState(){
     
 }
 
-/*--- implementation ---*/
-/*
-void unitShow(const Unit& unit){
-    std::cout<< std::endl ;
-    std::cout<< "type : " << unit.getUnitType() << std::endl ;
-    std::cout<< "team : " << unit.getTeam() << std::endl ;
-    std::cout<< "x : " << unit.getX() << " ; y : " << unit.getY() << std::endl ;
-    std::cout<< "health : " << unit.getHealth() << " ; ammo : " << unit.getAmmo() << std::endl;
-    std::cout<< "fuel : " << unit.getFuel() << " ; vision : " << unit.getVision() << std::endl ;
-}
-void buildingShow(const Building& b){
-    std::cout<< std::endl ;
-    std::cout<< "type : " << b.getCellType() << std::endl ;
-    std::cout<< "team : " << b.getTeam() << std::endl ;
-    std::cout<< "x : " << b.getX() << " ; y : " << b.getY() << std::endl ;
-    std::cout<< "capture : " << b.getCapturePoints() << std::endl;
-}
-void cellShow(const Cell& cell){
-    std::cout<<std::endl;
-    std::cout<<"type : "<<cell.getCellType()<<std::endl;
-    std::cout<< "x : " << cell.getX() << " ; y : " << cell.getY() << std::endl ;
-}
-*/
-
+// functions
 void testUnit(){
     std::cout<< "Creation de Unit par defaut."<< std::endl ;
     Unit unit ;
