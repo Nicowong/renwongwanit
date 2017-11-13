@@ -43,7 +43,7 @@ bool Unit::isRanged () const{
         return false;
 }
 bool Unit::isTransporter () const{
-    if(unitType==UT_APC || unitType==UT_TRANSPORTHELI || unitType==UT_LANDER)
+    if(unitType==UT_APC || unitType==UT_TRANSPORTHELI || unitType==UT_LANDER || unitType==UT_CARRIER || unitType==UT_CRUISER)
         return true ;
     else
         return false ;

@@ -6,10 +6,26 @@ using namespace std ;
 using namespace state ;
 
 State::State(size_t width, size_t height): cellTab(width, height), unitTab(width, height){
-    
+    w = width ;
+    h = height ;
+    day = 1 ;
+    turn = PLAYER1;
+    Player p1(true, true);
+    Player p2(true, true);
+    players.push_back(p1);
+    players.push_back(p2);
 }
 State::State (std::string levelFile){
     
+}
+
+void State::initCellTab(CellType* celltab){
+    for(size_t j=0 ; j<h ; j++){
+        for(size_t i=0 ; i<w ; i++){
+            Cell *c = new Cell(celltab[i+j*w], i, j);
+            this->cellTab.addElem(c);
+        }
+    }
 }
 void State::dayIncr (){
     day++;
@@ -24,14 +40,6 @@ void State::turnIncr (){
         cout << "State::turnIncr error : turn=" << turn << endl ;
     }
 }
-/*
-const std::vector<state::Cell*> State::getCellLayer () const{
-    
-}
-const std::vector<state::Unit*> State::getUnitLayer () const{
-    
-}
-*/
 // Setters and Getters
 const size_t& State::getW() const{
     return w ;

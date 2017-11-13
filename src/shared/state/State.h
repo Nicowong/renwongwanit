@@ -9,11 +9,14 @@
 namespace state {
   class Player;
   class ElementTab;
+  class Cell;
 }
 
 #include "Team.h"
 #include "Player.h"
 #include "ElementTab.h"
+#include "CellType.h"
+#include "Cell.h"
 
 namespace state {
 
@@ -33,6 +36,7 @@ namespace state {
   public:
     State (size_t width, size_t height);
     State (std::string levelFile);
+    void initCellTab (CellType* celltab);
     void dayIncr ();
     void turnIncr ();
     void debug () const;

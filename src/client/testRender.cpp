@@ -14,22 +14,33 @@
 
 using namespace std ;
 using namespace state ;
+using namespace render ;
 
-int* generateMap(string fname = "level.txt");
-int generateCell();
-void generateRoad(int x, int y, int* map);
-void saveMap(int *map, int w, int h, string fname="level.txt");
+CellType* generateMap(int w, int h, string fname = "level.txt");
+CellType generateCell();
+void generateRoad(int x, int y, CellType* map);
+void saveMap(CellType *map, int w, int h, string fname="level.txt");
 int* loadMap(string fname="level.txt");
 
 void testRender(int mode, string fname){
+    srand(time(NULL));
+    State state(WIDTH, HEIGHT);
+    
+    CellType *tileMap = generateMap(WIDTH, HEIGHT, fname);
+    state.initCellTab(tileMap);
+    
+    delete[] tileMap ;
+}
+
+void testRender2(int mode, string fname){
     srand(time(NULL));
     
     //window.setFramerateLimit(60);
     
     cout << "Generation de terrain ..." << endl ;
-    int *tileMap ;
+    CellType *tileMap ;
     //if(mode == 0)
-        tileMap = generateMap(fname);
+        tileMap = generateMap(WIDTH, HEIGHT, fname);
     //else
         //tileMap = loadMap(fname);
     cout << "Generation terminee" << endl ;
@@ -52,7 +63,7 @@ void testRender(int mode, string fname){
     tileVertices.resize(20*30*4);
     for(int j=0 ; j<20 ; j++)
         for(int i=0 ; i<30 ; i++){
-            int tileType = tileMap[i+j*WIDTH] ;
+            int tileType = (int)tileMap[i+j*WIDTH] ;
             
             sf::Vertex* quad = &tileVertices[(i+j*30)*4];
             
@@ -126,17 +137,17 @@ void testRender(int mode, string fname){
     
 }
 
-int* generateMap(string fname){
-    int *tileMap = new int[WIDTH * HEIGHT];
+CellType* generateMap(int w, int h, string fname){
+    CellType *tileMap = new CellType[w * h];
     
-    for(int i=0 ; i<WIDTH ; i++)
-        for(int j=0 ; j<HEIGHT ; j++){
-            tileMap[i + j*WIDTH] = generateCell() ; // plaine, foret, montagne, mer
+    for(int i=0 ; i<w ; i++)
+        for(int j=0 ; j<h ; j++){
+            tileMap[i + j*w] = generateCell() ; // plaine, foret, montagne, mer
         }
     
     for(int n=0 ; n<RDMAPGENITER ; n++){    //traitement de carte (homogeneisation)
-        int x = rand()%WIDTH ; // selectionne une case
-        int y = rand()%HEIGHT ;
+        int x = rand()%w ; // selectionne une case
+        int y = rand()%h ;
         
         if(rand()%100 < 60){ //prend la valeur d'un voisin, sinon rien
             int vx=x, vy=y ;
@@ -145,8 +156,8 @@ int* generateMap(string fname){
             else
                 vy += (rand()%2)*2 -1 ;
             
-            if(vx>=0 && vx<WIDTH && vy>=0 && vy<HEIGHT)
-                tileMap[vx + vy*WIDTH] = tileMap[x + y*WIDTH];
+            if(vx>=0 && vx<w && vy>=0 && vy<h)
+                tileMap[vx + vy*w] = tileMap[x + y*w];
         }
         if(n%(RDMAPGENITER/10) == 0)
             cout << "." ;
@@ -156,24 +167,25 @@ int* generateMap(string fname){
     
     // placement de villes, routes
     do{
-        int x = rand()%WIDTH ;
-        int y = rand()%HEIGHT ;
-        tileMap[x+y*WIDTH] = CT_CITY ;
+        int x = rand()%w ;
+        int y = rand()%h ;
+        tileMap[x+y*w] = CT_CITY ;
         generateRoad(x, y, tileMap);
     }while(rand()%100 < 90);
     
-    int x = rand()%WIDTH ; //placement du QG
-    int y = rand()%HEIGHT ;
+    int x = rand()%w ; //placement du QG
+    int y = rand()%h ;
     
     generateRoad(x, y, tileMap);
-    tileMap[x+y*WIDTH] = CT_BASE ;
+    tileMap[x+y*w] = CT_BASE ;
     
-    saveMap(tileMap, WIDTH, HEIGHT, fname);
+    if(fname != "NULL");
+        saveMap(tileMap, w, h, fname);
     
     return tileMap ;
 }
 
-int generateCell(){
+CellType generateCell(){
     const int pG=40, pS=15, pM=15, pF=20 ;
     int ct = rand()%(pG+pS+pM+pF) ;
     if(ct < pG)
@@ -186,7 +198,7 @@ int generateCell(){
         return CT_FOREST ;
 }
 
-void generateRoad(int x, int y, int* map){
+void generateRoad(int x, int y, CellType* map){
     do{
         if(rand()%2 == 0)
             x = x+ (rand()%2)*2-1;
@@ -205,13 +217,16 @@ void generateRoad(int x, int y, int* map){
         map[x+y*WIDTH] = CT_CITY ;
 }
 
-void saveMap(int *map, int w, int h, string fname){
+void saveMap(CellType *map, int w, int h, string fname){
     ofstream file;
     file.open(fname.c_str());
     file << w << "\n" << h << "\n" ;
     for(int j=0 ; j<h ; j++){
-        for(int i=0 ; i<w ; i++)
-            file << map[i+j*w];
+        for(int i=0 ; i<w ; i++){
+            file << (int)map[i+j*w];
+            if(i!=h-1)
+                file<<" ";
+        }
         file << "\n" ;
     }
     file.close();
