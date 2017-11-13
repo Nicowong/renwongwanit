@@ -4,17 +4,7 @@
  * and open the template in the editor.
  */
 
-/* 
- * File:   CommandTypeId.h
- * Author: ren
- *
- * Created on November 13, 2017, 1:42 PM
- */
+#include "../../shared/engine/ChooseElementCommand.h"
 
-#ifndef COMMANDTYPEID_H
-#define COMMANDTYPEID_H
-
-
-
-#endif /* COMMANDTYPEID_H */
+using namespace state;
 

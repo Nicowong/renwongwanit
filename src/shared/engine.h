@@ -3,14 +3,13 @@
 #define __ENGINE__H
 
 #include "engine/Engine.h"
-#include "engine/CommandTypeId.h"
 #include "engine/Command.h"
 #include "engine/AttackCommand.h"
 #include "engine/ChooseElementCommand.h"
 #include "engine/MoveCommand.h"
 #include "engine/CaptureCommand.h"
 #include "engine/RechargeCommand.h"
-#include "engine/RepaireCommand.h"
+#include "engine/RepairCommand.h"
 #include "engine/DestroyCommand.h"
 #include "engine/LoadCommand.h"
 #endif
