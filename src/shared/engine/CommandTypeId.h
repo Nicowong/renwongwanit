@@ -12,8 +12,8 @@ namespace engine {
     Move     = 3,
     Capture     = 4,
     Recharge     = 5,
-    Repaire     = 6,
-    destroy     = 7
+    Repair     = 6,
+    Destroy     = 7
   };
 
 };

@@ -5,23 +5,28 @@
 
 namespace state {
   class State;
+};
+namespace engine {
+  class Command;
 }
+
+#include "Command.h"
 
 namespace engine {
 
   /// class LoadCommand - 
-  class LoadCommand {
+  class LoadCommand : public engine::Command {
     // Attributes
   protected:
-     charactor;
+     character;
     // Operations
   public:
     void loadCommand (const char* charactor);
     CommandTypeId const getTypeID ();
     void excute (state::State& state);
     // Setters and Getters
-    const & getCharactor() const;
-    void setCharactor(const & charactor);
+    const & getCharacter() const;
+    void setCharacter(const & character);
   };
 
 };

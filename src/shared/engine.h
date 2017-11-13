@@ -10,7 +10,7 @@
 #include "engine/MoveCommand.h"
 #include "engine/CaptureCommand.h"
 #include "engine/RechargeCommand.h"
-#include "engine/RepaireCommand.h"
+#include "engine/RepairCommand.h"
 #include "engine/DestroyCommand.h"
 #include "engine/LoadCommand.h"
 #endif
