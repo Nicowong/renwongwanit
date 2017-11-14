@@ -13,12 +13,17 @@ CommandTypeId DestroyCommand::getCommandTypeId() const{
     return COM_DESTROY ;
 }
 void DestroyCommand::execute (state::State& state){
-
+    if(unit.getHealth()<=0){
+        unit=NULL;
+    }else{
+        td::cout<<"In engine::DestroyCommand::execute() : error"<<std::endl;
+    }
+    
 }
 // Setters and Getters
 state::Unit& DestroyCommand::getUnit() const{
-	return unit ;
+    return unit ;
 }
 void DestroyCommand::setUnit(const state::Unit&& unit){
-
+    this->unit = unit;
 }

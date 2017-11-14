@@ -13,18 +13,18 @@ CommandTypeId LoadCommand::getCommandTypeId() const{
     return COM_LOAD ;
 }
 void LoadCommand::execute (state::State& state){
-
+    
 }
 // Setters and Getters
 state::Unit& LoadCommand::getCarrier() const{
-	return carrier ;
+    return carrier ;
 }
 void LoadCommand::setCarrier(const state::Unit&& carrier){
-
+    this->carrier=carrier;
 }
 state::Unit& LoadCommand::getUnit() const{
-	return unit ;
+    return unit ;
 }
 void LoadCommand::setUnit(const state::Unit&& unit){
-
+    this.unit=unit;
 }

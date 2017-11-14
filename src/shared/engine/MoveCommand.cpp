@@ -15,6 +15,8 @@ void MoveCommand::execute (state::State& state){
     if (unit.getX() != x && unit.getY() !=y ){
         unit.setX(x);
         unit.setY(y);
+    }else{
+        std::cout<<"In engine::MoveCommand::execute() : error"<<std::endl;
     }
 }
 // Setters and Getters
