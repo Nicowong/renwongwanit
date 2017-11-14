@@ -10,6 +10,7 @@ namespace engine {
   class Command;
 }
 
+#include "CommandTypeId.h"
 #include "Command.h"
 
 namespace engine {
@@ -18,15 +19,15 @@ namespace engine {
   class LoadCommand : public engine::Command {
     // Attributes
   protected:
-     character;
+    state::Element selected;
     // Operations
   public:
     void loadCommand (const char* charactor);
-    CommandTypeId const getTypeID ();
-    void excute (state::State& state);
+    CommandTypeId getTypeID () const;
+    void execute (state::State& state);
     // Setters and Getters
-    const & getCharacter() const;
-    void setCharacter(const & character);
+    const state::Element& getSelected() const;
+    void setSelected(const state::Element& selected);
   };
 
 };
