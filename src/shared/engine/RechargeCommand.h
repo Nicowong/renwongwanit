@@ -7,7 +7,8 @@ namespace state {
   class State;
 }
 
-#include "state/UnitType.h"
+#include "CommandTypeId.h"
+#include "state/State.h"
 
 namespace engine {
 
@@ -18,9 +19,9 @@ namespace engine {
     int elementID;
     // Operations
   public:
-    void RechargeCommand (int elementID, UnitType unit);
-    CommandTypeId const getTypeID ();
-    void excute (state::State& state);
+    void RechargeCommand (int elementID, int targetID);
+    CommandTypeId getTypeID () const;
+    void execute (state::State& state);
     // Setters and Getters
     int getElementID() const;
     void setElementID(int elementID);

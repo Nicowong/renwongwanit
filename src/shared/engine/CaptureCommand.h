@@ -10,8 +10,8 @@ namespace engine {
   class Command;
 }
 
-#include "state/CellType.h"
 #include "Command.h"
+#include "state/State.h"
 
 namespace engine {
 
@@ -19,15 +19,15 @@ namespace engine {
   class CaptureCommand : public engine::Command {
     // Attributes
   protected:
-     character;
+    int elementId;
     // Operations
   public:
-    void CaptureCommand (int elementID, state::CellType cell);
-    commandTypeID const getTypeID ();
-    void excute (state::State& state);
+    void CaptureCommand (int elementID, int targetID);
+    commandTypeID getTypeID () const;
+    void execute (state::State& state);
     // Setters and Getters
-    const & getCharacter() const;
-    void setCharacter(const & character);
+    int getElementId() const;
+    void setElementId(int elementId);
   };
 
 };
