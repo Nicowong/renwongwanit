@@ -12,24 +12,27 @@ CommandTypeId MoveCommand::getCommandTypeId() const{
     return COM_MOVE ;
 }
 void MoveCommand::execute (state::State& state){
-
+    if (unit.getX() != x && unit.getY() !=y ){
+        unit.setX(x);
+        unit.setY(y);
+    }
 }
 // Setters and Getters
 state::Unit& MoveCommand::getUnit() const{
-	return unit ;
+    return unit ;
 }
 void MoveCommand::setUnit(const state::Unit&& unit){
-
+    
 }
 const size_t& MoveCommand::getX() const{
-	return x ;
+    return x ;
 }
 void MoveCommand::setX(const size_t& x){
-
+    this->x=x;
 }
 const size_t& MoveCommand::getY() const{
-	return y ;
+    return y;
 }
 void MoveCommand::setY(const size_t& y){
-
+    this->y=ys;
 }
