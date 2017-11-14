@@ -9,7 +9,7 @@ namespace engine {
     COM_LOAD     = 0,
     COM_SELECT     = 1,
     COM_ATTACK     = 2,
-    CM_MOVE     = 3,
+    COM_MOVE     = 3,
     COM_CAPTURE     = 4,
     COM_SUPPLY     = 5,
     COM_REPAIR     = 6,

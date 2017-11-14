@@ -4,6 +4,7 @@
 
 
 namespace state {
+  class Unit;
   class State;
 };
 namespace engine {
@@ -23,7 +24,7 @@ namespace engine {
     state::Unit& unit;
     // Operations
   public:
-    RepairCommand (state::Unit& unit, int targetID);
+    RepairCommand (state::Unit& unit);
     CommandTypeId getCommandTypeId () const;
     void execute (state::State& state);
     // Setters and Getters

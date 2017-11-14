@@ -5,14 +5,15 @@
 
 namespace state {
   class Building;
+  class Unit;
   class State;
 };
 namespace engine {
   class Command;
 }
 
+#include "CommandTypeId.h"
 #include "Command.h"
-#include "state/State.h"
 
 namespace engine {
 
@@ -25,7 +26,7 @@ namespace engine {
     // Operations
   public:
     CaptureCommand (state::Building& building, state::Unit& unit);
-    CommandTypeID getCommandTypeId () const;
+    CommandTypeId getCommandTypeId () const;
     void execute (state::State& state);
     // Setters and Getters
     state::Building& getBuilding() const;

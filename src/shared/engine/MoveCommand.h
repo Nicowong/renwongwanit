@@ -5,6 +5,7 @@
 #include <stdlib.h>
 
 namespace state {
+  class Unit;
   class State;
 };
 namespace engine {

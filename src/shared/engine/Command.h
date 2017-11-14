@@ -5,6 +5,8 @@
 
 namespace state {
   class State;
+  class Unit;
+  class Building;
 };
 namespace engine {
   class Engine;
@@ -12,6 +14,8 @@ namespace engine {
 
 #include "CommandTypeId.h"
 #include "state/State.h"
+#include "state/Unit.h"
+#include "state/Building.h"
 #include "Engine.h"
 
 namespace engine {
@@ -21,7 +25,6 @@ namespace engine {
     // Associations
     // Operations
   public:
-    ~Command ();
     virtual CommandTypeId getCommandTypeId () const = 0;
     virtual void execute (state::State& state) = 0;
     // Setters and Getters

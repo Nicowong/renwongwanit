@@ -5,34 +5,29 @@
  */
 
 #include <iostream>
+
 #include "SelectCommand.h"
 
 using namespace std ;
 using namespace state;
 using namespace engine;
 
-SelectCommand::SelectCommand(int elementID){
-    state::ElementTab elemtab;
-    elemtab.getElem(elementID);
-    std::cout<<elemtab.getElem(elementID)<<" has been chosen"<<std::endl;
-}
+SelectCommand::SelectCommand (state::Element& elem): elem(elem){
 
-int SelectCommand::getElementID() const{
-    return elementID;
+    std::cout<< "Selected : " ;
+    elem.debug();
+    cout << endl ;
 }
-
-void SelectCommand::setElementID(int elementID){
-    this->elementID=elementID;
+CommandTypeId SelectCommand::getCommandTypeId () const{
+	return COM_SELECT ;
 }
+void SelectCommand::execute (state::State& state){
 
-void SelectCommand::execute(state::State& state){
-    
 }
-
-engine::CommandTypeId engine::SelectCommand::getCommandTypeId() const{
-    return engine::commandTypeId;
+// Setters and Getters
+state::Element& SelectCommand::getElem() const{
+	return elem ;
 }
-
-void engine::SelectCommand::setCommandTypeId(engine::CommandTypeId commandTypeId){
-    this->commandTypeId=engine::commandTypeId;
+void SelectCommand::setElem(const state::Element&& elem){
+	this->elem = elem ;
 }
