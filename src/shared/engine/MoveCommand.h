@@ -2,6 +2,7 @@
 #ifndef ENGINE__MOVECOMMAND__H
 #define ENGINE__MOVECOMMAND__H
 
+#include <stdlib.h>
 
 namespace state {
   class State;
@@ -19,15 +20,21 @@ namespace engine {
   class MoveCommand : public engine::Command {
     // Attributes
   protected:
-    int elementID;
+    state::Unit& unit;
+    size_t x;
+    size_t y;
     // Operations
   public:
-    void MoveCommand (int elementId);
-    CommandTypeId getTypeId ( ) const;
+    MoveCommand (state::Unit& unit, size_t x, size_t y);
+    CommandTypeId getCommandTypeId ( ) const;
     void execute (state::State& state);
     // Setters and Getters
-    int getElementID() const;
-    void setElementID(int elementID);
+    state::Unit& getUnit() const;
+    void setUnit(const state::Unit&& unit);
+    const size_t& getX() const;
+    void setX(const size_t& x);
+    const size_t& getY() const;
+    void setY(const size_t& y);
   };
 
 };

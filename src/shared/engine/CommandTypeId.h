@@ -6,14 +6,14 @@
 namespace engine {
 
   enum CommandTypeId {
-    LOAD     = 0,
-    ChooseElement     = 1,
-    Attack     = 2,
-    Move     = 3,
-    Capture     = 4,
-    Recharge     = 5,
-    Repair     = 6,
-    Destroy     = 7
+    COM_LOAD     = 0,
+    COM_SELECT     = 1,
+    COM_ATTACK     = 2,
+    CM_MOVE     = 3,
+    COM_CAPTURE     = 4,
+    COM_SUPPLY     = 5,
+    COM_REPAIR     = 6,
+    COM_DESTROY     = 7
   };
 
 };

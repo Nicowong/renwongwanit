@@ -18,16 +18,18 @@ namespace engine {
   /// class CaptureCommand - 
   class CaptureCommand : public engine::Command {
     // Attributes
+  public:
+    state::Unit& unit;
   protected:
-    int elementId;
+    state::Building& building;
     // Operations
   public:
-    void CaptureCommand (int elementID, int targetID);
-    commandTypeID getTypeID () const;
+    CaptureCommand (state::Building& building, state::Unit& unit);
+    commandTypeID getCommandTypeId () const;
     void execute (state::State& state);
     // Setters and Getters
-    int getElementId() const;
-    void setElementId(int elementId);
+    state::Building& getBuilding() const;
+    void setBuilding(const state::Building&& building);
   };
 
 };

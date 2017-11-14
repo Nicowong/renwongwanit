@@ -23,7 +23,7 @@ void AttackCommand::setElementID(int elementID){
 }
 
 CommandTypeId AttackCommand::getCommandTypeId() const{
-    return commandTypeId;
+    return COM_ATTACK;
 }
 
 void engine::AttackCommand::setCommandTypeId(engine::CommandTypeId commandTypeId){

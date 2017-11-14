@@ -19,15 +19,15 @@ namespace engine {
   class DestroyCommand : public engine::Command {
     // Attributes
   protected:
-    int elementID;
+    state::Unit& unit;
     // Operations
   public:
-    void DestroyCommand (int elementID);
-    CommandTypeId getTypeID () const;
+    DestroyCommand (state::Unit& unit);
+    CommandTypeId getCommandTypeId () const;
     void execute (state::State& state);
     // Setters and Getters
-    int getElementID() const;
-    void setElementID(int elementID);
+    state::Unit& getUnit() const;
+    void setUnit(const state::Unit&& unit);
   };
 
 };

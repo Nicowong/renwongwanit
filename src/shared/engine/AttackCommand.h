@@ -20,15 +20,18 @@ namespace engine {
   class AttackCommand : public engine::Command {
     // Attributes
   protected:
-    int elementID;
+    state::Unit& attacker;
+    state::Unit& defender;
     // Operations
   public:
-    void attackCommand (int elementID, int targetID);
-    CommandTypeId getTypeID () const;
+    AttackCommand (state::Unit& attacker, state::Unit& defender);
+    CommandTypeId getCommandTypeId () const;
     void execute (state::State& state);
     // Setters and Getters
-    int getElementID() const;
-    void setElementID(int elementID);
+    state::Unit& getAttacker() const;
+    void setAttacker(const state::Unit&& attacker);
+    state::Unit& getDefender() const;
+    void setDefender(const state::Unit&& defender);
   };
 
 };

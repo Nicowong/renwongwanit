@@ -4,33 +4,35 @@
  * and open the template in the editor.
  */
 
-#include "ChooseElementCommand.h"
 #include <iostream>
+#include "SelectCommand.h"
+
+using namespace std ;
 using namespace state;
 using namespace engine;
 
-void ChooseElementCommand::chooseElementCommand(int elementID){
+SelectCommand::SelectCommand(int elementID){
     state::ElementTab elemtab;
     elemtab.getElem(elementID);
     std::cout<<elemtab.getElem(elementID)<<" has been chosen"<<std::endl;
 }
 
-int ChooseElementCommand::getElementID() const{
+int SelectCommand::getElementID() const{
     return elementID;
 }
 
-void ChooseElementCommand::setElementID(int elementID){
+void SelectCommand::setElementID(int elementID){
     this->elementID=elementID;
 }
 
-void ChooseElementCommand::execute(state::State& state){
+void SelectCommand::execute(state::State& state){
     
 }
 
-engine::CommandTypeId engine::ChooseElementCommand::getCommandTypeId() const{
+engine::CommandTypeId engine::SelectCommand::getCommandTypeId() const{
     return engine::commandTypeId;
 }
 
-void engine::ChooseElementCommand::setCommandTypeId(engine::CommandTypeId commandTypeId){
+void engine::SelectCommand::setCommandTypeId(engine::CommandTypeId commandTypeId){
     this->commandTypeId=engine::commandTypeId;
 }

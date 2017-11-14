@@ -19,14 +19,11 @@ namespace engine {
   /// class Command - 
   class Command {
     // Associations
-    // Attributes
-  public:
-    CommandTypeId commandTypeId;
     // Operations
   public:
     ~Command ();
-    CommandTypeId getTypeId () const;
-    void execute (state::State& state);
+    virtual CommandTypeId getCommandTypeId () const = 0;
+    virtual void execute (state::State& state) = 0;
     // Setters and Getters
   };
 

@@ -4,14 +4,16 @@
  * and open the template in the editor.
  */
 
+#include <iostream>
 #include "Command.h"
 
+using namespace std ;
 using namespace state;
 using namespace engine;
 
-CommandTypeId Command::getTypeId() const{
+/*CommandTypeId Command::getCommandTypeId() const{
     return commandTypeId;
-}
+}*/
 
 void Command::execute(state::State& state){
     
