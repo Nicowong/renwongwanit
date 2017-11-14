@@ -24,6 +24,8 @@ namespace state {
     int ammo;
     int fuel;
     int vision;
+    bool available     = false;
+    bool moved     = true;
     // Operations
   public:
     Unit (Team team = PLAYER1, UnitType utype = UT_INFANTRY, size_t x = 0, size_t y = 0);
@@ -43,6 +45,10 @@ namespace state {
     void setFuel(int fuel);
     int getVision() const;
     void setVision(int vision);
+    bool getAvailable() const;
+    void setAvailable(bool available);
+    bool getMoved() const;
+    void setMoved(bool moved);
   };
 
 };

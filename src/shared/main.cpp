@@ -10,16 +10,17 @@ void testSFML() {
 
 // Fin test SFML
 
-#include "state.h"
+//#include "state.h"
 
 using namespace std;
-using namespace state;
+//using namespace state;
 
 /*fonctions de test unitaire*/
 void testHello();
 void testState();
 void testRender(int mode=0, string fname="level.txt");
 void testEngine();
+void testAi();
 
 /*--- Fonction main ---*/
 
@@ -56,6 +57,9 @@ int main(int argc,char* argv[]) {
     //--- ENGINE pour les tests de moteur
     }else if(string(argv[1])=="engine"){
         testEngine();
+    //--- AI pour les test d'ai
+    }else if(string(argv[1])=="ai"){
+        testAi();
     //Pas de commande
     }else{
         std::cout << "Error : command not found." << std::endl ;

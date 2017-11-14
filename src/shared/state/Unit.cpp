@@ -29,6 +29,8 @@ Unit::Unit(Team team, UnitType utype, size_t x, size_t y):
             std::cout << "In Unit::Unit(int,int,UnitType,UnitTeam), error : unitType not found." << std::endl;
             break;
     }
+    available = false ;
+    moved = true ;
 }
 bool Unit::isInfantry () const{
     if(unitType==UT_INFANTRY || unitType==UT_MECH)
@@ -84,6 +86,20 @@ int Unit::getVision() const{
 void Unit::setVision(int vision){
     this->vision = vision ;
 }
+
+bool Unit::getAvailable()const{
+    return available ;
+}
+void Unit::setAvailable(bool av){
+    available=av ;
+}
+bool Unit::getMoved()const{
+    return moved ;
+}
+void Unit::setMoved(bool moved){
+    this->moved = moved ;
+}
+
 
 void Unit::debug()const{
     std::cout<< "Unit::";

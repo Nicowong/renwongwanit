@@ -22,7 +22,7 @@ namespace ai {
     // Operations
   public:
     RandomAi ();
-    void run (engine::Engine& engine, Element& selected);
+    void run (engine::Engine& engine, state::Element& selected);
     // Setters and Getters
   };
 
