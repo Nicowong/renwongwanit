@@ -16,6 +16,7 @@ namespace state {
 #include "Player.h"
 #include "ElementTab.h"
 #include "CellType.h"
+#include "UnitType.h"
 #include "Cell.h"
 
 namespace state {

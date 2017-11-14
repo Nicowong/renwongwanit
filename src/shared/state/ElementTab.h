@@ -7,8 +7,12 @@
 
 namespace state {
   class Element;
+  class Unit;
+  class Cell;
 }
 
+#include "Unit.h"
+#include "Cell.h"
 #include "Element.h"
 
 namespace state {

@@ -9,8 +9,8 @@
 #include "state/CellType.h"
 #include "state/Cell.h"
 #include "state/Building.h"
+#include "state/Unit.h"
 #include "state/ElementTab.h"
 #include "state/Player.h"
 #include "state/State.h"
-#include "state/Unit.h"
 #endif

@@ -86,7 +86,7 @@ const std::vector<Player>& State::getPlayers() const{
     return players ;
 }
 void State::setPlayers(const std::vector<Player>& players){
-    
+    // illegal
 }
 
 ElementTab& State::getCellTab(){
@@ -96,7 +96,7 @@ const ElementTab& State::getCellTab()const{
     return cellTab ;
 }
 void State::setCellTab(const ElementTab& cellTab){
-    
+    //illegal
 }
 
 ElementTab& State::getUnitTab(){
@@ -106,7 +106,7 @@ const ElementTab& State::getUnitTab()const{
     return unitTab ;
 }
 void State::setUnitTab(const ElementTab& unitTab){
-    
+    // illegal
 }
 
 void State::debug()const{
