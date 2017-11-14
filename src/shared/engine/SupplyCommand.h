@@ -5,15 +5,19 @@
 
 namespace state {
   class State;
+};
+namespace engine {
+  class Command;
 }
 
 #include "CommandTypeId.h"
+#include "Command.h"
 #include "state/State.h"
 
 namespace engine {
 
   /// class SupplyCommand - 
-  class SupplyCommand {
+  class SupplyCommand : public engine::Command {
     // Attributes
   protected:
     state::Unit& unit;

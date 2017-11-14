@@ -4,6 +4,7 @@
 
 
 namespace state {
+  class Building;
   class State;
 };
 namespace engine {
@@ -18,18 +19,19 @@ namespace engine {
   /// class CaptureCommand - 
   class CaptureCommand : public engine::Command {
     // Attributes
-  public:
-    state::Unit& unit;
   protected:
     state::Building& building;
+    state::Unit& unit;
     // Operations
   public:
     CaptureCommand (state::Building& building, state::Unit& unit);
-    commandTypeID getCommandTypeId () const;
+    CommandTypeID getCommandTypeId () const;
     void execute (state::State& state);
     // Setters and Getters
     state::Building& getBuilding() const;
     void setBuilding(const state::Building&& building);
+    state::Unit& getUnit() const;
+    void setUnit(const state::Unit&& unit);
   };
 
 };

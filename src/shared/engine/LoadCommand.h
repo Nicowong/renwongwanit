@@ -18,10 +18,9 @@ namespace engine {
   /// class LoadCommand - 
   class LoadCommand : public engine::Command {
     // Attributes
-  public:
-    state::Unit& unit;
   protected:
     state::Unit& carrier;
+    state::Unit& unit;
     // Operations
   public:
     LoadCommand (state::Unit& carrier, state::Unit& unit);
@@ -30,6 +29,8 @@ namespace engine {
     // Setters and Getters
     state::Unit& getCarrier() const;
     void setCarrier(const state::Unit&& carrier);
+    state::Unit& getUnit() const;
+    void setUnit(const state::Unit&& unit);
   };
 
 };

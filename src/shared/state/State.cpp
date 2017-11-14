@@ -14,6 +14,7 @@ State::State(size_t width, size_t height): cellTab(width, height), unitTab(width
     Player p2(true, true);
     players.push_back(p1);
     players.push_back(p2);
+    victory = NONE ;
 }
 State::State (std::string levelFile){
     
@@ -107,6 +108,13 @@ const ElementTab& State::getUnitTab()const{
 }
 void State::setUnitTab(const ElementTab& unitTab){
     // illegal
+}
+
+Team State::getVictory() const{
+    return victory ;
+}
+void State::setVictory(Team victory){
+    this->victory = victory ;
 }
 
 void State::debug()const{

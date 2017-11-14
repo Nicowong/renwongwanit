@@ -33,6 +33,7 @@ namespace state {
     std::vector<Player> players;
     ElementTab cellTab;
     ElementTab unitTab;
+    Team victory;
     // Operations
   public:
     State (size_t width, size_t height);
@@ -60,6 +61,8 @@ namespace state {
     void setPlayers(const std::vector<Player>& players);
     void setCellTab(const ElementTab& cellTab);
     void setUnitTab(const ElementTab& unitTab);
+    Team getVictory() const;
+    void setVictory(Team victory);
   };
 
 };
