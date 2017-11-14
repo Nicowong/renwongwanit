@@ -24,8 +24,8 @@ namespace ai {
   class Ai {
     // Operations
   public:
-    void listCommands (std::vector<engine::Command>& list, const state::State state, Element& selected);
-    virtual void run (engine::Engine& engine, Element& selected) = 0;
+    void listCommands (std::vector<engine::Command>& list, const state::State state, state::Element& selected);
+    virtual void run (engine::Engine& engine, state::Element& selected) = 0;
     // Setters and Getters
   };
 
