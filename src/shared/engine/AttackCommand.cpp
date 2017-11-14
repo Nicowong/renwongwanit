@@ -1,5 +1,5 @@
 #include "AttackCommand.h"
-
+#include <iostream>
 using namespace std;
 using namespace state;
 using namespace engine;
@@ -32,5 +32,16 @@ CommandTypeId AttackCommand::getCommandTypeId() const{
 
 
 void AttackCommand::execute(state::State& state){
-    defender.setHealth(defender.getHealth()-10);
+    //determining the distance between 2 elements is available for attacking
+    //and determining that  they are in 2 team
+    if((attacker.getX()-defender.getX())<2 &&
+       (attacker.getY()-defender.getY())<2 && attacker.getTeam()!=defender.getTeam()){
+        
+        defender.setHealth(defender.getHealth()-10);
+        
+        
+    }else {
+        std::cout<<"In engine::AttackCommand::execute() : error"<<std::endl;
+    }
+    
 }
