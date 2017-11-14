@@ -1,35 +1,36 @@
 #include "AttackCommand.h"
-#include "state/ElementTab.h"
 
+using namespace std;
 using namespace state;
 using namespace engine;
 
-void AttackCommand::attackCommand(int elementID, int targetID){
-    state::ElementTab elemTab;
-    elemTab.getElem(elementID);
-    state::ElementTab targetTab;
-    targetTab.getElem(targetID);
-    
+AttackCommand::AttackCommand(state::Unit& attacker, state::Unit& defender):
+    attacker(attacker), defender(defender){
     
     
 }
 
-int AttackCommand::getElementID() const{
-    return elementID;
+state::Unit& AttackCommand::getAttacker() const{
+    return attacker;
 }
 
-void AttackCommand::setElementID(int elementID){
-    this->elementID=elementID;
+void AttackCommand::setAttacker(const state::Unit&& attacker){
+    this->attacker=attacker;
+}
+
+state::Unit& AttackCommand::getDefender() const{
+    return defender;
+}
+
+void AttackCommand::setDefender(const state::Unit&& defender){
+    this->defender=defender;
 }
 
 CommandTypeId AttackCommand::getCommandTypeId() const{
     return COM_ATTACK;
 }
 
-void engine::AttackCommand::setCommandTypeId(engine::CommandTypeId commandTypeId){
-    this->commandTypeId=engine::commandTypeId;
-}
 
 void AttackCommand::execute(state::State& state){
-    
+    defender.setHealth(defender.getHealth()-10);
 }
