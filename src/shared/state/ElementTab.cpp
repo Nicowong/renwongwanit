@@ -38,6 +38,7 @@ void ElementTab::addElem (Element* elem){
         std::cout << elem->getX() << ":" << elem->getY() << std::endl ;
     }
     else{
+        cout << "addElem"<< endl ;
         elemList.push_back(elem);
         elemTab[getTabIndex(elem)] = elem ;
     }
@@ -152,15 +153,24 @@ void ElementTab::debug()const{
     cout << "ElementTab:: void debug()"<<endl ;
     cout << "w:"<<w<<" h:"<<h <<endl ;
     cout << "elemList : "<<endl ;
-    for(size_t i=0 ; i<elemList.size() ; i++)
+    for(size_t i=0 ; i<elemList.size() ; i++){
         cout<< elemList[i]->getType() << " ";
+        if(elemTab[i]->isUnit())
+            cout << ((Unit*)elemTab[i])->getUnitType() << "|" ;
+        else
+            cout << ((Cell*)elemTab[i])->getCellType() << "|" ;
+    }
     cout << endl ;
     cout << "elemTab"<< endl ;
     for(size_t j=0 ; j<h ; j++){
         for(size_t i=0 ; i<w ; i++)
-            if(elemTab[i+j*w]!=nullptr)
-                cout << elemTab[i+j*w]->getType() << "   ";
-            else
+            if(elemTab[i+j*w]!=nullptr){
+                cout << elemTab[i+j*w]->getType() << "," ;
+                if(elemTab[i+j*w]->isUnit())
+                    cout << ((Unit*)elemTab[i+j*w])->getUnitType() << "|" ;
+                else
+                    cout << ((Cell*)elemTab[i+j*w])->getCellType() << "|" ;
+            }else
                 cout << "nul " ;
         cout << endl ;
     }

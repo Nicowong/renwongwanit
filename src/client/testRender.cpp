@@ -28,12 +28,9 @@ void testRender(int mode, string fname){
     srand(time(NULL));
     State state(WIDTH, HEIGHT);
     
-    CellType *tileMap = generateMap(WIDTH, HEIGHT, fname);
-    state.initCellTab(tileMap);
-    
+    generateMap(state);
 
-
-    delete[] tileMap ;
+    state.debug();
 }
 
 void testRender2(int mode, string fname){
@@ -237,7 +234,17 @@ void saveMap(CellType *map, int w, int h, string fname){
 }
 
 void generateMap(State &state){
-
+    CellType* map = generateMap(state.getW(), state.getH(), "level.txt");
+    ElementTab& ctab = state.getCellTab();
+    for(size_t j=0 ; j<state.getH() ; j++){
+        for(size_t i=0 ; i<state.getW() ; i++){
+            Element *c = new Cell(map[i+j*state.getW()], i,j);
+            //cout << c << " " ;
+            //c->debug() ;
+            ctab.addElem(c);
+        }
+    }
+    
 }
 void generateUnits(State &state){
 
