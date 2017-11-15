@@ -24,7 +24,7 @@ int* loadMap(string fname="level.txt");
 void generateMap(State &state);
 void generateUnits(State &state);
 
-void testRender(int mode, string fname){
+void testRenderBis(int mode, string fname){
     srand(time(NULL));
     State state(WIDTH, HEIGHT);
     
@@ -33,7 +33,7 @@ void testRender(int mode, string fname){
     state.debug();
 }
 
-void testRender2(int mode, string fname){
+void testRender(int mode, string fname){
     srand(time(NULL));
     
     //window.setFramerateLimit(60);
