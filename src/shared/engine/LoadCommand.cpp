@@ -26,5 +26,5 @@ state::Unit& LoadCommand::getUnit() const{
     return unit ;
 }
 void LoadCommand::setUnit(const state::Unit&& unit){
-    this.unit=unit;
+    this->unit=unit;
 }

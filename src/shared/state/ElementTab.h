@@ -39,8 +39,9 @@ namespace state {
     Element* operator[] (size_t i);
     const Element* getElem (size_t x, size_t y) const;
     Element* getElem (size_t x, size_t y);
-    Element* eraseElem (int i);
-    Element* eraseElem (size_t x, size_t y);
+    void eraseElem (int i);
+    void eraseElem (size_t x, size_t y);
+    void eraseElem (Element* elem);
     void moveElem (size_t x1, size_t y1, size_t x2, size_t y2);
     void debug () const;
     void resize (size_t w, size_t h);

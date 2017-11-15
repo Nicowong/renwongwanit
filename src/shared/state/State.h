@@ -9,6 +9,7 @@
 namespace state {
   class Player;
   class ElementTab;
+  class Element;
   class Cell;
 }
 
@@ -48,6 +49,9 @@ namespace state {
     const ElementTab& getCellTab () const;
     ElementTab& getUnitTab ();
     const ElementTab& getUnitTab () const;
+    void eraseUnit (size_t x, size_t y);
+    void eraseUnit (Element* unit);
+    void eraseUnit (int i);
     // Setters and Getters
     const size_t& getW() const;
     void setW(const size_t& w);

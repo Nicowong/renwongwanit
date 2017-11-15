@@ -126,3 +126,13 @@ void State::debug()const{
     cout << endl <<"unitTab : "<<endl ;
     getUnitTab().debug() ;
 }
+
+void State::eraseUnit(size_t x, size_t y){
+    unitTab.eraseElem(x, y);
+}
+void State::eraseUnit(Element* unit){
+    unitTab.eraseElem(unit);
+}
+void State::eraseUnit(int i){
+    unitTab.eraseElem(i);
+}
