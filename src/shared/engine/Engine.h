@@ -4,6 +4,8 @@
 
 #include <map>
 #include <memory>
+#include <stdlib.h>
+#include <string>
 
 namespace state {
   class State;
@@ -24,7 +26,8 @@ namespace engine {
     std::map<int,std::shared_ptr<Command>> currentCommands;
     // Operations
   public:
-    Engine ();
+    Engine (size_t w = 30, size_t h = 20);
+    Engine (std::string filename);
     ~Engine ();
     const state::State& getState () const;
     void addCommand (int priority, Command* cmd);

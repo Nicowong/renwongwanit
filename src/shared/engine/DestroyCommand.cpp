@@ -13,8 +13,9 @@ CommandTypeId DestroyCommand::getCommandTypeId() const{
     return COM_DESTROY ;
 }
 void DestroyCommand::execute (state::State& state){
-    if(unit.getHealth()<=0 && unit.isUnit()){
-        
+
+    if(unit.getHealth()<=0){
+        state.getUnitTab().eraseElem(unit.getX(), unit.getY()) ;
     }else{
         std::cout<<"In engine::DestroyCommand::execute() : error"<<std::endl;
     }

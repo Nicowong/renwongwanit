@@ -12,18 +12,19 @@ CommandTypeId RepairCommand::getCommandTypeId() const{
     return COM_REPAIR ;
 }
 void RepairCommand::execute (state::State& state){
-    
-    
-    if(unit.getHealth() != 100 ){
-        unit.setHealth(unit.getHealth()+5);
+	if(unit.getHealth() != 100 ){
+        this->unit.setHealth(unit.getHealth()+2);
     }else{
         std::cout<<"In engine::MoveCommand::execute() : error"<<std::endl;
+
         }
+
+    
 }
 // Setters and Getters
 state::Unit& RepairCommand::getUnit() const{
     return unit ;
 }
 void RepairCommand::setUnit(const state::Unit&& unit){
-    this->unit=unit;
+	this->unit = unit ;
 }

@@ -85,19 +85,17 @@ Element* ElementTab::getElem (size_t x, size_t y){
         return nullptr ;
     }
 }
-Element* ElementTab::eraseElem (int i){
+void ElementTab::eraseElem (int i){
     Element *elem = getElem(i);
     if(elem != nullptr){
         elemTab[getTabIndex(elem)] = nullptr ;
         elemList.erase(elemList.begin()+i);
         //elemList[i] = nullptr;
-        return elem ;
     }else{
         std::cout << "ElementTab::eraseElem error : erasing null elem, i:"<<i<<std::endl ;
-        return nullptr ;
     }
 }
-Element* ElementTab::eraseElem (size_t x, size_t y){
+void ElementTab::eraseElem (size_t x, size_t y){
     Element *elem = getElem(x,y);
     if(elem != nullptr){
         elemTab[getTabIndex(elem)] = nullptr ;
@@ -105,13 +103,15 @@ Element* ElementTab::eraseElem (size_t x, size_t y){
         while(i<elemList.size() && elemList[i]!=elem)
             i++ ;
         elemList[i] = nullptr ;
-        return elem ;
     }else{
         std::cout << "ElementTab::eraseElem error : erasing null elem." ;
         std::cout << "x:"<<x<<",y:"<<y <<std::endl ;
-        return nullptr;
     }
 }
+void ElementTab::eraseElem(Element* elem){
+    eraseElem(elem->getX(), elem->getY());
+}
+
 void ElementTab::moveElem (size_t x1, size_t y1, size_t x2, size_t y2){
     Element *elem1 = getElem(x1,y1);
     if(elem1 != nullptr){
