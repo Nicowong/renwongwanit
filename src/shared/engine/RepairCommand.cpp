@@ -17,7 +17,7 @@ void RepairCommand::execute (state::State& state){
     if(unit.getHealth() != 100 ){
         unit.setHealth(unit.getHealth()+5);
     }else{
-        td::cout<<"In engine::MoveCommand::execute() : error"<<std::endl;
+        std::cout<<"In engine::MoveCommand::execute() : error"<<std::endl;
         }
 }
 // Setters and Getters

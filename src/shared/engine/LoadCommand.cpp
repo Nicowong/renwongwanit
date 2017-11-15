@@ -13,7 +13,10 @@ CommandTypeId LoadCommand::getCommandTypeId() const{
     return COM_LOAD ;
 }
 void LoadCommand::execute (state::State& state){
-    
+    if(unit.isUnit()){
+        unit.setX(carrier.getX());
+        unit.setY(carrier.getY());
+    }
 }
 // Setters and Getters
 state::Unit& LoadCommand::getCarrier() const{
@@ -26,5 +29,5 @@ state::Unit& LoadCommand::getUnit() const{
     return unit ;
 }
 void LoadCommand::setUnit(const state::Unit&& unit){
-    this.unit=unit;
+    this->unit=unit;
 }

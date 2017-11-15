@@ -36,5 +36,5 @@ const size_t& MoveCommand::getY() const{
     return y;
 }
 void MoveCommand::setY(const size_t& y){
-    this->y=ys;
+    this->y=y;
 }
