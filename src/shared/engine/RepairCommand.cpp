@@ -16,10 +16,7 @@ void RepairCommand::execute (state::State& state){
         this->unit.setHealth(unit.getHealth()+2);
     }else{
         std::cout<<"In engine::MoveCommand::execute() : error"<<std::endl;
-
-        }
-
-    
+    }
 }
 // Setters and Getters
 state::Unit& RepairCommand::getUnit() const{
