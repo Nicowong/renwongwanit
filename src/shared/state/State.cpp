@@ -58,7 +58,38 @@ size_t State::countUnit(Team player)const{
     }
     return n ;
 }
-//-
+
+// GET ELEMENTTABs
+ElementTab& State::getCellTab(){
+    return cellTab ;
+}
+const ElementTab& State::getCellTab()const{
+    return cellTab ;
+}
+void State::setCellTab(const ElementTab& cellTab){
+    //illegal
+}
+
+ElementTab& State::getUnitTab(){
+    return unitTab ;
+}
+const ElementTab& State::getUnitTab()const{
+    return unitTab ;
+}
+
+//ERASE
+
+void State::eraseUnit(size_t x, size_t y){
+    unitTab.eraseElem(x, y);
+}
+void State::eraseUnit(Element* unit){
+    unitTab.eraseElem(unit);
+}
+void State::eraseUnit(int i){
+    unitTab.eraseElem(i);
+}
+
+// Setters and Getters
 const size_t& State::getW() const{
     return w ;
 }
@@ -90,22 +121,6 @@ void State::setPlayers(const std::vector<Player>& players){
     // illegal
 }
 
-ElementTab& State::getCellTab(){
-    return cellTab ;
-}
-const ElementTab& State::getCellTab()const{
-    return cellTab ;
-}
-void State::setCellTab(const ElementTab& cellTab){
-    //illegal
-}
-
-ElementTab& State::getUnitTab(){
-    return unitTab ;
-}
-const ElementTab& State::getUnitTab()const{
-    return unitTab ;
-}
 void State::setUnitTab(const ElementTab& unitTab){
     // illegal
 }
@@ -117,6 +132,8 @@ void State::setVictory(Team victory){
     this->victory = victory ;
 }
 
+// DEBUG
+
 void State::debug()const{
     cout << "State:: void debug()"<<endl ;
     cout << "w:"<<w<<" h:"<<h <<endl ;
@@ -125,14 +142,4 @@ void State::debug()const{
     getCellTab().debug();
     cout << endl <<"unitTab : "<<endl ;
     getUnitTab().debug() ;
-}
-
-void State::eraseUnit(size_t x, size_t y){
-    unitTab.eraseElem(x, y);
-}
-void State::eraseUnit(Element* unit){
-    unitTab.eraseElem(unit);
-}
-void State::eraseUnit(int i){
-    unitTab.eraseElem(i);
 }

@@ -33,6 +33,7 @@ namespace engine {
     const state::State& getState () const;
     void addCommand (Command* cmd);
     void update ();
+    void debug () const;
     // Setters and Getters
     const state::State& getCurrentState() const;
     void setCurrentState(const state::State& currentState);

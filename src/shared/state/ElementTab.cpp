@@ -38,8 +38,9 @@ void ElementTab::addElem (Element* elem){
         std::cout << elem->getX() << ":" << elem->getY() << std::endl ;
     }
     else{
-        cout << "addElem"<< endl ;
+        //cout << "addElem"<< elem << endl ;
         elemList.push_back(elem);
+        //cout << "(#0)"<< elemList[0]->getX() << endl ;
         elemTab[getTabIndex(elem)] = elem ;
     }
 }
@@ -152,8 +153,10 @@ void ElementTab::setElemList(const std::vector<Element*>& elemList){
 void ElementTab::debug()const{
     cout << "ElementTab:: void debug()"<<endl ;
     cout << "w:"<<w<<" h:"<<h <<endl ;
-    cout << "elemList : "<<endl ;
+    cout << "elemList ("<< elemList.size()<< ") :" <<endl ;
     for(size_t i=0 ; i<elemList.size() ; i++){
+        //cout<<"STEPHEN EST PASSE PAR LA"<<endl ;
+        //cout<< elemList[i] ;
         cout<< elemList[i]->getType() << " ";
         if(elemTab[i]->isUnit())
             cout << ((Unit*)elemTab[i])->getUnitType() << "|" ;

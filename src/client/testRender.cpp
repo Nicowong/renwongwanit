@@ -16,13 +16,17 @@ using namespace std ;
 using namespace state ;
 using namespace render ;
 
-CellType* generateMap(int w, int h, string fname = "level.txt");
-CellType generateCell();
-void generateRoad(int x, int y, CellType* map);
-void saveMap(CellType *map, int w, int h, string fname="level.txt");
-int* loadMap(string fname="level.txt");
-void generateMap(State &state);
-void generateUnits(State &state);
+namespace renderTest{
+    CellType* generateMap(int w, int h, string fname = "level.txt");
+    CellType generateCell();
+    void generateRoad(int x, int y, CellType* map);
+    void saveMap(CellType *map, int w, int h, string fname="level.txt");
+    int* loadMap(string fname="level.txt");
+    void generateMap(State &state);
+    void generateUnits(State &state);
+};
+
+using namespace renderTest;
 
 void testRenderBis(int mode, string fname){
     srand(time(NULL));
@@ -138,6 +142,8 @@ void testRender(int mode, string fname){
     
 }
 
+namespace renderTest{
+
 CellType* generateMap(int w, int h, string fname){
     CellType *tileMap = new CellType[w * h];
     
@@ -249,3 +255,5 @@ void generateMap(State &state){
 void generateUnits(State &state){
 
 }
+
+};
