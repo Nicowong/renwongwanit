@@ -11,11 +11,14 @@ using namespace std ;
 using namespace state;
 using namespace engine;
 
-/*CommandTypeId Command::getCommandTypeId() const{
-    return commandTypeId;
-}*/
+CommandTypeId Command::getCommandTypeId() const{
+    return COM_NONE ;
+}
 
 
-/*void Command::execute(state::State& state){
-    
-}*/
+void Command::execute(state::State& state){
+    if(this->getCommandTypeId() != COM_NONE)
+    	this->execute(state);
+    else
+    	cout<< "error : Command::execute()";
+}

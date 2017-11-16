@@ -7,22 +7,17 @@ namespace state {
   class State;
   class Unit;
   class Building;
-};
-namespace engine {
-  class Engine;
 }
 
 #include "CommandTypeId.h"
 #include "state/State.h"
 #include "state/Unit.h"
 #include "state/Building.h"
-#include "Engine.h"
 
 namespace engine {
 
   /// class Command - 
   class Command {
-    // Associations
     // Operations
   public:
     virtual CommandTypeId getCommandTypeId () const = 0;

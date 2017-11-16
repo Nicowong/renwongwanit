@@ -13,7 +13,8 @@ namespace engine {
     COM_CAPTURE     = 4,
     COM_SUPPLY     = 5,
     COM_REPAIR     = 6,
-    COM_DESTROY     = 7
+    COM_DESTROY     = 7,
+    COM_NONE     = -1
   };
 
 };

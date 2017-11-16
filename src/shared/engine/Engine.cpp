@@ -12,16 +12,18 @@ Engine::Engine (string filename): currentState(filename){
 
 }
 Engine::~Engine (){
-
+	currentCommands.clear();
 }
 const state::State& Engine::getState () const{
 	return currentState ;
 }
-void Engine::addCommand (int priority, Command* cmd){
-
+void Engine::addCommand (Command* cmd){
+	currentCommands.push_back(cmd);
 }
-void Engine::update (){
-
+void Engine::update(){
+	Command* c = currentCommands[0];
+	c->execute(currentState);
+	currentCommands.erase(currentCommands.begin());
 }
 // Setters and Getters
 const state::State& Engine::getCurrentState() const{
@@ -30,9 +32,9 @@ const state::State& Engine::getCurrentState() const{
 void Engine::setCurrentState(const state::State& currentState){
 	this->currentState = currentState ;
 }
-const std::map<int,std::shared_ptr<Command>>& Engine::getCurrentCommands() const{
+const std::vector<Command*>& Engine::getCurrentCommands() const{
 	return currentCommands ;
 }
-void Engine::setCurrentCommands(const std::map<int,std::shared_ptr<Command>>& currentCommands){
+void Engine::setCurrentCommands(const std::vector<Command*>& currentCommands){
 	this->currentCommands = currentCommands ;
 }
