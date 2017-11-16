@@ -39,6 +39,15 @@ void testEngine(){
     eng.setCurrentState(newState);
     eng.debug();
 
+    Unit* pu1 = (Unit*)(eng.getCurrentState().getUnitTab().getElem(1,0));
+    Unit& u1 = *pu1 ;
+    Command* comMov = new MoveCommand(u1, 2,2);
+    eng.addCommand(comMov);
+
+    cout << ">>>move command " << endl ;
+
+    eng.update();
+    eng.debug();
 }
 
 namespace engineTest{
@@ -137,12 +146,10 @@ void generateMap(State &state){
 }
 void generateUnits(State &state){
 	ElementTab& unitTab = state.getUnitTab();
-	Unit* p1u1 = new Unit(PLAYER1, UT_INFANTRY, 0,0);
-	//cout << endl << "p1u1:" << p1u1 << endl ;
-	//p1u1->debug();
-	Unit* p1u2 = new Unit(PLAYER1, UT_RECON, 1,0);
-	Unit* p2u1 = new Unit(PLAYER2, UT_INFANTRY, 2,0);
-	Unit* p2u2 = new Unit(PLAYER2, UT_RECON, 3,0);
+	Unit* p1u1 = new Unit(PLAYER1, UT_INFANTRY, 1,0);
+	Unit* p1u2 = new Unit(PLAYER1, UT_RECON, 0,1);
+	Unit* p2u1 = new Unit(PLAYER2, UT_TANK, 5,2);
+	Unit* p2u2 = new Unit(PLAYER2, UT_MECH, 4,3);
 	unitTab.addElem(p1u1);
 	unitTab.addElem(p1u2);
 	unitTab.addElem(p2u1);

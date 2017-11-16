@@ -153,6 +153,7 @@ void ElementTab::setElemList(const std::vector<Element*>& elemList){
 void ElementTab::debug()const{
     cout << "ElementTab:: void debug()"<<endl ;
     cout << "w:"<<w<<" h:"<<h <<endl ;
+    /*
     cout << "elemList ("<< elemList.size()<< ") :" <<endl ;
     for(size_t i=0 ; i<elemList.size() ; i++){
         //cout<<"STEPHEN EST PASSE PAR LA"<<endl ;
@@ -163,7 +164,7 @@ void ElementTab::debug()const{
         else
             cout << ((Cell*)elemTab[i])->getCellType() << "|" ;
     }
-    cout << endl ;
+    cout << endl ;*/
     cout << "elemTab"<< endl ;
     for(size_t j=0 ; j<h ; j++){
         for(size_t i=0 ; i<w ; i++)

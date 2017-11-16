@@ -12,7 +12,7 @@ CommandTypeId MoveCommand::getCommandTypeId() const{
     return COM_MOVE ;
 }
 void MoveCommand::execute (state::State& state){
-    if (unit.getX() != x && unit.getY() !=y ){
+    if (unit.getX() != x || unit.getY() != y ){
         unit.setX(x);
         unit.setY(y);
     }else{

@@ -21,9 +21,12 @@ void Engine::addCommand (Command* cmd){
 	currentCommands.push_back(cmd);
 }
 void Engine::update(){
-	Command* c = currentCommands[0];
-	c->execute(currentState);
-	currentCommands.erase(currentCommands.begin());
+	if(currentCommands.size()>0){
+		Command* c = currentCommands[0];
+		c->execute(currentState);
+		currentCommands.erase(currentCommands.begin());
+	}else
+		cout << "no command" << endl ;
 }
 // Setters and Getters
 const state::State& Engine::getCurrentState() const{
