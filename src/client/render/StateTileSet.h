@@ -18,8 +18,8 @@ namespace render {
   class StateTileSet : public render::TileSet {
     // Operations
   public:
-    int getCellWidth () const;
-    int getCellHeight () const;
+    int getTileWidth () const;
+    int getTileHeight () const;
     std::string getFile () const;
     const Tile getTile (int i) const;
     // Setters and Getters

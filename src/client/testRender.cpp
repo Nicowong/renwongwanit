@@ -33,8 +33,13 @@ void testRenderBis(int mode, string fname){
     State state(WIDTH, HEIGHT);
     
     generateMap(state);
+    generateUnits(state);
 
     state.debug();
+
+    Render render(state) ;
+
+    
 }
 
 void testRender(int mode, string fname){
@@ -250,10 +255,16 @@ void generateMap(State &state){
             ctab.addElem(c);
         }
     }
-    
 }
-void generateUnits(State &state){
 
+void generateUnits(State &state){
+    ElementTab& utab = state.getUnitTab();
+    for(int j=0 ; j<HEIGHT ; j++)
+        for(int i=0 ; i<WIDTH ; i++)
+            if(rand()%2 == 1){
+                Element* u = new Unit(rand()%2+1, rand()%22, i, j);
+                utab.addElem(u);
+            }
 }
 
 };

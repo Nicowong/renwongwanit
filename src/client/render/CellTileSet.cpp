@@ -3,10 +3,10 @@
 using namespace std ;
 using namespace render ;
 
-int CellTileSet::getCellWidth () const{
+int CellTileSet::getTileWidth () const{
     return 16 ;
 }
-int CellTileSet::getCellHeight () const{
+int CellTileSet::getTileHeight () const{
     return 16 ;
 }
 std::string CellTileSet::getFile () const{

@@ -34,8 +34,12 @@ CommandTypeId AttackCommand::getCommandTypeId() const{
 void AttackCommand::execute(state::State& state){
     //determining the distance between 2 elements is available for attacking
     //and determining that  they are in 2 team
-    if((attacker.getX()-defender.getX())<2 &&
-       (attacker.getY()-defender.getY())<2 && attacker.getTeam()!=defender.getTeam()){
+    int ax = attacker.getX();
+    int ay = attacker.getY();
+    int dx = defender.getX();
+    int dy = defender.getY();
+
+    if( abs(ax - dx) < 2 && abs(ay - dy) < 2 && attacker.getTeam()!=defender.getTeam()){
         
         defender.setHealth(defender.getHealth()-10);
         

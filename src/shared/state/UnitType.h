@@ -20,7 +20,7 @@ namespace state {
     UT_AAMISSILELAUNCHER     = 10,
     UT_AATANK     = 11,
     UT_TRANSPORTHELI     = 12,
-    UT_BATTELHELI     = 13,
+    UT_BATTLEHELI     = 13,
     UT_FIGHTER     = 14,
     UT_BOMBER     = 15,
     UT_ASA     = 16,

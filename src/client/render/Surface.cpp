@@ -3,21 +3,6 @@
 using namespace std ;
 using namespace render ;
 
-/*
-const Surface::sf::VertexArray& getVertices() const{
-    
-}
-void Surface::setVertices(const sf::VertexArray& vertices){
-    
-}
-const Surface::sf::Texture& getTexture() const{
-    
-}
-void Surface::setTexture(const sf::Texture& texture){
-    
-}
-*/
-
 void Surface::loadTexture(const std::string& fileName){
     texture.loadFromFile(fileName);
 }
@@ -41,4 +26,17 @@ void Surface::draw(sf::RenderTarget& target, sf::RenderStates states)const{
     states.transform *= getTransform();
     states.texture = &texture ;
     target.draw(vertices, states);
+}
+
+const sf::VertexArray& Surface::getVertices() const{
+    return vertices ;
+}
+void Surface::setVertices(const sf::VertexArray& vertices){
+    this->vertices = vertices ;
+}
+const sf::Texture& Surface::getTexture() const{
+    return texture ;
+}
+void Surface::setTexture(const sf::Texture& texture){
+    this->texture = texture ;
 }

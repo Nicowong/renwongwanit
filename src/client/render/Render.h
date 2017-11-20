@@ -15,9 +15,9 @@ namespace sf {
   class RenderWindow;
 }
 
-#include "state/State.h"
 #include "StatusLayer.h"
 #include "BoardLayer.h"
+#include "state/State.h"
 
 namespace render {
 
@@ -27,17 +27,18 @@ namespace render {
     // Attributes
   protected:
     /// std::shared_ptr<state::State>
-    state::State state;
+    state::State& state;
     StatusLayer statusLayer;
     BoardLayer cellLayer;
     BoardLayer buildingLayer;
     BoardLayer unitLayer;
     // Operations
   public:
+    Render (state::State& state);
     void draw (sf::RenderWindow& window);
     // Setters and Getters
-    const state::State& getState() const;
-    void setState(const state::State& state);
+    state::State& getState() const;
+    void setState(const state::State&& state);
     const StatusLayer& getStatusLayer() const;
     void setStatusLayer(const StatusLayer& statusLayer);
     const BoardLayer& getCellLayer() const;

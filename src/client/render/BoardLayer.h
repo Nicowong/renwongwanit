@@ -2,24 +2,25 @@
 #ifndef RENDER__BOARDLAYER__H
 #define RENDER__BOARDLAYER__H
 
-#include <vector>
 
 namespace state {
-  class Element;
+  class ElementTab;
 };
 namespace render {
   class Layer;
 }
 
 #include "Layer.h"
+#include "state/ElementTab.h"
 
 namespace render {
 
   /// class BoardLayer - 
   class BoardLayer : public render::Layer {
+    // Associations
     // Operations
   public:
-    void update (const std::vector<state::Element*> tab);
+    void update (const state::ElementTab* tab);
     // Setters and Getters
   };
 

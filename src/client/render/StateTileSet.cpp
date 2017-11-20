@@ -3,10 +3,10 @@
 using namespace std ;
 using namespace render ;
 
-int StateTileSet::getCellWidth () const{
+int StateTileSet::getTileWidth () const{
     return 16 ;
 }
-int StateTileSet::getCellHeight()const{
+int StateTileSet::getTileHeight()const{
     return 16 ;
 }
 std::string StateTileSet::getFile () const{
