@@ -5,9 +5,9 @@
 using namespace std ;
 using namespace render ;
 
-/*Render::Render(){
+Render::Render (state::State& state): state(state){
     
-}*/
+}
     
 void Render::draw (sf::RenderWindow& window){
     cellLayer.draw(window);
@@ -16,7 +16,7 @@ void Render::draw (sf::RenderWindow& window){
     statusLayer.draw(window);
 }
 // Setters and Getters
-void Render::setState(const state::State& state){
+void Render::setState(const state::State&& state){
     state.~State();
     this->state = state ;
 }

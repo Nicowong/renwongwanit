@@ -13,6 +13,7 @@ CommandTypeId MoveCommand::getCommandTypeId() const{
 }
 void MoveCommand::execute (state::State& state){
     if (unit.getX() != x || unit.getY() != y ){
+        state.getUnitTab().moveElem(unit.getX(), unit.getY(), x, y);
         unit.setX(x);
         unit.setY(y);
     }else{
