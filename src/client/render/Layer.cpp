@@ -5,6 +5,18 @@
 using namespace std ;
 using namespace render ;
 
+Layer::Layer(Surface* surface, TileSet* tileset): surface(surface), tileSet(tileset){
+	/*if(surface==nullptr){
+		surface = new Surface ;
+	}*/
+	//cout << "Layer::Layer(TileSet* tileset): tileSet(tileset) ; surface="<< surface << endl ;
+}
+
+Layer::Layer(): surface(nullptr), tileSet(nullptr){
+	surface = new Surface ;
+	//cout << "Layer::Layer(): surface(nullptr), tileSet(nullptr) ; surface="<< surface << endl ;
+}
+
 void Layer::print (int x, int y, std::string text){
     
 }

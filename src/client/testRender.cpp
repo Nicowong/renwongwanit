@@ -28,7 +28,7 @@ namespace renderTest{
 
 using namespace renderTest;
 
-void testRenderBis(int mode, string fname){
+void testRender(int mode, string fname){
     srand(time(NULL));
     State state(WIDTH, HEIGHT);
     
@@ -39,10 +39,36 @@ void testRenderBis(int mode, string fname){
 
     Render render(state) ;
 
-    
+    cout << "render.update();" << endl ;
+
+    render.update();
+
+    cout << "<<Opening window>>" << endl ;
+
+    sf::RenderWindow window(sf::VideoMode(WINWIDTH, WINHEIGHT), "My window - test sprite");
+    while(window.isOpen()){
+        //check event
+        sf::Event event ;
+        while(window.pollEvent(event)){
+            
+            switch(event.type){
+                case sf::Event::Closed :    //close request
+                    window.close();
+                    break;
+                default :
+                    break;
+            }
+        }
+        
+        window.clear(sf::Color::Black);
+        
+        render.draw(window);
+        
+        window.display();
+    }
 }
 
-void testRender(int mode, string fname){
+void testRenderNoClass(int mode, string fname){
     srand(time(NULL));
     
     //window.setFramerateLimit(60);
@@ -255,6 +281,7 @@ void generateMap(State &state){
             ctab.addElem(c);
         }
     }
+    delete[] map ;
 }
 
 void generateUnits(State &state){

@@ -13,10 +13,20 @@ namespace render {
 };
 namespace sf {
   class RenderWindow;
+};
+namespace render {
+  class BuildingTileSet;
+  class UnitTileSet;
+  class CellTileSet;
+  class StateTileSet;
 }
 
 #include "StatusLayer.h"
 #include "BoardLayer.h"
+#include "BuildingTileSet.h"
+#include "UnitTileSet.h"
+#include "CellTileSet.h"
+#include "StateTileSet.h"
 #include "state/State.h"
 
 namespace render {
@@ -36,6 +46,7 @@ namespace render {
   public:
     Render (state::State& state);
     void draw (sf::RenderWindow& window);
+    void update ();
     // Setters and Getters
     state::State& getState() const;
     void setState(const state::State&& state);

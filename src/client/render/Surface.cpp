@@ -1,13 +1,17 @@
+#include <iostream>
 #include "Surface.h"
 
 using namespace std ;
+using namespace sf ;
 using namespace render ;
 
 void Surface::loadTexture(const std::string& fileName){
     texture.loadFromFile(fileName);
 }
 void Surface::initVertices(int nTiles){
+    //cout << "Surface::initVertices:: vertices.setPrimitiveType(sf::Quads);" << endl ;
     vertices.setPrimitiveType(sf::Quads);
+    //cout << "Surface::initVertices:: vertices.resize(nTiles*4);" << endl ;
     vertices.resize(nTiles*4);
 }
 void Surface::setSpriteLocation(int i, int x, int y){

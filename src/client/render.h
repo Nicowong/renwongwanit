@@ -8,9 +8,9 @@
 #include "render/Layer.h"
 #include "render/StatusLayer.h"
 #include "render/BoardLayer.h"
-#include "render/Render.h"
-#include "render/StateTileSet.h"
-#include "render/CellTileSet.h"
 #include "render/BuildingTileSet.h"
 #include "render/UnitTileSet.h"
+#include "render/CellTileSet.h"
+#include "render/StateTileSet.h"
+#include "render/Render.h"
 #endif
