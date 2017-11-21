@@ -14,8 +14,8 @@ namespace state {
     CT_RIVER     = 4,
     CT_BRIDGE     = 5,
     CT_SEA     = 6,
-    CT_BASE     = 7,
-    CT_CITY     = 8,
+    CT_CITY     = 7,
+    CT_BASE     = 8,
     CT_FACTORY     = 9,
     CT_AIRPORT     = 10,
     CT_SEAPORT     = 11

@@ -13,5 +13,5 @@ std::string UnitTileSet::getFile () const{
     return "res/units.png" ;
 }
 const Tile UnitTileSet::getTile (int id) const{
-    return Tile((id%22)*16, (id/22)*16, 16, 16);
+    return Tile((id%22+1)*16, (id/22)*16, 16, 16);
 }

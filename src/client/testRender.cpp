@@ -6,10 +6,10 @@
 #include "state.h"
 #include "render.h"
 
-#define WINWIDTH 480
-#define WINHEIGHT 320
 #define WIDTH 30
 #define HEIGHT 20
+#define WINWIDTH WIDTH*16
+#define WINHEIGHT HEIGHT*16
 #define RDMAPGENITER 6000
 
 using namespace std ;
@@ -285,11 +285,25 @@ void generateMap(State &state){
 }
 
 void generateUnits(State &state){
+    ElementTab& ctab = state.getCellTab();
     ElementTab& utab = state.getUnitTab();
     for(int j=0 ; j<HEIGHT ; j++)
         for(int i=0 ; i<WIDTH ; i++)
-            if(rand()%2 == 1){
-                Element* u = new Unit(rand()%2+1, rand()%22, i, j);
+            if(rand()%100 <= 15){
+                Element* u ;
+                int uteam = rand()%2+1 ;
+                CellType ct = ((Cell*)ctab.getElem(i,j))->getCellType();
+                if(ct==CT_MOUNTAIN || ct==CT_RIVER){
+                    int ut = rand()%7;
+                    if(ut>1) ut+=10 ;
+                    u = new Unit(uteam, ut, i, j);
+                }else if(ct==CT_SEA){
+                    int ut = rand()%10 + 12 ;
+                    u = new Unit(uteam, ut, i, j);
+                }else{
+                    int ut = rand()%17 ;
+                    u = new Unit(uteam, ut, i, j);
+                }
                 utab.addElem(u);
             }
 }

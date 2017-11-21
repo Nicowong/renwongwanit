@@ -7,10 +7,20 @@ using namespace render ;
 
 Render::Render (state::State& state):
 state(state), statusLayer(nullptr,nullptr), cellLayer(nullptr,nullptr), buildingLayer(nullptr,nullptr), unitLayer(nullptr,nullptr){
-    statusLayer.setSurface(new Surface());
-    cellLayer.setSurface(new Surface());
-    buildingLayer.setSurface(new Surface());
-    unitLayer.setSurface(new Surface());
+    Surface* statusSurface = new Surface();
+    Surface* cellSurface = new Surface();
+    Surface* buildingSurface = new Surface();
+    Surface* unitSurface = new Surface();
+
+    //statusSurface.setTexture();
+    cellSurface->loadTexture("res/cells.png");
+    buildingSurface->loadTexture("res/buildings.png");
+    unitSurface->loadTexture("res/units.png");
+
+    statusLayer.setSurface(statusSurface);
+    cellLayer.setSurface(cellSurface);
+    buildingLayer.setSurface(buildingSurface);
+    unitLayer.setSurface(unitSurface);
 
     //StateTileSet* sts = new StateTileSet ;
     statusLayer.setTileSet(new StateTileSet());
