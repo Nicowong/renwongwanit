@@ -29,8 +29,7 @@ namespace ai {
     std::vector<int> distancetab;
     // Operations
   public:
-    int getDistance (const Point& point) const;
-    void setDistance (const Point& point);
+    int getDistance (const Point& a, const Point& b) const;
     const int* getDistaceTab () const;
     void init (const state::ElementTab& element);
     void update (const state::ElementTab& element);
