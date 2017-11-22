@@ -11,10 +11,8 @@ void testSFML() {
 */
 // Fin test SFML
 
-//#include "state.h"
 
 using namespace std;
-//using namespace state;
 
 /*fonctions de test unitaire*/
 void testHello();
@@ -42,21 +40,14 @@ int main(int argc,char* argv[]) {
         testState();
     }
     //--- RENDER pour les tests de rendus
-    /*else if(std::string(argv[1])=="render"){
-        int mode ;
-        string fname ;
-        if(argc>2 && (string)argv[2]=="load")
-            mode = 1 ;
-        else
-            mode = 0 ;
-        if(argc>3)
-            fname = argv[3];
-        else
-            fname = "level.txt";
-    
-        testRender(mode, fname);
+    else if(std::string(argv[1])=="render"){
+        #ifdef __CLIENT__
+        cout << "CLIENT DEFINED : BUILD ERROR" << endl ;
+        #else
+        cout << "COMMAND 'render' UNAVAILABLE" << endl ;
+        #endif
     //--- ENGINE pour les tests de moteur
-    }*/
+    }
     else if(string(argv[1])=="engine"){
         testEngine();
     //--- AI pour les test d'ai
