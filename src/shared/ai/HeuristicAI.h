@@ -2,7 +2,6 @@
 #ifndef AI__HEURISTICAI__H
 #define AI__HEURISTICAI__H
 
-#include <vector>
 
 namespace ai {
   class PathMap;
@@ -19,6 +18,7 @@ namespace ai {
 
 #include "PathMap.h"
 #include "Ai.h"
+#include "state/Element.h"
 
 namespace ai {
 
@@ -26,8 +26,6 @@ namespace ai {
   class HeuristicAI : public ai::Ai {
     // Associations
     // Attributes
-  public:
-    std::vector<state::ElementTab&> elementList;
   protected:
     PathMap unitMap;
     PathMap cellMap;

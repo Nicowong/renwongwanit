@@ -11,9 +11,13 @@ namespace state {
 };
 namespace ai {
   class Ai;
+};
+namespace state {
+  class State;
 }
 
 #include "Ai.h"
+#include "state/State.h"
 
 namespace ai {
 

@@ -17,6 +17,7 @@ namespace engine {
 
 #include "engine/Command.h"
 #include "state/State.h"
+#include "engine/Engine.h"
 
 namespace ai {
 

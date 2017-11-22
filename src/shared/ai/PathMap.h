@@ -6,9 +6,15 @@
 
 namespace ai {
   class Point;
+};
+namespace state {
+  class ElemetTab;
+};
+namespace ai {
   class CalculDistance;
 }
 
+#include "state/ElemetTab.h"
 #include "Point.h"
 #include "CalculDistance.h"
 
@@ -23,11 +29,11 @@ namespace ai {
     std::vector<int> distancetab;
     // Operations
   public:
-    void init (state::ElementTab& element);
-    void update (state::elementTab& element);
     int getDistance (const Point& point) const;
     void setDistance (const Point& point);
     const int* getDistaceTab () const;
+    void init (state::ElementTab& element);
+    void update (state::ElementTab& element);
     // Setters and Getters
     int getX() const;
     void setX(int x);
