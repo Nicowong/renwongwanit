@@ -8,13 +8,13 @@ namespace ai {
   class Point;
 };
 namespace state {
-  class ElemetTab;
+  class ElementTab;
 };
 namespace ai {
   class CalculDistance;
 }
 
-#include "state/ElemetTab.h"
+#include "state/ElementTab.h"
 #include "Point.h"
 #include "CalculDistance.h"
 
@@ -32,8 +32,8 @@ namespace ai {
     int getDistance (const Point& point) const;
     void setDistance (const Point& point);
     const int* getDistaceTab () const;
-    void init (state::ElementTab& element);
-    void update (state::ElementTab& element);
+    void init (const state::ElementTab& element);
+    void update (const state::ElementTab& element);
     // Setters and Getters
     int getX() const;
     void setX(int x);
