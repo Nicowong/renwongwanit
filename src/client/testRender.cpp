@@ -13,7 +13,7 @@
 #define WIDTH 30
 #define HEIGHT 20
 #define WINWIDTH WIDTH*16
-#define WINHEIGHT HEIGHT*16
+#define WINHEIGHT HEIGHT*16+64
 #define RDMAPGENITER 6000
 
 using namespace std ;
