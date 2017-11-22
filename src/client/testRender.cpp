@@ -67,7 +67,7 @@ void testRender(int mode, string fname){
         window.display();
     }
 }
-
+/*
 void testRenderNoClass(int mode, string fname){
     srand(time(NULL));
     
@@ -172,7 +172,7 @@ void testRenderNoClass(int mode, string fname){
     delete[] tileMap; // detruit la carte generee dynamiquement
     
 }
-
+*/
 namespace renderTest{
 
 CellType* generateMap(int w, int h, string fname){
