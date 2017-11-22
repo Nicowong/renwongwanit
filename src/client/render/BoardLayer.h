@@ -3,6 +3,10 @@
 #define RENDER__BOARDLAYER__H
 
 
+namespace render {
+  class Surface;
+  class TileSet;
+};
 namespace state {
   class ElementTab;
 };
@@ -17,10 +21,10 @@ namespace render {
 
   /// class BoardLayer - 
   class BoardLayer : public render::Layer {
-    // Associations
     // Operations
   public:
-    void update (const state::ElementTab* tab);
+    BoardLayer (Surface* surface, TileSet* tileset);
+    void update (const state::ElementTab& tab);
     // Setters and Getters
   };
 

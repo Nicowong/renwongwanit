@@ -27,6 +27,8 @@ namespace render {
     TileSet* tileSet;
     // Operations
   public:
+    Layer (Surface* surface, TileSet* tileSet);
+    Layer ();
     Surface* getSurface () const;
     void setSurface (Surface* surface);
     void print (int x, int y, std::string text);

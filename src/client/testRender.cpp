@@ -6,10 +6,10 @@
 #include "state.h"
 #include "render.h"
 
-#define WINWIDTH 480
-#define WINHEIGHT 320
 #define WIDTH 30
 #define HEIGHT 20
+#define WINWIDTH WIDTH*16
+#define WINHEIGHT HEIGHT*16
 #define RDMAPGENITER 6000
 
 using namespace std ;
@@ -28,7 +28,7 @@ namespace renderTest{
 
 using namespace renderTest;
 
-void testRenderBis(int mode, string fname){
+void testRender(int mode, string fname){
     srand(time(NULL));
     State state(WIDTH, HEIGHT);
     
@@ -39,10 +39,36 @@ void testRenderBis(int mode, string fname){
 
     Render render(state) ;
 
-    
-}
+    cout << "render.update();" << endl ;
 
-void testRender(int mode, string fname){
+    render.update();
+
+    cout << "<<Opening window>>" << endl ;
+
+    sf::RenderWindow window(sf::VideoMode(WINWIDTH, WINHEIGHT), "My window - test sprite");
+    while(window.isOpen()){
+        //check event
+        sf::Event event ;
+        while(window.pollEvent(event)){
+            
+            switch(event.type){
+                case sf::Event::Closed :    //close request
+                    window.close();
+                    break;
+                default :
+                    break;
+            }
+        }
+        
+        window.clear(sf::Color::Black);
+        
+        render.draw(window);
+        
+        window.display();
+    }
+}
+/*
+void testRenderNoClass(int mode, string fname){
     srand(time(NULL));
     
     //window.setFramerateLimit(60);
@@ -146,7 +172,7 @@ void testRender(int mode, string fname){
     delete[] tileMap; // detruit la carte generee dynamiquement
     
 }
-
+*/
 namespace renderTest{
 
 CellType* generateMap(int w, int h, string fname){
@@ -255,14 +281,29 @@ void generateMap(State &state){
             ctab.addElem(c);
         }
     }
+    delete[] map ;
 }
 
 void generateUnits(State &state){
+    ElementTab& ctab = state.getCellTab();
     ElementTab& utab = state.getUnitTab();
     for(int j=0 ; j<HEIGHT ; j++)
         for(int i=0 ; i<WIDTH ; i++)
-            if(rand()%2 == 1){
-                Element* u = new Unit(rand()%2+1, rand()%22, i, j);
+            if(rand()%100 <= 15){
+                Element* u ;
+                int uteam = rand()%2+1 ;
+                CellType ct = ((Cell*)ctab.getElem(i,j))->getCellType();
+                if(ct==CT_MOUNTAIN || ct==CT_RIVER){
+                    int ut = rand()%7;
+                    if(ut>1) ut+=10 ;
+                    u = new Unit(uteam, ut, i, j);
+                }else if(ct==CT_SEA){
+                    int ut = rand()%10 + 12 ;
+                    u = new Unit(uteam, ut, i, j);
+                }else{
+                    int ut = rand()%17 ;
+                    u = new Unit(uteam, ut, i, j);
+                }
                 utab.addElem(u);
             }
 }

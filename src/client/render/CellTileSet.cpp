@@ -9,7 +9,7 @@ int CellTileSet::getTileWidth () const{
 int CellTileSet::getTileHeight () const{
     return 16 ;
 }
-std::string CellTileSet::getFile () const{
+std::string CellTileSet::getFile ()const{
     return "res/cells.png" ;
 }
 const Tile CellTileSet::getTile (int id) const{

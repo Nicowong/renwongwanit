@@ -32,7 +32,7 @@ Unit::Unit(Team team, UnitType utype, size_t x, size_t y):
         case UT_CARRIER           : ammo = 99 ; fuel = 99 ; vision = 2 ; break ;
 
         default:
-            std::cout << "In Unit::Unit(int,int,UnitType,UnitTeam), error : unitType not found." << std::endl;
+            std::cout << "In Unit::Unit(Team,UnitType,size_t,size_t), error : unitType not found." << std::endl;
             break;
     }
     available = false ;
@@ -45,32 +45,32 @@ Unit::Unit(int team, int utype, size_t x, size_t y):
         case 2 :    this->team = PLAYER2 ;  break ;
         default :   this->team = NONE    ;  break ;
     }
-    switch(unitType){
-        case UT_INFANTRY          : ammo = 99 ; fuel = 99 ; vision = 2 ; break ;
-        case UT_MECH              : ammo = 6  ; fuel = 70 ; vision = 2 ; break ;
-        case UT_RECON             : ammo = 99 ; fuel = 99 ; vision = 5 ; break ;
-        case UT_TANK              : ammo = 12 ; fuel = 99 ; vision = 2 ; break ;
-        case UT_TANKM             : ammo = 9  ; fuel = 99 ; vision = 2 ; break ;
-        case UT_NEOTANK           : ammo = 6  ; fuel = 99 ; vision = 2 ; break ;
-        case UT_MEGATANK          : ammo = 6  ; fuel = 99 ; vision = 2 ; break ;
-        case UT_APC               : ammo = 0  ; fuel = 99 ; vision = 1 ; break ;
-        case UT_ARTILLERY         : ammo = 9  ; fuel = 99 ; vision = 3 ; break ;
-        case UT_MISSILELAUNCHER   : ammo = 6  ; fuel = 99 ; vision = 3 ; break ;
-        case UT_AAMISSILELAUNCHER : ammo = 6  ; fuel = 99 ; vision = 4 ; break ;
-        case UT_AATANK            : ammo = 12 ; fuel = 99 ; vision = 3 ; break ;
-        case UT_TRANSPORTHELI     : ammo = 0  ; fuel = 99 ; vision = 1 ; break ;
-        case UT_BATTLEHELI        : ammo = 6  ; fuel = 99 ; vision = 3 ; break ;
-        case UT_FIGHTER           : ammo = 6  ; fuel = 99 ; vision = 3 ; break ;
-        case UT_BOMBER            : ammo = 6  ; fuel = 70 ; vision = 2 ; break ;
-        case UT_ASA               : ammo = 6  ; fuel = 99 ; vision = 5 ; break ;
-        case UT_LANDER            : ammo = 0  ; fuel = 99 ; vision = 1 ; break ;
-        case UT_CRUISER           : ammo = 9  ; fuel = 99 ; vision = 4 ; break ;
-        case UT_SUBMARINE         : ammo = 6  ; fuel = 50 ; vision = 5 ; break ;
-        case UT_BATTLESHIP        : ammo = 6  ; fuel = 99 ; vision = 3 ; break ;
-        case UT_CARRIER           : ammo = 99 ; fuel = 99 ; vision = 2 ; break ;
+    switch(utype){
+        case 0  : unitType = UT_INFANTRY          ; ammo = 99 ; fuel = 99 ; vision = 2 ; break ;
+        case 1  : unitType = UT_MECH              ; ammo = 6  ; fuel = 70 ; vision = 2 ; break ;
+        case 2  : unitType = UT_RECON             ; ammo = 99 ; fuel = 99 ; vision = 5 ; break ;
+        case 3  : unitType = UT_TANK              ; ammo = 12 ; fuel = 99 ; vision = 2 ; break ;
+        case 4  : unitType = UT_TANKM             ; ammo = 9  ; fuel = 99 ; vision = 2 ; break ;
+        case 5  : unitType = UT_NEOTANK           ; ammo = 6  ; fuel = 99 ; vision = 2 ; break ;
+        case 6  : unitType = UT_MEGATANK          ; ammo = 6  ; fuel = 99 ; vision = 2 ; break ;
+        case 7  : unitType = UT_APC               ; ammo = 0  ; fuel = 99 ; vision = 1 ; break ;
+        case 8  : unitType = UT_ARTILLERY         ; ammo = 9  ; fuel = 99 ; vision = 3 ; break ;
+        case 9  : unitType = UT_MISSILELAUNCHER   ; ammo = 6  ; fuel = 99 ; vision = 3 ; break ;
+        case 10 : unitType = UT_AAMISSILELAUNCHER ; ammo = 6  ; fuel = 99 ; vision = 4 ; break ;
+        case 11 : unitType = UT_AATANK            ; ammo = 12 ; fuel = 99 ; vision = 3 ; break ;
+        case 12 : unitType = UT_TRANSPORTHELI     ; ammo = 0  ; fuel = 99 ; vision = 1 ; break ;
+        case 13 : unitType = UT_BATTLEHELI        ; ammo = 6  ; fuel = 99 ; vision = 3 ; break ;
+        case 14 : unitType = UT_FIGHTER           ; ammo = 6  ; fuel = 99 ; vision = 3 ; break ;
+        case 15 : unitType = UT_BOMBER            ; ammo = 6  ; fuel = 70 ; vision = 2 ; break ;
+        case 16 : unitType = UT_ASA               ; ammo = 6  ; fuel = 99 ; vision = 5 ; break ;
+        case 17 : unitType = UT_LANDER            ; ammo = 0  ; fuel = 99 ; vision = 1 ; break ;
+        case 18 : unitType = UT_CRUISER           ; ammo = 9  ; fuel = 99 ; vision = 4 ; break ;
+        case 19 : unitType = UT_SUBMARINE         ; ammo = 6  ; fuel = 50 ; vision = 5 ; break ;
+        case 20 : unitType = UT_BATTLESHIP        ; ammo = 6  ; fuel = 99 ; vision = 3 ; break ;
+        case 21 : unitType = UT_CARRIER           ; ammo = 99 ; fuel = 99 ; vision = 2 ; break ;
 
         default:
-            std::cout << "In Unit::Unit(int,int,UnitType,UnitTeam), error : unitType not found." << std::endl;
+            std::cout << "In Unit::Unit(int,int,size_t,size_t), error : unitType "<< utype<<" not found." << std::endl;
             break;
     }
     available = false ;
