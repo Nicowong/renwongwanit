@@ -2,12 +2,13 @@
 #include <string>
 
 // Les lignes suivantes ne servent qu'à vérifier que la compilation avec SFML fonctionne
+/* CLIENT ONLY
 #include <SFML/Graphics.hpp>
 
 void testSFML() {
     sf::Texture texture;
 }
-
+*/
 // Fin test SFML
 
 //#include "state.h"
@@ -18,7 +19,7 @@ using namespace std;
 /*fonctions de test unitaire*/
 void testHello();
 void testState();
-void testRender(int mode=0, string fname="level.txt");
+//void testRender(int mode=0, string fname="level.txt");
 void testEngine();
 void testAi();
 
@@ -41,7 +42,7 @@ int main(int argc,char* argv[]) {
         testState();
     }
     //--- RENDER pour les tests de rendus
-    else if(std::string(argv[1])=="render"){
+    /*else if(std::string(argv[1])=="render"){
         int mode ;
         string fname ;
         if(argc>2 && (string)argv[2]=="load")
@@ -55,7 +56,8 @@ int main(int argc,char* argv[]) {
     
         testRender(mode, fname);
     //--- ENGINE pour les tests de moteur
-    }else if(string(argv[1])=="engine"){
+    }*/
+    else if(string(argv[1])=="engine"){
         testEngine();
     //--- AI pour les test d'ai
     }else if(string(argv[1])=="ai"){
