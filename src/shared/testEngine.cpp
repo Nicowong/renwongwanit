@@ -5,23 +5,22 @@
 
 #include "state.h"
 #include "engine.h"
+#ifdef __CLIENT__
+    #include "render.h"
+    using namespace render ;
+#endif
 
 using namespace std ;
 using namespace state ;
 using namespace engine ;
 
 #define RDMAPGENITER 480
-#define WIDTH	6 
-#define HEIGHT	4
+#define WIDTH	8 
+#define HEIGHT	6
 
 namespace engineTest{
-	CellType* generateMap(int w, int h, string fname = "level.txt");
-	CellType generateCell();
-	void generateRoad(int x, int y, CellType* map);
-	void saveMap(CellType *map, int w, int h, string fname="level.txt");
-	int* loadMap(string fname="level.txt");
+	CellType* generateMap(int w, int h, int nrdg, string fname = "level.txt");
 	void generateMap(State &state);
-	void generateUnits(State &state);
 	void generateUnits(State &state);
 };
 
@@ -33,6 +32,12 @@ void testEngine(){
 
     State newState(WIDTH, HEIGHT);
     generateMap(newState);
+
+#ifdef __CLIENT__
+    Render render(state) ;
+    render.update();
+#endif
+
     eng.debug();
     generateUnits(newState);
 
@@ -44,95 +49,69 @@ void testEngine(){
     Command* comMov = new MoveCommand(u1, 2,2);
     eng.addCommand(comMov);
 
-    cout << ">>>move command " << endl ;
-
+#ifdef __CLIENT__
+    sf::RenderWindow window(sf::VideoMode(WINWIDTH, WINHEIGHT), "My window - test sprite");
+    while(window.isOpen()){
+        //check event
+        sf::Event event ;
+        while(window.waitEvent(event)){
+            
+            switch(event.type){
+                case sf::Event::Closed :    //close request
+                    window.close();
+                    break;
+                case sf::Event::KeyReleased :
+                    eng.update();
+                    eng.debug();
+                    render.update();
+                    break ;
+                default :
+                    break;
+            }
+        }
+        
+        window.clear(sf::Color::Black);
+        
+        render.draw(window);
+        
+        window.display();
+    }
+#else
     eng.update();
     eng.debug();
+#endif
+
 }
 
 namespace engineTest{
 
-CellType* generateMap(int w, int h, string fname){
+CellType* generateMap(int w, int h, int nrdg, string fname){
     CellType *tileMap = new CellType[w * h];
     
-    for(int i=0 ; i<w ; i++)
-        for(int j=0 ; j<h ; j++){
-            tileMap[i + j*w] = generateCell() ; // plaine, foret, montagne, mer
-        }
-    
-    for(int n=0 ; n<RDMAPGENITER ; n++){    //traitement de carte (homogeneisation)
-        int x = rand()%w ; // selectionne une case
-        int y = rand()%h ;
-        
-        if(rand()%100 < 60){ //prend la valeur d'un voisin, sinon rien
-            int vx=x, vy=y ;
-            if(rand()%2==0)
-                vx += (rand()%2)*2 -1 ;
-            else
-                vy += (rand()%2)*2 -1 ;
-            
-            if(vx>=0 && vx<w && vy>=0 && vy<h)
-                tileMap[vx + vy*w] = tileMap[x + y*w];
-        }
-        if(n%(RDMAPGENITER/10) == 0)
-            cout << "." ;
-    }
-    
-    cout << endl ;
+    int j;
+    for(int j=0 ; j<HEIGHT-2 ; j++)
+        for(int i=0 ; i<WIDTH ; i++)
+            tileMap[i + j*WIDTH] = CT_PLAIN ; // plaine
+    j=HEIGHT-2 ;
+    for(int i=0 ; i<WIDTH ; i++)
+        tileMap[i + j*WIDTH] = CT_SEA ; // mer
+    j=HEIGHT-1 ;
+    for(int i=0 ; i<WIDTH ; i++)
+        tileMap[i + j*WIDTH] = CT_MOUNTAIN ; // montagne
     
     // placement de villes, routes
-    do{
-        int x = rand()%w ;
-        int y = rand()%h ;
-        tileMap[x+y*w] = CT_CITY ;
-        generateRoad(x, y, tileMap);
-    }while(rand()%100 < 90);
-    
-    int x = rand()%w ; //placement du QG
-    int y = rand()%h ;
-    
-    generateRoad(x, y, tileMap);
-    tileMap[x+y*w] = CT_BASE ;
-    
-    /*if(fname != "NULL");
-        saveMap(tileMap, w, h, fname);*/
+    tileMap[1+1*WIDTH] = CT_CITY ;
+    tileMap[2+1*WIDTH] = CT_ROAD ;
+    tileMap[2+2*WIDTH] = CT_BASE ;
+    tileMap[2+3*WIDTH] = CT_ROAD ;
+    tileMap[1+3*WIDTH] = CT_CITY ;
+    tileMap[0+0*WIDTH] = CT_FOREST ;
     
     return tileMap ;
 }
 
-CellType generateCell(){
-    const int pG=40, pS=15, pM=15, pF=20 ;
-    int ct = rand()%(pG+pS+pM+pF) ;
-    if(ct < pG)
-        return CT_PLAIN ;
-    else if(ct < pG+pS)
-        return CT_SEA ;
-    else if(ct < pG+pS+pM)
-        return CT_MOUNTAIN ;
-    else
-        return CT_FOREST ;
-}
-
-void generateRoad(int x, int y, CellType* map){
-    do{
-        if(rand()%2 == 0)
-            x = x+ (rand()%2)*2-1;
-        else
-            y = y+ (rand()%2)*2-1;
-            
-        if(x<0 || y<0 || x>=WIDTH || y>=HEIGHT)
-            break;
-            
-        if(map[x+y*WIDTH]==CT_SEA)
-            map[x+y*WIDTH]=CT_BRIDGE ;
-        else
-            map[x+y*WIDTH]=CT_ROAD ;
-    }while(rand()%100<75);
-    if(rand()%100 < 75)
-        map[x+y*WIDTH] = CT_CITY ;
-}
 void generateMap(State &state){
-    CellType* map = generateMap(state.getW(), state.getH(), "level.txt");
+    CellType* map = generateMap(state.getW(), state.getH(), RDMAPGENITER, "level.txt");
     ElementTab& ctab = state.getCellTab();
     for(size_t j=0 ; j<state.getH() ; j++){
         for(size_t i=0 ; i<state.getW() ; i++){
