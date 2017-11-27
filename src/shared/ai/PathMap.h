@@ -5,14 +5,15 @@
 #include <vector>
 
 namespace ai {
-  class Point;
+  class Position;
 };
 namespace state {
+  class Element;
   class ElementTab;
 }
 
 #include "state/ElementTab.h"
-#include "Point.h"
+#include "Position.h"
 
 namespace ai {
 
@@ -25,10 +26,10 @@ namespace ai {
     std::vector<int> distancetab;
     // Operations
   public:
-    int getDistance (const Point& a, const Point& b) const;
+    int getDistance (const Position& a, const Position& b) const;
     const int* getDistaceTab () const;
-    void init (const state::ElementTab& element);
-    void update (const state::ElementTab& element);
+    void init (const state::Element& element);
+    void update (const state::Element& element);
     // Setters and Getters
     int getX() const;
     void setX(int x);

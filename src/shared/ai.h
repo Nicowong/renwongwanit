@@ -4,7 +4,7 @@
 
 #include "ai/Ai.h"
 #include "ai/RandomAi.h"
-#include "ai/Point.h"
+#include "ai/Position.h"
 #include "ai/PathMap.h"
 #include "ai/HeuristicAI.h"
 #endif
