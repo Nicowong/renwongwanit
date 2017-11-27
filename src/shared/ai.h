@@ -5,7 +5,6 @@
 #include "ai/Ai.h"
 #include "ai/RandomAi.h"
 #include "ai/Point.h"
-#include "ai/CalculDistance.h"
 #include "ai/PathMap.h"
 #include "ai/HeuristicAI.h"
 #endif

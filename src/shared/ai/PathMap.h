@@ -9,14 +9,10 @@ namespace ai {
 };
 namespace state {
   class ElementTab;
-};
-namespace ai {
-  class CalculDistance;
 }
 
 #include "state/ElementTab.h"
 #include "Point.h"
-#include "CalculDistance.h"
 
 namespace ai {
 

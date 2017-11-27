@@ -28,14 +28,9 @@ void PathMap::setX(int x){
 void PathMap::setY(int y){
     this->y = y;
 }
-/*
+
 int PathMap::getDistance(const Point& a, const Point& b) const{
-    CalculDistance::distance = CalculDistance::Calculator(a,b);
-    return CalculDistance::distance;
+    int distance;
+    distance= abs(a.getX()-b.getX())+abs(a.getY()-b.getY());
+    return distance;
 }
-
-const int* PathMap::getDistaceTab() const {
-    distancetab.push_back(CalculDistance::distance);
-    return distancetab;
-}*/
-
