@@ -1,27 +1,27 @@
 #include <iostream>
 //#include <cstdlib>
-//#include <SFML/Graphics.hpp>
+#include <SFML/Graphics.hpp>
 //#include <fstream>
 
 #include "state.h"
 #include "engine.h"
-#ifdef __CLIENT__
-    #include "render.h"
-    using namespace render ;
-#endif
+#include "render.h"
 
-#include "mapGeneration.h"
+//#include "mapGeneration.h"
 
 using namespace std ;
 using namespace state ;
+using namespace render ;
 using namespace engine ;
 
 // #define RDMAPGENITER 480
 #define WIDTH	8 
 #define HEIGHT	6
+#define WINWIDTH WIDTH*16
+#define WINHEIGHT HEIGHT*16+64
 
 namespace engineTest{
-	CellType* generateMap(int w, int h, int nrdg, string fname = "level.txt");
+	CellType* generateMap(int w, int h, string fname = "level.txt");
 	void generateMap(State &state);
 	void generateUnits(State &state);
 };
@@ -29,40 +29,44 @@ namespace engineTest{
 using namespace engineTest ;
 
 void testEngine(){
-    Engine eng(WIDTH, HEIGHT);
-    //eng.debug(); 
+    int tick=0;
 
     State newState(WIDTH, HEIGHT);
     generateMap(newState);
 
-#ifdef __CLIENT__
-    Render render(state) ;
-    render.update();
-#endif
-
+    Engine eng(newState);
     eng.debug();
     generateUnits(newState);
 
-    eng.setCurrentState(newState);
-    eng.debug();
+    //eng.setCurrentState(newState);
+
+// CLIENT ONLY
+    Render render(newState) ;
+    render.update();
+//------------
 
     Unit* pu1 = (Unit*)(eng.getCurrentState().getUnitTab().getElem(1,0));
     Unit& u1 = *pu1 ;
     Command* comMov = new MoveCommand(u1, 2,2);
+    Command* comMov2 = new MoveCommand(u1, 3,2);
     eng.addCommand(comMov);
+    eng.addCommand(comMov2);
 
-#ifdef __CLIENT__
+    eng.debug();
+// CLIENT ONLY
     sf::RenderWindow window(sf::VideoMode(WINWIDTH, WINHEIGHT), "My window - test sprite");
     while(window.isOpen()){
         //check event
         sf::Event event ;
-        while(window.waitEvent(event)){
+        while(window.pollEvent(event)){
             
             switch(event.type){
                 case sf::Event::Closed :    //close request
                     window.close();
                     break;
                 case sf::Event::KeyReleased :
+                    cout << "<<< tick : "<< tick << " >>>"<< endl ;
+                    tick++;
                     eng.update();
                     eng.debug();
                     render.update();
@@ -78,16 +82,13 @@ void testEngine(){
         
         window.display();
     }
-#else
-    eng.update();
-    eng.debug();
-#endif
+//------------
 
 }
 
 namespace engineTest{
 
-CellType* generateMap(int w, int h, int nrdg, string fname){
+CellType* generateMap(int w, int h, string fname){
     CellType *tileMap = new CellType[w * h];
     
     int j;
@@ -113,7 +114,7 @@ CellType* generateMap(int w, int h, int nrdg, string fname){
 }
 
 void generateMap(State &state){
-    CellType* map = generateMap(state.getW(), state.getH(), RDMAPGENITER, "level.txt");
+    CellType* map = generateMap(state.getW(), state.getH(), "level.txt");
     ElementTab& ctab = state.getCellTab();
     for(size_t j=0 ; j<state.getH() ; j++){
         for(size_t i=0 ; i<state.getW() ; i++){
@@ -123,8 +124,8 @@ void generateMap(State &state){
             ctab.addElem(c);
         }
     }
-    
 }
+
 void generateUnits(State &state){
 	ElementTab& unitTab = state.getUnitTab();
 	Unit* p1u1 = new Unit(PLAYER1, UT_INFANTRY, 1,0);

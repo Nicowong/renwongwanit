@@ -5,12 +5,10 @@
 using namespace std ;
 using namespace engine ;
 
-Engine::Engine (size_t w, size_t h): currentState(w,h){
+Engine::Engine (state::State& state): currentState(state){
 
 }
-Engine::Engine (string filename): currentState(filename){
 
-}
 Engine::~Engine (){
 	currentCommands.clear();
 }
@@ -29,10 +27,10 @@ void Engine::update(){
 		cout << "no command" << endl ;
 }
 // Setters and Getters
-const state::State& Engine::getCurrentState() const{
+state::State& Engine::getCurrentState() const{
 	return currentState ;
 }
-void Engine::setCurrentState(const state::State& currentState){
+void Engine::setCurrentState(const state::State&& currentState){
 	this->currentState = currentState ;
 }
 const std::vector<Command*>& Engine::getCurrentCommands() const{

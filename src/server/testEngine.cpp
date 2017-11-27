@@ -27,7 +27,6 @@ namespace engineTest{
 using namespace engineTest ;
 
 void testEngine(){
-    Engine eng(WIDTH, HEIGHT);
     //eng.debug(); 
 
     State newState(WIDTH, HEIGHT);
@@ -38,10 +37,10 @@ void testEngine(){
     render.update();
 #endif
 
+    Engine eng(newState);
     eng.debug();
     generateUnits(newState);
-
-    eng.setCurrentState(newState);
+    //eng.setCurrentState(newState);
     eng.debug();
 
     Unit* pu1 = (Unit*)(eng.getCurrentState().getUnitTab().getElem(1,0));
