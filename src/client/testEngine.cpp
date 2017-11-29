@@ -55,7 +55,7 @@ void testEngine(){
     Unit& BM = *puBM ;
     Command* comMov = new MoveCommand(RI, 2,2);
     Command* comMov2 = new MoveCommand(RR, 3,3);
-    Command* comAtt = new AttackCommand(RR, 3,3);
+    Command* comAtt = new AttackCommand(RR, BM);
     eng.addCommand(comMov);
     eng.addCommand(comMov2);
     eng.addCommand(comAtt);
