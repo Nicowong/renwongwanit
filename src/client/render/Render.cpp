@@ -12,7 +12,7 @@ state(state), statusLayer(nullptr,nullptr), cellLayer(nullptr,nullptr), building
     Surface* buildingSurface = new Surface();
     Surface* unitSurface = new Surface();
 
-    //statusSurface.setTexture();
+    statusSurface->loadTexture("res/status.png");
     cellSurface->loadTexture("res/cells.png");
     buildingSurface->loadTexture("res/buildings.png");
     unitSurface->loadTexture("res/units.png");
@@ -22,7 +22,6 @@ state(state), statusLayer(nullptr,nullptr), cellLayer(nullptr,nullptr), building
     buildingLayer.setSurface(buildingSurface);
     unitLayer.setSurface(unitSurface);
 
-    //StateTileSet* sts = new StateTileSet ;
     statusLayer.setTileSet(new StateTileSet());
     cellLayer.setTileSet(new CellTileSet());
     buildingLayer.setTileSet(new BuildingTileSet());
@@ -41,6 +40,7 @@ void Render::update(){
     //buildingLayer.update(state.getCellTab());
     //cout << "Render::update()::unitLayer.update(state.getUnitTab());" << endl ;
     unitLayer.update(state.getUnitTab());
+    statusLayer.update(state);
 }
 
 // Setters and Getters

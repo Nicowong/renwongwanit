@@ -41,7 +41,7 @@ void AttackCommand::execute(state::State& state){
 
     if( abs(ax - dx) < 2 && abs(ay - dy) < 2 && attacker.getTeam()!=defender.getTeam()){
         
-        defender.setHealth(defender.getHealth()-10);
+        defender.setHealth(defender.getHealth()-20);
         
         
     }else {
