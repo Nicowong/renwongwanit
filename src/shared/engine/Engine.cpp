@@ -43,7 +43,7 @@ void Engine::setCurrentCommands(const std::vector<Command*>& currentCommands){
 void Engine::debug()const{
 	cout << "Engine::debug() :" << endl ;
 	currentState.debug() ;
-	cout << endl ;
+	cout << "Command stack : " << endl;
 	for(size_t i=0 ; i<currentCommands.size() ; i++){
 		cout << currentCommands[i] << " " ;
 	}

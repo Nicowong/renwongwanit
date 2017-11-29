@@ -56,6 +56,10 @@ void testEngine(){
     Command* comMov = new MoveCommand(RI, 2,2);
     Command* comMov2 = new MoveCommand(RR, 3,3);
     Command* comAtt = new AttackCommand(RR, BM);
+    Command* comMov3 = new MoveCommand(BM, 3,2);
+    Command* comAtt = new AttackCommand(BM, RI);
+    Command* comMov3 = new MoveCommand(BT, 4,3);
+    Command* comAtt = new AttackCommand(BT, RR);
     eng.addCommand(comMov);
     eng.addCommand(comMov2);
     eng.addCommand(comAtt);
