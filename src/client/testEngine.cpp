@@ -45,12 +45,20 @@ void testEngine(){
     render.update();
 //------------
 
-    Unit* pu1 = (Unit*)(eng.getCurrentState().getUnitTab().getElem(1,0));
-    Unit& u1 = *pu1 ;
-    Command* comMov = new MoveCommand(u1, 2,2);
-    Command* comMov2 = new MoveCommand(u1, 3,2);
+    Unit* puRI = (Unit*)(eng.getCurrentState().getUnitTab().getElem(1,0));
+    Unit* puRR = (Unit*)(eng.getCurrentState().getUnitTab().getElem(0,1));
+    Unit* puBT = (Unit*)(eng.getCurrentState().getUnitTab().getElem(5,2));
+    Unit* puBM = (Unit*)(eng.getCurrentState().getUnitTab().getElem(4,3));
+    Unit& RI = *puRI ;
+    Unit& RR = *puRR ;
+    Unit& BT = *puBT ;
+    Unit& BM = *puBM ;
+    Command* comMov = new MoveCommand(RI, 2,2);
+    Command* comMov2 = new MoveCommand(RR, 3,3);
+    Command* comAtt = new AttackCommand(RR, 3,3);
     eng.addCommand(comMov);
     eng.addCommand(comMov2);
+    eng.addCommand(comAtt);
 
     eng.debug();
 // CLIENT ONLY
