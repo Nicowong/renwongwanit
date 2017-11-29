@@ -2,6 +2,9 @@
 #include "engine/MoveCommand.h"
 #include "engine/AttackCommand.h"
 #include "engine/CaptureCommand.h"
+#include "engine/DestroyCommand.h"
+#include "engine/SupplyCommand.h"
+#include "engine/RepairCommand.h"
 
 using namespace engine;
 using namespace state;
@@ -39,10 +42,29 @@ void RandomAi::run(Engine& engine, Element& selected)
     //soit il trouve un ennemie, il l'attacque.
     else if(target->isUnit()){
         Unit& unit=*(Unit*)(target);
-        cmd = new AttackCommand(caractor,unit);
-        engine.addCommand(cmd);
         
-    }else if(target->isBuilding()){
+        if(unit.getTeam()!=caractor.getTeam()){
+            cmd = new AttackCommand(caractor,unit);
+            engine.addCommand(cmd);
+            if(unit.getHealth() <= 0){
+                cmd = new DestroyCommand(unit);
+            }   
+        }
+        if(unit.getTeam()==caractor.getTeam()){
+            if(unit.getHealth()<30){
+                cmd = new RepairCommand(unit);
+                engine.addCommand(cmd);
+            }
+            else if(unit.getUnitType()){
+                cmd = new SupplyCommand(unit);
+                engine.addCommand(cmd);
+            }
+        }
+            
+        
+    }
+    // soit il trouve un batiment, il le capture
+    else if(target->isBuilding()){
         Building& building = *(Building*)(target);  
         cmd = new CaptureCommand(building,caractor);
         engine.addCommand(cmd);
