@@ -53,16 +53,20 @@ void testEngine(){
     Unit& RR = *puRR ;
     Unit& BT = *puBT ;
     Unit& BM = *puBM ;
-    Command* comMov = new MoveCommand(RI, 2,2);
+    Command* comMov1 = new MoveCommand(RI, 2,2);
     Command* comMov2 = new MoveCommand(RR, 3,3);
-    Command* comAtt = new AttackCommand(RR, BM);
+    Command* comAtt1 = new AttackCommand(RR, BM);
     Command* comMov3 = new MoveCommand(BM, 3,2);
-    Command* comAtt = new AttackCommand(BM, RI);
-    Command* comMov3 = new MoveCommand(BT, 4,3);
-    Command* comAtt = new AttackCommand(BT, RR);
-    eng.addCommand(comMov);
+    Command* comAtt2 = new AttackCommand(BM, RI);
+    Command* comMov4 = new MoveCommand(BT, 4,3);
+    Command* comAtt3 = new AttackCommand(BT, RR);
+    eng.addCommand(comMov1);
     eng.addCommand(comMov2);
-    eng.addCommand(comAtt);
+    eng.addCommand(comAtt1);
+    eng.addCommand(comMov3);
+    eng.addCommand(comAtt2);
+    eng.addCommand(comMov4);
+    eng.addCommand(comAtt3);
 
     eng.debug();
 // CLIENT ONLY

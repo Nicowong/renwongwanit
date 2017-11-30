@@ -55,7 +55,7 @@ void AttackCommand::execute(state::State& state){
           0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,110, 33, 45, 66, 70,
          85, 80, 82, 82, 53, 43, 33, 83, 83, 83, 83, 83,  0,  0,  0,  0,  0,102, 83,102, 45, 52,
           0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0, 66, 51, 34, 25, 22,  0,  0,  0,  0,  0,
-    }
+    };
 
     //determining the distance between 2 elements is available for attacking
     //and determining that  they are in 2 team
@@ -64,7 +64,8 @@ void AttackCommand::execute(state::State& state){
     int dx = defender.getX();
     int dy = defender.getY();
 
-    UnitType aT, dT ;
+    UnitType aT = attacker.getUnitType() ;
+    UnitType dT = defender.getUnitType() ;
     if( abs(ax - dx) < 2 && abs(ay - dy) < 2 && attacker.getTeam()!=defender.getTeam() && dmgRule[aT*22+dT]!=0 && attacker.getAmmo()){
         defender.setHealth(defender.getHealth()- dmgRule[aT*22+dT]*attacker.getHealth()/100);
         if(defender.getAmmo()>0)

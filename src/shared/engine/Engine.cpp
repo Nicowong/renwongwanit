@@ -44,8 +44,9 @@ void Engine::debug()const{
 	cout << "Engine::debug() :" << endl ;
 	currentState.debug() ;
 	cout << "Command stack : " << endl;
-	for(size_t i=0 ; i<currentCommands.size() ; i++){
+	for(size_t i=0 ; i<currentCommands.size() ; i++)
 		cout << currentCommands[i] << " " ;
-	}
+	if(currentCommands.size()==0)
+		cout << "empty" ;
 	cout << endl ;
 }
