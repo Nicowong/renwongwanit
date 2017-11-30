@@ -2,7 +2,10 @@
 
 #include "MoveCommand.h"
 
+#include "rules.h"
+
 using namespace std ;
+using namespace state ;
 using namespace engine ;
 
 MoveCommand::MoveCommand (state::Unit& unit, size_t x, size_t y): unit(unit), x(x), y(y){
@@ -12,10 +15,16 @@ CommandTypeId MoveCommand::getCommandTypeId() const{
     return COM_MOVE ;
 }
 void MoveCommand::execute (state::State& state){
-    if (unit.getX() != x || unit.getY() != y ){
+    int ux = unit.getX();
+    int uy = unit.getY();
+    int dist = abs(ux-(int)x)+abs(uy-(int)y);
+
+    if( dist<=moveRangeRule[unit.getUnitType()] && (unit.getX() != x || unit.getY() != y) ){
         state.getUnitTab().moveElem(unit.getX(), unit.getY(), x, y);
         unit.setX(x);
         unit.setY(y);
+        unit.setFuel(unit.getFuel()-dist);
+        unit.setMoved(true);
     }else{
         std::cout<<"In engine::MoveCommand::execute() : error"<<std::endl;
     }
