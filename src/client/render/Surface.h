@@ -52,6 +52,7 @@ namespace render {
     /// @param target		(???) 
     /// @param states		(???) 
     void draw (sf::RenderTarget& target, sf::RenderStates states) const;
+    void addVertices (unsigned int n);
     // Setters and Getters
     const sf::VertexArray& getVertices() const;
     void setVertices(const sf::VertexArray& vertices);

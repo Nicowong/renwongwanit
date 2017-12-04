@@ -22,6 +22,7 @@ namespace render {
      int getTileHeight () const;
     std::string getFile () const;
     const Tile getTile (int i) const;
+    const Tile getChar (char c) const;
     // Setters and Getters
   };
 

@@ -2,6 +2,7 @@
 #ifndef RENDER__STATUSLAYER__H
 #define RENDER__STATUSLAYER__H
 
+#include <string>
 
 namespace render {
   class Surface;
@@ -26,6 +27,7 @@ namespace render {
     StatusLayer (Surface* surface, TileSet* tileset);
     StatusLayer ();
     void update (const state::State& state);
+    void print (int& x, int& y, const std::string& text);
     // Setters and Getters
   };
 

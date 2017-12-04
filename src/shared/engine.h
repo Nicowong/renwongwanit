@@ -13,4 +13,5 @@
 #include "engine/RepairCommand.h"
 #include "engine/DestroyCommand.h"
 #include "engine/LoadCommand.h"
+#include "engine/EndTurnCommand.h"
 #endif

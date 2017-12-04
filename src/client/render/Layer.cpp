@@ -17,9 +17,9 @@ Layer::Layer(): surface(nullptr), tileSet(nullptr){
 	//cout << "Layer::Layer(): surface(nullptr), tileSet(nullptr) ; surface="<< surface << endl ;
 }
 
-void Layer::print (int x, int y, std::string text){
+/*void Layer::print (int x, int y, std::string text){
     
-}
+}*/
 void Layer::draw (sf::RenderWindow& window){
     window.draw(*surface);
 }

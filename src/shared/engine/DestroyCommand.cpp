@@ -13,7 +13,9 @@ CommandTypeId DestroyCommand::getCommandTypeId() const{
     return COM_DESTROY ;
 }
 void DestroyCommand::execute (state::State& state){
-
+    cout << "Command destroy : " << endl ;
+    cout << "unit : " ;
+    unit.debug(1);
     if(unit.getHealth()<=0){
         state.getUnitTab().eraseElem(unit.getX(), unit.getY()) ;
     }else{

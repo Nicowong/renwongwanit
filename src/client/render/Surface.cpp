@@ -52,3 +52,7 @@ const sf::Texture& Surface::getTexture() const{
 void Surface::setTexture(const sf::Texture& texture){
     this->texture = texture ;
 }
+
+void Surface::addVertices(unsigned int n){
+    vertices.resize(vertices.getVertexCount()+n*4);
+}

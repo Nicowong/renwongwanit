@@ -24,6 +24,7 @@ namespace render {
     virtual int getTileHeight () const = 0;
     virtual std::string getFile () const = 0;
     virtual const Tile getTile (int id) const = 0;
+    virtual const Tile getChar (char c) const;
     // Setters and Getters
   };
 

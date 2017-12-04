@@ -31,17 +31,17 @@ using namespace engineTest ;
 void testEngine(){
     int tick=0;
 
-    State newState(WIDTH, HEIGHT);
-    generateMap(newState);
+    State state(WIDTH, HEIGHT);
+    generateMap(state);
 
-    Engine eng(newState);
+    Engine eng(state);
     eng.debug();
-    generateUnits(newState);
+    generateUnits(state);
 
     //eng.setCurrentState(newState);
 
 // CLIENT ONLY
-    Render render(newState) ;
+    Render render(state) ;
     render.update();
 //------------
 
@@ -51,24 +51,30 @@ void testEngine(){
     Unit& uBT   = *(Unit*)(eng.getCurrentState().getUnitTab().getElem(5,2));
     Unit& uBM   = *(Unit*)(eng.getCurrentState().getUnitTab().getElem(4,3));
     Unit& uBMGT = *(Unit*)(eng.getCurrentState().getUnitTab().getElem(3,4));
-    Command* comMov1 = new MoveCommand(uRI, 2,2);
-    Command* comMov2 = new MoveCommand(uRR, 3,3);
-    Command* comAtt1 = new AttackCommand(uRR, uBM);
-    Command* comMov3 = new MoveCommand(uBM, 3,2);
-    Command* comAtt2 = new AttackCommand(uBM, uRI);
-    Command* comMov4 = new MoveCommand(uBT, 4,3);
-    Command* comAtt3 = new AttackCommand(uBT, uRR);
-    Command* comAtt4 = new AttackCommand(uBMGT, uRR);
-    Command* comAtt5 = new AttackCommand(uRML, uBMGT);
-    eng.addCommand(comMov1);
-    eng.addCommand(comMov2);
-    eng.addCommand(comAtt1);
-    eng.addCommand(comMov3);
-    eng.addCommand(comAtt2);
-    eng.addCommand(comMov4);
-    eng.addCommand(comAtt3);
-    eng.addCommand(comAtt4);
-    eng.addCommand(comAtt5);
+    Command* comMovR1 = new MoveCommand(uRI, 2,2);
+    Command* comMovR2 = new MoveCommand(uRR, 3,3);
+    Command* comAttR1 = new AttackCommand(uRR, uBM);
+    Command* comEndT1 = new EndTurnCommand(state);
+    Command* comMovB1 = new MoveCommand(uBM, 3,2);
+    Command* comAttB1 = new AttackCommand(uBM, uRI);
+    Command* comMovB2 = new MoveCommand(uBT, 4,3);
+    Command* comAttB2 = new AttackCommand(uBT, uRR);
+    Command* comAttB3 = new AttackCommand(uBMGT, uRR);
+    Command* comEndT2 = new EndTurnCommand(state);
+    Command* comAttR2 = new AttackCommand(uRML, uBMGT);
+    Command* comEndT3 = new EndTurnCommand(state);
+    eng.addCommand(comMovR1);   //move inftr
+    eng.addCommand(comMovR2);   //move recon
+    eng.addCommand(comAttR1);   //recon attack mech
+    eng.addCommand(comEndT1);   //-endTurn-
+    eng.addCommand(comMovB1);   //move mech
+    eng.addCommand(comAttB1);   //mech attack inftr
+    eng.addCommand(comMovB2);   //move tank
+    eng.addCommand(comAttB2);   //tank attack recon
+    eng.addCommand(comAttB3);   //megatank attack recon
+    eng.addCommand(comEndT2);   //-endTurn-
+    eng.addCommand(comAttR2);   //missileLauncher attack megatank
+    eng.addCommand(comEndT3);   //-endTurn-
 
     eng.debug();
 // CLIENT ONLY
@@ -88,6 +94,7 @@ void testEngine(){
                     eng.update();
                     eng.debug();
                     render.update();
+                    cout << endl ;
                     break ;
                 default :
                     break;

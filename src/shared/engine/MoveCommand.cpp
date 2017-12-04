@@ -15,8 +15,12 @@ CommandTypeId MoveCommand::getCommandTypeId() const{
     return COM_MOVE ;
 }
 void MoveCommand::execute (state::State& state){
+    cout << "Command move : " << endl ;
     int ux = unit.getX();
     int uy = unit.getY();
+    cout << "unit : ";
+    unit.debug(1);
+    cout << "to x:"<<x << " y:"<<y <<endl ;
     int dist = abs(ux-(int)x)+abs(uy-(int)y);
 
     if( dist<=moveRangeRule[unit.getUnitType()] && (unit.getX() != x || unit.getY() != y) ){

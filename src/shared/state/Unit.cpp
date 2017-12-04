@@ -146,12 +146,46 @@ void Unit::setMoved(bool moved){
 }
 
 
-void Unit::debug()const{
-    std::cout<< "Unit::";
-    Element::debug();
-    std::cout<< "unitType : "<<unitType <<std::endl ;
-    std::cout<< "health : "<<health <<std::endl ;
-    std::cout<< "ammo : "<<ammo <<std::endl ;
-    std::cout<< "fuel : "<<fuel <<std::endl ;
-    std::cout<< "vision : "<<vision <<std::endl ;
+void Unit::debug(int mode)const{
+    if(mode == 0 ){
+        std::cout<< "Unit::";
+        Element::debug();
+        std::cout<< "unitType : "<<unitType <<std::endl ;
+        std::cout<< "health : "<<health <<std::endl ;
+        std::cout<< "ammo : "<<ammo <<std::endl ;
+        std::cout<< "fuel : "<<fuel <<std::endl ;
+        std::cout<< "vision : "<<vision <<std::endl ;
+    }else{
+        switch(unitType){
+            case UT_INFANTRY          : cout<<"Infantry"    ; break ;
+            case UT_MECH              : cout<<"Mech"        ; break ;
+            case UT_RECON             : cout<<"Recon"       ; break ;
+            case UT_TANK              : cout<<"Tank"        ; break ;
+            case UT_TANKM             : cout<<"TankM"       ; break ;
+            case UT_NEOTANK           : cout<<"NeoTank"     ; break ;
+            case UT_MEGATANK          : cout<<"MegaTank"    ; break ;
+            case UT_APC               : cout<<"APC"         ; break ;
+            case UT_ARTILLERY         : cout<<"Artillery"   ; break ;
+            case UT_MISSILELAUNCHER   : cout<<"MissileL"    ; break ;
+            case UT_AAMISSILELAUNCHER : cout<<"AAMissileL"  ; break ;
+            case UT_AATANK            : cout<<"AATank"      ; break ;
+            case UT_TRANSPORTHELI     : cout<<"TranspHeli"  ; break ;
+            case UT_BATTLEHELI        : cout<<"BattleHeli"  ; break ;
+            case UT_FIGHTER           : cout<<"Fighter"     ; break ;
+            case UT_BOMBER            : cout<<"Bomber"      ; break ;
+            case UT_ASA               : cout<<"ASA"         ; break ;
+            case UT_LANDER            : cout<<"Lander"      ; break ;
+            case UT_CRUISER           : cout<<"Cruiser"     ; break ;
+            case UT_SUBMARINE         : cout<<"Submarine"   ; break ;
+            case UT_BATTLESHIP        : cout<<"Battleship"  ; break ;
+            case UT_CARRIER           : cout<<"Carrier"     ; break ;
+            default                   : cout<<"default"     ; break ;
+        }
+        switch(team){
+            case PLAYER1 : cout << "(P1)" ; break ;
+            case PLAYER2 : cout << "(P2)" ; break ;
+            default : break ;
+        }
+        cout << "x:"<<x <<" y:"<<y << " hp:"<<health <<endl ;
+    }
 }

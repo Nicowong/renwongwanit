@@ -34,7 +34,7 @@ namespace state {
     bool isRanged () const;
     bool isTransporter () const;
     bool isCapturing () const;
-    void debug () const;
+    void debug (int mode = 0) const;
     // Setters and Getters
     UnitType getUnitType() const;
     void setUnitType(UnitType unitType);

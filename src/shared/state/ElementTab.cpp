@@ -99,10 +99,14 @@ void ElementTab::eraseElem (int i){
 void ElementTab::eraseElem (size_t x, size_t y){
     Element *elem = getElem(x,y);
     if(elem != nullptr){
+        //cout << "-debug-";
+        delete elemTab[getTabIndex(elem)];
         elemTab[getTabIndex(elem)] = nullptr ;
+        //cout << "-debug-";
         size_t i=0 ;
         while(i<elemList.size() && elemList[i]!=elem)
             i++ ;
+        //cout << "-debug-";
         elemList[i] = nullptr ;
     }else{
         std::cout << "ElementTab::eraseElem error : erasing null elem." ;
@@ -151,8 +155,8 @@ void ElementTab::setElemList(const std::vector<Element*>& elemList){
 */
 
 void ElementTab::debug()const{
-    cout << "ElementTab:: void debug()"<<endl ;
-    cout << "w:"<<w<<" h:"<<h <<endl ;
+    //cout << "ElementTab:: void debug()"<<endl ;
+    //cout << "w:"<<w<<" h:"<<h <<endl ;
     /*
     cout << "elemList ("<< elemList.size()<< ") :" <<endl ;
     for(size_t i=0 ; i<elemList.size() ; i++){
@@ -165,7 +169,7 @@ void ElementTab::debug()const{
             cout << ((Cell*)elemTab[i])->getCellType() << "|" ;
     }
     cout << endl ;*/
-    cout << "elemTab"<< endl ;
+    //cout << "elemTab"<< endl ;
     for(size_t j=0 ; j<h ; j++){
         for(size_t i=0 ; i<w ; i++)
             if(elemTab[i+j*w]!=nullptr){

@@ -2,7 +2,6 @@
 #ifndef RENDER__LAYER__H
 #define RENDER__LAYER__H
 
-#include <string>
 #include <SFML/Graphics.hpp>
 
 namespace render {
@@ -31,7 +30,6 @@ namespace render {
     Layer ();
     Surface* getSurface () const;
     void setSurface (Surface* surface);
-    void print (int x, int y, std::string text);
     void draw (sf::RenderWindow& window);
     TileSet* getTileSet () const;
     void setTileSet (TileSet* tileSet);

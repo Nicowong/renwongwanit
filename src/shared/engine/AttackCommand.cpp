@@ -51,14 +51,20 @@ void AttackCommand::execute(state::State& state){
     UnitType aT = attacker.getUnitType() ;
     UnitType dT = defender.getUnitType() ;
 
+    cout << "Command attack : " << endl ;
+    cout << "attacker : " ;
+    attacker.debug(1);
+    cout << "defender : " ;
+    defender.debug(1);
+
     if( attacker.getTeam()!=defender.getTeam() && dmgRule[aT*22+dT]!=0 && attacker.getAmmo()>0 &&
         minRangeRule[aT]<=dist && dist<=maxRangeRule[aT] ){
 
-        cout << "attack->defend" << endl ;
+        cout << "attack phase ; "  ;
         defender.setHealth(defender.getHealth()- dmgRule[aT*22+dT]*attacker.getHealth()/100);
         if(defender.getHealth()>0 && defender.getAmmo()>0 && dist==1 && minRangeRule[dT]<=1){
             attacker.setHealth(attacker.getHealth()- dmgRule[dT*22+aT]*defender.getHealth()/100);
-            cout << "attack<-defend"<<endl ;
+            cout << "defend phase"<<endl ;
         }
         attacker.setAmmo(attacker.getAmmo()-1);
     }else {
