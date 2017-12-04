@@ -4,14 +4,14 @@ using namespace std ;
 using namespace render ;
 
 int StateTileSet::getTileWidth () const{
-    return 16 ;
+    return 8 ;
 }
 int StateTileSet::getTileHeight()const{
-    return 16 ;
+    return 7 ;
 }
 std::string StateTileSet::getFile () const{
-    return "res/state.png" ;
+    return "res/status.png" ;
 }
 const Tile StateTileSet::getTile (int id) const{
-    return Tile(id*16, 0, 16, 16);
+    return Tile(id*8, 0, 8, 7);
 }

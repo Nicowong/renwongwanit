@@ -6,10 +6,16 @@
 namespace render {
   class Surface;
   class TileSet;
+};
+namespace state {
+  class State;
+};
+namespace render {
   class Layer;
 }
 
 #include "Layer.h"
+#include "state/State.h"
 
 namespace render {
 
@@ -17,8 +23,9 @@ namespace render {
   class StatusLayer : public render::Layer {
     // Operations
   public:
-    StatusLayer (Surface* surface, TileSet* ts);
+    StatusLayer (Surface* surface, TileSet* tileset);
     StatusLayer ();
+    void update (const state::State& state);
     // Setters and Getters
   };
 

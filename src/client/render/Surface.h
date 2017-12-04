@@ -43,6 +43,7 @@ namespace render {
     /// @param x		(???) 
     /// @param y		(???) 
     void setSpriteLocation (int i, int x, int y);
+    void setSpriteLocation (int i, const Tile& tile);
     /// set sprite texture from rank (i), and tile information (x, y, w, h) on texture file
     /// @param i		(???) 
     /// @param tile		(???) 

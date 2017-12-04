@@ -4,22 +4,24 @@ using namespace std;
 using namespace ai;
 using namespace state;
 
-void PathMap::init(const state::Element& element){
-    state::ElementTab elementtab;
+void PathMap::init(const state::Element& element,const state::ElementTab& others){
+    
     int distance=0;
-    for(int x=0; x < 480;x+=16){
-        for(int y=0; y < 240; y+=8){
-            if(elementtab.getElem(x,y)!=NULL){
-                distance=getDistance(Position(element.getX()
-                        ,element.getY()),Position(x,y));
-                distancetab.push_back(distance);
-            }
+    for(size_t i=0; i<sizeof(others.getElemTab());i++){
+        distance=getDistance(Position(element.getX(),element.getY())
+                ,Position(others.getElemTab()[i]->getX(),others.getElemTab()[i]->getY()));
+        if(distance!=0){
+            distancetab.push_back(distance);
+            positiontab.push_back(Position(others.getElemTab()[i]->getX()
+                                ,others.getElemTab()[i]->getY()));
         }
     }
+    setDistancetab(distancetab);
+    setPositiontab(positiontab);
 }
 
-void PathMap::update(const state::Element& element){
-    
+void PathMap::update(const state::Element& element,const state::ElementTab& others){
+    ;
 }
 
 int PathMap::getX() const{
@@ -50,4 +52,12 @@ const std::vector<int>& PathMap::getDistancetab() const{
 
 void PathMap::setDistancetab(const std::vector<int>& distancetab){
     this->distancetab=distancetab;
+}
+
+const std::vector<Position>& PathMap::getPositiontab() const{
+    return positiontab;
+}
+
+void PathMap::setPositiontab(const std::vector<Position>& positiontab){
+    this->positiontab=positiontab;
 }

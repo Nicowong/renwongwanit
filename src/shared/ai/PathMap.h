@@ -12,8 +12,8 @@ namespace state {
   class ElementTab;
 }
 
-#include "state/ElementTab.h"
 #include "Position.h"
+#include "state/ElementTab.h"
 
 namespace ai {
 
@@ -24,12 +24,13 @@ namespace ai {
     int x;
     int y;
     std::vector<int> distancetab;
+    std::vector<Position> positiontab;
     // Operations
   public:
     int getDistance (const Position& a, const Position& b) const;
     const int* getDistaceTab () const;
-    void init (const state::Element& element);
-    void update (const state::Element& element);
+    void init (const state::Element& element, const state::ElementTab& others);
+    void update (const state::Element& element, const state::ElementTab& others);
     // Setters and Getters
     int getX() const;
     void setX(int x);
@@ -37,6 +38,8 @@ namespace ai {
     void setY(int y);
     const std::vector<int>& getDistancetab() const;
     void setDistancetab(const std::vector<int>& distancetab);
+    const std::vector<Position>& getPositiontab() const;
+    void setPositiontab(const std::vector<Position>& positiontab);
   };
 
 };

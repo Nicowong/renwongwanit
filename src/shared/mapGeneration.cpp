@@ -1,58 +1,12 @@
-#include <iostream>
-//#include <cstdlib>
-//#include <SFML/Graphics.hpp>
-//#include <fstream>
-
-#include "state.h"
-#include "engine.h"
+#include "mapGeneration.h"
 
 using namespace std ;
 using namespace state ;
-using namespace engine ;
+using namespace mapGeneration ;
 
-#define RDMAPGENITER 480
-#define WIDTH	6 
-#define HEIGHT	4
+namespace mapGeneration{
 
-namespace engineTest{
-	CellType* generateMap(int w, int h, string fname = "level.txt");
-	CellType generateCell();
-	void generateRoad(int x, int y, CellType* map);
-	void saveMap(CellType *map, int w, int h, string fname="level.txt");
-	int* loadMap(string fname="level.txt");
-	void generateMap(State &state);
-	void generateUnits(State &state);
-	void generateUnits(State &state);
-};
-
-using namespace engineTest ;
-
-void testEngine(){
-    Engine eng(WIDTH, HEIGHT);
-    //eng.debug(); 
-
-    State newState(WIDTH, HEIGHT);
-    generateMap(newState);
-    eng.debug();
-    generateUnits(newState);
-
-    eng.setCurrentState(newState);
-    eng.debug();
-
-    Unit* pu1 = (Unit*)(eng.getCurrentState().getUnitTab().getElem(1,0));
-    Unit& u1 = *pu1 ;
-    Command* comMov = new MoveCommand(u1, 2,2);
-    eng.addCommand(comMov);
-
-    cout << ">>>move command " << endl ;
-
-    eng.update();
-    eng.debug();
-}
-
-namespace engineTest{
-
-CellType* generateMap(int w, int h, string fname){
+CellType* generateCellMap(int w, int h, string fname){
     CellType *tileMap = new CellType[w * h];
     
     for(int i=0 ; i<w ; i++)
@@ -85,17 +39,17 @@ CellType* generateMap(int w, int h, string fname){
         int x = rand()%w ;
         int y = rand()%h ;
         tileMap[x+y*w] = CT_CITY ;
-        generateRoad(x, y, tileMap);
+        generateRoad(x, y, w, h, tileMap);
     }while(rand()%100 < 90);
     
     int x = rand()%w ; //placement du QG
     int y = rand()%h ;
     
-    generateRoad(x, y, tileMap);
+    generateRoad(x, y, w, h, tileMap);
     tileMap[x+y*w] = CT_BASE ;
     
-    /*if(fname != "NULL");
-        saveMap(tileMap, w, h, fname);*/
+    if(fname != "NULL");
+        saveMap(tileMap, w, h, fname);
     
     return tileMap ;
 }
@@ -113,26 +67,42 @@ CellType generateCell(){
         return CT_FOREST ;
 }
 
-void generateRoad(int x, int y, CellType* map){
+void generateRoad(int x, int y, int w, int h, CellType* map){
     do{
         if(rand()%2 == 0)
             x = x+ (rand()%2)*2-1;
         else
             y = y+ (rand()%2)*2-1;
             
-        if(x<0 || y<0 || x>=WIDTH || y>=HEIGHT)
+        if(x<0 || y<0 || x>=w || y>=h)
             break;
             
-        if(map[x+y*WIDTH]==CT_SEA)
-            map[x+y*WIDTH]=CT_BRIDGE ;
+        if(map[x+y*w]==CT_SEA)
+            map[x+y*w]=CT_BRIDGE ;
         else
-            map[x+y*WIDTH]=CT_ROAD ;
+            map[x+y*w]=CT_ROAD ;
     }while(rand()%100<75);
     if(rand()%100 < 75)
-        map[x+y*WIDTH] = CT_CITY ;
+        map[x+y*w] = CT_CITY ;
 }
+
+void saveMap(CellType *map, int w, int h, string fname){
+    ofstream file;
+    file.open(fname.c_str());
+    file << w << "\n" << h << "\n" ;
+    for(int j=0 ; j<h ; j++){
+        for(int i=0 ; i<w ; i++){
+            file << (int)map[i+j*w];
+            if(i!=h-1)
+                file<<" ";
+        }
+        file << "\n" ;
+    }
+    file.close();
+}
+
 void generateMap(State &state){
-    CellType* map = generateMap(state.getW(), state.getH(), "level.txt");
+    CellType* map = generateCellMap(state.getW(), state.getH(), "level.txt");
     ElementTab& ctab = state.getCellTab();
     for(size_t j=0 ; j<state.getH() ; j++){
         for(size_t i=0 ; i<state.getW() ; i++){
@@ -142,18 +112,31 @@ void generateMap(State &state){
             ctab.addElem(c);
         }
     }
-    
+    delete[] map ;
 }
+
 void generateUnits(State &state){
-	ElementTab& unitTab = state.getUnitTab();
-	Unit* p1u1 = new Unit(PLAYER1, UT_INFANTRY, 1,0);
-	Unit* p1u2 = new Unit(PLAYER1, UT_RECON, 0,1);
-	Unit* p2u1 = new Unit(PLAYER2, UT_TANK, 5,2);
-	Unit* p2u2 = new Unit(PLAYER2, UT_MECH, 4,3);
-	unitTab.addElem(p1u1);
-	unitTab.addElem(p1u2);
-	unitTab.addElem(p2u1);
-	unitTab.addElem(p2u2);
+    ElementTab& ctab = state.getCellTab();
+    ElementTab& utab = state.getUnitTab();
+    for(int j=0 ; j<(int)state.getH() ; j++)
+        for(int i=0 ; i<(int)state.getW() ; i++)
+            if(rand()%100 <= 15){
+                Element* u ;
+                int uteam = rand()%2+1 ;
+                CellType ct = ((Cell*)ctab.getElem(i,j))->getCellType();
+                if(ct==CT_MOUNTAIN || ct==CT_RIVER){
+                    int ut = rand()%7;
+                    if(ut>1) ut+=10 ;
+                    u = new Unit(uteam, ut, i, j);
+                }else if(ct==CT_SEA){
+                    int ut = rand()%10 + 12 ;
+                    u = new Unit(uteam, ut, i, j);
+                }else{
+                    int ut = rand()%17 ;
+                    u = new Unit(uteam, ut, i, j);
+                }
+                utab.addElem(u);
+            }
 }
 
 };

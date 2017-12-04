@@ -21,7 +21,7 @@ void testHello();
 void testState();
 void testRender(int mode=0, string fname="level.txt");
 void testEngine();
-void testAi();
+void testRandomAi();
 
 /*--- Fonction main ---*/
 
@@ -59,11 +59,16 @@ int main(int argc,char* argv[]) {
     }else if(string(argv[1])=="engine"){
         testEngine();
     //--- AI pour les test d'ai
-    }else if(string(argv[1])=="ai"){
-        testAi();
+    }else if(string(argv[1])=="ai" || string(argv[1])=="random" || string(argv[1])=="randomAi"){
+        testRandomAi();
     //Pas de commande
     }else{
-        std::cout << "Error : command not found." << std::endl ;
+        std::cout << "-- Error : command not found. --" << std::endl ;
+        std::cout << "> Available commands : " << std::endl ;
+        cout << "hello  test print 'Hello'" << endl ;
+        cout << "state  test state classes" << endl ;
+        cout << "engine test engine classes" << endl ;
+        cout << "ai     test ai classes" << endl ;
     }
     
     std::cout << endl ;

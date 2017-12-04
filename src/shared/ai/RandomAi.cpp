@@ -26,20 +26,17 @@ void RandomAi::run(Engine& engine, Element& selected)
     
     Unit& caractor = *(Unit*)(&selected);
         
-    // chercher les elements autours d'element choisit
-    
     for( size_t i=x-2; i<x+2;i++){
         for(size_t j=y-2; j<y+2;j++){
             target= search->getElem(i,j);
         }
     }
     
-    //soit il n'y pas ennemie autours d'element choisit, on fait MoveCommand
     if(!target){
         cmd = new MoveCommand(caractor,2,2);
         engine.addCommand(cmd);
     }
-    //soit il trouve un ennemie, il l'attacque.
+    
     else if(target->isUnit()){
         Unit& unit=*(Unit*)(target);
         
@@ -63,7 +60,7 @@ void RandomAi::run(Engine& engine, Element& selected)
             
         
     }
-    // soit il trouve un batiment, il le capture
+    
     else if(target->isBuilding()){
         Building& building = *(Building*)(target);  
         cmd = new CaptureCommand(building,caractor);
