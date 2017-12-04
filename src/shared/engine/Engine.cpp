@@ -1,6 +1,8 @@
 #include <iostream>
 
 #include "Engine.h"
+#include "AttackCommand.h"
+#include "DestroyCommand.h"
 
 using namespace std ;
 using namespace engine ;
@@ -22,6 +24,18 @@ void Engine::update(){
 	if(currentCommands.size()>0){
 		Command* c = currentCommands[0];
 		c->execute(currentState);
+		if(c->getCommandTypeId() == COM_ATTACK){
+			AttackCommand* ac = (AttackCommand*)c ;
+			if(ac->getAttacker().getHealth() <= 0){
+				DestroyCommand* d = new DestroyCommand(ac->getAttacker());
+				d->execute(currentState);
+				delete d ;
+			}else if(ac->getDefender().getHealth() <= 0){
+				DestroyCommand* d = new DestroyCommand(ac->getDefender());
+				d->execute(currentState);
+				delete d ;
+			}
+		}
 		currentCommands.erase(currentCommands.begin());
 	}else
 		cout << "no command" << endl ;

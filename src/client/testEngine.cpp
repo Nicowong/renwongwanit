@@ -15,8 +15,8 @@ using namespace render ;
 using namespace engine ;
 
 // #define RDMAPGENITER 480
-#define WIDTH	8 
-#define HEIGHT	6
+#define WIDTH	12
+#define HEIGHT	12
 #define WINWIDTH WIDTH*16
 #define WINHEIGHT HEIGHT*16+64
 
@@ -45,21 +45,21 @@ void testEngine(){
     render.update();
 //------------
 
-    Unit* puRI = (Unit*)(eng.getCurrentState().getUnitTab().getElem(1,0));
-    Unit* puRR = (Unit*)(eng.getCurrentState().getUnitTab().getElem(0,1));
-    Unit* puBT = (Unit*)(eng.getCurrentState().getUnitTab().getElem(5,2));
-    Unit* puBM = (Unit*)(eng.getCurrentState().getUnitTab().getElem(4,3));
-    Unit& RI = *puRI ;
-    Unit& RR = *puRR ;
-    Unit& BT = *puBT ;
-    Unit& BM = *puBM ;
-    Command* comMov1 = new MoveCommand(RI, 2,2);
-    Command* comMov2 = new MoveCommand(RR, 3,3);
-    Command* comAtt1 = new AttackCommand(RR, BM);
-    Command* comMov3 = new MoveCommand(BM, 3,2);
-    Command* comAtt2 = new AttackCommand(BM, RI);
-    Command* comMov4 = new MoveCommand(BT, 4,3);
-    Command* comAtt3 = new AttackCommand(BT, RR);
+    Unit& uRI   = *(Unit*)(eng.getCurrentState().getUnitTab().getElem(1,0));
+    Unit& uRR   = *(Unit*)(eng.getCurrentState().getUnitTab().getElem(0,1));
+    Unit& uRML  = *(Unit*)(eng.getCurrentState().getUnitTab().getElem(0,4));
+    Unit& uBT   = *(Unit*)(eng.getCurrentState().getUnitTab().getElem(5,2));
+    Unit& uBM   = *(Unit*)(eng.getCurrentState().getUnitTab().getElem(4,3));
+    Unit& uBMGT = *(Unit*)(eng.getCurrentState().getUnitTab().getElem(3,4));
+    Command* comMov1 = new MoveCommand(uRI, 2,2);
+    Command* comMov2 = new MoveCommand(uRR, 3,3);
+    Command* comAtt1 = new AttackCommand(uRR, uBM);
+    Command* comMov3 = new MoveCommand(uBM, 3,2);
+    Command* comAtt2 = new AttackCommand(uBM, uRI);
+    Command* comMov4 = new MoveCommand(uBT, 4,3);
+    Command* comAtt3 = new AttackCommand(uBT, uRR);
+    Command* comAtt4 = new AttackCommand(uBMGT, uRR);
+    Command* comAtt5 = new AttackCommand(uRML, uBMGT);
     eng.addCommand(comMov1);
     eng.addCommand(comMov2);
     eng.addCommand(comAtt1);
@@ -67,6 +67,8 @@ void testEngine(){
     eng.addCommand(comAtt2);
     eng.addCommand(comMov4);
     eng.addCommand(comAtt3);
+    eng.addCommand(comAtt4);
+    eng.addCommand(comAtt5);
 
     eng.debug();
 // CLIENT ONLY
@@ -146,12 +148,16 @@ void generateUnits(State &state){
 	ElementTab& unitTab = state.getUnitTab();
 	Unit* p1u1 = new Unit(PLAYER1, UT_INFANTRY, 1,0);
 	Unit* p1u2 = new Unit(PLAYER1, UT_RECON, 0,1);
+    Unit* p1u3 = new Unit(PLAYER1, UT_MISSILELAUNCHER, 0,4);
 	Unit* p2u1 = new Unit(PLAYER2, UT_TANK, 5,2);
 	Unit* p2u2 = new Unit(PLAYER2, UT_MECH, 4,3);
+    Unit* p2u3 = new Unit(PLAYER2, UT_MEGATANK, 3,4);
 	unitTab.addElem(p1u1);
 	unitTab.addElem(p1u2);
+    unitTab.addElem(p1u3);
 	unitTab.addElem(p2u1);
 	unitTab.addElem(p2u2);
+    unitTab.addElem(p2u3);
 }
 
 };

@@ -20,7 +20,8 @@ namespace engine {
   class Command {
     // Operations
   public:
-    virtual CommandTypeId getCommandTypeId () const = 0;
+    virtual ~Command ();
+    virtual CommandTypeId getCommandTypeId () const;
     virtual void execute (state::State& state) = 0;
     // Setters and Getters
   };

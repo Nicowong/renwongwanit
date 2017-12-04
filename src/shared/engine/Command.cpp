@@ -11,6 +11,10 @@ using namespace std ;
 using namespace state;
 using namespace engine;
 
+Command::~Command(){
+	
+}
+
 CommandTypeId Command::getCommandTypeId() const{
     return COM_NONE ;
 }
