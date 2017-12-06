@@ -11,9 +11,10 @@ void testSFML() {
 
 // Fin test SFML
 
-using namespace std;
+//#include "state.h"
 
-#define __CLIENT__
+using namespace std;
+//using namespace state;
 
 /*fonctions de test unitaire*/
 void testHello();
