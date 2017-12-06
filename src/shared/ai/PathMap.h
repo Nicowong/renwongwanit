@@ -28,7 +28,6 @@ namespace ai {
     // Operations
   public:
     int getDistance (const Position& a, const Position& b) const;
-    const int* getDistaceTab () const;
     void init (const state::Element& element, const state::ElementTab& others);
     void update (const state::Element& element, const state::ElementTab& others);
     // Setters and Getters

@@ -21,7 +21,7 @@ void PathMap::init(const state::Element& element,const state::ElementTab& others
 }
 
 void PathMap::update(const state::Element& element,const state::ElementTab& others){
-    ;
+    
 }
 
 int PathMap::getX() const{
