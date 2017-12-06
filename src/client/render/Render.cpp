@@ -37,7 +37,7 @@ void Render::draw (sf::RenderWindow& window){
 void Render::update(){
     //cout << "Render::update()::cellLayer.update(state.getCellTab());" << endl ;
     cellLayer.update(state.getCellTab());
-    //buildingLayer.update(state.getCellTab());
+    buildingLayer.update(state.getCellTab());
     //cout << "Render::update()::unitLayer.update(state.getUnitTab());" << endl ;
     unitLayer.update(state.getUnitTab());
     statusLayer.update(state);

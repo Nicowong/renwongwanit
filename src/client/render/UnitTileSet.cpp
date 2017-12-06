@@ -26,3 +26,6 @@ const Tile UnitTileSet::getUnitTile(const state::Unit& u)const{
 	int h = 16 ;
 	return Tile(x, y, w, h);
 }
+state::TypeId UnitTileSet::getType()const{
+	return T_UNIT ;
+}

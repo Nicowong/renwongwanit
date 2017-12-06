@@ -15,6 +15,7 @@ namespace render {
 }
 
 #include "Tile.h"
+#include "state/TypeId.h"
 #include "TileSet.h"
 
 namespace render {
@@ -28,6 +29,7 @@ namespace render {
     std::string getFile () const;
     const Tile getTile (int id) const;
     const Tile getCellTile (const state::Cell& c, int id = 0) const;
+    state::TypeId getType () const;
     // Setters and Getters
   };
 
