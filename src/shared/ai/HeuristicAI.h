@@ -31,8 +31,8 @@ namespace ai {
     PathMap cellMap;
     // Operations
   public:
-    const PathMap getUnitMap () const;
-    const PathMap getCellMap () const;
+    const PathMap& getUnitMap () const;
+    const PathMap& getCellMap () const;
     /// 	
     /// @param engine		(???) 
     /// @param selected		(???) 

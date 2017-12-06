@@ -13,11 +13,76 @@ using namespace state;
 using namespace std;
 
 
-const PathMap HeuristicAI::getCellMap() const{
+
+
+void HeuristicAI::run(Engine& engine, Element& selected)
+{
+    Command* cmd = nullptr;
+    
+    std::vector<int> unitdistancetab= unitMap.getDistancetab();
+    std::vector<Position> unitpositiontab= unitMap.getPositiontab();
+    std::vector<int> buildingdistancetab= cellMap.getDistancetab();
+    std::vector<Position> buildingpositiontab= cellMap.getPositiontab();
+    
+    ElementTab* unitTab =  engine.getCurrentState().getUnitTab();
+    ElementTab* buildingTab = engine.getCurrentState().getCellTab();
+    
+    // chercher l'element le plus proche a element original
+    int min_ui,min_uv=unitdistancetab[1];
+    for(size_t i=0;i<sizeof(unitdistancetab);i++){
+        if(unitdistancetab[i]<min_uv){
+            min_ui=i;
+            min_uv=unitdistancetab[i];
+        }
+    }
+    int min_bi,min_bv=buildingdistancetab[1];
+    for(size_t i=0;i<sizeof(buildingdistancetab);i++){
+        if(buildingdistancetab[i]<min_bv){
+            min_bi=i;
+            min_bv=unitdistancetab[i];
+        }
+    }
+    Element* uTarget= unitTab->getElem(unitpositiontab[min_ui].getX(),
+                                        unitpositiontab[min_ui].getY());
+    Element* bTarget= buildingTab->getElem(buildingpositiontab[min_bi].getX(),
+                                        buildingpositiontab[min_bi].getY());
+    
+    
+    Unit& unitTarget= *(Unit*)(uTarget);
+    Building& buildingTarget = *(Building*)(bTarget);
+    Unit& unitSelected = *(Unit*)(&selected);   
+    
+    if(min_uv > unitSelected.getVision()||min_bv>unitSelected.getVision()){
+        if(unitSelected.getHealth()>30){
+            cmd = new MoveCommand(unitSelected,2,2);
+            engine.addCommand(cmd);
+        }
+        else{
+            cmd = new RepairCommand(unitSelected);
+        }
+    }
+    else if(min_uv < min_bv){
+        if(unitSelected.getTeam()!=unitTarget.getTeam()){
+            cmd = new AttackCommand(unitSelected,unitTarget);
+            engine.addCommand(cmd);
+            if(unitTarget.getHealth() <= 0){
+                cmd = new DestroyCommand(unitTarget);
+              engine.addCommand(cmd);
+          }
+      }
+    }
+    else{
+        cmd = new CaptureCommand(buildingTarget,unitSelected);
+        engine.addCommand(cmd);
+    }
+
+}
+
+const PathMap& HeuristicAI::getCellMap() const{
     return cellMap;
 }
 
-const PathMap HeuristicAI::getUnitMap() const{
+const PathMap& HeuristicAI::getUnitMap() const{
     return unitMap;
 }
 
@@ -27,67 +92,4 @@ void HeuristicAI::setCellMap(const PathMap& cellMap){
 
 void HeuristicAI::setUnitMap(const PathMap& unitMap){
     this->unitMap=unitMap;
-}
-
-void HeuristicAI::run(Engine& engine, Element& selected)
-{
-    
-    Element* target;
-    Command* cmd = nullptr;
-    
-    std::vector<int> distancetab;
-    std::vector<Position> positiontab;
-    
-    distancetab = PathMap.getDistaceTab();
-    positiontab = PathMap.getDistaceTab();
-    
-    int min_i,min_v=distancetab[1];
-    for(size_t i=0;i<sizeof(distancetab);i++){
-        if(distancetab[i]<min_v){
-            min_i=i;
-            min_v=distancetab[i];
-        }
-    }
-    
-    target= ElementTab.getElem(positiontab[min_i].getX(),positiontab[min_i].getY());
-   
-    Unit& caractor = *(Unit*)(&selected);
-        
-
-    
-    if(!target){
-        cmd = new MoveCommand(caractor,2,2);
-        engine.addCommand(cmd);
-    }
-    
-    else if(target->isUnit()){
-        Unit& unit=*(Unit*)(target);
-        
-        if(unit.getTeam()!=caractor.getTeam()){
-            cmd = new AttackCommand(caractor,unit);
-            engine.addCommand(cmd);
-            if(unit.getHealth() <= 0){
-                cmd = new DestroyCommand(unit);
-            }   
-        }
-        if(unit.getTeam()==caractor.getTeam()){
-            if(unit.getHealth()<30){
-                cmd = new RepairCommand(unit);
-                engine.addCommand(cmd);
-            }
-            else if(unit.getUnitType()){
-                cmd = new SupplyCommand(unit);
-                engine.addCommand(cmd);
-            }
-        }
-            
-        
-    }
-    
-    else if(target->isBuilding()){
-        Building& building = *(Building*)(target);  
-        cmd = new CaptureCommand(building,caractor);
-        engine.addCommand(cmd);
-    }
-
 }
