@@ -33,10 +33,10 @@ void testEngine(){
 
     State state(WIDTH, HEIGHT);
     generateMap(state);
+    generateUnits(state);
 
     Engine eng(state);
     eng.debug();
-    generateUnits(state);
 
     //eng.setCurrentState(newState);
 
@@ -51,30 +51,32 @@ void testEngine(){
     Unit& uBT   = *(Unit*)(eng.getCurrentState().getUnitTab().getElem(5,2));
     Unit& uBM   = *(Unit*)(eng.getCurrentState().getUnitTab().getElem(4,3));
     Unit& uBMGT = *(Unit*)(eng.getCurrentState().getUnitTab().getElem(3,4));
-    Command* comMovR1 = new MoveCommand(uRI, 2,2);
-    Command* comMovR2 = new MoveCommand(uRR, 3,3);
-    Command* comAttR1 = new AttackCommand(uRR, uBM);
-    Command* comEndT1 = new EndTurnCommand(state);
-    Command* comMovB1 = new MoveCommand(uBM, 3,2);
-    Command* comAttB1 = new AttackCommand(uBM, uRI);
-    Command* comMovB2 = new MoveCommand(uBT, 4,3);
-    Command* comAttB2 = new AttackCommand(uBT, uRR);
-    Command* comAttB3 = new AttackCommand(uBMGT, uRR);
-    Command* comEndT2 = new EndTurnCommand(state);
-    Command* comAttR2 = new AttackCommand(uRML, uBMGT);
-    Command* comEndT3 = new EndTurnCommand(state);
-    eng.addCommand(comMovR1);   //move inftr
-    eng.addCommand(comMovR2);   //move recon
-    eng.addCommand(comAttR1);   //recon attack mech
-    eng.addCommand(comEndT1);   //-endTurn-
-    eng.addCommand(comMovB1);   //move mech
-    eng.addCommand(comAttB1);   //mech attack inftr
-    eng.addCommand(comMovB2);   //move tank
-    eng.addCommand(comAttB2);   //tank attack recon
-    eng.addCommand(comAttB3);   //megatank attack recon
-    eng.addCommand(comEndT2);   //-endTurn-
-    eng.addCommand(comAttR2);   //missileLauncher attack megatank
-    eng.addCommand(comEndT3);   //-endTurn-
+    Command* cMvRID1    = new MoveCommand(uRI, 2,2);
+    Command* cMvRRD1    = new MoveCommand(uRR, 3,3);
+    Command* cAtRRD1    = new AttackCommand(uRR, uBM);
+    Command* cAtRMlD1   = new AttackCommand(uRML, uBMGT);
+    Command* cEdRD1     = new EndTurnCommand(state);
+    Command* cMvBMD1    = new MoveCommand(uBM, 3,2);
+    Command* cAtBMD1    = new AttackCommand(uBM, uRI);
+    Command* cMvBTD1    = new MoveCommand(uBT, 4,3);
+    Command* cAtBTD1    = new AttackCommand(uBT, uRR);
+    Command* cAtBMgtD1  = new AttackCommand(uBMGT, uRR);
+    Command* cEdBD1     = new EndTurnCommand(state);
+    Command* cAtRMlD2   = new AttackCommand(uRML, uBMGT);
+    Command* cEdRD2     = new EndTurnCommand(state);
+    eng.addCommand(cMvRID1)     ;   //move inftr
+    eng.addCommand(cMvRRD1)     ;   //move recon
+    eng.addCommand(cAtRRD1)     ;   //recon attack mech
+    eng.addCommand(cAtRMlD1)    ;   //missileLauncher attack megatank
+    eng.addCommand(cEdRD1)      ;   //-endTurn-
+    eng.addCommand(cMvBMD1)     ;   //move mech
+    eng.addCommand(cAtBMD1)     ;   //mech attack inftr
+    eng.addCommand(cMvBTD1)     ;   //move tank
+    eng.addCommand(cAtBTD1)     ;   //tank attack recon
+    eng.addCommand(cAtBMgtD1)   ;   //megatank attack recon
+    eng.addCommand(cEdBD1)      ;   //-endTurn-
+    eng.addCommand(cAtRMlD2)    ;   //missileLauncher attack megatank
+    eng.addCommand(cEdRD2)      ;   //-endTurn-
 
     eng.debug();
 // CLIENT ONLY

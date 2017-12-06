@@ -8,6 +8,7 @@ namespace render {
   class Tile;
 };
 namespace state {
+  class Unit;
   class Element;
 }
 
@@ -25,6 +26,7 @@ namespace render {
     virtual std::string getFile () const = 0;
     virtual const Tile getTile (int id) const = 0;
     virtual const Tile getChar (char c) const;
+    virtual const Tile getUnitTile (const state::Unit& u) const;
     // Setters and Getters
   };
 

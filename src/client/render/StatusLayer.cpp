@@ -51,6 +51,7 @@ void StatusLayer::update(const state::State& state){
 			state::Unit* u = (Unit*)unitTab.getElem(i,j);
 			if(u != nullptr){
 				state::Team team = u->getTeam();
+				//u->debug();
 				switch(team){
 					case PLAYER1 :
 						nUnits[0]++;
@@ -72,6 +73,7 @@ void StatusLayer::update(const state::State& state){
 	string turn= "Turn : "+to_string(state.getTurn());
 	nChar = day.length()+turn.length();
 	surface->initVertices(nTiles+nChar);
+
 //place health boxes
 	for(size_t j=0 ; j<state.getH() ; j++){
 		for(size_t i=0 ; i<state.getW() ; i++){
@@ -84,12 +86,11 @@ void StatusLayer::update(const state::State& state){
 		}
 	}
 //print text
+	
 	int tx, ty;
 	tx = 0 ;
 	ty = state.getH()*16;
-	cout << "--"<<"DAY : "+to_string(state.getDay())+'\n' ;
 	print(tx, ty, "Day : "+to_string(state.getDay())+'\n');
-	//print(tx, ty, "DAY : 1234567890 "+to_string(state.getDay()));//+'\n' );
 	tx = 0 ;
 	ty = state.getH()*16+10;
 	if(state.getTurn()==PLAYER1){
