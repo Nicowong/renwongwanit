@@ -9,9 +9,8 @@ void Surface::loadTexture(const std::string& fileName){
     texture.loadFromFile(fileName);
 }
 void Surface::initVertices(int nTiles){
-    //cout << "Surface::initVertices:: vertices.setPrimitiveType(sf::Quads);" << endl ;
+    vertices.clear();
     vertices.setPrimitiveType(sf::Quads);
-    //cout << "Surface::initVertices:: vertices.resize(nTiles*4);" << endl ;
     vertices.resize(nTiles*4);
 }
 //obsolete, use next

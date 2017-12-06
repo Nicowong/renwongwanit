@@ -6,11 +6,17 @@
 
 namespace render {
   class Tile;
+};
+namespace state {
+  class Unit;
+};
+namespace render {
   class TileSet;
 }
 
 #include "Tile.h"
 #include "TileSet.h"
+#include "state/Unit.h"
 
 namespace render {
 
@@ -22,6 +28,7 @@ namespace render {
     int getTileHeight () const;
     std::string getFile () const;
     const Tile getTile (int id) const;
+    const Tile getUnitTile (const state::Unit& u) const;
     // Setters and Getters
   };
 

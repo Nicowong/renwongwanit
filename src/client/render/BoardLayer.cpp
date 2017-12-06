@@ -22,7 +22,7 @@ void BoardLayer::update(const state::ElementTab& tab){
 
 				if(elem->getType() == T_UNIT){
 					Unit* u = (Unit*)elem ;
-					surface->setSpriteTexture(n, tileSet->getTile(u->getUnitType()+22*(u->getTeam()-1)));
+					surface->setSpriteTexture(n, tileSet->getUnitTile(*u) );
 				}else if(elem->getType() == T_BUILDING){
 					//cout << "void BoardLayer::update(const state::ElementTab& tab):: elem->getType() == T_BUILDING" << endl ;
 					//cout << "Cell* b = (Cell*)elem ; elem=" << elem << endl ; 

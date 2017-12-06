@@ -35,8 +35,8 @@ Unit::Unit(Team team, UnitType utype, size_t x, size_t y):
             std::cout << "In Unit::Unit(Team,UnitType,size_t,size_t), error : unitType not found." << std::endl;
             break;
     }
-    available = false ;
-    moved = true ;
+    available = true ;
+    moved = false ;
 }
 Unit::Unit(int team, int utype, size_t x, size_t y):
     Element(T_UNIT, NONE, x,y), unitType(UT_NONE), health(100), ammo(0), fuel(1), vision(1){
