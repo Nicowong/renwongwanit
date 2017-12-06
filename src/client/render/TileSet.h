@@ -9,10 +9,15 @@ namespace render {
 };
 namespace state {
   class Unit;
+  class Cell;
+  class Building;
   class Element;
 }
 
 #include "Tile.h"
+#include "state/Building.h"
+#include "state/Cell.h"
+#include "state/Unit.h"
 #include "state/Element.h"
 
 namespace render {
@@ -27,6 +32,8 @@ namespace render {
     virtual const Tile getTile (int id) const = 0;
     virtual const Tile getChar (char c) const;
     virtual const Tile getUnitTile (const state::Unit& u) const;
+    virtual const Tile getCellTile (const state::Cell& c, int id = 0) const;
+    virtual const Tile getBuildingTile (const state::Building& b) const;
     // Setters and Getters
   };
 

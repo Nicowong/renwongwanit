@@ -17,7 +17,7 @@ CommandTypeId CaptureCommand::getCommandTypeId() const{
 
 // EXECUTE COMMAND
 void CaptureCommand::execute (state::State& state){
-
+	cout << "Command capture : "<<endl ;
 	// seulement si l'unite est une INFANTRY, que les positions sont correctes 
 	//et que le building appartient a l'autre joueur
 	if(unit.getX()==building.getX() && unit.getY()==building.getY() &&

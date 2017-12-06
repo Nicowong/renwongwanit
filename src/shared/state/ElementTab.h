@@ -11,6 +11,7 @@ namespace state {
   class Cell;
 }
 
+#include "TypeId.h"
 #include "Unit.h"
 #include "Cell.h"
 #include "Element.h"
@@ -24,12 +25,14 @@ namespace state {
   protected:
     size_t w;
     size_t h;
+    TypeId type;
     std::vector<Element*> elemList;
     std::vector<Element*> elemTab;
     // Operations
   public:
     ElementTab ();
     ElementTab (size_t w, size_t h);
+    ElementTab (size_t w, size_t h, TypeId type);
     size_t getTabIndex (const Element* elem) const;
     size_t getTabIndex (size_t x, size_t y) const;
     void addElem (Element* elem);
@@ -51,6 +54,8 @@ namespace state {
     void setW(const size_t& w);
     const size_t& getH() const;
     void setH(const size_t& h);
+    TypeId getType() const;
+    void setType(TypeId type);
     const std::vector<Element*>& getElemList() const;
     void setElemList(const std::vector<Element*>& elemList);
     const std::vector<Element*>& getElemTab() const;

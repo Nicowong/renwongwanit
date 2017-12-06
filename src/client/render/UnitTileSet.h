@@ -16,7 +16,6 @@ namespace render {
 
 #include "Tile.h"
 #include "TileSet.h"
-#include "state/Unit.h"
 
 namespace render {
 

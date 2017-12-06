@@ -9,6 +9,14 @@ const Tile TileSet::getChar(char c)const{
 	return Tile(0,0,0,0);
 }
 const Tile TileSet::getUnitTile(const state::Unit& u)const{
-	cout << "ERROR : TileSet::getChar()" << endl ;
+	cout << "ERROR : TileSet::getUnitTile()" << endl ;
+	return Tile(0, 0, 0, 0);
+}
+const Tile TileSet::getCellTile(const state::Cell& c, int id)const{
+	cout << "ERROR : TileSet::getCellTile()" << endl ;
+	return Tile(0, 0, 0, 0);
+}
+const Tile TileSet::getBuildingTile(const state::Building& b)const{
+	cout << "ERROR : TileSet::getBuildingTile()" << endl ;
 	return Tile(0, 0, 0, 0);
 }

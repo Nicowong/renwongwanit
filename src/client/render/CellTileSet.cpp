@@ -15,3 +15,12 @@ std::string CellTileSet::getFile ()const{
 const Tile CellTileSet::getTile (int id) const{
     return Tile(id*16, 0, 16, 16);
 }
+
+const Tile CellTileSet::getCellTile(const state::Cell& c, int id)const{
+	int x = id*16 ;
+	int y = (c.getCellType())*16 ;
+	int w = 16 ;
+	int h = 16 ;
+
+	return Tile(x, y, w, h);
+}
