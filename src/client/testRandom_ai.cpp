@@ -24,7 +24,7 @@ using namespace ai ;
 
 using namespace mapGeneration;
 
-void testRandomAi(){
+void testRandom_ai(){
 	srand(time(NULL));
 	int tick=0;
 
