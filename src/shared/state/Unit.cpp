@@ -77,6 +77,12 @@ Unit::Unit(int team, int utype, size_t x, size_t y):
     moved = true ;
 }
 
+Unit::Unit(int team, int utype, size_t x, size_t y, bool available):
+ Unit(team, utype, x, y){
+    this->available = available ;
+    this->moved = !available ;
+ }
+
 bool Unit::isInfantry () const{
     if(unitType==UT_INFANTRY || unitType==UT_MECH)
         return true;

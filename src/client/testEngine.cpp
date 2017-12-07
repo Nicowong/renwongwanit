@@ -98,6 +98,9 @@ void testEngine(){
                     render.update();
                     cout << endl ;
                     break ;
+                case sf::Event::MouseButtonReleased :
+                    cout << "click"<<endl ;
+                    break ;
                 default :
                     break;
             }
@@ -145,9 +148,11 @@ void generateMap(State &state){
     ElementTab& ctab = state.getCellTab();
     for(size_t j=0 ; j<state.getH() ; j++){
         for(size_t i=0 ; i<state.getW() ; i++){
-            Element *c = new Cell(map[i+j*state.getW()], i,j);
-            //cout << c << " " ;
-            //c->debug() ;
+            Element *c ;
+            if(i==2 && j==2)
+                c = new Building(PLAYER1, CT_BASE, i, j);
+            else
+                c = new Cell(map[i+j*state.getW()], i,j);
             ctab.addElem(c);
         }
     }

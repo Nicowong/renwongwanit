@@ -7,7 +7,11 @@ using namespace state;
 
 ElementTab::ElementTab(): ElementTab(16,16){}
 ElementTab::ElementTab (size_t w, size_t h):
-    w(w), h(h){
+    w(w), h(h), type(T_NONE){
+    elemTab.resize(w*h, nullptr);
+}
+ElementTab::ElementTab (size_t w, size_t h, TypeId type):
+    w(w), h(h), type(type){
     elemTab.resize(w*h, nullptr);
 }
 //access index
@@ -72,8 +76,6 @@ const Element* ElementTab::getElem (size_t x, size_t y) const{
     if(x>=0 && x<w && y>=0 && y<h)
         return elemTab[x+y*w];
     else{
-        std::cout << "ElementTab::getElem error : out of map " ;
-        std::cout << "x:"<<x<<" y:"<<y<<" w:"<<w<<" h:"<<h <<std::endl ;
         return nullptr ;
     }
 }
@@ -144,6 +146,12 @@ const std::vector<Element*>& ElementTab::getElemList() const{
 }
 const std::vector<Element*>& ElementTab::getElemTab() const{
     return elemTab ;
+}
+TypeId ElementTab::getType() const{
+    return type ;
+}
+void ElementTab::setType(TypeId type){
+    this->type = type ;
 }
 /*
 void ElementTab::setElemTab(const std::vector<Element*>& elemTab){

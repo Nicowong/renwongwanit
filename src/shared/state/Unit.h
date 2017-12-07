@@ -30,6 +30,7 @@ namespace state {
   public:
     Unit (Team team = PLAYER1, UnitType utype = UT_INFANTRY, size_t x = 0, size_t y = 0);
     Unit (int team, int utype, size_t x, size_t y);
+    Unit (int team, int utype, size_t x, size_t y, bool available);
     bool isInfantry () const;
     bool isRanged () const;
     bool isTransporter () const;

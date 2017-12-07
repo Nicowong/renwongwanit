@@ -5,7 +5,7 @@
 using namespace std ;
 using namespace state ;
 
-State::State(size_t width, size_t height): cellTab(width, height), unitTab(width, height){
+State::State(size_t width, size_t height): cellTab(width, height, T_CELL), unitTab(width, height, T_UNIT){
     w = width ;
     h = height ;
     day = 1 ;
