@@ -19,7 +19,7 @@ void BoardLayer::update(const state::ElementTab& tab){
 	TypeId ttid = tab.getType();
 	TypeId ltid = tileSet->getType();
 	if(ttid==T_UNIT && ltid==T_UNIT){
-		cout << "UNIT TAB"<< endl;
+		//cout << "UNIT TAB"<< endl;
 		for(size_t j=0 ; j<tab.getH() ; j++){
 			for(size_t i=0 ; i<tab.getW() ; i++){
 				const Element* elem = tab.getElem(i,j);
@@ -33,7 +33,7 @@ void BoardLayer::update(const state::ElementTab& tab){
 		}
 	}
 	else if((ttid==T_CELL || ttid==T_BUILDING) && ltid==T_BUILDING){
-		cout << "BUILDING TAB"<< endl;
+		//cout << "BUILDING TAB"<< endl;
 		for(size_t j=0 ; j<tab.getH() ; j++){
 			for(size_t i=0 ; i<tab.getW() ; i++){
 				const Element* elem = tab.getElem(i,j);
@@ -43,8 +43,7 @@ void BoardLayer::update(const state::ElementTab& tab){
 					CellType ct = c->getCellType();
 					if(tid == T_BUILDING || tid == T_CELL){
 						if(ct>=7){
-							if(ct == CT_BASE)
-								cout << "CT_BASE" << endl ;
+							//if(ct == CT_BASE) cout << "CT_BASE" << endl ;
 							surface->setSpriteTexture(n, tileSet->getBuildingTile(*(Building*)c) );
 							surface->setSpriteLocation(n, Tile(i*16, (j-1)*16, 32, 32) );
 						}else{
@@ -58,7 +57,7 @@ void BoardLayer::update(const state::ElementTab& tab){
 		}
 	}
 	else if((ttid==T_CELL || ttid==T_BUILDING) && ltid==T_CELL){
-		cout << "CELL TAB"<< endl;
+		//cout << "CELL TAB"<< endl;
 		for(size_t j=0 ; j<tab.getH() ; j++){
 			for(size_t i=0 ; i<tab.getW() ; i++){
 				const Element* elem = tab.getElem(i,j);
@@ -82,16 +81,14 @@ void BoardLayer::update(const state::ElementTab& tab){
 							surface->setSpriteTexture(n, tileSet->getCellTile(*c, id) );
 							surface->setSpriteLocation(n, Tile(i*16, j*16, 16, 16) );
 						}else{
-							surface->setSpriteTexture(n, tileSet->getCellTile(Cell(), 0) );
+							if(ct==CT_SEAPORT)
+								surface->setSpriteTexture(n, tileSet->getCellTile(Cell(CT_SEA), 0) );
+							else
+								surface->setSpriteTexture(n, tileSet->getCellTile(Cell(), 0) );
 							surface->setSpriteLocation(n, Tile(i*16, j*16, 16, 16) );
 						}
 						n++ ;
-					}/*else if(tid == T_BUILDING){
-						cout << "CT_PLAIN" << endl ;
-						surface->setSpriteTexture(n, tileSet->getCellTile(Cell(), 0) );
-						surface->setSpriteLocation(n, Tile(i*16, j*16, 16, 16) );
-						n++ ;
-					}*/
+					}
 				}
 			}
 		}

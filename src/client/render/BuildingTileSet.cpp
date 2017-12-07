@@ -17,6 +17,7 @@ const Tile BuildingTileSet::getTile (int id) const{
     return Tile((id%5)*16, (id/5)*16, 16, 16);
 }
 const Tile BuildingTileSet::getBuildingTile (const state::Building& b) const{
+	//b.debug();
 	int x = (b.getCellType()-7)*32 ;
 	int y = (b.getTeam())*32 ;
 	int w = 32 ;

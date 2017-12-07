@@ -38,7 +38,7 @@ CellType* generateCellMap(int w, int h, string fname){
     do{
         int x = rand()%w ;
         int y = rand()%h ;
-        tileMap[x+y*w] = CT_CITY ;
+        tileMap[x+y*w] = generateBuilding(x, y, tileMap[x+y*w]) ;
         generateRoad(x, y, w, h, tileMap);
     }while(rand()%100 < 90);
     
@@ -67,12 +67,46 @@ CellType generateCell(){
         return CT_FOREST ;
 }
 
-void generateRoad(int x, int y, int w, int h, CellType* map){
-    do{
-        if(rand()%2 == 0)
-            x = x+ (rand()%2)*2-1;
+CellType generateBuilding(int x, int y, CellType ct){
+    int r = rand()%100 ;
+    if(ct==CT_SEA){
+        if(r<80)
+            return CT_SEAPORT ;
+        else if(r<90)
+            return CT_CITY ;
+        else if(r<97)
+            return CT_FACTORY ;
         else
-            y = y+ (rand()%2)*2-1;
+            return CT_AIRPORT ;
+    }else if(ct==CT_MOUNTAIN){
+        if(r<80)
+            return CT_AIRPORT ;
+        else if(r<96)
+            return CT_CITY ;
+        else
+            return CT_FACTORY ;
+    }else{
+        if(r<45)
+            return CT_CITY ;
+        else if(r<80)
+            return CT_FACTORY ;
+        else
+            return CT_AIRPORT ;
+    }
+}
+
+void generateRoad(int x, int y, int w, int h, CellType* map){
+    int dir = rand()%4 ;
+    int r ;
+    do{
+        r = rand()%100 ;
+        switch(dir){
+            case 0 : if(r<50) x++ ; else if(r<70) y++ ; else if(r<90) y-- ; else x-- ; break ;
+            case 1 : if(r<50) y++ ; else if(r<70) x++ ; else if(r<90) x-- ; else y-- ; break ;
+            case 2 : if(r<50) x-- ; else if(r<70) y++ ; else if(r<90) y-- ; else x++ ; break ;
+            case 3 : if(r<50) y-- ; else if(r<70) x++ ; else if(r<90) x-- ; else y++ ; break ;
+            default : break ;
+        }
             
         if(x<0 || y<0 || x>=w || y>=h)
             break;
@@ -83,7 +117,7 @@ void generateRoad(int x, int y, int w, int h, CellType* map){
             map[x+y*w]=CT_ROAD ;
     }while(rand()%100<75);
     if(rand()%100 < 75)
-        map[x+y*w] = CT_CITY ;
+        map[x+y*w] = generateBuilding(x,y,map[x+y*w]) ;
 }
 
 void saveMap(CellType *map, int w, int h, string fname){
@@ -127,13 +161,13 @@ void generateUnits(State &state){
                 if(ct==CT_MOUNTAIN || ct==CT_RIVER){
                     int ut = rand()%7;
                     if(ut>1) ut+=10 ;
-                    u = new Unit(uteam, ut, i, j);
+                    u = new Unit(uteam, ut, i, j, true);
                 }else if(ct==CT_SEA){
                     int ut = rand()%10 + 12 ;
-                    u = new Unit(uteam, ut, i, j);
+                    u = new Unit(uteam, ut, i, j, true);
                 }else{
                     int ut = rand()%17 ;
-                    u = new Unit(uteam, ut, i, j);
+                    u = new Unit(uteam, ut, i, j, true);
                 }
                 utab.addElem(u);
             }
