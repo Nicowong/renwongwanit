@@ -22,6 +22,7 @@ namespace engine {
   protected:
     state::State& currentState;
     std::vector<Command*> currentCommands;
+    bool record     = true;
     // Operations
   public:
     Engine (state::State& state);
@@ -29,12 +30,15 @@ namespace engine {
     const state::State& getState () const;
     void addCommand (Command* cmd);
     void update ();
+    void updateAll ();
     void debug () const;
     // Setters and Getters
     state::State& getCurrentState() const;
     void setCurrentState(const state::State&& currentState);
     const std::vector<Command*>& getCurrentCommands() const;
     void setCurrentCommands(const std::vector<Command*>& currentCommands);
+    bool getRecord() const;
+    void setRecord(bool record);
   };
 
 };
