@@ -72,7 +72,7 @@ void testRandom_ai(){
                 case sf::Event::Closed :    //close request
                     window.close();
                     break;
-                case sf::Event::KeyReleased :
+                case sf::Event::KeyPressed :
                     cout << "<<< tick : "<< tick << " >>>"<< endl ;
                     tick++;
 
