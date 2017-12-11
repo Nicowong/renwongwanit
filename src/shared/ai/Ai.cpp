@@ -9,5 +9,6 @@ void Ai::listCommands(std::vector<engine::Command>& list, const state::State sta
     
 }
 
-
-
+void Ai::run (engine::Engine& engine, state::Element& selected){
+    
+}

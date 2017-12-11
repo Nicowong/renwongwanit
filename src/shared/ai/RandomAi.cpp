@@ -11,13 +11,9 @@ using namespace engine;
 using namespace state;
 using namespace ai;
 
-RandomAi::RandomAi()
-{
-}
-
 void RandomAi::run(Engine& engine, Element& selected)
 {
-    Element* target;
+    Element* target = nullptr;
     ElementTab uTab = engine.getCurrentState().getUnitTab();
     ElementTab* unittab = &uTab;
     Command* cmd = nullptr;
@@ -34,7 +30,7 @@ void RandomAi::run(Engine& engine, Element& selected)
     Unit& caractor = *(Unit*)(&selected);
      
     if(!target){
-        cmd = new MoveCommand(caractor,2,2);
+        cmd = new MoveCommand(caractor,2,0);
         engine.addCommand(cmd);
     }
     

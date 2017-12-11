@@ -163,3 +163,7 @@ void testRandomAi(){
         window.display();
     }
 }
+
+void testHeuristicAI(){
+    srand(time(NULL));
+}
