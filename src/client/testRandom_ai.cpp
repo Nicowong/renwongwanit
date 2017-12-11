@@ -143,10 +143,11 @@ void testRandom_ai(){
 				    	eng.update();
 				    }
 
-                    eng.debug();
                     render.update();
 
-                    newState.turnIncr();
+                    eng.addCommand(new EndTurnCommand(newState));
+                    eng.update();
+                    render.update();
 
                     cout << "<<< tick : "<< tick << " >>>"<< endl ;
                     break ;

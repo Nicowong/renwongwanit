@@ -42,6 +42,8 @@ namespace state {
     void initCellTab (CellType* celltab);
     void dayIncr ();
     void turnIncr ();
+    void dayDecr ();
+    void turnDecr ();
     void debug () const;
     size_t countBuilding (Team player) const;
     size_t countUnit (Team player) const;

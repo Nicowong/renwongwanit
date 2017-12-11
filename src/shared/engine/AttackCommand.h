@@ -13,7 +13,6 @@ namespace engine {
 
 #include "CommandTypeId.h"
 #include "Command.h"
-#include "state/State.h"
 
 namespace engine {
 

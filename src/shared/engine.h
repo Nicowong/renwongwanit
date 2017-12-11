@@ -3,6 +3,8 @@
 #define __ENGINE__H
 
 #include "engine/CommandTypeId.h"
+#include "engine/AntiComTypeId.h"
+#include "engine/AntiCommand.h"
 #include "engine/Command.h"
 #include "engine/Engine.h"
 #include "engine/AttackCommand.h"
@@ -14,4 +16,10 @@
 #include "engine/DestroyCommand.h"
 #include "engine/LoadCommand.h"
 #include "engine/EndTurnCommand.h"
+#include "engine/CreateUnitCommand.h"
+#include "engine/AntiAttack.h"
+#include "engine/AntiMove.h"
+#include "engine/AntiDestroy.h"
+#include "engine/AntiEndTurn.h"
+#include "engine/AntiCreateUnit.h"
 #endif

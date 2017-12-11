@@ -5,11 +5,17 @@
 
 namespace state {
   class State;
+};
+namespace engine {
+  class AntiCommand;
+};
+namespace state {
   class Unit;
   class Building;
 }
 
 #include "CommandTypeId.h"
+#include "AntiCommand.h"
 #include "state/State.h"
 #include "state/Unit.h"
 #include "state/Building.h"

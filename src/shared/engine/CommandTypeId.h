@@ -15,6 +15,7 @@ namespace engine {
     COM_REPAIR     = 6,
     COM_DESTROY     = 7,
     COM_ENDTURN     = 8,
+    COM_CREATEUNIT     = 9,
     COM_NONE     = -1
   };
 
