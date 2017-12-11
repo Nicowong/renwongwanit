@@ -30,3 +30,7 @@ state::Unit& DestroyCommand::getUnit() const{
 void DestroyCommand::setUnit(const state::Unit&& unit){
     this->unit = unit;
 }
+
+void DestroyCommand::debug()const{
+    cout<< "Destroy Command" << endl ;
+}

@@ -33,3 +33,7 @@ state::State& EndTurnCommand::getState() const{
 void EndTurnCommand::setState(const state::State&& state){
 	this->state = state ;
 }
+
+void EndTurnCommand::debug()const{
+    cout<< "End Turn Command" << endl ;
+}

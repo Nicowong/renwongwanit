@@ -25,6 +25,7 @@ namespace engine {
     EndTurnCommand (state::State& state);
     CommandTypeId getCommandTypeId () const;
     void execute (state::State& state);
+    void debug () const;
     // Setters and Getters
     state::State& getState() const;
     void setState(const state::State&& state);

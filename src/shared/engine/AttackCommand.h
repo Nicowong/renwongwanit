@@ -27,6 +27,7 @@ namespace engine {
     AttackCommand (state::Unit& attacker, state::Unit& defender);
     CommandTypeId getCommandTypeId () const;
     void execute (state::State& state);
+    void debug () const;
     // Setters and Getters
     state::Unit& getAttacker() const;
     void setAttacker(const state::Unit&& attacker);

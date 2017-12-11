@@ -10,8 +10,8 @@ using namespace engine;
 using namespace state;
 using namespace ai;
 
-RandomAi::RandomAi()
-{
+RandomAi::RandomAi(state::State& state):Ai(state){
+
 }
 
 void RandomAi::run(Engine& engine, Element& selected)

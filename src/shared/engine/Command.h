@@ -29,6 +29,7 @@ namespace engine {
     virtual ~Command ();
     virtual CommandTypeId getCommandTypeId () const;
     virtual void execute (state::State& state) = 0;
+    virtual void debug () const;
     // Setters and Getters
   };
 

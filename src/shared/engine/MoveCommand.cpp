@@ -52,3 +52,9 @@ const size_t& MoveCommand::getY() const{
 void MoveCommand::setY(const size_t& y){
     this->y=y;
 }
+
+void MoveCommand::debug()const{
+    cout << "Move Command" << endl ;
+    cout << "  unit    x:" << unit.getX() << "    y:"<< unit.getY() << endl ;
+    cout << "  to        " << x << "      "<< y << endl ;
+}

@@ -83,3 +83,9 @@ void AttackCommand::execute(state::State& state){
     attacker.setMoved(true);
     attacker.setAvailable(false);
 }
+
+void AttackCommand::debug()const{
+    cout << "Attack Command" << endl ;
+    cout << "  attacker    x:" << attacker.getX() << "    y:"<< attacker.getY() << endl ;
+    cout << "  defender    x:" << defender.getX() << "    y:"<< defender.getY() << endl ;
+}
