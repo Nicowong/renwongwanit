@@ -26,7 +26,7 @@ using namespace ai ;
 
 using namespace mapGeneration;
 
-void engineHandler();
+void engineHandler(Engine& engine);
 
 void testThread(){
 	srand(time(NULL));
@@ -35,8 +35,12 @@ void testThread(){
 	generateMap(state);
 	generateUnits(state);
 
+    Engine engine(state);
+
 	Render render(state);
 	render.update();
+
+    thread thEngine(engineHandler);
 
 	sf::RenderWindow window(sf::VideoMode(WINWIDTH, WINHEIGHT), "testThread");
     while(window.isOpen()){
@@ -60,4 +64,11 @@ void testThread(){
         
         window.display();
     }
+
+    thEngine.join();
+
+}
+
+void engineHandler(Engine& engine){
+    cout << "Engine Handler is running" << endl ;
 }
