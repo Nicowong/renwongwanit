@@ -11,13 +11,10 @@ using namespace engine;
 using namespace state;
 using namespace ai;
 
-<<<<<<< HEAD
-=======
 RandomAi::RandomAi(state::State& state):Ai(state){
 
 }
 
->>>>>>> e7aef3ecf76deed18c5ded05a35ea003d65d179d
 void RandomAi::run(Engine& engine, Element& selected)
 {
     Element* target = nullptr;
