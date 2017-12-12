@@ -1,4 +1,6 @@
 #include <iostream>
+#include <ctime>
+#include <unistd.h>
 
 #include "Engine.h"
 #include "AttackCommand.h"
@@ -8,7 +10,7 @@ using namespace std ;
 using namespace engine ;
 
 Engine::Engine (state::State& state): currentState(state){
-
+		engStatus = PAUSE ;
 }
 
 Engine::~Engine (){
@@ -65,4 +67,35 @@ void Engine::debug()const{
 	if(currentCommands.size()==0)
 		cout << "empty" ;
 	cout << endl ;
+}
+
+void Engine::rollback (){
+
+}
+void Engine::rollbackAll (){
+
+}
+void Engine::run (){
+    time_t prvt, now ;
+    double dt=1.0/10.0 , dift ;
+    cout << "Engine::run" << endl ;
+	while(engStatus != QUIT){
+	    time(&now);
+	    dift = difftime(now, prvt);
+		if(dift >= dt){
+			if(engStatus == RUN && currentCommands.size()>0)
+				update();
+			else if(engStatus == RUNBACK){
+
+			}
+			//else Pause
+			time(&prvt);
+		}else{
+			usleep((int)((dt-dift)*1000000));
+		}
+	}
+	cout << "Engine quit" <<endl ;
+}
+void Engine::setStatus(EngineStatus flag){
+	engStatus = flag ;
 }

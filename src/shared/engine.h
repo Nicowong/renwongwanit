@@ -2,6 +2,7 @@
 #ifndef __ENGINE__H
 #define __ENGINE__H
 
+#include "engine/EngineStatus.h"
 #include "engine/CommandTypeId.h"
 #include "engine/AntiComTypeId.h"
 #include "engine/AntiCommand.h"

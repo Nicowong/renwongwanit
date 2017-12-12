@@ -13,6 +13,7 @@ namespace engine {
   class AntiCommand;
 }
 
+#include "EngineStatus.h"
 #include "AntiCommand.h"
 #include "Command.h"
 
@@ -24,6 +25,7 @@ namespace engine {
     // Attributes
   private:
     mutable std::mutex engineMutex;
+    volatile EngineStatus engStatus     = PAUSE;
   protected:
     state::State& currentState;
     std::vector<Command*> currentCommands;
@@ -40,6 +42,8 @@ namespace engine {
     void debug () const;
     void rollback ();
     void rollbackAll ();
+    void run ();
+    void setStatus (EngineStatus flag);
     // Setters and Getters
     state::State& getCurrentState() const;
     void setCurrentState(const state::State&& currentState);

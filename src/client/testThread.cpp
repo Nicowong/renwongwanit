@@ -30,8 +30,8 @@ using namespace ai ;
 using namespace mapGeneration;
 using namespace CommandGeneration ;
 
-void engineHandler(Engine *engine);
-bool engineQuit = false ;
+//void engineHandler(Engine *engine);
+//bool engineQuit = false ;
 
 void testThread(){
 	srand(time(NULL));
@@ -46,8 +46,6 @@ void testThread(){
 	Render render(state);
 	render.update();
 
-    thread thEngine(engineHandler, &engine);
-
     time_t prvt, now ;
 
 	sf::RenderWindow window(sf::VideoMode(WINWIDTH, WINHEIGHT), "testThread");
@@ -58,6 +56,9 @@ void testThread(){
 
     time(&prvt);
     time(&now);
+
+    thread thEng(&Engine::run, std::ref(engine));
+    engine.setStatus(RUN);
 
     while(window.isOpen()){
         //check event
@@ -86,11 +87,11 @@ void testThread(){
         }
     }
 
-    engineQuit = true ;
-    thEngine.join();
+    engine.setStatus(QUIT);
+    thEng.join();
 
 }
-
+/*
 void engineHandler(Engine* engine){
     cout << "Engine Handler is running" << endl ;
 
@@ -103,4 +104,4 @@ void engineHandler(Engine* engine){
     }
 
     cout << "Engine Handler closing" << endl ;
-}
+}*/
