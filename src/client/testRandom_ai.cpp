@@ -5,6 +5,7 @@
 
 #include "state.h"
 #include "render.h"
+#include "../shared/ai/Ai.h"
 #include "engine.h"
 #include "ai.h"
 
@@ -52,6 +53,7 @@ void testRandom_ai(){
     uBM.setTeam(PLAYER2);
     uBMGT.setTeam(PLAYER2);
     
+    RandomAi ai;
     
     for(size_t j=0 ; j<HEIGHT ; j++){
 	for(size_t i=0 ; i<WIDTH ; i++){
@@ -65,8 +67,11 @@ void testRandom_ai(){
     
     int x=0, y=0 ;
     Unit* u = nullptr ;
+    Element& selected = *(Element*) u;
+    /*
     UnitType ut = UT_NONE ;
     Command* com = nullptr ;
+    
     int mvRg = 0 ;
     int x2=0, y2=0 ;
     int dist = 0 ;
@@ -77,6 +82,7 @@ void testRandom_ai(){
     size_t imin = 0, imax = 0 ;
     size_t jmin = 0, jmax = 0 ;
     size_t j=0, i=0 ;
+    */
 
     sf::RenderWindow window(sf::VideoMode(WINWIDTH, WINHEIGHT), "My window - test sprite");
     while(window.isOpen()){
@@ -89,24 +95,30 @@ void testRandom_ai(){
                     window.close();
                     break;
                 case sf::Event::KeyPressed :
-                    cout << "<<< tick : "<< tick << " >>>"<< endl ;
-                    tick++;
+			cout << "<<< tick : "<< tick << " >>>"<< endl ;
+			tick++;
 
-                    cout << "choosing an unit"<<endl ;
-                    x=rand()%WIDTH ;
-                    y=rand()%HEIGHT ;
-                    u = (Unit*) Utab.getElem(x, y);
-                    while(u==nullptr || u->getTeam()!=newState.getTurn()){
-                    	x++ ;
-                    	if(x==WIDTH){
-                    		x = 0 ;
+		    //select an unit 
+			cout << "choosing an unit"<<endl ;
+			x=rand()%WIDTH ;
+			y=rand()%HEIGHT ;
+			u = (Unit*) Utab.getElem(x, y);
+			while(u==nullptr || u->getTeam()!=newState.getTurn()){
+			    x++ ;
+			    if(x==WIDTH){
+				x = 0 ;
                     		y++;
-                    	}
-                    	if(y==HEIGHT)
-                    		y=0;
-
-                    	u = (Unit*) Utab.getElem(x, y);
-                    }
+			    }
+			    if(y==HEIGHT)
+				y=0;
+			    u = (Unit*) Utab.getElem(x, y);
+			    selected = *(Element*) u;
+			    
+			}
+			
+			
+			ai.run(eng,selected);
+                    /*
                     cout << "moving unit "<< endl ;
                     ut = u->getUnitType();
                     mvRg = moveRangeRule[ut];
@@ -158,17 +170,18 @@ void testRandom_ai(){
 			eng.addCommand(attack);
 			eng.update();
 		    }
+		    */
 
-                    eng.debug();
-                    render.update();
+			eng.debug();
+			render.update();
 
-                    newState.turnIncr();
+			newState.turnIncr();
 
-                    cout << "<<< tick : "<< tick << " >>>"<< endl ;
-                    break ;
+			cout << "<<< tick : "<< tick << " >>>"<< endl ;
+			break ;
 
                 default :
-                    break;
+			break;
             }
         }
         
