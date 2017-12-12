@@ -19,6 +19,12 @@ namespace mapGeneration{
     int* loadMap(string fname="level.txt");
     void generateMap(State &state);
     void generateUnits(State &state);
+
+/*====== CONSTANT MAP GENERATED FOR COMMAND TESTS ======*/
+
+    CellType* generateTestMap(int w, int h, string fname = "level.txt");
+	void generateTestMap(State &state);
+	void generateTestUnits(State &state);
 };
 
 #endif 
