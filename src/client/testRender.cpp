@@ -20,6 +20,9 @@ using namespace render ;
 using namespace mapGeneration ;
 
 void testRender(int mode, string fname){
+
+    sf::RenderWindow window(sf::VideoMode(WINWIDTH, WINHEIGHT), "My window - test sprite");
+
     srand(time(NULL));
     State state(WIDTH, HEIGHT);
     
@@ -36,7 +39,6 @@ void testRender(int mode, string fname){
 
     cout << "<<Opening window>>" << endl ;
 
-    sf::RenderWindow window(sf::VideoMode(WINWIDTH, WINHEIGHT), "My window - test sprite");
     while(window.isOpen()){
         //check event
         sf::Event event ;

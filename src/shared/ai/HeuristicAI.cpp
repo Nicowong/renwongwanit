@@ -23,11 +23,11 @@ void HeuristicAI::run(Engine& engine, Element& selected)
     std::vector<Position> unitpositiontab= unitMap.getPositiontab();
     std::vector<int> buildingdistancetab= cellMap.getDistancetab();
     std::vector<Position> buildingpositiontab= cellMap.getPositiontab();
-    
+   
     ElementTab unitTab =  engine.getCurrentState().getUnitTab();
     ElementTab buildingTab = engine.getCurrentState().getCellTab();
     
-    // chercher l'element le plus proche a element original
+    // chercher l'unit le plus proche que l'element original
     int min_ui=0,min_uv=unitdistancetab[1];
     for(size_t i=0;i<sizeof(unitdistancetab);i++){
         if(unitdistancetab[i]<min_uv){
@@ -35,6 +35,8 @@ void HeuristicAI::run(Engine& engine, Element& selected)
             min_uv=unitdistancetab[i];
         }
     }
+    
+    //chercher le batiment le plue proche que l'element original
     int min_bi=0,min_bv=buildingdistancetab[1];
     for(size_t i=0;i<sizeof(buildingdistancetab);i++){
         if(buildingdistancetab[i]<min_bv){
@@ -42,8 +44,10 @@ void HeuristicAI::run(Engine& engine, Element& selected)
             min_bv=unitdistancetab[i];
         }
     }
+    
     ElementTab* uTab = &unitTab;
     ElementTab* bTab = &buildingTab;
+    
     Element* uTarget= uTab->getElem(unitpositiontab[min_ui].getX(),
                                         unitpositiontab[min_ui].getY());
     Element* bTarget= bTab->getElem(buildingpositiontab[min_bi].getX(),
