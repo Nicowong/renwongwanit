@@ -24,7 +24,7 @@ using namespace ai ;
 
 using namespace mapGeneration;
 
-void testHeuristic_ai(){
+void testHeuristic_ai(){/*
 	srand(time(NULL));
 
 	State state(WIDTH, HEIGHT);
@@ -71,5 +71,5 @@ void testHeuristic_ai(){
         render.draw(window);
         
         window.display();
-    }
+    }*/
 }

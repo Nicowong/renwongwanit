@@ -29,6 +29,7 @@ namespace ai {
   class RandomAi : public ai::Ai {
     // Operations
   public:
+    RandomAi ();
     RandomAi (state::State& state);
     void run (engine::Engine& engine, state::Element& selected);
     // Setters and Getters

@@ -17,8 +17,8 @@ namespace engine {
   class Engine;
 }
 
-#include "state/State.h"
 #include "engine/Command.h"
+#include "state/State.h"
 #include "engine/Engine.h"
 
 namespace ai {
@@ -26,16 +26,15 @@ namespace ai {
   /// class Ai - 
   class Ai {
     // Attributes
-  protected:
+  public:
     state::State& state;
     // Operations
   public:
+    Ai ( );
     Ai (state::State& state);
-    void listCommands (std::vector<engine::Command*>& list, state::Element& selected);
+    void listCommands (std::vector<engine::Command>& list, const state::State state, state::Element& selected);
     virtual void run (engine::Engine& engine, state::Element& selected) = 0;
     // Setters and Getters
-    state::State& getState() const;
-    void setState(const state::State&& state);
   };
 
 };

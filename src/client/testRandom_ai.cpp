@@ -53,7 +53,7 @@ void testRandom_ai(){
     uBM.setTeam(PLAYER2);
     uBMGT.setTeam(PLAYER2);
     
-    RandomAi ai;
+    RandomAi ai(newState);
     
     for(size_t j=0 ; j<HEIGHT ; j++){
 	for(size_t i=0 ; i<WIDTH ; i++){
