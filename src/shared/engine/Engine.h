@@ -2,6 +2,7 @@
 #ifndef ENGINE__ENGINE__H
 #define ENGINE__ENGINE__H
 
+#include <mutex>
 #include <vector>
 
 namespace state {
@@ -9,8 +10,10 @@ namespace state {
 };
 namespace engine {
   class Command;
+  class AntiCommand;
 }
 
+#include "AntiCommand.h"
 #include "Command.h"
 
 namespace engine {
@@ -19,10 +22,13 @@ namespace engine {
   class Engine {
     // Associations
     // Attributes
+  private:
+    mutable std::mutex engineMutex;
   protected:
     state::State& currentState;
     std::vector<Command*> currentCommands;
     bool record     = true;
+    std::vector<AntiCommand*> antiCommands;
     // Operations
   public:
     Engine (state::State& state);
@@ -32,6 +38,8 @@ namespace engine {
     void update ();
     void updateAll ();
     void debug () const;
+    void rollback ();
+    void rollbackAll ();
     // Setters and Getters
     state::State& getCurrentState() const;
     void setCurrentState(const state::State&& currentState);
@@ -39,6 +47,8 @@ namespace engine {
     void setCurrentCommands(const std::vector<Command*>& currentCommands);
     bool getRecord() const;
     void setRecord(bool record);
+    const std::vector<AntiCommand*>& getAntiCommands() const;
+    void setAntiCommands(const std::vector<AntiCommand*>& antiCommands);
   };
 
 };

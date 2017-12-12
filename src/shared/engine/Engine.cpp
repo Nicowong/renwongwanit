@@ -18,9 +18,11 @@ const state::State& Engine::getState () const{
 	return currentState ;
 }
 void Engine::addCommand (Command* cmd){
+	lock_guard<mutex> lockg(engineMutex);
 	currentCommands.push_back(cmd);
 }
 void Engine::update(){
+	lock_guard<mutex> lockg(engineMutex);
 	if(currentCommands.size()>0){
 		Command* c = currentCommands[0];
 		c->execute(currentState);

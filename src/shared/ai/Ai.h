@@ -4,30 +4,38 @@
 
 #include <vector>
 
+namespace state {
+  class State;
+};
 namespace engine {
   class Command;
 };
 namespace state {
-  class State;
   class Element;
 };
 namespace engine {
   class Engine;
 }
 
-#include "engine/Command.h"
 #include "state/State.h"
+#include "engine/Command.h"
 #include "engine/Engine.h"
 
 namespace ai {
 
   /// class Ai - 
   class Ai {
+    // Attributes
+  protected:
+    state::State& state;
     // Operations
   public:
-    void listCommands (std::vector<engine::Command>& list, const state::State state, state::Element& selected);
+    Ai (state::State& state);
+    void listCommands (std::vector<engine::Command*>& list, state::Element& selected);
     virtual void run (engine::Engine& engine, state::Element& selected) = 0;
     // Setters and Getters
+    state::State& getState() const;
+    void setState(const state::State&& state);
   };
 
 };

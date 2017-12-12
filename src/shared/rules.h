@@ -30,5 +30,6 @@ extern const int dmgRule[22*22];
 extern const int maxRangeRule[22];
 extern const int minRangeRule[22];
 extern const int moveRangeRule[22];
+extern const int moveValRule[22*8];
 
 #endif

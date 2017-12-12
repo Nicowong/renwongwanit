@@ -94,11 +94,11 @@ void StatusLayer::update(const state::State& state){
 	tx = 0 ;
 	ty = state.getH()*16+10;
 	if(state.getTurn()==PLAYER1){
-		cout << "--"<<"TURN : Player 1\n" ;
+		//cout << "--"<<"TURN : Player 1\n" ;
 		print(tx, ty, "TURN : Player 1");//\n");
 	}
 	else{
-		cout << "--"<<"TURN : Player 2\n" ;
+		//cout << "--"<<"TURN : Player 2\n" ;
 		print(tx, ty, "TURN : Player 2");//\n");
 	}
 

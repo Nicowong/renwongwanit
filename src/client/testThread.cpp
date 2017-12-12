@@ -1,0 +1,106 @@
+#include <iostream>
+#include <thread>
+#include <mutex>
+#include <cstdlib>
+#include <SFML/Graphics.hpp>
+#include <unistd.h>
+#include <ctime>
+//#include <fstream>
+
+#include "state.h"
+#include "render.h"
+#include "engine.h"
+#include "ai.h"
+
+#include "mapGeneration.h"
+#include "CommandGeneration.h"
+
+#define WIDTH 16
+#define HEIGHT 12
+#define WINWIDTH WIDTH*16
+#define WINHEIGHT HEIGHT*16+64
+#define RDMAPGENITER 6000
+
+using namespace std ;
+using namespace state ;
+using namespace render ;
+using namespace engine ;
+using namespace ai ;
+
+using namespace mapGeneration;
+using namespace CommandGeneration ;
+
+void engineHandler(Engine *engine);
+bool engineQuit = false ;
+
+void testThread(){
+	srand(time(NULL));
+	State state(WIDTH, HEIGHT);
+
+	generateTestMap(state);
+	generateTestUnits(state);
+
+    Engine engine(state);
+    generateCommand(engine);
+
+	Render render(state);
+	render.update();
+
+    thread thEngine(engineHandler, &engine);
+
+    time_t prvt, now ;
+
+	sf::RenderWindow window(sf::VideoMode(WINWIDTH, WINHEIGHT), "testThread");
+    render.update();
+    window.clear();
+    render.draw(window);
+    window.display();
+
+    time(&prvt);
+    time(&now);
+
+    while(window.isOpen()){
+        //check event
+        sf::Event event ;
+        while(window.pollEvent(event)){
+//---POLLEVENT LOOP
+            switch(event.type){
+                case sf::Event::Closed :    //close request
+                    window.close();
+                    break;
+                default :
+                    break;
+            }
+//---END POLLEVENT LOOP
+        }
+
+        time(&now);
+        if(difftime(now, prvt) > 1.0/60.0){
+            
+            render.update();
+            window.clear();
+            render.draw(window);
+            window.display();
+            time(&prvt);
+            
+        }
+    }
+
+    engineQuit = true ;
+    thEngine.join();
+
+}
+
+void engineHandler(Engine* engine){
+    cout << "Engine Handler is running" << endl ;
+
+    while(!engineQuit){
+        //cout << "Engine Handler in while ..." << endl ;
+        usleep(1000000/2);
+
+        engine->update();
+
+    }
+
+    cout << "Engine Handler closing" << endl ;
+}

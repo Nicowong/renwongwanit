@@ -23,6 +23,7 @@ void testRender(int mode=0, string fname="level.txt");
 void testEngine();
 void testRandom_ai();
 void testHeuristic_ai();
+void testThread();
 
 /*--- Fonction main ---*/
 
@@ -34,15 +35,15 @@ int main(int argc,char* argv[]) {
         std::cout << "argc = " << argc << " ; argv[" << i << "]: " << argv[i] << std::endl<<std::endl ;
     
     //commandes pour les tests unitaires
-    // --- test hello
+// --- test hello
     if(std::string(argv[1])=="hello"){
         testHello();
     }
-    // --- test state
+// --- test state
     else if(std::string(argv[1])=="state"){
         testState();
     }
-    //--- RENDER pour les tests de rendus
+//--- RENDER pour les tests de rendus
     else if(std::string(argv[1])=="render"){
         int mode ;
         string fname ;
@@ -56,23 +57,27 @@ int main(int argc,char* argv[]) {
             fname = "level.txt";
     
         testRender(mode, fname);
-    //--- ENGINE pour les tests de moteur
+//--- ENGINE pour les tests de moteur
     }else if(string(argv[1])=="engine"){
         testEngine();
-    //--- AI pour les test d'ai
+//--- AI pour les test d'ai
     }else if(string(argv[1])=="random_ai"){
         testRandom_ai();
-    //Pas de commande
     }else if(string(argv[1])=="heuristic_ai"){
         testHeuristic_ai();
-    //Pas de commande
+//--- Thread
+    }else if(string(argv[1])=="thread"){
+        testThread();
+//--- Pas de commande
     }else{
         std::cout << "-- Error : command not found. --" << std::endl ;
         std::cout << "> Available commands : " << std::endl ;
-        cout << "hello  test print 'Hello'" << endl ;
-        cout << "state  test state classes" << endl ;
-        cout << "engine test engine classes" << endl ;
-        cout << "ai     test ai classes" << endl ;
+        cout << "hello          test print 'Hello'" << endl ;
+        cout << "state          test state classes" << endl ;
+        cout << "engine         test engine classes" << endl ;
+        cout << "random_ai      test random ai classes" << endl ;
+        cout << "heuristic_ai   test heuristic ai classes" << endl ;
+        cout << "thread         test thread" << endl ;
     }
     
     std::cout << endl ;

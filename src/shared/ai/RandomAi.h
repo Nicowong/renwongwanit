@@ -3,6 +3,9 @@
 #define AI__RANDOMAI__H
 
 
+namespace state {
+  class State;
+};
 namespace engine {
   class Engine;
 };
@@ -14,9 +17,6 @@ namespace ai {
 };
 namespace engine {
   class Command;
-};
-namespace state {
-  class State;
 }
 
 #include "Ai.h"
@@ -29,7 +29,7 @@ namespace ai {
   class RandomAi : public ai::Ai {
     // Operations
   public:
-    RandomAi ();
+    RandomAi (state::State& state);
     void run (engine::Engine& engine, state::Element& selected);
     // Setters and Getters
   };

@@ -13,7 +13,6 @@ namespace engine {
 
 #include "CommandTypeId.h"
 #include "Command.h"
-#include "state/State.h"
 
 namespace engine {
 
@@ -28,6 +27,7 @@ namespace engine {
     AttackCommand (state::Unit& attacker, state::Unit& defender);
     CommandTypeId getCommandTypeId () const;
     void execute (state::State& state);
+    void debug () const;
     // Setters and Getters
     state::Unit& getAttacker() const;
     void setAttacker(const state::Unit&& attacker);

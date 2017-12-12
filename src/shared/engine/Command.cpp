@@ -26,3 +26,7 @@ void Command::execute(state::State& state){
     else
     	cout<< "error : Command::execute()";
 }
+
+void Command::debug()const{
+	cout << "Command::debug()" << endl ;
+}

@@ -29,6 +29,7 @@ namespace engine {
     MoveCommand (state::Unit& unit, size_t x, size_t y);
     CommandTypeId getCommandTypeId ( ) const;
     void execute (state::State& state);
+    void debug () const;
     // Setters and Getters
     state::Unit& getUnit() const;
     void setUnit(const state::Unit&& unit);

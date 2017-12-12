@@ -26,6 +26,7 @@ namespace engine {
     DestroyCommand (state::Unit& unit);
     CommandTypeId getCommandTypeId () const;
     void execute (state::State& state);
+    void debug () const;
     // Setters and Getters
     state::Unit& getUnit() const;
     void setUnit(const state::Unit&& unit);

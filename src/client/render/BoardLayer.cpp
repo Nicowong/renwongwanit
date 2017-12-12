@@ -84,7 +84,7 @@ void BoardLayer::update(const state::ElementTab& tab){
 							if(ct==CT_SEAPORT)
 								surface->setSpriteTexture(n, tileSet->getCellTile(Cell(CT_SEA), 0) );
 							else
-								surface->setSpriteTexture(n, tileSet->getCellTile(Cell(), 0) );
+								surface->setSpriteTexture(n, tileSet->getCellTile(Cell(CT_PLAIN), 0) );
 							surface->setSpriteLocation(n, Tile(i*16, j*16, 16, 16) );
 						}
 						n++ ;
