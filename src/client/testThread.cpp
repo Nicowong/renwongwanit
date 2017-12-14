@@ -49,16 +49,17 @@ void testThread(){
     time_t prvt, now ;
 
 	sf::RenderWindow window(sf::VideoMode(WINWIDTH, WINHEIGHT), "testThread");
-    render.update();
-    window.clear();
-    render.draw(window);
-    window.display();
 
     time(&prvt);
     time(&now);
 
     thread thEng(&Engine::run, std::ref(engine));
     engine.setStatus(RUN);
+    
+    render.update();
+    window.clear();
+    render.draw(window);
+    window.display();
 
     while(window.isOpen()){
         //check event

@@ -34,6 +34,8 @@ int main(int argc,char* argv[]) {
     for(int i=0 ; i<argc ; i++)
         std::cout << "argc = " << argc << " ; argv[" << i << "]: " << argv[i] << std::endl<<std::endl ;
     
+    if(argc<2)
+        return 2 ;
     //commandes pour les tests unitaires
 // --- test hello
     if(std::string(argv[1])=="hello"){

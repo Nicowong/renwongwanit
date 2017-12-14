@@ -24,6 +24,8 @@ int main(int argc,char* argv[]) {
     for(int i=0 ; i<argc ; i++)
         std::cout << "argc = " << argc << " ; argv[" << i << "]: " << argv[i] << std::endl<<std::endl ;
     
+    if(argc<2)
+        return 2;
     //commandes pour les tests unitaires
     // --- test hello
     if(std::string(argv[1])=="hello"){
@@ -33,22 +35,6 @@ int main(int argc,char* argv[]) {
     else if(std::string(argv[1])=="state"){
         testState();
     }
-    //--- RENDER pour les tests de rendus
-    /*else if(std::string(argv[1])=="render"){
-        int mode ;
-        string fname ;
-        if(argc>2 && (string)argv[2]=="load")
-            mode = 1 ;
-        else
-            mode = 0 ;
-        if(argc>3)
-            fname = argv[3];
-        else
-            fname = "level.txt";
-    
-        testRender(mode, fname);
-    //--- ENGINE pour les tests de moteur
-    }*/
     else if(string(argv[1])=="engine"){
         testEngine();
     //--- AI pour les test d'ai
@@ -57,6 +43,9 @@ int main(int argc,char* argv[]) {
     //Pas de commande
     }else if(string(argv[1])=="heuristic_ai"){
         testHeuristic_ai();
+    }else if(string(argv[1])=="record"){
+        testJson();
+
     //Pas de commande
     }else{
         std::cout << "Error : command not found." << std::endl ;
