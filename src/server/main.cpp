@@ -14,6 +14,7 @@ void testState();
 void testEngine();
 void testRandom_ai();
 void testHeuristic_ai();
+void testJson();
 
 /*--- Fonction main ---*/
 
