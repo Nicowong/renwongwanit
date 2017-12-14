@@ -26,7 +26,6 @@ namespace engine {
   private:
     mutable std::mutex engineMutex;
     volatile EngineStatus engStatus     = PAUSE;
-    std::ofstream ofs;
   protected:
     state::State& currentState;
     std::vector<Command*> currentCommands;

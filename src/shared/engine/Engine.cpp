@@ -16,14 +16,10 @@ using namespace engine ;
 
 Engine::Engine (state::State& state, bool rec): currentState(state), record(rec){
 		engStatus = PAUSE ;
-		if(record){
-			ofs.open("replay.txt", ofstream::out | ofstream::trunc);
-		}
 }
 
 Engine::~Engine (){
 	currentCommands.clear();
-	ofs.close();
 }
 const state::State& Engine::getState () const{
 	return currentState ;
@@ -35,19 +31,9 @@ void Engine::addCommand (Command* cmd){
 void Engine::update(){
 	lock_guard<mutex> lockg(engineMutex);
 	if(currentCommands.size()>0){
-		Command* com = currentCommands[0];
-		Json::StyledStreamWriter writer;
-		Json::Value root ;
+		Command* c = currentCommands[0];
 	// attack type command
-		if(com->getCommandTypeId() == COM_ATTACK){
-			AttackCommand* c = (AttackCommand*)com ;
-
-			root["CommandType"]   = "COM_ATTACK";
-			root["Attacker"]["x"] = c->getAttacker().getX();
-			root["Attacker"]["y"] = c->getAttacker().getY();
-			root["Defender"]["x"] = c->getDefender().getX();
-			root["Defender"]["y"] = c->getDefender().getY();
-
+		if(c->getCommandTypeId() == COM_ATTACK){
 			c->execute(currentState);
 			//counter attack
 			AttackCommand* ac = (AttackCommand*)c ;
@@ -61,21 +47,13 @@ void Engine::update(){
 				delete d ;
 			}
 	// move type command
-		}else if(com->getCommandTypeId() == COM_MOVE){
-			MoveCommand* c = (MoveCommand*)com ;
-
-			root["CommandType"]   = "COM_MOVE";
-			root["Unit"]["x"] = c->getUnit().getX();
-			root["Unit"]["y"] = c->getUnit().getY();
-			root["x"] = c->getX();
-			root["y"] = c->getY();
+		}else if(c->getCommandTypeId() == COM_MOVE){
 			c->execute(currentState);
 	// end turn type command
-		}else if(com->getCommandTypeId() == COM_ENDTURN){
-			root["CommandType"]   = "COM_ENDTURN";
-			com->execute(currentState);
+		}else if(c->getCommandTypeId() == COM_ENDTURN){
+			c->execute(currentState);
 		}else{
-			com->execute(currentState);
+			c->execute(currentState);
 		}
 
 		currentCommands.erase(currentCommands.begin());
@@ -116,13 +94,52 @@ void Engine::rollbackAll (){
 void Engine::run (){
     time_t prvt, now ;
     double dt=1.0/10.0 , dift ;
+
+    ofstream ofs;
+    if(record)
+    	ofs.open("replay.txt", ofstream::out | ofstream::trunc);
+    
+	Json::StyledStreamWriter writer;
+
     cout << "Engine::run" << endl ;
 	while(engStatus != QUIT){
 	    time(&now);
 	    dift = difftime(now, prvt);
 		if(dift >= dt){
-			if(engStatus == RUN && currentCommands.size()>0)
+			if(engStatus == RUN && currentCommands.size()>0){
+				Json::Value root ;
+				Command *com = currentCommands[0];
+				switch(com->getCommandTypeId()){
+					case COM_ATTACK :
+					{
+						AttackCommand *ac = (AttackCommand*)com ;
+						root["CommandType"]   = "COM_ATTACK";
+						root["Attacker"]["x"] = ac->getAttacker().getX();
+						root["Attacker"]["y"] = ac->getAttacker().getY();
+						root["Defender"]["x"] = ac->getDefender().getX();
+						root["Defender"]["y"] = ac->getDefender().getY();
+					}
+						break ;
+					case COM_MOVE :
+					{
+						MoveCommand* mc = (MoveCommand*)com ;
+						root["CommandType"]   = "COM_MOVE";
+						root["Unit"]["x"] = mc->getUnit().getX();
+						root["Unit"]["y"] = mc->getUnit().getY();
+						root["x"] = mc->getX();
+						root["y"] = mc->getY();
+					}
+						break ;
+					case COM_ENDTURN :
+						root["CommandType"]   = "COM_ENDTURN";
+						break ;
+					default :
+						break ;
+				}
+				writer.write(ofs, root);
+
 				update();
+			}
 			else if(engStatus == RUNBACK){
 
 			}
@@ -132,6 +149,8 @@ void Engine::run (){
 			usleep((int)((dt-dift)*1000000));
 		}
 	}
+
+	ofs.close();
 	cout << "Engine quit" <<endl ;
 }
 void Engine::setStatus(EngineStatus flag){

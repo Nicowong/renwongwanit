@@ -1,5 +1,6 @@
 #include <iostream>
 #include <fstream>
+#include <thread>
 #include "state.h"
 #include "engine.h"
 #include "json/json.h"
@@ -17,7 +18,60 @@ using namespace CommandGeneration ;
 
 #define WIDTH 10
 #define HEIGHT 10
+#define WINWIDTH WIDTH*16
+#define WINHEIGHT HEIGHT*16+64
+#define RDMAPGENITER 6000
 
+using namespace std ;
+using namespace state ;
+using namespace engine ;
+
+using namespace mapGeneration;
+using namespace CommandGeneration ;
+
+//void engineHandler(Engine *engine);
+//bool engineQuit = false ;
+
+void testRecord(){
+	srand(time(NULL));
+	State state(WIDTH, HEIGHT);
+
+	generateTestMap(state);
+	generateTestUnits(state);
+
+    Engine engine(state);
+    generateCommand(engine);
+
+    //create a thread for engine. The engine starts in STOP mode
+    thread thEng(&Engine::run, std::ref(engine));
+
+    // set the engine in RUN mode. Run the engine until another setStatus(PAUSE or QUIT)
+    // Json is written
+    engine.setStatus(RUN);
+
+    //quit the engine
+    engine.setStatus(QUIT);
+
+    // join engine thread
+    thEng.join();
+}
+/*
+void engineHandler(Engine* engine){
+    cout << "Engine Handler is running" << endl ;
+
+    while(!engineQuit){
+        //cout << "Engine Handler in while ..." << endl ;
+        usleep(1000000/2);
+
+        engine->update();
+
+    }
+
+    cout << "Engine Handler closing" << endl ;
+}*/
+
+
+/*
 void testRecord(){
 	srand(time(NULL));
 	State state(WIDTH, HEIGHT);
@@ -34,20 +88,7 @@ void testRecord(){
     cout << "encoding : " << encoding << endl ;
 
     const Json::Value plugins = root["plug-ins"];
-/*	for ( int index = 0; index < plugins.size(); ++index )  // Iterates over the sequence elements.
-	   loadPlugIn( plugins[index].asString() );
-	   
-	setIndentLength( root["indent"].get("length", 4).asInt() );
-	setIndentUseSpace( root["indent"].get("use_space", true).asBool() );
 
-	// ...
-	// At application shutdown to make the new configuration document:
-	// Since Json::Value has implicit constructor for all value types, it is not
-	// necessary to explicitly construct the Json::Value object:
-	root["encoding"] = getCurrentEncoding();
-	root["indent"]["length"] = getCurrentIndentLength();
-	root["indent"]["use_space"] = getCurrentIndentUseSpace();
-*/
 	Json::StyledStreamWriter writer;
 	// Make a new JSON document for the configuration. Preserve original comments.
 
@@ -69,4 +110,4 @@ void testRecord(){
 
 	ofs.close();
 
-}
+}*/
