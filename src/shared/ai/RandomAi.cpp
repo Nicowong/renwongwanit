@@ -21,10 +21,9 @@ void RandomAi::run(Engine& engine, Element& selected)
     ElementTab uTab = engine.getCurrentState().getUnitTab();
     ElementTab* unittab = &uTab;
     Command* cmd = nullptr;
-    size_t x;
-    size_t y;
-    x = selected.getX();
-    y = selected.getY();
+    
+    size_t x = selected.getX();
+    size_t y = selected.getY();
     
     for (size_t i=x-2;i<x+2;i++){
       for (size_t j = y-2;j<y+2;j++){
