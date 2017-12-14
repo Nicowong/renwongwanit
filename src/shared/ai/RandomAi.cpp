@@ -6,6 +6,7 @@
 #include "engine/DestroyCommand.h"
 #include "engine/SupplyCommand.h"
 #include "engine/RepairCommand.h"
+#include "engine/SelectCommand.h"
 
 using namespace engine;
 using namespace state;
@@ -18,17 +19,20 @@ RandomAi::RandomAi(state::State& state):Ai(state){
 void RandomAi::run(Engine& engine, Element& selected)
 {
     Element* target = nullptr;
-    ElementTab uTab = engine.getCurrentState().getUnitTab();
-    ElementTab* unittab = &uTab;
+    ElementTab& unitTab = state.getUnitTab();
     Command* cmd = nullptr;
     size_t x;
     size_t y;
     x = selected.getX();
     y = selected.getY();
     
+    cmd = new SelectCommand(selected);
+    engine.addCommand(cmd);
+    engine.update();
+    
     for (size_t i=x-2;i<x+2;i++){
       for (size_t j = y-2;j<y+2;j++){
-	  target=unittab->getElem(i,j);
+	  target=unitTab.getElem(i,j);
       }
     }
     Unit& caractor = *(Unit*)(&selected);

@@ -3,15 +3,15 @@
 #include <SFML/Graphics.hpp>
 //#include <fstream>
 
-#include "state.h"
+#include "../shared/state.h"
 #include "render.h"
 #include "../shared/ai/Ai.h"
-#include "engine.h"
-#include "ai.h"
+#include "../shared/engine.h"
+#include "../shared/ai.h"
 
-#include "rules.h"
+#include "../shared/rules.h"
 
-#include "mapGeneration.h"
+#include "../shared/mapGeneration.h"
 
 #define WIDTH 10
 #define HEIGHT 10
@@ -27,7 +27,7 @@ using namespace mapGeneration;
 
 void testRandom_ai(){
     srand(time(NULL));
-    int tick=0;
+    int tick=1;
 
     State newState(WIDTH, HEIGHT);
     generateMap(newState);
@@ -38,21 +38,6 @@ void testRandom_ai(){
     
     ElementTab& Utab = newState.getUnitTab();
 
- 
-    Unit& uRI   = *(Unit*)(eng.getCurrentState().getUnitTab().getElem(1,0));
-    Unit& uRR   = *(Unit*)(eng.getCurrentState().getUnitTab().getElem(0,1));
-    Unit& uRML  = *(Unit*)(eng.getCurrentState().getUnitTab().getElem(0,4));
-    Unit& uBT   = *(Unit*)(eng.getCurrentState().getUnitTab().getElem(5,2));
-    Unit& uBM   = *(Unit*)(eng.getCurrentState().getUnitTab().getElem(4,3));
-    Unit& uBMGT = *(Unit*)(eng.getCurrentState().getUnitTab().getElem(3,4));
-    
-    uRI.setTeam(PLAYER1);
-    uRR.setTeam(PLAYER1);
-    uRML.setTeam(PLAYER1);
-    uBT.setTeam(PLAYER2);
-    uBM.setTeam(PLAYER2);
-    uBMGT.setTeam(PLAYER2);
-    
     RandomAi ai(newState);
     
     for(size_t j=0 ; j<HEIGHT ; j++){
@@ -112,11 +97,13 @@ void testRandom_ai(){
 			    if(y==HEIGHT)
 				y=0;
 			    u = (Unit*) Utab.getElem(x, y);
-			    selected = *(Element*) u;
+			  
 			    
 			}
-			
-			
+			cout <<"chosed :";
+			u->debug();
+			cout<<endl;
+			selected = *(Element*) u;
 			ai.run(eng,selected);
                     /*
                     cout << "moving unit "<< endl ;
