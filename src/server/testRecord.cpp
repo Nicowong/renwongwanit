@@ -39,7 +39,7 @@ void testRecord(){
 	generateTestMap(state);
 	generateTestUnits(state);
 
-    Engine engine(state);
+    Engine engine(state, true);
     generateCommand(engine);
 
     //create a thread for engine. The engine starts in STOP mode
@@ -48,6 +48,8 @@ void testRecord(){
     // set the engine in RUN mode. Run the engine until another setStatus(PAUSE or QUIT)
     // Json is written
     engine.setStatus(RUN);
+
+    while(engine.getCurrentCommands().size()>0);
 
     //quit the engine
     engine.setStatus(QUIT);
