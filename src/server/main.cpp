@@ -14,6 +14,7 @@ void testState();
 void testEngine();
 void testRandom_ai();
 void testHeuristic_ai();
+void testRecord();
 
 /*--- Fonction main ---*/
 
@@ -44,7 +45,7 @@ int main(int argc,char* argv[]) {
     }else if(string(argv[1])=="heuristic_ai"){
         testHeuristic_ai();
     }else if(string(argv[1])=="record"){
-        testJson();
+        testRecord();
 
     //Pas de commande
     }else{
