@@ -106,8 +106,11 @@ void Engine::run (){
 		    time(&now);
 		    dift = difftime(now, prvt);
 			if(dift >= dt){
-				if(engStatus == RUN && currentCommands.size()>0)
+				if(engStatus == RUN && currentCommands.size()>0){
+					//cout <<"-engUpd-" ;
+					//currentCommands[0]->debug();
 					update();
+				}
 				else if(engStatus == RUNBACK){}
 				//else Pause
 				time(&prvt);

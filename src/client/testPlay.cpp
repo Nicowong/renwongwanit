@@ -79,10 +79,10 @@ void testPlay(){
         string scom = root["com"][ncom]["CommandType"].asString();
         if(scom == "COM_ATTACK"){
             size_t ax = root["com"][ncom]["Attacker"]["x"].asUInt(), ay = root["com"][ncom]["Attacker"]["y"].asUInt();
-            Unit& a = *(Unit*)utab.getElem(ax, ay);
+            Unit* a = (Unit*)utab.getElem(ax, ay);
             size_t dx = root["com"][ncom]["Defender"]["x"].asUInt(), dy = root["com"][ncom]["Defender"]["y"].asUInt();
-            Unit& d = *(Unit*)utab.getElem(dx, dy);
-            com = new AttackCommand(a,d);
+            Unit* d = (Unit*)utab.getElem(dx, dy);
+            com = new AttackCommand(*a,*d);
         }else if(scom == "COM_MOVE"){
             size_t x = root["com"][ncom]["Unit"]["x"].asUInt(), y = root["com"][ncom]["Unit"]["y"].asUInt();
             Unit& u = *(Unit*)utab.getElem(x, y);
@@ -91,7 +91,7 @@ void testPlay(){
         }else if(scom == "COM_ENDTURN"){
             com = new EndTurnCommand(state);
         }else{
-            cout << "error" << endl ;
+            cout << "in TestPlay, error : no Command" << endl ;
             break ;
         }
         engine.addCommand(com);
