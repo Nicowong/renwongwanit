@@ -27,7 +27,10 @@ const state::State& Engine::getState () const{
 }
 void Engine::addCommand (Command* cmd){
 	lock_guard<mutex> lockg(engineMutex);
-	currentCommands.push_back(cmd);
+	if(cmd!=nullptr)
+		currentCommands.push_back(cmd);
+	else
+		cout << "Engine::addCommand error : nullptr"<< endl ;
 }
 void Engine::update(){
 	lock_guard<mutex> lockg(engineMutex);
@@ -150,9 +153,9 @@ void Engine::run (){
 					JState["utab"][i+j*w]["ammo"] = u->getAmmo();
 				}
 			}
-		writer.write(ofs, JState);
 
 	    cout << "Engine::run" << endl ;
+	    int ncom = 0 ; // nb comand recorded
 		while(engStatus != QUIT){
 		    time(&now);
 		    dift = difftime(now, prvt);
@@ -187,8 +190,8 @@ void Engine::run (){
 						default :
 							break ;
 					}
-					writer.write(ofs, root);
-
+					JState["com"][ncom] = root ;
+					ncom ++ ;
 					update();
 				}
 				else if(engStatus == RUNBACK){
@@ -200,7 +203,8 @@ void Engine::run (){
 				usleep((int)((dt-dift)*1000000));
 			}
 		}
-
+		JState["ncom"] = ncom ;
+		writer.write(ofs, JState);
 		ofs.close();
 		cout << "Engine quit" <<endl ;
 	}
