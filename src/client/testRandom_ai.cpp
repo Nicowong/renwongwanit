@@ -41,7 +41,6 @@ void testRandom_ai(){
     
     int x=0, y=0 ;
     Unit* u = nullptr ;
-    Element& selected = *(Element*) u;
     
     
     sf::RenderWindow window(sf::VideoMode(WINWIDTH, WINHEIGHT), "My window - test sprite");
@@ -54,7 +53,7 @@ void testRandom_ai(){
                 case sf::Event::Closed :    //close request
                     window.close();
                     break;
-                case sf::Event::KeyPressed :
+                case sf::Event::KeyPressed :{
 			cout << "<<< tick : "<< tick << " >>>"<< endl ;
 			tick++;
 
@@ -71,29 +70,21 @@ void testRandom_ai(){
 			    }
 			    if(y==HEIGHT)
 				y=0;
-			    u = (Unit*) Utab.getElem(x, y);
-			    selected = *(Element*) u;
-			   
-			    
+			    u = (Unit*) Utab.getElem(x, y);   
 			}
-			selected.debug();
-			ai.run(eng,selected);
-			    
-			
-			cout <<"chosed :";
+			u->setMoved(true);
 			u->debug();
-			cout<<endl;
-                        cout <<"------------------------------------"<<endl;
-			selected = *(Element*) u;
+                        Element& selected = *(Element*) u;
+                        
 			ai.run(eng,selected);
-			
-			
+                        
 			eng.debug();
 			render.update();
 
 			newState.turnIncr();
 
 			cout << "<<< tick : "<< tick << " >>>"<< endl ;
+			}
 			break ;
 
                 default :

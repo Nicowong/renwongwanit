@@ -27,6 +27,8 @@ void RandomAi::run(Engine& engine, Element& selected)
     engine.addCommand(cmd);
     engine.update();
     
+    Unit& caractor = *(Unit*)(&selected);
+    
     size_t x = selected.getX();
     size_t y = selected.getY();
     
@@ -35,34 +37,43 @@ void RandomAi::run(Engine& engine, Element& selected)
 	  target=unittab->getElem(i,j);
       }
     }
-    Unit& caractor = *(Unit*)(&selected);
+    
      
     if(!target){
-        cmd = new MoveCommand(caractor,2,0);
-        engine.addCommand(cmd);
-	engine.update();
+        
+	if(caractor.getTeam() == 1){
+	    cmd = new MoveCommand(caractor,x+2,y);
+	    engine.addCommand(cmd);
+	    engine.update();
+	}
+	else{
+	    cmd = new MoveCommand(caractor,x-2,y);
+	    engine.addCommand(cmd);
+	    engine.update();
+	  
+	}
     }
     
     else{
-        Unit& unit=*(Unit*)(target);
+        Unit& tunit=*(Unit*)(target);
         
-        if(unit.getTeam()!=caractor.getTeam()){
-            cmd = new AttackCommand(caractor,unit);
+        if(tunit.getTeam()!=caractor.getTeam()){
+            cmd = new AttackCommand(caractor,tunit);
             engine.addCommand(cmd);
 	    engine.update();
-            if(unit.getHealth() <= 0){
-                cmd = new DestroyCommand(unit);
+            if(tunit.getHealth() <= 0){
+                cmd = new DestroyCommand(tunit);
 		engine.update();
             }   
         }
-        if(unit.getTeam()==caractor.getTeam()){
-            if(unit.getHealth()<30){
-                cmd = new RepairCommand(unit);
+        if(tunit.getTeam()==caractor.getTeam()){
+            if(tunit.getHealth()<30){
+                cmd = new RepairCommand(tunit);
                 engine.addCommand(cmd);
 		engine.update();
             }
-            else if(unit.getUnitType()){
-                cmd = new SupplyCommand(unit);
+            else if(tunit.getUnitType()){
+                cmd = new SupplyCommand(tunit);
                 engine.addCommand(cmd);
 		engine.update();
             }

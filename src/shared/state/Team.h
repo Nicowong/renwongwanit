@@ -6,7 +6,7 @@
 namespace state {
 
   enum Team {
-    NONE     = -1,
+    NONE    	= -1,
     NEUTRAL     = 0,
     PLAYER1     = 1,
     PLAYER2     = 2
