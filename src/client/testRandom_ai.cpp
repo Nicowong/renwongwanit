@@ -3,16 +3,21 @@
 #include <SFML/Graphics.hpp>
 //#include <fstream>
 
-#include "state.h"
+#include "../shared/state.h"
 #include "render.h"
 #include "../shared/ai/Ai.h"
+<<<<<<< HEAD
 #include "../shared/ai/RandomAi.h"
 #include "engine.h"
 #include "ai.h"
+=======
+#include "../shared/engine.h"
+#include "../shared/ai.h"
+>>>>>>> b16320fb0c95db05ba108719b5ad354e03888050
 
-#include "rules.h"
+#include "../shared/rules.h"
 
-#include "mapGeneration.h"
+#include "../shared/mapGeneration.h"
 
 #define WIDTH 10
 #define HEIGHT 10
@@ -44,7 +49,11 @@ void testRandom_ai(){
     int x=0, y=0 ;
     Unit* u = nullptr ;
     Element& selected = *(Element*) u;
+<<<<<<< HEAD
    
+=======
+    
+>>>>>>> b16320fb0c95db05ba108719b5ad354e03888050
     sf::RenderWindow window(sf::VideoMode(WINWIDTH, WINHEIGHT), "My window - test sprite");
     while(window.isOpen()){
         //check event
@@ -73,12 +82,26 @@ void testRandom_ai(){
 			    if(y==HEIGHT)
 				y=0;
 			    u = (Unit*) Utab.getElem(x, y);
+<<<<<<< HEAD
 			    selected = *(Element*) u;
 			   
 			    
 			}
 			selected.debug();
 			ai.run(eng,selected);
+=======
+			  
+			    
+			}
+			cout <<"chosed :";
+			u->debug();
+			cout<<endl;
+                        cout <<"------------------------------------"<<endl;
+			selected = *(Element*) u;
+			ai.run(eng,selected);
+                   
+
+>>>>>>> b16320fb0c95db05ba108719b5ad354e03888050
 			eng.debug();
 			render.update();
 

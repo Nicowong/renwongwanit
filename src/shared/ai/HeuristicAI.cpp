@@ -5,6 +5,7 @@
 #include "engine/DestroyCommand.h"
 #include "engine/SupplyCommand.h"
 #include "engine/RepairCommand.h"
+#include "engine/SelectCommand.h"
 
 
 using namespace ai;
@@ -18,6 +19,10 @@ using namespace std;
 void HeuristicAI::run(Engine& engine, Element& selected)
 {
     Command* cmd = nullptr;
+    
+    cmd = new SelectCommand(selected);
+    engine.addCommand(cmd);
+    engine.update();
     
     std::vector<int> unitdistancetab= unitMap.getDistancetab();
     std::vector<Position> unitpositiontab= unitMap.getPositiontab();
