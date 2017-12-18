@@ -76,12 +76,16 @@ const Element* ElementTab::getElem (size_t x, size_t y) const{
     if(x>=0 && x<w && y>=0 && y<h)
         return elemTab[x+y*w];
     else{
+        std::cout << "ElementTab::getElem error : out of map " ;
+        std::cout << "x:"<<x<<" y:"<<y<<" w:"<<w<<" h:"<<h <<std::endl ;
         return nullptr ;
     }
 }
 Element* ElementTab::getElem (size_t x, size_t y){
-    if(x>=0 && x<w && y>=0 && y<h)
+    if(x>=0 && x<w && y>=0 && y<h){
+        //cout << "getelem " << elemTab[x+y*w] << endl ;
         return elemTab[x+y*w];
+    }
     else{
         std::cout << "ElementTab::getElem error : out of map " ;
         std::cout << "x:"<<x<<" y:"<<y<<" w:"<<w<<" h:"<<h <<std::endl ;

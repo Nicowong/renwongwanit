@@ -2,6 +2,7 @@
 #include <fstream>
 #include <thread>
 #include "state.h"
+#include "render.h"
 #include "engine.h"
 #include "json/json.h"
 #include "json/json-forwards.h"
@@ -11,36 +12,26 @@
 
 using namespace std ;
 using namespace state ;
+using namespace render ;
 using namespace engine ;
 
-using namespace mapGeneration ;
-using namespace CommandGeneration ;
 
 #define WIDTH 10
 #define HEIGHT 10
 #define WINWIDTH WIDTH*16
 #define WINHEIGHT HEIGHT*16+64
-#define RDMAPGENITER 6000
 
-using namespace std ;
-using namespace state ;
-using namespace engine ;
+void testPlay(){
+    ifstream ifs("replay.txt", ifstream::in);
 
-using namespace mapGeneration;
-using namespace CommandGeneration ;
+    State state(WIDTH, HEIGHT);
 
-//void engineHandler(Engine *engine);
-//bool engineQuit = false ;
-
-void testRecord(){
-	srand(time(NULL));
-	State state(WIDTH, HEIGHT);
-
-	generateTestMap(state);
-	generateTestUnits(state);
+    Render render(state);
+    render.update();
 
     Engine engine(state, true);
-    generateCommand(engine);
+
+    ifs.close();
 
     //create a thread for engine. The engine starts in STOP mode
     thread thEng(&Engine::run, std::ref(engine));

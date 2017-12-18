@@ -12,6 +12,7 @@
 #include "EndTurnCommand.h"
 
 using namespace std ;
+using namespace state ;
 using namespace engine ;
 
 Engine::Engine (state::State& state, bool rec): currentState(state), record(rec){
@@ -92,66 +93,117 @@ void Engine::rollbackAll (){
 
 }
 void Engine::run (){
-    time_t prvt, now ;
-    double dt=1.0/10.0 , dift ;
+	if(!record){
+		usleep(1500000);
+		time_t prvt, now ;
+	    double dt=1.0/10.0 , dift ;
 
-    ofstream ofs;
-    if(record)
-    	ofs.open("replay.txt", ofstream::out | ofstream::trunc);
-    
-	Json::StyledStreamWriter writer;
-
-    cout << "Engine::run" << endl ;
-	while(engStatus != QUIT){
-	    time(&now);
-	    dift = difftime(now, prvt);
-		if(dift >= dt){
-			if(engStatus == RUN && currentCommands.size()>0){
-				Json::Value root ;
-				Command *com = currentCommands[0];
-				switch(com->getCommandTypeId()){
-					case COM_ATTACK :
-					{
-						AttackCommand *ac = (AttackCommand*)com ;
-						root["CommandType"]   = "COM_ATTACK";
-						root["Attacker"]["x"] = ac->getAttacker().getX();
-						root["Attacker"]["y"] = ac->getAttacker().getY();
-						root["Defender"]["x"] = ac->getDefender().getX();
-						root["Defender"]["y"] = ac->getDefender().getY();
-					}
-						break ;
-					case COM_MOVE :
-					{
-						MoveCommand* mc = (MoveCommand*)com ;
-						root["CommandType"]   = "COM_MOVE";
-						root["Unit"]["x"] = mc->getUnit().getX();
-						root["Unit"]["y"] = mc->getUnit().getY();
-						root["x"] = mc->getX();
-						root["y"] = mc->getY();
-					}
-						break ;
-					case COM_ENDTURN :
-						root["CommandType"]   = "COM_ENDTURN";
-						break ;
-					default :
-						break ;
-				}
-				writer.write(ofs, root);
-
-				update();
+	    cout << "Engine::run" << endl ;
+		while(engStatus != QUIT){
+		    time(&now);
+		    dift = difftime(now, prvt);
+			if(dift >= dt){
+				if(engStatus == RUN && currentCommands.size()>0)
+					update();
+				else if(engStatus == RUNBACK){}
+				//else Pause
+				time(&prvt);
+			}else{
+				usleep((int)((dt-dift)*1000000));
 			}
-			else if(engStatus == RUNBACK){
-
-			}
-			//else Pause
-			time(&prvt);
-		}else{
-			usleep((int)((dt-dift)*1000000));
 		}
-	}
+		cout << "Engine quit" <<endl ;
 
-	ofs.close();
-	cout << "Engine quit" <<endl ;
+	}else{ // record
+		time_t prvt, now ;
+	    double dt=1.0/10.0 , dift ;
+
+	    ofstream ofs("replay.txt", ofstream::out | ofstream::trunc);
+	    
+		Json::StyledStreamWriter writer;
+		State& state = getCurrentState();
+		ElementTab& ctab = state.getCellTab();
+		ctab.debug();
+		ElementTab& utab = state.getUnitTab();
+		Json::Value JState ;
+		size_t w = state.getW();
+		JState["w"]=w;
+		JState["h"]=state.getH();
+		for(size_t j=0 ; j<state.getH(); j++)
+			for(size_t i=0 ; i<w ; i++){
+				Cell* c = (Cell*)(ctab.getElem(i,j));
+				JState["ctab"][i+j*w]["ctype"] = c->getCellType();
+				if(c->getCellType()>=7){
+					Building* b = (Building*)c ;
+					JState["ctab"][i+j*w]["team"]= b->getTeam();
+					JState["ctab"][i+j*w]["cp"]= b->getCapturePoints();
+				}
+
+				Unit* u = (Unit*)utab.getElem(i,j);
+				if(u == nullptr)
+					JState["utab"][i+j*w]["empty"] = true;
+				else{
+					JState["utab"][i+j*w]["empty"] = false;
+					JState["utab"][i+j*w]["utype"] = u->getUnitType();
+					JState["utab"][i+j*w]["team"] = u->getTeam();
+					JState["utab"][i+j*w]["health"] = u->getHealth();
+					JState["utab"][i+j*w]["ammo"] = u->getAmmo();
+				}
+			}
+		writer.write(ofs, JState);
+
+	    cout << "Engine::run" << endl ;
+		while(engStatus != QUIT){
+		    time(&now);
+		    dift = difftime(now, prvt);
+			if(dift >= dt){
+				if(engStatus == RUN && currentCommands.size()>0){
+					Json::Value root ;
+					Command *com = currentCommands[0];
+					switch(com->getCommandTypeId()){
+						case COM_ATTACK :
+						{
+							AttackCommand *ac = (AttackCommand*)com ;
+							root["CommandType"]   = "COM_ATTACK";
+							root["Attacker"]["x"] = ac->getAttacker().getX();
+							root["Attacker"]["y"] = ac->getAttacker().getY();
+							root["Defender"]["x"] = ac->getDefender().getX();
+							root["Defender"]["y"] = ac->getDefender().getY();
+						}
+							break ;
+						case COM_MOVE :
+						{
+							MoveCommand* mc = (MoveCommand*)com ;
+							root["CommandType"]   = "COM_MOVE";
+							root["Unit"]["x"] = mc->getUnit().getX();
+							root["Unit"]["y"] = mc->getUnit().getY();
+							root["x"] = mc->getX();
+							root["y"] = mc->getY();
+						}
+							break ;
+						case COM_ENDTURN :
+							root["CommandType"]   = "COM_ENDTURN";
+							break ;
+						default :
+							break ;
+					}
+					writer.write(ofs, root);
+
+					update();
+				}
+				else if(engStatus == RUNBACK){
+
+				}
+				//else Pause
+				time(&prvt);
+			}else{
+				usleep((int)((dt-dift)*1000000));
+			}
+		}
+
+		ofs.close();
+		cout << "Engine quit" <<endl ;
+	}
 }
 void Engine::setStatus(EngineStatus flag){
 	engStatus = flag ;
