@@ -106,13 +106,13 @@
         <dia:point val="25.1517,3.37966"/>
       </dia:attribute>
       <dia:attribute name="obj_bb">
-        <dia:rectangle val="25.1017,3.32966;50.3417,9.22966"/>
+        <dia:rectangle val="25.1017,3.32966;54.5767,9.22966"/>
       </dia:attribute>
       <dia:attribute name="elem_corner">
         <dia:point val="25.1517,3.37966"/>
       </dia:attribute>
       <dia:attribute name="elem_width">
-        <dia:real val="25.140000000000001"/>
+        <dia:real val="29.375"/>
       </dia:attribute>
       <dia:attribute name="elem_height">
         <dia:real val="5.8000000000000007"/>
@@ -210,7 +210,7 @@
             <dia:string>#services#</dia:string>
           </dia:attribute>
           <dia:attribute name="type">
-            <dia:string>#std::vector&lt;std::unique_ptr&lt;AbstractServices&gt;&gt;#</dia:string>
+            <dia:string>#std::vector&lt;std::unique_ptr&lt;AbstractService&gt;&gt;#</dia:string>
           </dia:attribute>
           <dia:attribute name="value">
             <dia:string>##</dia:string>
@@ -334,7 +334,7 @@
             <dia:string>##</dia:string>
           </dia:attribute>
           <dia:attribute name="type">
-            <dia:string>##</dia:string>
+            <dia:string>#HttpStatus#</dia:string>
           </dia:attribute>
           <dia:attribute name="visibility">
             <dia:enum val="0"/>
@@ -1601,17 +1601,17 @@
         <dia:boolean val="false"/>
       </dia:attribute>
       <dia:attribute name="obj_pos">
-        <dia:point val="37.7217,9.23002"/>
+        <dia:point val="39.8392,9.23002"/>
       </dia:attribute>
       <dia:attribute name="obj_bb">
-        <dia:rectangle val="36.3593,8.48002;38.4717,14.2248"/>
+        <dia:rectangle val="36.3593,8.48002;40.5892,14.2248"/>
       </dia:attribute>
       <dia:attribute name="meta">
         <dia:composite type="dict"/>
       </dia:attribute>
       <dia:attribute name="orth_points">
-        <dia:point val="37.7217,9.23002"/>
-        <dia:point val="37.7217,11.2774"/>
+        <dia:point val="39.8392,9.23002"/>
+        <dia:point val="39.8392,11.2774"/>
         <dia:point val="36.4093,11.2774"/>
         <dia:point val="36.4093,12.6248"/>
       </dia:attribute>

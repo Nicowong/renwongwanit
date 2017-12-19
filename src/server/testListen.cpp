@@ -1,6 +1,5 @@
-#include "ServicesManager.hpp"
-#include "VersionService.hpp"
-#include "UserService.hpp"
+#include "json/json.h"
+#include "server.h"
 
 #include <iostream>
 #include <sstream>
@@ -8,6 +7,7 @@
 #include <string.h>
 
 using namespace std;
+using namespace server ;
 
 class Request {
 public:
@@ -116,15 +116,15 @@ main_handler (void *cls,
     return ret;
 }
 
-int main(int argc, char *const *argv)
+int testListen(int argc, char *const *argv)
 {
     try {
         ServicesManager servicesManager;
-        servicesManager.registerService(make_unique<VersionService>());
+        //servicesManager.registerService(make_unique<VersionService>());
 
-        UserDB userDB;
-        userDB.addUser(make_unique<User>("Paul",23));
-        servicesManager.registerService(make_unique<UserService>(std::ref(userDB)));
+        //UserDB userDB;
+        //userDB.addUser(make_unique<User>("Paul",23));
+        //servicesManager.registerService(make_unique<UserService>(std::ref(userDB)));
 
         struct MHD_Daemon *d;
         if (argc != 2) {
