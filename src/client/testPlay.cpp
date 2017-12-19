@@ -21,7 +21,7 @@ using namespace engine ;
 #define WINWIDTH WIDTH*16
 #define WINHEIGHT HEIGHT*16+64
 */
-
+  
 void testPlay(){
     cout << "Replaying from replay.txt" << endl ;
 
@@ -31,7 +31,7 @@ void testPlay(){
 
     reader.parse(ifs, root);
 
-    size_t w,h ;
+    int w,h ;
     cout << "reading State ..." << endl ;
     w = root["w"].asUInt();
     h = root["h"].asUInt();
@@ -40,26 +40,26 @@ void testPlay(){
     ElementTab& ctab = state.getCellTab();
     ElementTab& utab = state.getUnitTab();
 
-    for(size_t j=0 ; j<h ; j++)
-        for(size_t i=0 ; i<w ; i++){
+    for(int j=0 ; j<h ; j++)
+        for(int i=0 ; i<w ; i++){
             CellType ct = (CellType)root["ctab"][i+j*w]["ctype"].asInt();
             if(ct<CT_BASE){
                 Cell *c = new Cell(ct, i, j);
                 ctab.addElem(c);
             }else{
-                Team tm = (Team)root["ctab"][i+j*w]["team"].asInt();
-                int cp = root["ctab"][i+j*w]["cp"].asInt();
+                Team tm = (Team)root["ctab"][(unsigned int)(i+j*w)]["team"].asInt();
+                int cp = root["ctab"][(unsigned int)(i+j*w)]["cp"].asInt();
                 Building *b = new Building(tm, ct, i, j);
                 b->setCapturePoints(cp);
                 ctab.addElem(b);
             }
-            bool noUnit = root["utab"][i+j*w]["empty"].asBool();
+            bool noUnit = root["utab"][(unsigned int)(i+j*w)]["empty"].asBool();
             if(!noUnit){
-                UnitType ut = (UnitType)root["utab"][i+j*w]["utype"].asInt();
-                Team tm = (Team)root["utab"][i+j*w]["team"].asInt();
+                UnitType ut = (UnitType)root["utab"][(unsigned int)(i+j*w)]["utype"].asInt();
+                Team tm = (Team)root["utab"][(unsigned int)(i+j*w)]["team"].asInt();
                 Unit *u = new Unit(tm, ut, i, j, true);
-                int health = root["utab"][i+j*w]["health"].asInt();
-                int ammo = root["utab"][i+j*w]["ammo"].asInt();
+                int health = root["utab"][(unsigned int)(i+j*w)]["health"].asInt();
+                int ammo = root["utab"][(unsigned int)(i+j*w)]["ammo"].asInt();
                 u->setHealth(health);
                 u->setAmmo(ammo);
                 utab.addElem(u);
