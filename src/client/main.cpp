@@ -24,6 +24,7 @@ void testEngine();
 void testRandom_ai();
 void testHeuristic_ai();
 void testThread();
+void testPlay();
 
 /*--- Fonction main ---*/
 
@@ -70,6 +71,8 @@ int main(int argc,char* argv[]) {
 //--- Thread
     }else if(string(argv[1])=="thread"){
         testThread();
+    }else if(string(argv[1])=="play"){
+        testPlay();
 //--- Pas de commande
     }else{
         std::cout << "-- Error : command not found. --" << std::endl ;
@@ -80,6 +83,7 @@ int main(int argc,char* argv[]) {
         cout << "random_ai      test random ai classes" << endl ;
         cout << "heuristic_ai   test heuristic ai classes" << endl ;
         cout << "thread         test thread" << endl ;
+        cout << "play           test replay function" <<endl ;
     }
     
     std::cout << endl ;

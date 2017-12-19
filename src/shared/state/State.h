@@ -10,12 +10,14 @@ namespace state {
   class Player;
   class ElementTab;
   class Element;
+  class Building;
   class Cell;
 }
 
 #include "Team.h"
 #include "Player.h"
 #include "ElementTab.h"
+#include "Building.h"
 #include "CellType.h"
 #include "UnitType.h"
 #include "Cell.h"
