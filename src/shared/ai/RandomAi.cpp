@@ -1,5 +1,8 @@
 #include "RandomAi.h"  
 #include <iostream>
+#include <stdlib.h>
+#include <string>
+
 #include "engine/MoveCommand.h"
 #include "engine/AttackCommand.h"
 #include "engine/CaptureCommand.h"
@@ -11,6 +14,13 @@
 using namespace engine;
 using namespace state;
 using namespace ai;
+using namespace std;
+
+#define WIDTH 10
+#define HEIGHT 10
+#define WINWIDTH WIDTH*16
+#define WINHEIGHT HEIGHT*16+64
+
 
 RandomAi::RandomAi(state::State& state):Ai(state){
 
@@ -37,21 +47,19 @@ void RandomAi::run(Engine& engine, Element& selected)
 	  target=unittab->getElem(i,j);
       }
     }
-    
-     
-    if(!target){
-        
-	if(caractor.getTeam() == 1){
-	    cmd = new MoveCommand(caractor,x+2,y);
-	    engine.addCommand(cmd);
-	    engine.update();
+    if(target ==nullptr ){
+	int dx = rand() % 5 - 2 ;
+	int dy = rand() % 5 - 2 ;
+	while(x+dx<0 || x+dx >= WIDTH || y+dy < 0 || y+dy>= HEIGHT){
+	    
+	    dx = rand() % 5 - 2 ;
+	    dy = rand() % 5 - 2 ;
 	}
-	else{
-	    cmd = new MoveCommand(caractor,x-2,y);
-	    engine.addCommand(cmd);
-	    engine.update();
-	  
-	}
+	
+	std::cout << dx << " " <<dy<<std::endl;
+	cmd = new MoveCommand(caractor,x+dx,y+dy);
+	engine.addCommand(cmd);
+	engine.update();
     }
     
     else{
