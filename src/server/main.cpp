@@ -9,7 +9,7 @@ using namespace std;
 
 /*fonctions de test unitaire*/
 void testHello();
-void testState();
+void testState(int test);
 //void testRender(int mode=0, string fname="level.txt");
 void testEngine();
 void testRandom_ai();
@@ -36,7 +36,10 @@ int main(int argc,char* argv[]) {
     }
 // --- test state
     else if(com=="state"){
-        testState();
+        if(argc > 2)
+            testState(atoi(argv[2]));
+        else
+            testState();
     }
 // test Engine
     else if(com=="engine"){

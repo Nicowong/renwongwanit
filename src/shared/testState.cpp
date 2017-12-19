@@ -5,24 +5,37 @@ using namespace std ;
 using namespace state ;
 
 /*--- Prototype des fonctions de test state ---*/
-void testUnit();
-void testBuilding();
-void testCell();
-void testElementTab();
+void testUnit();        // 0x1
+void testBuilding();    // 0x2
+void testCell();        // 0x4
+void testElementTab();  // 0x8
+void testElementTab2(); // 0x10
 
 // ------------ TEST STATE ---------------
-void testState(){
-    testUnit();
-    std::cout << "-------------------------" <<std::endl;
-    testBuilding();
-    std::cout << "-------------------------" <<std::endl;
-    testCell();
-    std::cout << "-------------------------" <<std::endl;
-    testElementTab() ;
-    
-    cout<< endl << "<<<Test State>>>" << endl ;
-    State state(16,8);
-    state.debug() ;
+void testState(int test){
+    if(test==0){
+        testUnit();
+        std::cout << "-------------------------" <<std::endl;
+        testBuilding();
+        std::cout << "-------------------------" <<std::endl;
+        testCell();
+        std::cout << "-------------------------" <<std::endl;
+        testElementTab() ;
+        
+        cout<< endl << "<<<Test State>>>" << endl ;
+        State state(16,8);
+        state.debug() ;
+    }
+    if(test & 0x1)
+        testUnit();
+    if(test & 0x2)
+        testBuilding();
+    if(test & 0x4)
+        testCell();
+    if(test & 0x8)
+        testElementTab();
+    if(test & 0x10)
+        testElementTab2();
 }
 
 // functions
@@ -100,4 +113,23 @@ void testElementTab(){
     cout << "suppression" << endl ;
     etab.eraseElem(1);
     etab.debug();
+}
+
+void testElementTab2(){
+    srand(time(NULL));
+    cout << "testElementTab+" << endl ;
+    cout << "etab 8x8" << endl ;
+    size_t w=8, h=8 ;
+    ElementTab etab(w, h);
+
+    for(size_t j ; j<h ; j++) for(size_t i ; i<w ; i++){
+        Cell *c = new Cell(rand()%12, i, j);
+        etab.addElem(c);
+    }
+    etab.debug();
+
+    for(size_t j ; j<h ; j++) for(size_t i ; i<w ; i++)
+        etab.eraseElem(i,j);
+    
+
 }
