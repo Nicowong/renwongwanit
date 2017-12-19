@@ -116,7 +116,7 @@ main_handler (void *cls,
     return ret;
 }
 
-int testListen(int argc, char *const *argv)
+int testListen(int port)//int argc, char *const *argv)
 {
     try {
         ServicesManager servicesManager;
@@ -127,15 +127,15 @@ int testListen(int argc, char *const *argv)
         //servicesManager.registerService(make_unique<UserService>(std::ref(userDB)));
 
         struct MHD_Daemon *d;
-        if (argc != 2) {
+        /*if (argc != 2) {
             printf("%s PORT\n", argv[0]);
             return 1;
-        }
+        }*/
         d = MHD_start_daemon(// MHD_USE_SELECT_INTERNALLY | MHD_USE_DEBUG | MHD_USE_POLL,
                 MHD_USE_SELECT_INTERNALLY | MHD_USE_DEBUG,
                 // MHD_USE_THREAD_PER_CONNECTION | MHD_USE_DEBUG | MHD_USE_POLL,
                 // MHD_USE_THREAD_PER_CONNECTION | MHD_USE_DEBUG,
-                atoi(argv[1]),
+                port,
                 NULL, NULL, 
                 &main_handler, (void*) &servicesManager,
                 MHD_OPTION_NOTIFY_COMPLETED, request_completed, NULL,

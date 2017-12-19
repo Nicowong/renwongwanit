@@ -15,6 +15,7 @@ void testEngine();
 void testRandom_ai();
 void testHeuristic_ai();
 void testRecord();
+int testListen(int port);
 
 /*--- Fonction main ---*/
 
@@ -27,28 +28,36 @@ int main(int argc,char* argv[]) {
     
     if(argc<2)
         return 2;
+    string com(argv[1]);
     //commandes pour les tests unitaires
-    // --- test hello
-    if(std::string(argv[1])=="hello"){
+// --- test hello
+    if(com=="hello"){
         testHello();
     }
-    // --- test state
-    else if(std::string(argv[1])=="state"){
+// --- test state
+    else if(com=="state"){
         testState();
     }
-    else if(string(argv[1])=="engine"){
+// test Engine
+    else if(com=="engine"){
         testEngine();
-    //--- AI pour les test d'ai
-    }else if(string(argv[1])=="random_ai"){
+    }
+//--- AI pour les test d'ai
+    else if(com=="random_ai"){
         testRandom_ai();
-    //Pas de commande
-    }else if(string(argv[1])=="heuristic_ai"){
+    }
+//--- heuristic ai
+    else if(com=="heuristic_ai"){
         testHeuristic_ai();
-    }else if(string(argv[1])=="record"){
+    }
+    else if(com=="record"){
         testRecord();
-
-    //Pas de commande
-    }else{
+    }
+    else if(com=="listen"){
+        retVal = testListen(8080);
+    }
+//Pas de commande
+    else{
         std::cout << "Error : command not found." << std::endl ;
     }
     
