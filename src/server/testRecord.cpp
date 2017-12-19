@@ -4,7 +4,6 @@
 #include "state.h"
 #include "engine.h"
 #include "json/json.h"
-#include "json/json-forwards.h"
 
 #include "mapGeneration.h"
 #include "CommandGeneration.h"
