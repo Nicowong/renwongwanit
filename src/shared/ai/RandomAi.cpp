@@ -1,15 +1,26 @@
 #include "RandomAi.h"  
 #include <iostream>
+#include <stdlib.h>
+#include <string>
+
 #include "engine/MoveCommand.h"
 #include "engine/AttackCommand.h"
 #include "engine/CaptureCommand.h"
 #include "engine/DestroyCommand.h"
 #include "engine/SupplyCommand.h"
 #include "engine/RepairCommand.h"
+#include "engine/SelectCommand.h"
 
 using namespace engine;
 using namespace state;
 using namespace ai;
+using namespace std;
+
+#define WIDTH 10
+#define HEIGHT 10
+#define WINWIDTH WIDTH*16
+#define WINHEIGHT HEIGHT*16+64
+
 
 RandomAi::RandomAi(state::State& state):Ai(state){
 
@@ -22,6 +33,12 @@ void RandomAi::run(Engine& engine, Element& selected)
     ElementTab* unittab = &uTab;
     Command* cmd = nullptr;
     
+    cmd = new SelectCommand(selected);
+    engine.addCommand(cmd);
+    engine.update();
+    
+    Unit& caractor = *(Unit*)(&selected);
+    
     size_t x = selected.getX();
     size_t y = selected.getY();
     
@@ -30,40 +47,45 @@ void RandomAi::run(Engine& engine, Element& selected)
 	  target=unittab->getElem(i,j);
       }
     }
-    Unit& caractor = *(Unit*)(&selected);
-     
-    if(!target){
-        cmd = new MoveCommand(caractor,2,0);
-        engine.addCommand(cmd);
+    if(target ==nullptr ){
+	int dx = rand() % 5 - 2 ;
+	int dy = rand() % 5 - 2 ;
+	while(x+dx<0 || x+dx >= WIDTH || y+dy < 0 || y+dy>= HEIGHT){
+	    
+	    dx = rand() % 5 - 2 ;
+	    dy = rand() % 5 - 2 ;
+	}
+	
+	std::cout << dx << " " <<dy<<std::endl;
+	cmd = new MoveCommand(caractor,x+dx,y+dy);
+	engine.addCommand(cmd);
 	engine.update();
     }
     
     else{
-        Unit& unit=*(Unit*)(target);
+        Unit& tunit=*(Unit*)(target);
         
-        if(unit.getTeam()!=caractor.getTeam()){
-            cmd = new AttackCommand(caractor,unit);
+        if(tunit.getTeam()!=caractor.getTeam()){
+            cmd = new AttackCommand(caractor,tunit);
             engine.addCommand(cmd);
 	    engine.update();
-            if(unit.getHealth() <= 0){
-                cmd = new DestroyCommand(unit);
+            if(tunit.getHealth() <= 0){
+                cmd = new DestroyCommand(tunit);
 		engine.update();
             }   
         }
-        if(unit.getTeam()==caractor.getTeam()){
-            if(unit.getHealth()<30){
-                cmd = new RepairCommand(unit);
+        if(tunit.getTeam()==caractor.getTeam()){
+            if(tunit.getHealth()<30){
+                cmd = new RepairCommand(tunit);
                 engine.addCommand(cmd);
 		engine.update();
             }
-            else if(unit.getUnitType()){
-                cmd = new SupplyCommand(unit);
+            else if(tunit.getUnitType()){
+                cmd = new SupplyCommand(tunit);
                 engine.addCommand(cmd);
 		engine.update();
             }
-        }
-            
-        
+        }  
     }
 }
 
