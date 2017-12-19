@@ -132,11 +132,11 @@ void Engine::run (){
 		ctab.debug();
 		ElementTab& utab = state.getUnitTab();
 		Json::Value JState ;
-		size_t w = state.getW();
+		int w = state.getW();
 		JState["w"]=w;
 		JState["h"]=state.getH();
-		for(size_t j=0 ; j<state.getH(); j++)
-			for(size_t i=0 ; i<w ; i++){
+		for(int j=0 ; j<(int)state.getH(); j++)
+			for(int i=0 ; i<w ; i++){
 				Cell* c = (Cell*)(ctab.getElem(i,j));
 				JState["ctab"][i+j*w]["ctype"] = c->getCellType();
 				if(c->getCellType()>=7){
