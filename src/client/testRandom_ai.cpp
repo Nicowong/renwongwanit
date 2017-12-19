@@ -43,7 +43,7 @@ void testRandom_ai(){
     Unit* u = nullptr ;
     
     
-    sf::RenderWindow window(sf::VideoMode(WINWIDTH, WINHEIGHT), "My window - test sprite");
+    sf::RenderWindow window(sf::VideoMode(WINWIDTH, WINHEIGHT), "My window - test random_ai");
     while(window.isOpen()){
         //check event
         sf::Event event ;
@@ -54,22 +54,22 @@ void testRandom_ai(){
                     window.close();
                     break;
                 case sf::Event::KeyPressed :{
-			cout << "<<< tick : "<< tick << " >>>"<< endl ;
-			tick++;
+                    cout << "<<< tick : "<< tick << " >>>"<< endl ;
+                    tick++;
 
 		    //select an unit 
-			cout << "choosing an unit"<<endl ;
-			x=rand()%WIDTH ;
-			y=rand()%HEIGHT ;
-			u = (Unit*) Utab.getElem(x, y);
-			while(u==nullptr || u->getTeam()!=newState.getTurn()){
-			    x++ ;
-			    if(x==WIDTH){
-				x = 0 ;
-                    		y++;
-			    }
-			    if(y==HEIGHT)
-				y=0;
+                    cout << "choosing an unit"<<endl ;
+                    x=rand()%WIDTH ;
+                    y=rand()%HEIGHT ;
+                    u = (Unit*) Utab.getElem(x, y);
+                    while(u==nullptr || u->getTeam()!=newState.getTurn()){
+			x++ ;
+			if(x==WIDTH){
+                            x = 0 ;
+                            y++;
+			}
+			if(y==HEIGHT)
+                            y=0;
 			    u = (Unit*) Utab.getElem(x, y);   
 			}
 			u->setMoved(true);
@@ -84,7 +84,7 @@ void testRandom_ai(){
 			newState.turnIncr();
 
 			cout << "<<< tick : "<< tick << " >>>"<< endl ;
-			}
+                    }
 			break ;
 
                 default :
