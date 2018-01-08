@@ -1,14 +1,13 @@
-#include "json/json.h"
-#include "server.h"
+#include "ServicesManager.hpp"
+#include "VersionService.hpp"
+#include "UserService.hpp"
 
 #include <iostream>
 #include <sstream>
 #include <microhttpd.h>
 #include <string.h>
-#include <memory>
 
 using namespace std;
-using namespace server ;
 
 class Request {
 public:
@@ -116,32 +115,27 @@ main_handler (void *cls,
     MHD_destroy_response(mhd_response);
     return ret;
 }
-/*
-template<class T,typename ... Args>
-std::unique_ptr<T> make_unique(Args ... args) {
-    return std::unique_ptr<T>(new T(args ...));
-}*/
 
-int testListen(int port)//int argc, char *const *argv)
+int main(int argc, char *const *argv)
 {
     try {
         ServicesManager servicesManager;
         servicesManager.registerService(make_unique<VersionService>());
 
-        //UserDB userDB;
-        //userDB.addUser(make_unique<User>("Paul",23));
-        //servicesManager.registerService(make_unique<UserService>(std::ref(userDB)));
+        UserDB userDB;
+        userDB.addUser(make_unique<User>("Paul",23));
+        servicesManager.registerService(make_unique<UserService>(std::ref(userDB)));
 
         struct MHD_Daemon *d;
-        /*if (argc != 2) {
+        if (argc != 2) {
             printf("%s PORT\n", argv[0]);
             return 1;
-        }*/
+        }
         d = MHD_start_daemon(// MHD_USE_SELECT_INTERNALLY | MHD_USE_DEBUG | MHD_USE_POLL,
                 MHD_USE_SELECT_INTERNALLY | MHD_USE_DEBUG,
                 // MHD_USE_THREAD_PER_CONNECTION | MHD_USE_DEBUG | MHD_USE_POLL,
                 // MHD_USE_THREAD_PER_CONNECTION | MHD_USE_DEBUG,
-                port,
+                atoi(argv[1]),
                 NULL, NULL, 
                 &main_handler, (void*) &servicesManager,
                 MHD_OPTION_NOTIFY_COMPLETED, request_completed, NULL,
