@@ -15,7 +15,7 @@ void testEngine();
 void testRandom_ai();
 void testHeuristic_ai();
 void testRecord();
-int testListen(int port);
+int testListen(int port=8080);
 
 /*--- Fonction main ---*/
 
