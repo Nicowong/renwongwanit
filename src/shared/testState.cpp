@@ -26,13 +26,13 @@ void testState(int test){
         State state(16,8);
         state.debug() ;
     }
-    if(test & 0x1)
+    if(test & 0x01)
         testUnit();
-    if(test & 0x2)
+    if(test & 0x02)
         testBuilding();
-    if(test & 0x4)
+    if(test & 0x04)
         testCell();
-    if(test & 0x8)
+    if(test & 0x08)
         testElementTab();
     if(test & 0x10)
         testElementTab2();
@@ -122,8 +122,10 @@ void testElementTab2(){
     size_t w=8, h=8 ;
     ElementTab etab(w, h);
 
+    CellType ct[12]={CT_PLAIN, CT_ROAD, CT_FOREST, CT_MOUNTAIN, CT_RIVER, CT_BRIDGE, CT_SEA,
+                    CT_BASE, CT_CITY, CT_FACTORY, CT_SEAPORT, CT_AIRPORT};
     for(size_t j ; j<h ; j++) for(size_t i ; i<w ; i++){
-        Cell *c = new Cell(rand()%12, i, j);
+        Cell *c = new Cell(ct[rand()%12], i, j);
         etab.addElem(c);
     }
     etab.debug();

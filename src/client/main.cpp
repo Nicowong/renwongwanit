@@ -18,7 +18,7 @@ using namespace std;
 
 /*fonctions de test unitaire*/
 void testHello();
-void testState();
+void testState(int test=0);
 void testRender(int mode=0, string fname="level.txt");
 void testEngine();
 void testRandom_ai();
@@ -44,7 +44,7 @@ int main(int argc,char* argv[]) {
     }
 // --- test state
     else if(std::string(argv[1])=="state"){
-        testState();
+        testState(0x10);
     }
 //--- RENDER pour les tests de rendus
     else if(std::string(argv[1])=="render"){
