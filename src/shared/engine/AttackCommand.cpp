@@ -41,8 +41,11 @@ CommandTypeId AttackCommand::getCommandTypeId() const{
 void AttackCommand::execute(state::State& state){
     //determining the distance between 2 elements is available for attacking
     //and determining that  they are in 2 team
+    cout << "attack execute " << endl ;
     int ax = attacker.getX();
+    cout << "ax:"<<ax ;
     int ay = attacker.getY();
+    cout << "ay:"<<ay ;
     int dx = defender.getX();
     int dy = defender.getY();
 

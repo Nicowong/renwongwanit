@@ -4,7 +4,6 @@
 #include "state.h"
 #include "engine.h"
 #include "json/json.h"
-#include "json/json-forwards.h"
 
 #include "mapGeneration.h"
 #include "CommandGeneration.h"
@@ -57,59 +56,3 @@ void testRecord(){
     // join engine thread
     thEng.join();
 }
-/*
-void engineHandler(Engine* engine){
-    cout << "Engine Handler is running" << endl ;
-
-    while(!engineQuit){
-        //cout << "Engine Handler in while ..." << endl ;
-        usleep(1000000/2);
-
-        engine->update();
-
-    }
-
-    cout << "Engine Handler closing" << endl ;
-}*/
-
-
-/*
-void testRecord(){
-	srand(time(NULL));
-	State state(WIDTH, HEIGHT);
-
-	generateTestMap(state);
-	generateTestUnits(state);
-
-    Engine engine(state);
-    generateCommand(engine);
-
-    Json::Value root ;
-
-    std::string encoding = root.get("encoding", "UTF-8").asString();
-    cout << "encoding : " << encoding << endl ;
-
-    const Json::Value plugins = root["plug-ins"];
-
-	Json::StyledStreamWriter writer;
-	// Make a new JSON document for the configuration. Preserve original comments.
-
-	// You can also use streams.  This will put the contents of any JSON
-	// stream at a particular sub-value, if you'd like.
-	//std::cin >> root["subtree"];
-
-	// And you can write to a stream, using the StyledWriter automatically.
-	root["test"]["mem_A"] = 2 ;
-	root["test"]["mem_B"] = "hello" ;
-	root["test"]["mem_C"] = (char)'r' ;
-
-	std::cout << root;
-
-	ofstream ofs ;
-	ofs.open("replay.txt", ofstream::out | ofstream::trunc);
-
-	writer.write(ofs, root);
-
-	ofs.close();
-
-}*/

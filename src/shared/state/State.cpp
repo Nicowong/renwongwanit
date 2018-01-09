@@ -23,8 +23,13 @@ State::State (std::string levelFile){
 void State::initCellTab(CellType* celltab){
     for(size_t j=0 ; j<h ; j++){
         for(size_t i=0 ; i<w ; i++){
-            Cell *c = new Cell(celltab[i+j*w], i, j);
-            this->cellTab.addElem(c);
+            if(celltab[i+j*w]<CT_BASE){
+                Cell *c = new Cell(celltab[i+j*w], i, j);
+                this->cellTab.addElem(c);
+            }else{
+                Building *b = new Building(NEUTRAL, celltab[i+j*w], i, j);
+                this->cellTab.addElem(b);
+            }
         }
     }
 }

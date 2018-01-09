@@ -73,17 +73,20 @@ Element* ElementTab::operator[] (size_t i){
         return nullptr ;
 }
 const Element* ElementTab::getElem (size_t x, size_t y) const{
+    //cout << "const Element* ElementTab::getElem ("<<x<<", "<<y<<") const" <<endl;
     if(x>=0 && x<w && y>=0 && y<h)
         return elemTab[x+y*w];
-    else{
+    else
         return nullptr ;
-    }
 }
 Element* ElementTab::getElem (size_t x, size_t y){
-    if(x>=0 && x<w && y>=0 && y<h)
+    //cout << "Element* ElementTab::getElem ("<<x<<", "<<y<<")" <<endl;
+    if(x>=0 && x<w && y>=0 && y<h){
+        //cout << "getelem " << elemTab[x+y*w] << endl ;
         return elemTab[x+y*w];
+    }
     else{
-        std::cout << "ElementTab::getElem error : out of map " ;
+        std::cout << "Element* ElementTab::getElem error : out of map " ;
         std::cout << "x:"<<x<<" y:"<<y<<" w:"<<w<<" h:"<<h <<std::endl ;
         return nullptr ;
     }
