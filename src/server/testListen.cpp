@@ -7,6 +7,8 @@
 #include <string.h>
 #include <memory>
 
+#include "server/Game.hpp"
+
 using namespace std;
 using namespace server ;
 
@@ -116,11 +118,11 @@ main_handler (void *cls,
     MHD_destroy_response(mhd_response);
     return ret;
 }
-
+/*
 template<class T,typename ... Args>
 std::unique_ptr<T> make_unique(Args ... args) {
     return std::unique_ptr<T>(new T(args ...));
-}
+}*/
 
 int testListen(int port)//int argc, char *const *argv)
 {
@@ -128,9 +130,8 @@ int testListen(int port)//int argc, char *const *argv)
         ServicesManager servicesManager;
         servicesManager.registerService(make_unique<VersionService>());
 
-        //UserDB userDB;
-        //userDB.addUser(make_unique<User>("Paul",23));
-        //servicesManager.registerService(make_unique<UserService>(std::ref(userDB)));
+        Game game(4);
+        servicesManager.registerService(make_unique<PlayerService>(std::ref(game)));
 
         struct MHD_Daemon *d;
         /*if (argc != 2) {

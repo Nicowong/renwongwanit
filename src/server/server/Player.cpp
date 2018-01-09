@@ -1,7 +1,14 @@
-#include "Player.h"
+/** 
+ * @file Player.cpp
+ * @author Philippe-Henri Gosselin
+ * @date 9 décembre 2015
+ * @copyright CNRS
+ */
 
-using namespace server;
+#include "Player.hpp"
 
-Player::Player(std::string name):name(name){
+using namespace server ;
+
+Player::Player (string name, bool free) : name(name),free(free) {
     
 }
