@@ -18,7 +18,7 @@ namespace server {
     // Operations
   public:
     VersionService ();
-    HttpStatus get (Json::Value& out, int id) const;
+    virtual HttpStatus get (Json::Value& out, int id) const;
     // Setters and Getters
   };
 

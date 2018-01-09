@@ -9,13 +9,13 @@ using namespace std;
 
 /*fonctions de test unitaire*/
 void testHello();
-void testState();
+void testState(int test=0);
 //void testRender(int mode=0, string fname="level.txt");
 void testEngine();
 void testRandom_ai();
 void testHeuristic_ai();
 void testRecord();
-int testListen(int port);
+int testListen(int port=8080);
 
 /*--- Fonction main ---*/
 
@@ -36,7 +36,10 @@ int main(int argc,char* argv[]) {
     }
 // --- test state
     else if(com=="state"){
-        testState();
+        if(argc > 2)
+            testState(atoi(argv[2]));
+        else
+            testState(0x10);
     }
 // test Engine
     else if(com=="engine"){

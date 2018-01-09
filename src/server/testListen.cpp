@@ -5,6 +5,7 @@
 #include <sstream>
 #include <microhttpd.h>
 #include <string.h>
+#include <memory>
 
 using namespace std;
 using namespace server ;
@@ -116,11 +117,16 @@ main_handler (void *cls,
     return ret;
 }
 
+template<class T,typename ... Args>
+std::unique_ptr<T> make_unique(Args ... args) {
+    return std::unique_ptr<T>(new T(args ...));
+}
+
 int testListen(int port)//int argc, char *const *argv)
 {
     try {
         ServicesManager servicesManager;
-        //servicesManager.registerService(make_unique<VersionService>());
+        servicesManager.registerService(make_unique<VersionService>());
 
         //UserDB userDB;
         //userDB.addUser(make_unique<User>("Paul",23));
