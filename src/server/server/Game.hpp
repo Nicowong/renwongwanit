@@ -14,6 +14,7 @@
 using std::unique_ptr;
 using std::map;
 
+#include "ServiceException.hpp"
 #include "Player.hpp"
 #include "Game.h"
 

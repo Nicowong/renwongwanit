@@ -6,11 +6,18 @@ PlayerService::PlayerService(Game& game): AbstractService("/player"),
         game(game){
 }
 HttpStatus PlayerService::get(Json::Value& out, int id) const{
-    const Player* player = &(game.player(id));
-    if(!player)
-        throw ServiceException(HttpStatus::NOT_FOUND,"Invalid player id");
-    out["name"] =  player->name;
-    return HttpStatus::OK;
+    if(id<0){
+        for(size_t i=0 ; i<game.getPlayers().size() ; i++)
+            out[i]["name"] = game.player(i).name ;
+        return HttpStatus::OK ;
+    }else{
+        try{
+            out["name"] =  game.player(id).name ;
+            return HttpStatus::OK;
+        }catch(...){
+            throw ServiceException(HttpStatus::NOT_FOUND,"Invalid player id");
+        }
+    }
 }
 
 HttpStatus PlayerService::post(const Json::Value& in, int id){

@@ -4,13 +4,22 @@ using namespace server;
 using namespace std;
 
 Game::Game() {
-    players.push_back(Player("player1"));
-    players.push_back(Player("player2"));
+}
+Game::Game(int n) {
+    players.push_back(Player("player1name"));
+    players.push_back(Player("player2name"));
 }
 
 Player& Game::player(int id){
+    if(id<0 || id>=(int)players.size())
+        throw ServiceException(HttpStatus::NOT_FOUND,"Invalid player id");
     return players[id];
 }
+
+const std::vector<Player>& Game::getPlayers() const{
+    return players;
+}
+
 /*
 int Game::addPlayer(unique_ptr<Player> player){
     int id = places-- ;
