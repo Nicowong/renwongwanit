@@ -9,6 +9,6 @@
 
 using namespace server ;
 
-Player::Player (std::string name) : name(name) {
+Player::Player (string name, bool free) : name(name),free(free) {
     
 }

@@ -130,7 +130,7 @@ int testListen(int port)//int argc, char *const *argv)
         ServicesManager servicesManager;
         servicesManager.registerService(make_unique<VersionService>());
 
-        Game game(2);
+        Game game(4);
         servicesManager.registerService(make_unique<PlayerService>(std::ref(game)));
 
         struct MHD_Daemon *d;
