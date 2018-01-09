@@ -2,6 +2,8 @@
 #ifndef SERVER__GAME__H
 #define SERVER__GAME__H
 
+#include <vector>
+#include <memory>
 
 namespace server {
   class Player;
@@ -15,20 +17,18 @@ namespace server {
   class Game {
     // Associations
     // Attributes
-  protected:
-    int places;
-    map<int,unique_ptr<Player> > players;
+  private:
+    std::vector<std::unique_ptr<Player>> players;
     // Operations
   public:
     Game ();
+    Game (int n);
     Player& player (int id);
-    int addPlayer (unique_ptr<Player> player);
+    const std::vector<std::unique_ptr<Player>>& getPlayers () const;
+    int addPlayer (std::unique_ptr<Player> player);
     void removePlayer (int id);
+    void setPlayer (std::unique_ptr<Player> player, int id);
     // Setters and Getters
-    int getPlaces() const;
-    void setPlaces(int places);
-    const map<int,unique_ptr<Player> >& getPlayers() const;
-    void setPlayers(const map<int,unique_ptr<Player> >& players);
   };
 
 };
