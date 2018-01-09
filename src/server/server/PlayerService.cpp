@@ -33,10 +33,8 @@ HttpStatus PlayerService::post(const Json::Value& in, int id){
 }
 
 HttpStatus PlayerService::put(Json::Value& out, const Json::Value& in){
-    /*
     string name = in["name"].asString();
     out["id"] = game.addPlayer(make_unique<Player>(name));
-    */
     return HttpStatus::CREATED;
 }
 
