@@ -7,7 +7,7 @@ PlayerService::PlayerService(Game& game): AbstractService("/player"),
 }
 HttpStatus PlayerService::get(Json::Value& out, int id) const{
     if(id<0){
-        for(size_t i=0 ; i<game.getPlayers().size() ; i++)
+        for(int i=0 ; i<(int)game.getPlayers().size() ; i++)
             out[i]["name"] = game.player(i).name ;
         return HttpStatus::OK ;
     }else{
