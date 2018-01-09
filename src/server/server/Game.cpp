@@ -24,27 +24,15 @@ int Game::addPlayer(std::unique_ptr<Player> player){
     players.push_back(std::move(player));
     return (int)players.size()-1 ;
 }
-/*
+
 void Game::removePlayer(int id){
-    auto ite = players.find(id);
-    if(ite == players.end())
-        return;
-    players.erase(ite);
+    if(id<0 || id>=(int)players.size())
+        throw ServiceException(HttpStatus::NOT_FOUND,"Invalid player id");
+    players.erase(players.begin()+id);
 }
 
-const std::vector<Player> Game::getPlayers() const{
-    return players;
+void Game::setPlayer(std::unique_ptr<Player> player, int id){
+    if(id<0 || id>=(int)players.size())
+        throw ServiceException(HttpStatus::NOT_FOUND,"Invalid player id");
+    players[id] = std::move(player);
 }
-
-void Game::setPlayers(const std::vector<Player>& players){
-    this->players=players;
-}
-
-int Game::getPlaces() const{
-    return places;
-}
-
-void Game::setPlaces(int places){
-    this->places = places;
-}
-*/

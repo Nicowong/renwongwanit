@@ -17,7 +17,7 @@ namespace server {
   class Game {
     // Associations
     // Attributes
-  protected:
+  private:
     std::vector<std::unique_ptr<Player>> players;
     // Operations
   public:
@@ -26,8 +26,9 @@ namespace server {
     Player& player (int id);
     const std::vector<std::unique_ptr<Player>>& getPlayers () const;
     int addPlayer (std::unique_ptr<Player> player);
+    void removePlayer (int id);
+    void setPlayer (std::unique_ptr<Player> player, int id);
     // Setters and Getters
-    void setPlayers(const std::vector<std::unique_ptr<Player>>& players);
   };
 
 };
