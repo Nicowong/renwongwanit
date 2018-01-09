@@ -1,13 +1,18 @@
 #include "Game.hpp"
+#include <string>
 
 using namespace server;
 using namespace std;
 
 Game::Game() {
+
 }
 Game::Game(int n) {
-    players.push_back(make_unique<Player>("player1name"));
-    players.push_back(make_unique<Player>("player2name"));
+    for(int i=0 ; i<n ; i++){
+        string name = "player" ;
+        name += std::to_string(i) ;
+        players.push_back(make_unique<Player>(name));
+    }
 }
 
 Player& Game::player(int id){
