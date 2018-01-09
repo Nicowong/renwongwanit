@@ -2,7 +2,6 @@
 #ifndef SERVER__GAME__H
 #define SERVER__GAME__H
 
-#include <vector>
 
 namespace server {
   class Player;
@@ -18,7 +17,7 @@ namespace server {
     // Attributes
   protected:
     int places;
-    std::vector<Player> players;
+    map<int,unique_ptr<Player> > players;
     // Operations
   public:
     Game ();
@@ -28,8 +27,8 @@ namespace server {
     // Setters and Getters
     int getPlaces() const;
     void setPlaces(int places);
-    const std::vector<Player>& getPlayers() const;
-    void setPlayers(const std::vector<Player>& players);
+    const map<int,unique_ptr<Player> >& getPlayers() const;
+    void setPlayers(const map<int,unique_ptr<Player> >& players);
   };
 
 };

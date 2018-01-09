@@ -3,13 +3,15 @@
 using namespace server;
 using namespace std;
 
-Game::Game() {
-    players.push_back(Player("player1"));
-    players.push_back(Player("player2"));
+Game::Game(): places(2){
+    
 }
 
 Player& Game::player(int id){
-    return players[id];
+    auto ite = players.find(id);
+    if(ite ==  players.cend())
+        return nullptr;
+    return ite->second.get();
 }
 
 int Game::addPlayer(unique_ptr<Player> player){
@@ -25,11 +27,11 @@ void Game::removePlayer(int id){
     players.erase(ite);
 }
 
-const std::vector<Player> Game::getPlayers() const{
+const map<int,unique_ptr<Player> >& Game::getPlayers() const{
     return players;
 }
 
-void Game::setPlayers(const std::vector<Player>& players){
+void Game::setPlayers(const map<int,unique_ptr<Player> >& players){
     this->players=players;
 }
 
