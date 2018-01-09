@@ -7,6 +7,8 @@
 #include <string.h>
 #include <memory>
 
+#include "server/Game.hpp"
+
 using namespace std;
 using namespace server ;
 

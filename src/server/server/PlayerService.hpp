@@ -9,8 +9,10 @@
 #define __PlayerService_hpp__
 
 #include "AbstractService.hpp"
-#include "PlayerDB.hpp"
+#include "Game.hpp"
 #include "PlayerService.h"
+
+//#include "ServiceException.hpp"
 
 #endif
 

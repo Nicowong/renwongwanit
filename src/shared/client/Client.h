@@ -13,7 +13,7 @@ namespace client {
     // Operations
   public:
     Client ();
-    run ();
+    void run ();
     // Setters and Getters
   };
 

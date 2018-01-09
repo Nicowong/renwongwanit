@@ -9,6 +9,6 @@
 
 using namespace server ;
 
-Player::Player (string name, int age) : name(name),age(age) {
+Player::Player (string name, bool free) : name(name),free(free) {
     
 }

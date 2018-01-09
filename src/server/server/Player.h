@@ -2,6 +2,7 @@
 #ifndef SERVER__PLAYER__H
 #define SERVER__PLAYER__H
 
+#include <string>
 
 namespace server {
 
@@ -9,12 +10,11 @@ namespace server {
   class Player {
     // Attributes
   public:
-    string name;
-    int age;
+    std::string name;
     bool free     = true;
     // Operations
   public:
-    Player (string name, int age);
+    Player (std::string name, bool free = true);
     // Setters and Getters
   };
 

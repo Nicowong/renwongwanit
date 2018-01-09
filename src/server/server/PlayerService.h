@@ -5,13 +5,13 @@
 #include <json/json.h>
 
 namespace server {
-  class PlayerDB;
+  class Game;
   class AbstractService;
 }
 
-#include "PlayerDB.h"
 #include "HttpStatus.h"
 #include "AbstractService.h"
+#include "Game.h"
 
 namespace server {
 
@@ -20,14 +20,14 @@ namespace server {
     // Associations
     // Attributes
   private:
-    PlayerDB playerDB;
+    Game& game;
     // Operations
   public:
-    PlayerService (PlayerDB& playerDB);
-    virtual HttpStatus get (Json::Value& out, int id) const;
-    virtual HttpStatus post (const Json::Value& in, int id);
-    virtual HttpStatus put (Json::Value& out, const Json::Value& in);
-    virtual HttpStatus remove (int id);
+    PlayerService (Game& game);
+    HttpStatus get (Json::Value& out, int id) const;
+    HttpStatus post (const Json::Value& in, int id);
+    HttpStatus put (Json::Value& out, const Json::Value& in);
+    HttpStatus remove (int id);
     // Setters and Getters
   };
 
