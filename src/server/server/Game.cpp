@@ -24,7 +24,7 @@ void Game::removePlayer(int id){
     players.erase(ite);
 }
 
-const std::vector<Player> Game::getPlayers() const{
+const std::vector<Player>& Game::getPlayers() const{
     return players;
 }
 

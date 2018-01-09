@@ -11,10 +11,6 @@
 #include "CommandGeneration.h"
 
 using namespace std ;
-<<<<<<< HEAD
-
-=======
->>>>>>> master
 using namespace state ;
 using namespace render ;
 using namespace engine ;
@@ -148,8 +144,4 @@ void testPlay(){
 
     engine.setStatus(QUIT);
     thEng.join();
-<<<<<<< HEAD
 }
-=======
-}
->>>>>>> master
