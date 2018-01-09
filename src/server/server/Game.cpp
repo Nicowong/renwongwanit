@@ -11,7 +11,7 @@ Game::Game() {
 Player& Game::player(int id){
     return players[id];
 }
-/*
+
 int Game::addPlayer(unique_ptr<Player> player){
     int id = places-- ;
     players.insert(std::make_pair(id,std::move(player)));
@@ -40,4 +40,4 @@ int Game::getPlaces() const{
 void Game::setPlaces(int places){
     this->places = places;
 }
-*/
+

@@ -17,12 +17,17 @@ namespace server {
     // Associations
     // Attributes
   protected:
+    int places;
     std::vector<Player> players;
     // Operations
   public:
     Game ();
     Player& player (int id);
+    int addPlayer (unique_ptr<Player> player);
+    void removePlayer (int id);
     // Setters and Getters
+    int getPlaces() const;
+    void setPlaces(int places);
     const std::vector<Player>& getPlayers() const;
     void setPlayers(const std::vector<Player>& players);
   };
