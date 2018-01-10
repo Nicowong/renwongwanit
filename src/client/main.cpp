@@ -25,6 +25,7 @@ void testRandom_ai();
 void testHeuristic_ai();
 void testThread();
 void testPlay();
+void testNetwork(int port=8080);
 
 /*--- Fonction main ---*/
 
@@ -73,6 +74,9 @@ int main(int argc,char* argv[]) {
         testThread();
     }else if(string(argv[1])=="play"){
         testPlay();
+//--- Network
+    }else if(string(argv[1])=="network"){
+        testNetwork(8080);
 //--- Pas de commande
     }else{
         std::cout << "-- Error : command not found. --" << std::endl ;
@@ -84,6 +88,7 @@ int main(int argc,char* argv[]) {
         cout << "heuristic_ai   test heuristic ai classes" << endl ;
         cout << "thread         test thread" << endl ;
         cout << "play           test replay function" <<endl ;
+        cout << "network        test network"   << endl ;
     }
     
     std::cout << endl ;
