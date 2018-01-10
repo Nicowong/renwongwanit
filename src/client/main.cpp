@@ -26,6 +26,7 @@ void testHeuristic_ai();
 void testThread();
 void testPlay();
 void testNetwork(int port=8080);
+void network(const string& name, int port=8080);
 
 /*--- Fonction main ---*/
 
@@ -75,8 +76,16 @@ int main(int argc,char* argv[]) {
     }else if(string(argv[1])=="play"){
         testPlay();
 //--- Network
-    }else if(string(argv[1])=="network"){
+    }else if(string(argv[1])=="tryNetwork"){
         testNetwork(8080);
+    }else if(string(argv[1])=="network"){
+        int port = 8080 ;
+        if(argc>=4)
+            port = atoi(argv[3]);
+        if(argc>=3)
+            network(string(argv[2]), port);
+        else
+            network(string("playerName"), port);
 //--- Pas de commande
     }else{
         std::cout << "-- Error : command not found. --" << std::endl ;
@@ -88,7 +97,8 @@ int main(int argc,char* argv[]) {
         cout << "heuristic_ai   test heuristic ai classes" << endl ;
         cout << "thread         test thread" << endl ;
         cout << "play           test replay function" <<endl ;
-        cout << "network        test network"   << endl ;
+        cout << "tryNetwork     test networks get, put, post, delete functions"   << endl ;
+        cout << "network <name> <port=8080>       test network"   << endl ;
     }
     
     std::cout << endl ;

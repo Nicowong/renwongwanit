@@ -5,6 +5,7 @@ using namespace server;
 PlayerService::PlayerService(Game& game): AbstractService("/player"),
         game(game){
 }
+
 HttpStatus PlayerService::get(Json::Value& out, int id) const{
     if(id<0){
         for(int i=0 ; i<(int)game.getPlayers().size() ; i++)

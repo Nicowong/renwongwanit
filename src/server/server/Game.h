@@ -4,6 +4,7 @@
 
 #include <vector>
 #include <memory>
+#include <stdlib.h>
 
 namespace server {
   class Player;
@@ -19,16 +20,20 @@ namespace server {
     // Attributes
   private:
     std::vector<std::unique_ptr<Player>> players;
+  protected:
+    size_t maxP     = 2;
     // Operations
   public:
     Game ();
-    Game (int n);
+    Game (int n, bool fill = false);
     Player& player (int id);
     const std::vector<std::unique_ptr<Player>>& getPlayers () const;
     int addPlayer (std::unique_ptr<Player> player);
     void removePlayer (int id);
     void setPlayer (std::unique_ptr<Player> player, int id);
     // Setters and Getters
+    const size_t& getMaxP() const;
+    void setMaxP(const size_t& maxP);
   };
 
 };
