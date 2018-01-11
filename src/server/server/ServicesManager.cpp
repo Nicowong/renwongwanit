@@ -78,7 +78,7 @@ HttpStatus ServicesManager::queryService (string& out, const string& in, const s
         return status;
     }
     else if (method == "DELETE") {
-        cerr << "Requête DELETE" << endl;
+        cerr << "Requête DELETE" << pattern << " avec id=" << id << endl;
         return service->remove(id);
     }
     throw ServiceException(HttpStatus::BAD_REQUEST,"Méthode "+method+" invalide");

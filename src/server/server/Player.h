@@ -9,12 +9,13 @@ namespace server {
   /// class Player - 
   class Player {
     // Attributes
-  public:
+  private:
     std::string name;
     bool free     = true;
     // Operations
   public:
     Player (std::string name, bool free = true);
+    const std::string& getName () const;
     // Setters and Getters
   };
 

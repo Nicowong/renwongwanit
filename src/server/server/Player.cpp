@@ -12,3 +12,7 @@ using namespace server ;
 Player::Player (string name, bool free) : name(name),free(free) {
     
 }
+
+const std::string& Player::getName () const{
+	return name ;
+}

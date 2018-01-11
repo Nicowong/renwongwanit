@@ -29,11 +29,15 @@ void network(const string& name, int port){
 
     int id = putPlayer(http, name);
     getPlayerList(http);
-
-    cout << "---Press <Enter> to continue---" << endl;
-    (void) getc(stdin);
-    removePlayer(http, id);
-    getPlayerList(http);
+    
+    if(id > -1){
+        cout << "---Press <Enter> to continue---" << endl;
+        (void) getc(stdin);
+        removePlayer(http, id);
+        getPlayerList(http);
+    }else{
+        cout << "Cannot join game : room is full." << endl ;
+    }
 }
 
 Json::Value sendRequest(sf::Http& http, sf::Http::Request& req){
@@ -50,8 +54,9 @@ Json::Value sendRequest(sf::Http& http, sf::Http::Request& req){
         std::cout << resp.getBody() << std::endl;
         Json::Reader reader ;
         reader.parse(resp.getBody(), data);
-    }
-        
+    }else
+        data["id"] = -1 ;
+
     return data ;
 }
 

@@ -2,7 +2,7 @@
 #ifndef SERVER__GAME__H
 #define SERVER__GAME__H
 
-#include <vector>
+#include <map>
 #include <memory>
 #include <stdlib.h>
 
@@ -19,7 +19,7 @@ namespace server {
     // Associations
     // Attributes
   private:
-    std::vector<std::unique_ptr<Player>> players;
+    std::map<int, std::unique_ptr<Player>> players;
   protected:
     size_t maxP     = 2;
     // Operations
@@ -27,7 +27,7 @@ namespace server {
     Game ();
     Game (int n, bool fill = false);
     Player& player (int id);
-    const std::vector<std::unique_ptr<Player>>& getPlayers () const;
+    const std::map<int, std::unique_ptr<Player>>& getPlayers () const;
     int addPlayer (std::unique_ptr<Player> player);
     void removePlayer (int id);
     void setPlayer (std::unique_ptr<Player> player, int id);
