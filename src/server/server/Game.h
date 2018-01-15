@@ -4,13 +4,18 @@
 
 #include <map>
 #include <memory>
+#include <thread>
 #include <stdlib.h>
 
+namespace engine {
+  class Engine;
+};
 namespace server {
   class Player;
 }
 
 #include "Player.h"
+#include "engine/Engine.h"
 
 namespace server {
 
@@ -20,6 +25,8 @@ namespace server {
     // Attributes
   private:
     std::map<int, std::unique_ptr<Player>> players;
+    engine::Engine& engine;
+    std::unique_ptr<std::thread> engineThread;
   protected:
     size_t maxP     = 2;
     // Operations
@@ -27,6 +34,7 @@ namespace server {
     Game ();
     Game (int n, bool fill = false);
     Player& player (int id);
+    engine::Engine& getEngine ();
     const std::map<int, std::unique_ptr<Player>>& getPlayers () const;
     int addPlayer (std::unique_ptr<Player> player);
     void removePlayer (int id);

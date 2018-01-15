@@ -3,11 +3,12 @@
 
 using namespace server;
 using namespace std;
+using namespace engine;
 
-Game::Game(): maxP(2) {
+Game::Game(): maxP(2),engine(engine) {
 
 }
-Game::Game(int n, bool fill): maxP(n) {
+Game::Game(int n, bool fill): maxP(n),engine(engine){
     if(fill)
         for(int i=0 ; i<n ; i++){
             string name = "player" ;
