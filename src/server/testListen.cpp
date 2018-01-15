@@ -128,6 +128,8 @@ int testListen(int port)//int argc, char *const *argv)
         Game game;
         servicesManager.registerService(make_unique<PlayerService>(std::ref(game)));
 
+        servicesManager.registerService(make_unique<CommandService>());
+
         struct MHD_Daemon *d;
         /*if (argc != 2) {
             printf("%s PORT\n", argv[0]);

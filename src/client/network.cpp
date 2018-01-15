@@ -88,14 +88,13 @@ void queryGameStatus(sf::Http& http, ClientStatus& status, std::mutex& mtx){
 
 // launch th game
 void playGame(){
-    int tick = 0 ;
-
     State state(WIDTH, HEIGHT);
     generateMap(state);
     generateUnits(state);
 
     Engine eng(state);
 
+    //thread thEng(&Engine::run, std::ref(engine));
     Render render(state) ;
     render.update();
 
@@ -110,10 +109,6 @@ void playGame(){
                     window.close();
                     break;
                 case sf::Event::KeyReleased :
-                    cout << "<<< tick : "<< tick << " >>>"<< endl ;
-                    tick++;
-                    eng.update();
-                    eng.debug();
                     render.update();
                     cout << endl ;
                     break ;
@@ -123,6 +118,7 @@ void playGame(){
                 default :
                     break;
             }
+
         }
         
         window.clear(sf::Color::Black);
