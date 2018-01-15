@@ -30,9 +30,6 @@ using namespace ai ;
 using namespace mapGeneration;
 using namespace CommandGeneration ;
 
-//void engineHandler(Engine *engine);
-//bool engineQuit = false ;
-
 void testThread(){
 	srand(time(NULL));
 	State state(WIDTH, HEIGHT);
@@ -90,19 +87,4 @@ void testThread(){
 
     engine.setStatus(QUIT);
     thEng.join();
-
 }
-/*
-void engineHandler(Engine* engine){
-    cout << "Engine Handler is running" << endl ;
-
-    while(!engineQuit){
-        //cout << "Engine Handler in while ..." << endl ;
-        usleep(1000000/2);
-
-        engine->update();
-
-    }
-
-    cout << "Engine Handler closing" << endl ;
-}*/
