@@ -6,13 +6,30 @@
 #include <thread>
 #include <unistd.h>
 #include <ctime>
+#include <mutex>
 
 #include "state.h"
+#include "render.h"
+#include "engine.h"
+
 #include "network.hpp"
 
-using namespace std ;
+#include "engineTestGenerator.hpp"
 
-void queryGameStatus(sf::Http& http);
+#define WIDTH   12
+#define HEIGHT  12
+#define WINWIDTH WIDTH*16
+#define WINHEIGHT HEIGHT*16+64
+
+using namespace std ;
+using namespace render ;
+using namespace engine ;
+
+using namespace engineTest ;
+
+enum ClientStatus{WAITING=0, INGAME=1, QUIT=2};
+void queryGameStatus(sf::Http& http, ClientStatus& status, std::mutex& mtx);
+void playGame();
 
 // MAIN FUNCTION
 
@@ -27,10 +44,19 @@ void network(const string& name, int port){
     getPlayerList(http, true);
     
     if(id > -1){
-        thread thReq(&queryGameStatus, std::ref(http));
-        cout << "---Press <Enter> to continue---" << endl;
+        ClientStatus cstatus = ClientStatus::WAITING ;
+        std::mutex mtx ;
+        thread thReq(&queryGameStatus, std::ref(http), std::ref(cstatus), std::ref(mtx));
+        cout << "---Press <Enter> to quit lobby---" << endl ;
         (void) getc(stdin);
+        if(cstatus == ClientStatus::WAITING) cstatus = ClientStatus::QUIT ;
         thReq.join();
+
+        if(cstatus == ClientStatus::INGAME){
+            playGame();
+            cstatus = ClientStatus::QUIT ;
+        }
+
         removePlayer(http, id, true);
         getPlayerList(http, true);
     }else{
@@ -40,21 +66,72 @@ void network(const string& name, int port){
 
 // QUERY GAME STATUS
 
-void queryGameStatus(sf::Http& http){
-    bool hasStarted = false ;
+void queryGameStatus(sf::Http& http, ClientStatus& status, std::mutex& mtx){
     time_t t0, t1 ;
     Json::Value data ;
-    while(hasStarted==false){        
+    while(status==ClientStatus::WAITING){        
         time(&t1);
         if(difftime(t1, t0) > 1.0/2){
             data = getPlayerList(http);
-            hasStarted = false ;
-            if(data[0]["name"]!="Open" && data[1]["name"]!="Open")
-                hasStarted = true ;
+            if(data[0]["name"]!="Open" && data[1]["name"]!="Open"){
+                std::lock_guard<std::mutex> lock(mtx);
+                status = ClientStatus::INGAME ;
+            }
             time(&t0);
         }
     }
-    cout << "Game Started." << endl ;
+    if(status == ClientStatus::INGAME)
+        cout << "Game Started. Press <Enter> to join." << endl ;
+    else
+        cout << "Exit Game" << endl ;
+}
+
+// launch th game
+void playGame(){
+    int tick = 0 ;
+
+    State state(WIDTH, HEIGHT);
+    generateMap(state);
+    generateUnits(state);
+
+    Engine eng(state);
+
+    Render render(state) ;
+    render.update();
+
+    sf::RenderWindow window(sf::VideoMode(WINWIDTH, WINHEIGHT), "My window - test sprite");
+    while(window.isOpen()){
+        //check event
+        sf::Event event ;
+        while(window.pollEvent(event)){
+            
+            switch(event.type){
+                case sf::Event::Closed :    //close request
+                    window.close();
+                    break;
+                case sf::Event::KeyReleased :
+                    cout << "<<< tick : "<< tick << " >>>"<< endl ;
+                    tick++;
+                    eng.update();
+                    eng.debug();
+                    render.update();
+                    cout << endl ;
+                    break ;
+                case sf::Event::MouseButtonReleased :
+                    cout << "click"<<endl ;
+                    break ;
+                default :
+                    break;
+            }
+        }
+        
+        window.clear(sf::Color::Black);
+        
+        render.draw(window);
+        
+        window.display();
+    }
+
 }
 
 // REQUEST CODE
