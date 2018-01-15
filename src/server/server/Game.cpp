@@ -41,7 +41,7 @@ int Game::addPlayer(std::unique_ptr<Player> player){
 }
 
 void Game::removePlayer(int id){
-    if(id<0 || id>=(int)players.size())
+    if(id<0 || id>=(int)maxP)
         throw ServiceException(HttpStatus::NOT_FOUND,"Invalid player id");
     players.erase(id);
 }

@@ -1,24 +1,12 @@
 #include <iostream>
 #include <cstdlib>
-#include <SFML/Graphics.hpp>
-#include <SFML/Network.hpp>
 #include <fstream>
 #include <string>
 
-#include "json/json.h"
-#include "json/json-forwards.h"
-
 #include "state.h"
+#include "network.hpp"
 
 using namespace std ;
-
-Json::Value sendRequest(sf::Http& http, sf::Http::Request& req);
-void getVersion(sf::Http& http);
-void getPlayer(sf::Http& http, int id=-1);
-void getPlayerList(sf::Http& http);
-int putPlayer(sf::Http& http, const string& name);
-void postPlayer(sf::Http& http, const string& newname, int id);
-void removePlayer(sf::Http& http, int id);
 
 void testNetwork(int port){
     // Setting host

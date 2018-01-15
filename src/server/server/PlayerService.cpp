@@ -12,7 +12,7 @@ HttpStatus PlayerService::get(Json::Value& out, int id) const{
             try{
                 out[i]["name"] = game.player(i).getName() ;
             }catch(...){
-                out[i]["name"] = "empty" ;
+                out[i]["name"] = "Open" ;
             }
         return HttpStatus::OK ;
     }else{
