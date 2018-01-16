@@ -14,8 +14,8 @@ namespace server {
   class Player;
 }
 
-#include "Player.h"
 #include "engine/Engine.h"
+#include "Player.h"
 
 namespace server {
 
@@ -25,7 +25,7 @@ namespace server {
     // Attributes
   private:
     std::map<int, std::unique_ptr<Player>> players;
-    engine::Engine& engine;
+    engine::Engine engine;
     std::unique_ptr<std::thread> engineThread;
   protected:
     size_t maxP     = 2;

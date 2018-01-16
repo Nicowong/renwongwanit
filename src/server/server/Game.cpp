@@ -1,14 +1,15 @@
 #include "Game.hpp"
 #include <string>
+#include <mutex>
 
 using namespace server;
 using namespace std;
 using namespace engine;
 
-Game::Game(): maxP(2),engine(engine) {
+Game::Game(): maxP(2){
 
 }
-Game::Game(int n, bool fill): maxP(n),engine(engine){
+Game::Game(int n, bool fill): maxP(n){
     if(fill)
         for(int i=0 ; i<n ; i++){
             string name = "player" ;
@@ -22,6 +23,10 @@ Player& Game::player(int id){
     if (ite == players.end())
         throw ServiceException(HttpStatus::NOT_FOUND,"Invalid player id");
     return *(ite->second.get());
+}
+
+Engine& Game::getEngine(){
+    return engine;
 }
 
 const std::map<int, std::unique_ptr<Player>>& Game::getPlayers() const{
@@ -42,7 +47,7 @@ int Game::addPlayer(std::unique_ptr<Player> player){
 }
 
 void Game::removePlayer(int id){
-    if(id<0 || id>=(int)players.size())
+    if(id<0 || id>=(int)maxP)
         throw ServiceException(HttpStatus::NOT_FOUND,"Invalid player id");
     players.erase(id);
 }
@@ -56,6 +61,8 @@ void Game::setPlayer(std::unique_ptr<Player> player, int id){
 const size_t& Game::getMaxP() const{
     return maxP ;
 }
+
 void Game::setMaxP(const size_t& maxP){
     this->maxP = maxP ;
 }
+
