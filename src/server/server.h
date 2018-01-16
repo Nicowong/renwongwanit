@@ -10,4 +10,5 @@
 #include "server/Player.h"
 #include "server/Game.h"
 #include "server/PlayerService.h"
+#include "server/CommandService.h"
 #endif
