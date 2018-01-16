@@ -1,5 +1,8 @@
 #include <iostream>
 
+#include "json/json.h"
+#include "json/json-forwards.h"
+
 #include "DestroyCommand.h"
 
 using namespace std ;
@@ -33,4 +36,10 @@ void DestroyCommand::setUnit(const state::Unit&& unit){
 
 void DestroyCommand::debug()const{
     cout<< "Destroy Command" << endl ;
+}
+
+Json::Value DestroyCommand::toJson () const{
+    Json::Value data ;
+    data["CommandTypeId"] = COM_DESTROY ;
+    return data ;
 }

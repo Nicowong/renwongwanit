@@ -5,6 +5,10 @@
  */
 
 #include <iostream>
+
+#include "json/json.h"
+#include "json/json-forwards.h"
+
 #include "Command.h"
 
 using namespace std ;
@@ -29,4 +33,9 @@ void Command::execute(state::State& state){
 
 void Command::debug()const{
 	cout << "Command::debug()" << endl ;
+}
+
+Json::Value Command::toJson()const{
+	Json::Value data ;
+	return data ;
 }

@@ -29,7 +29,7 @@ RandomAi::RandomAi(state::State& state):Ai(state){
 void RandomAi::run(Engine& engine, Element& selected)
 {
     Element* target = nullptr;
-    ElementTab uTab = engine.getCurrentState().getUnitTab();
+    ElementTab uTab = engine.getState().getUnitTab();
     ElementTab* unittab = &uTab;
     Command* cmd = nullptr;
     

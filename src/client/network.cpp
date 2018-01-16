@@ -14,7 +14,8 @@
 
 #include "network.hpp"
 
-#include "engineTestGenerator.hpp"
+#include "mapGeneration.h"
+#include "CommandGeneration.h"
 
 #define WIDTH   12
 #define HEIGHT  12
@@ -22,14 +23,16 @@
 #define WINHEIGHT HEIGHT*16+64
 
 using namespace std ;
+using namespace state ;
 using namespace render ;
 using namespace engine ;
 
-using namespace engineTest ;
+using namespace mapGeneration ;
+using namespace CommandGeneration ;
 
 enum ClientStatus{WAITING=0, INGAME=1, QUIT=2};
 void queryGameStatus(sf::Http& http, ClientStatus& status, std::mutex& mtx);
-void playGame();
+void playGame(sf::Http& http, int id);
 
 // MAIN FUNCTION
 
@@ -53,7 +56,7 @@ void network(const string& name, int port){
         thReq.join();
 
         if(cstatus == ClientStatus::INGAME){
-            playGame();
+            playGame(http, id);
             cstatus = ClientStatus::QUIT ;
         }
 
@@ -87,47 +90,72 @@ void queryGameStatus(sf::Http& http, ClientStatus& status, std::mutex& mtx){
 }
 
 // launch th game
-void playGame(){
+void playGame(sf::Http& http, int id){
+    srand(time(NULL));
     State state(WIDTH, HEIGHT);
-    generateMap(state);
-    generateUnits(state);
 
-    Engine eng(state);
+    generateTestMap(state);
+    generateTestUnits(state);
 
-    //thread thEng(&Engine::run, std::ref(engine));
-    Render render(state) ;
+    Engine engine(state);
+    if(id == 0){
+        vector<Command*> coms = generateCommandList(engine);
+        for(int i=0 ; i<(int)coms.size() ; i++){
+
+        }
+    }
+
+    Render render(state);
     render.update();
 
-    sf::RenderWindow window(sf::VideoMode(WINWIDTH, WINHEIGHT), "My window - test sprite");
+    time_t rendT0, rendT1 ;
+    time_t engT0, engT1 ;
+
+    sf::RenderWindow window(sf::VideoMode(WINWIDTH, WINHEIGHT), "Network");
+
+    time(&rendT0);
+    time(&rendT1);
+
+
+
+    thread thEng(&Engine::run, std::ref(engine));
+    engine.setStatus(RUN);
+    
+    render.update();
+    window.clear();
+    render.draw(window);
+    window.display();
+
     while(window.isOpen()){
         //check event
         sf::Event event ;
         while(window.pollEvent(event)){
-            
+//---POLLEVENT LOOP
             switch(event.type){
                 case sf::Event::Closed :    //close request
                     window.close();
                     break;
-                case sf::Event::KeyReleased :
-                    render.update();
-                    cout << endl ;
-                    break ;
-                case sf::Event::MouseButtonReleased :
-                    cout << "click"<<endl ;
-                    break ;
                 default :
                     break;
             }
-
+//---END POLLEVENT LOOP
         }
-        
-        window.clear(sf::Color::Black);
-        
-        render.draw(window);
-        
-        window.display();
+
+        time(&rendT1);
+        if(difftime(rendT1, rendT0) > 1.0/60.0){
+            render.update();
+            window.clear();
+            render.draw(window);
+            window.display();
+            time(&rendT0);
+        }
+
+
+            //engine.addCommand();
     }
 
+    engine.setStatus(EngineStatus::QUIT);
+    thEng.join();
 }
 
 // REQUEST CODE
@@ -214,4 +242,49 @@ void removePlayer(sf::Http& http, int id, bool debug){
 
     // Check the status code and display the result
     sendRequest(http, req, debug);
+}
+
+// COMMANDS
+
+void putCommand(sf::Http& http, const Command* com){
+    if(com == nullptr)
+        throw nullptr ;
+
+    sf::Http::Request req("/command");
+    req.setMethod(sf::Http::Request::Put);
+    req.setHttpVersion(1, 1);
+    req.setField("Content-Type", "application/x-www-form-urlencoded");
+
+    Json::Value data = com->toJson();
+
+    req.setBody(data.toStyledString());
+
+    // Check the status code and display the result
+    Json::Value val = sendRequest(http, req);
+}
+
+Command* getCommand(sf::Http& http, Engine& engine, int id){
+    sf::Http::Request req("/command/"+to_string(id));
+    req.setMethod(sf::Http::Request::Get);
+    // Check the status code and display the result
+    Json::Value data = sendRequest(http, req);
+    Command* com = nullptr ;
+    const ElementTab& utab = engine.getState().getUnitTab();
+    if(data["CommandTypeId"]==COM_ATTACK){
+        size_t ax = data["Attacker"]["x"].asUInt(), ay = data["Attacker"]["y"].asUInt();
+        Unit* a = (Unit*)utab.getElem(ax, ay);
+        size_t dx = data["Defender"]["x"].asUInt(), dy = data["Defender"]["y"].asUInt();
+        Unit* d = (Unit*)utab.getElem(dx, dy);
+        com = new AttackCommand(*a,*d);
+    }else if(data["CommandTypeId"] == COM_MOVE){
+        size_t x = data["Unit"]["x"].asUInt(), y = data["Unit"]["y"].asUInt();
+        Unit& u = *(Unit*)utab.getElem(x, y);
+        size_t mx = data["x"].asUInt(), my = data["y"].asUInt();
+        com = new MoveCommand(u, mx, my);
+    }else if(data["CommandTypeId"] == COM_ENDTURN){
+        com = new EndTurnCommand(engine.getState());
+    }else{
+        cout << "in network::getCommand, error : no Command" << endl ;
+    }
+    return com ;
 }

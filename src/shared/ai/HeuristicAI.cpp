@@ -29,8 +29,8 @@ void HeuristicAI::run(Engine& engine, Element& selected)
     std::vector<int> buildingdistancetab= cellMap.getDistancetab();
     std::vector<Position> buildingpositiontab= cellMap.getPositiontab();
    
-    ElementTab unitTab =  engine.getCurrentState().getUnitTab();
-    ElementTab buildingTab = engine.getCurrentState().getCellTab();
+    ElementTab unitTab =  engine.getState().getUnitTab();
+    ElementTab buildingTab = engine.getState().getCellTab();
     
     // chercher l'unit le plus proche que l'element original
     int min_ui=0,min_uv=unitdistancetab[1];

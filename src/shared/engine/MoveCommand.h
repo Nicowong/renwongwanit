@@ -3,6 +3,7 @@
 #define ENGINE__MOVECOMMAND__H
 
 #include <stdlib.h>
+#include <json/json.h>
 
 namespace state {
   class Unit;
@@ -30,6 +31,7 @@ namespace engine {
     CommandTypeId getCommandTypeId ( ) const;
     void execute (state::State& state);
     void debug () const;
+    Json::Value toJson () const;
     // Setters and Getters
     state::Unit& getUnit() const;
     void setUnit(const state::Unit&& unit);

@@ -2,6 +2,7 @@
 #ifndef ENGINE__COMMAND__H
 #define ENGINE__COMMAND__H
 
+#include <json/json.h>
 
 namespace state {
   class State;
@@ -30,6 +31,7 @@ namespace engine {
     virtual CommandTypeId getCommandTypeId () const;
     virtual void execute (state::State& state) = 0;
     virtual void debug () const;
+    virtual Json::Value toJson () const;
     // Setters and Getters
   };
 

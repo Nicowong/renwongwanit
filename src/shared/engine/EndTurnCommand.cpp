@@ -1,4 +1,8 @@
 #include <iostream>
+
+#include "json/json.h"
+#include "json/json-forwards.h"
+
 #include "EndTurnCommand.h"
 
 using namespace std ;
@@ -36,4 +40,10 @@ void EndTurnCommand::setState(const state::State&& state){
 
 void EndTurnCommand::debug()const{
     cout<< "End Turn Command" << endl ;
+}
+
+Json::Value EndTurnCommand::toJson () const{
+    Json::Value data ;
+    data["CommandTypeId"] = COM_ENDTURN ;
+    return data ;
 }

@@ -1,5 +1,8 @@
 #include <iostream>
 
+#include "json/json.h"
+#include "json/json-forwards.h"
+
 #include "AttackCommand.h"
 
 #include "rules.h"
@@ -91,4 +94,14 @@ void AttackCommand::debug()const{
     cout << "Attack Command" << endl ;
     cout << "  attacker    x:" << attacker.getX() << "    y:"<< attacker.getY() << endl ;
     cout << "  defender    x:" << defender.getX() << "    y:"<< defender.getY() << endl ;
+}
+
+Json::Value AttackCommand::toJson () const{
+    Json::Value data ;
+    data["CommandTypeId"] = COM_ATTACK;
+    data["Attacker"]["x"] = getAttacker().getX();
+    data["Attacker"]["y"] = getAttacker().getY();
+    data["Defender"]["x"] = getDefender().getX();
+    data["Defender"]["y"] = getDefender().getY();
+    return data ;
 }

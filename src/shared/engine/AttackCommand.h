@@ -2,6 +2,7 @@
 #ifndef ENGINE__ATTACKCOMMAND__H
 #define ENGINE__ATTACKCOMMAND__H
 
+#include <json/json.h>
 
 namespace state {
   class Unit;
@@ -28,6 +29,7 @@ namespace engine {
     CommandTypeId getCommandTypeId () const;
     void execute (state::State& state);
     void debug () const;
+    Json::Value toJson () const;
     // Setters and Getters
     state::Unit& getAttacker() const;
     void setAttacker(const state::Unit&& attacker);

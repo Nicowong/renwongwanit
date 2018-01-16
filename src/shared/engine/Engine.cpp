@@ -25,6 +25,11 @@ Engine::~Engine (){
 const state::State& Engine::getState () const{
 	return currentState ;
 }
+
+state::State& Engine::getState(){
+	return currentState ;
+}
+
 void Engine::addCommand (Command* cmd){
 	lock_guard<mutex> lockg(engineMutex);
 	if(cmd!=nullptr)
@@ -65,12 +70,6 @@ void Engine::update(){
 		cout << "no command" << endl ;
 }
 // Setters and Getters
-state::State& Engine::getCurrentState() const{
-	return currentState ;
-}
-void Engine::setCurrentState(const state::State&& currentState){
-	this->currentState = currentState ;
-}
 const std::vector<Command*>& Engine::getCurrentCommands() const{
 	return currentCommands ;
 }
@@ -127,7 +126,7 @@ void Engine::run (){
 	    ofstream ofs("replay.txt", ofstream::out | ofstream::trunc);
 	    
 		Json::StyledStreamWriter writer;
-		State& state = getCurrentState();
+		State& state = currentState ;
 		ElementTab& ctab = state.getCellTab();
 		ctab.debug();
 		ElementTab& utab = state.getUnitTab();

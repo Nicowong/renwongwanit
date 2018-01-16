@@ -1,5 +1,8 @@
 #include <iostream>
 
+#include "json/json.h"
+#include "json/json-forwards.h"
+
 #include "MoveCommand.h"
 
 #include "rules.h"
@@ -57,4 +60,13 @@ void MoveCommand::debug()const{
     cout << "Move Command" << endl ;
     cout << "  unit    x:" << unit.getX() << "    y:"<< unit.getY() << endl ;
     cout << "  to        " << x << "      "<< y << endl ;
+}
+
+Json::Value MoveCommand::toJson () const{
+    Json::Value data ;
+    data["CommandTypeId"] = COM_MOVE ;
+    data["Unit"]["x"] = getUnit().getX();
+    data["Unit"]["y"] = getUnit().getY();
+    data["x"] = getX();
+    data["y"] = getY();
 }

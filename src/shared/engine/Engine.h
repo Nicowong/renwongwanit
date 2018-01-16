@@ -24,10 +24,10 @@ namespace engine {
     // Associations
     // Attributes
   private:
+    state::State& currentState;
     mutable std::mutex engineMutex;
     volatile EngineStatus engStatus     = PAUSE;
   protected:
-    state::State& currentState;
     std::vector<Command*> currentCommands;
     bool record     = true;
     std::vector<AntiCommand*> antiCommands;
@@ -36,6 +36,7 @@ namespace engine {
     Engine (state::State& state, bool rec = false);
     ~Engine ();
     const state::State& getState () const;
+    state::State& getState ();
     void addCommand (Command* cmd);
     void update ();
     void updateAll ();
@@ -45,8 +46,6 @@ namespace engine {
     void run ();
     void setStatus (EngineStatus flag);
     // Setters and Getters
-    state::State& getCurrentState() const;
-    void setCurrentState(const state::State&& currentState);
     const std::vector<Command*>& getCurrentCommands() const;
     void setCurrentCommands(const std::vector<Command*>& currentCommands);
     bool getRecord() const;

@@ -7,7 +7,8 @@
 #include "engine.h"
 //#include "render.h"
 
-#include "engineTestGenerator.hpp"
+#include "mapGeneration.h"
+#include "CommandGeneration.h"
 
 using namespace std ;
 using namespace state ;
@@ -20,7 +21,8 @@ using namespace engine ;
 //#define WINWIDTH WIDTH*16
 //#define WINHEIGHT HEIGHT*16+64
 
-using namespace engineTest ;
+using namespace mapGeneration ;
+using namespace CommandGeneration ;
 
 void testEngine(){
     int tick=0;
@@ -39,28 +41,7 @@ void testEngine(){
 //    render.update();
 //------------
 
-    Unit* puRI = (Unit*)(eng.getCurrentState().getUnitTab().getElem(1,0));
-    Unit* puRR = (Unit*)(eng.getCurrentState().getUnitTab().getElem(0,1));
-    Unit* puBT = (Unit*)(eng.getCurrentState().getUnitTab().getElem(5,2));
-    Unit* puBM = (Unit*)(eng.getCurrentState().getUnitTab().getElem(4,3));
-    Unit& RI = *puRI ;
-    Unit& RR = *puRR ;
-    Unit& BT = *puBT ;
-    Unit& BM = *puBM ;
-    Command* comMov1 = new MoveCommand(RI, 2,2);
-    Command* comMov2 = new MoveCommand(RR, 3,3);
-    Command* comAtt1 = new AttackCommand(RR, BM);
-    Command* comMov3 = new MoveCommand(BM, 3,2);
-    Command* comAtt2 = new AttackCommand(BM, RI);
-    Command* comMov4 = new MoveCommand(BT, 4,3);
-    Command* comAtt3 = new AttackCommand(BT, RR);
-    eng.addCommand(comMov1);
-    eng.addCommand(comMov2);
-    eng.addCommand(comAtt1);
-    eng.addCommand(comMov3);
-    eng.addCommand(comAtt2);
-    eng.addCommand(comMov4);
-    eng.addCommand(comAtt3);
+    generateCommand(eng);
 
     eng.debug();
 //SERVER ONLY

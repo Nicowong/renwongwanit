@@ -1,5 +1,8 @@
 #include <iostream>
 
+#include "json/json.h"
+#include "json/json-forwards.h"
+
 #include "CaptureCommand.h"
 
 using namespace std ;

@@ -14,6 +14,7 @@ using namespace engine ;
 
 namespace CommandGeneration{
     void generateCommand(Engine& engine);
+    std::vector<Command*> generateCommandList(Engine& engine);
 };
 
 #endif 
