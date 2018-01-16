@@ -19,11 +19,10 @@ namespace server {
     // Attributes
   private:
     std::vector<Json::Value> coms;
-    std::vector<int> ticks;
     // Operations
   public:
     CommandService ();
-    HttpStatus get (Json::Value& out, int id);
+    HttpStatus get (Json::Value& out, int id) const;
     HttpStatus put (Json::Value& out, const Json::Value& in);
     // Setters and Getters
   };

@@ -3,12 +3,13 @@
 namespace CommandGeneration{
 
 void generateCommand(Engine& engine){
-    std::vector<Command*> coms(generateCommandList(engine));
+    std::vector<Command*> coms ;
+    generateCommandList(engine, coms);
     for(int i=0 ; i<(int)coms.size() ; i++)
         engine.addCommand(coms[i]);
 }
 
-std::vector<Command*> generateCommandList(Engine& engine){
+std::vector<Command*>& generateCommandList(Engine& engine, std::vector<Command*>& vec){
     State& state = engine.getState();
 
     Unit& uRI   = *(Unit*)(engine.getState().getUnitTab().getElem(1,0));
@@ -30,8 +31,6 @@ std::vector<Command*> generateCommandList(Engine& engine){
     Command* cEdBD1     = new EndTurnCommand(state);   //-endTurn-
     Command* cAtRMlD2   = new AttackCommand(uRML, uBMGT);   //missileLauncher attack megatank
     Command* cEdRD2     = new EndTurnCommand(state);   //-endTurn-
-
-    std::vector<Command*> vec ;
 
     vec.push_back(cMvRID1);
     vec.push_back(cMvRRD1);

@@ -28,8 +28,8 @@ void testEngine(){
     int tick=0;
 
     State state(WIDTH, HEIGHT);
-    generateMap(state);
-    generateUnits(state);
+    generateTestMap(state);
+    generateTestUnits(state);
 
     Engine eng(state);
     eng.debug();

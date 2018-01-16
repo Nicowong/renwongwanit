@@ -91,7 +91,8 @@ void queryGameStatus(sf::Http& http, ClientStatus& status, std::mutex& mtx){
 
 // launch th game
 void playGame(sf::Http& http, int id){
-    srand(time(NULL));
+    int tick = 0 ;
+
     State state(WIDTH, HEIGHT);
 
     generateTestMap(state);
@@ -99,10 +100,16 @@ void playGame(sf::Http& http, int id){
 
     Engine engine(state);
     if(id == 0){
-        vector<Command*> coms = generateCommandList(engine);
-        for(int i=0 ; i<(int)coms.size() ; i++){
+        cout << "Client 1 creating coms..." << endl ;
+        vector<Command*> coms ;
+        generateCommandList(engine, coms);
+        cout << "Command list generated !" << endl ;
 
+        for(int i=0 ; i<(int)(coms.size()) ; i++){
+            cout << "putting " << i << " of " << (int)(coms.size()) << " : " << coms[i] << endl ;
+            putCommand(http, coms[i]);
         }
+        cout << "finished"<< endl ;
     }
 
     Render render(state);
@@ -150,8 +157,13 @@ void playGame(sf::Http& http, int id){
             time(&rendT0);
         }
 
-
-            //engine.addCommand();
+        time(&engT1);
+        if(difftime(engT1, engT0) > 1.0/1.5){
+            Command * com = getCommand(http, engine, tick);
+            if(com != nullptr)
+                engine.addCommand(com);
+            time(&engT0);
+        }
     }
 
     engine.setStatus(EngineStatus::QUIT);
@@ -247,27 +259,34 @@ void removePlayer(sf::Http& http, int id, bool debug){
 // COMMANDS
 
 void putCommand(sf::Http& http, const Command* com){
-    if(com == nullptr)
+    cout << "putCommand execute..." << endl ;
+    if(com == nullptr){
+        cout << "putCommand : com=nullptr" << endl ;
         throw nullptr ;
+    }
 
     sf::Http::Request req("/command");
     req.setMethod(sf::Http::Request::Put);
     req.setHttpVersion(1, 1);
     req.setField("Content-Type", "application/x-www-form-urlencoded");
 
+    cout << "converting to Json ..." <<endl ;
     Json::Value data = com->toJson();
 
+    cout << "setbody ..." << endl ;
     req.setBody(data.toStyledString());
 
     // Check the status code and display the result
+    cout << "sending request ... "<< endl ;
     Json::Value val = sendRequest(http, req);
+    //cout << "putCommand : " << com << endl ;
 }
 
-Command* getCommand(sf::Http& http, Engine& engine, int id){
-    sf::Http::Request req("/command/"+to_string(id));
+Command* getCommand(sf::Http& http, Engine& engine, int& tick){
+    sf::Http::Request req("/command/"+to_string(tick));
     req.setMethod(sf::Http::Request::Get);
     // Check the status code and display the result
-    Json::Value data = sendRequest(http, req);
+    Json::Value data = sendRequest(http, req, true);
     Command* com = nullptr ;
     const ElementTab& utab = engine.getState().getUnitTab();
     if(data["CommandTypeId"]==COM_ATTACK){
@@ -276,15 +295,19 @@ Command* getCommand(sf::Http& http, Engine& engine, int id){
         size_t dx = data["Defender"]["x"].asUInt(), dy = data["Defender"]["y"].asUInt();
         Unit* d = (Unit*)utab.getElem(dx, dy);
         com = new AttackCommand(*a,*d);
+        tick++ ;
     }else if(data["CommandTypeId"] == COM_MOVE){
         size_t x = data["Unit"]["x"].asUInt(), y = data["Unit"]["y"].asUInt();
         Unit& u = *(Unit*)utab.getElem(x, y);
         size_t mx = data["x"].asUInt(), my = data["y"].asUInt();
         com = new MoveCommand(u, mx, my);
+        tick++ ;
     }else if(data["CommandTypeId"] == COM_ENDTURN){
         com = new EndTurnCommand(engine.getState());
+        tick++ ;
     }else{
         cout << "in network::getCommand, error : no Command" << endl ;
     }
+    //cout << "getCommand : " << com << endl ;
     return com ;
 }

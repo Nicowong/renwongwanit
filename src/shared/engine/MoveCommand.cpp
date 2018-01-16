@@ -63,10 +63,12 @@ void MoveCommand::debug()const{
 }
 
 Json::Value MoveCommand::toJson () const{
+    cout << "MoveCom::toJson "<< endl ;
     Json::Value data ;
     data["CommandTypeId"] = COM_MOVE ;
     data["Unit"]["x"] = getUnit().getX();
     data["Unit"]["y"] = getUnit().getY();
     data["x"] = getX();
     data["y"] = getY();
+    return data ;
 }

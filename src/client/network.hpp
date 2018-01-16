@@ -21,6 +21,6 @@ void postPlayer(sf::Http& http, const string& newname, int id, bool debug=false)
 void removePlayer(sf::Http& http, int id, bool debug=false);
 
 void putCommand(sf::Http& http, const Command* com);
-Command* getCommand(sf::Http& http, Engine& engine, int id=-1);
+Command* getCommand(sf::Http& http, Engine& engine, int& tick);
 
 #endif
