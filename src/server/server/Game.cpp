@@ -4,7 +4,7 @@
 
 using namespace server;
 using namespace std;
-using namespace engine;
+
 
 Game::Game(): maxP(2){
 
@@ -25,9 +25,6 @@ Player& Game::player(int id){
     return *(ite->second.get());
 }
 
-Engine& Game::getEngine(){
-    return engine;
-}
 
 const std::map<int, std::unique_ptr<Player>>& Game::getPlayers() const{
     return players;

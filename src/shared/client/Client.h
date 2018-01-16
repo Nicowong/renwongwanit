@@ -3,17 +3,10 @@
 #define CLIENT__CLIENT__H
 
 
-namespace engine {
-  class Engine;
-}
-
-#include "engine/Engine.h"
-
 namespace client {
 
   /// class Client - 
   class Client {
-    // Associations
     // Attributes
   private:
     engine::Engine engine;

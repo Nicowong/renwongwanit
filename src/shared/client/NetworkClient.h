@@ -5,12 +5,6 @@
 #include <string>
 #include <json/json.h>
 
-namespace engine {
-  class Engine;
-}
-
-#include "engine/Engine.h"
-
 namespace client {
 
   /// class NetworkClient - 
