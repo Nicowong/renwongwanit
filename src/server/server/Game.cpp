@@ -4,18 +4,18 @@
 
 using namespace server;
 using namespace std;
+using namespace engine;
 
-
-Game::Game(): maxP(2){
+Game::Game(): maxP(2),engine(engine){
 
 }
-Game::Game(int n, bool fill): maxP(n){
+Game::Game(int n,engine::Engine& engine, bool fill): maxP(n),engine(engine){
     if(fill)
         for(int i=0 ; i<n ; i++){
             string name = "player" ;
             name += std::to_string(i) ;
             players[i] = make_unique<Player>(name);
-        }
+        }       
 }
 
 Player& Game::player(int id){
@@ -25,6 +25,9 @@ Player& Game::player(int id){
     return *(ite->second.get());
 }
 
+Engine& Game::getEngine(){
+    return engine;
+}
 
 const std::map<int, std::unique_ptr<Player>>& Game::getPlayers() const{
     return players;

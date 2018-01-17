@@ -6,11 +6,15 @@
 #include <memory>
 #include <stdlib.h>
 
+namespace engine {
+  class Engine;
+};
 namespace server {
   class Player;
 }
 
 #include "Player.h"
+#include "engine/Engine.h"
 
 namespace server {
 
@@ -20,13 +24,15 @@ namespace server {
     // Attributes
   private:
     std::map<int, std::unique_ptr<Player>> players;
+    engine::Engine& engine;
   protected:
     size_t maxP     = 2;
     // Operations
   public:
     Game ();
-    Game (int n, bool fill = false);
+    Game (int n, engine::Engine& engine, bool fill = false);
     Player& player (int id);
+    engine::Engine& getEngine ();
     const std::map<int, std::unique_ptr<Player>>& getPlayers () const;
     int addPlayer (std::unique_ptr<Player> player);
     void removePlayer (int id);
