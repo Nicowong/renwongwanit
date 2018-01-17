@@ -147,3 +147,15 @@ void State::debug()const{
     cout << endl <<"unitTab : "<<endl ;
     getUnitTab().debug() ;
 }
+
+Unit* State::getUnitId(int id){
+    for(size_t j=0 ; j<unitTab.getH() ; j++){
+        for(size_t i=0 ; i<unitTab.getW() ; i++){
+            Unit* u = (Unit*)unitTab.getElem(i,j);
+            if(u != nullptr && u->getId()==id){
+                return u ;
+            }
+        }
+    }
+    return nullptr ;
+}

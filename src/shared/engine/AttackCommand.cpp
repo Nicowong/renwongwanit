@@ -17,7 +17,13 @@ extern const int minRangeRule[22];
 extern const int moveRangeRule[22];
 
 AttackCommand::AttackCommand(state::Unit& attacker, state::Unit& defender):
+    attId(attacker.getId()), defId(defender.getId()),
     attacker(attacker), defender(defender){
+}
+
+AttackCommand::AttackCommand(state::State& state, int attId, int defId):
+    attId(attId), defId(defId),
+    attacker(*(state.getUnitId(attId))), defender(*(state.getUnitId(defId))){
 }
 
 state::Unit& AttackCommand::getAttacker() const{
@@ -99,9 +105,13 @@ void AttackCommand::debug()const{
 Json::Value AttackCommand::toJson () const{
     Json::Value data ;
     data["CommandTypeId"] = COM_ATTACK;
+    data["attId"] = attId ;
+    data["defId"] = defId ;
+    /*
     data["Attacker"]["x"] = getAttacker().getX();
     data["Attacker"]["y"] = getAttacker().getY();
     data["Defender"]["x"] = getDefender().getX();
     data["Defender"]["y"] = getDefender().getY();
+    */
     return data ;
 }

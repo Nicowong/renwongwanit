@@ -20,12 +20,16 @@ namespace engine {
   /// class AttackCommand - 
   class AttackCommand : public engine::Command {
     // Attributes
+  private:
+    int attId;
+    int defId;
   protected:
     state::Unit& attacker;
     state::Unit& defender;
     // Operations
   public:
     AttackCommand (state::Unit& attacker, state::Unit& defender);
+    AttackCommand (state::State& state, int attId, int defId);
     CommandTypeId getCommandTypeId () const;
     void execute (state::State& state);
     void debug () const;

@@ -11,9 +11,16 @@ using namespace std ;
 using namespace state ;
 using namespace engine ;
 
-MoveCommand::MoveCommand (state::Unit& unit, size_t x, size_t y): unit(unit), x(x), y(y){
+MoveCommand::MoveCommand (state::Unit& unit, size_t x, size_t y): unitId(unit.getId()), unit(unit), x(x), y(y){
 
 }
+
+MoveCommand::MoveCommand (state::State& state, int unitId, size_t x, size_t y): 
+    unitId(unitId), unit(*(state.getUnitId(unitId))),
+     x(x), y(y){
+
+}
+
 CommandTypeId MoveCommand::getCommandTypeId() const{
     return COM_MOVE ;
 }
@@ -66,8 +73,9 @@ Json::Value MoveCommand::toJson () const{
     cout << "MoveCom::toJson "<< endl ;
     Json::Value data ;
     data["CommandTypeId"] = COM_MOVE ;
-    data["Unit"]["x"] = getUnit().getX();
-    data["Unit"]["y"] = getUnit().getY();
+    //data["Unit"]["x"] = getUnit().getX();
+    //data["Unit"]["y"] = getUnit().getY();
+    data["unitId"] = unitId ;
     data["x"] = getX();
     data["y"] = getY();
     return data ;

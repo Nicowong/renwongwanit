@@ -18,6 +18,9 @@ namespace state {
   class Unit : public state::Element {
     // Associations
     // Attributes
+  private:
+    int id;
+    static int nid;
   protected:
     UnitType unitType;
     int health;
@@ -36,6 +39,7 @@ namespace state {
     bool isTransporter () const;
     bool isCapturing () const;
     void debug (int mode = 0) const;
+    int getId () const;
     // Setters and Getters
     UnitType getUnitType() const;
     void setUnitType(UnitType unitType);

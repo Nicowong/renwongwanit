@@ -21,6 +21,8 @@ namespace engine {
   /// class MoveCommand - 
   class MoveCommand : public engine::Command {
     // Attributes
+  private:
+    int unitId;
   protected:
     state::Unit& unit;
     size_t x;
@@ -28,6 +30,7 @@ namespace engine {
     // Operations
   public:
     MoveCommand (state::Unit& unit, size_t x, size_t y);
+    MoveCommand (state::State& state, int unitId, size_t x, size_t y);
     CommandTypeId getCommandTypeId ( ) const;
     void execute (state::State& state);
     void debug () const;

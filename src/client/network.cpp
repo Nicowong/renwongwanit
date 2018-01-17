@@ -142,6 +142,13 @@ void playGame(sf::Http& http, int id){
                 case sf::Event::Closed :    //close request
                     window.close();
                     break;
+                /*case sf::Event::KeyReleased :
+                    {
+                    Command * com = getCommand(http, engine, tick);
+                    if(com != nullptr)
+                        engine.addCommand(com);
+                    }
+                    break ;*/
                 default :
                     break;
             }
@@ -156,7 +163,7 @@ void playGame(sf::Http& http, int id){
             window.display();
             time(&rendT0);
         }
-
+        
         time(&engT1);
         if(difftime(engT1, engT0) > 1.0/1.5){
             Command * com = getCommand(http, engine, tick);
@@ -287,20 +294,31 @@ Command* getCommand(sf::Http& http, Engine& engine, int& tick){
     req.setMethod(sf::Http::Request::Get);
     // Check the status code and display the result
     Json::Value data = sendRequest(http, req, true);
+    if(data["id"]==-1)
+        return nullptr ;
     Command* com = nullptr ;
-    const ElementTab& utab = engine.getState().getUnitTab();
+    //const ElementTab& utab = engine.getState().getUnitTab();
     if(data["CommandTypeId"]==COM_ATTACK){
-        size_t ax = data["Attacker"]["x"].asUInt(), ay = data["Attacker"]["y"].asUInt();
+        /*Int(), ay = data["Attacker"]["y"].asUInt();
         Unit* a = (Unit*)utab.getElem(ax, ay);
         size_t dx = data["Defender"]["x"].asUInt(), dy = data["Defender"]["y"].asUInt();
         Unit* d = (Unit*)utab.getElem(dx, dy);
         com = new AttackCommand(*a,*d);
+        */
+        int attId = data["attId"].asInt();
+        int defId = data["defId"].asInt();
+        com = new AttackCommand(engine.getState(), attId, defId);
         tick++ ;
     }else if(data["CommandTypeId"] == COM_MOVE){
+        /*
         size_t x = data["Unit"]["x"].asUInt(), y = data["Unit"]["y"].asUInt();
         Unit& u = *(Unit*)utab.getElem(x, y);
         size_t mx = data["x"].asUInt(), my = data["y"].asUInt();
         com = new MoveCommand(u, mx, my);
+        */
+        int unitId = data["unitId"].asInt() ;
+        size_t x = data["x"].asUInt(), y = data["y"].asUInt();
+        com = new MoveCommand(engine.getState(), unitId, x, y);
         tick++ ;
     }else if(data["CommandTypeId"] == COM_ENDTURN){
         com = new EndTurnCommand(engine.getState());

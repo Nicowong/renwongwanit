@@ -20,11 +20,14 @@ namespace engine {
   /// class DestroyCommand - 
   class DestroyCommand : public engine::Command {
     // Attributes
+  private:
+    int unitId;
   protected:
     state::Unit& unit;
     // Operations
   public:
     DestroyCommand (state::Unit& unit);
+    DestroyCommand (state::State& state, int unitId);
     CommandTypeId getCommandTypeId () const;
     void execute (state::State& state);
     void debug () const;

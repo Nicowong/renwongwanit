@@ -5,8 +5,11 @@
 using namespace std ;
 using namespace state ;
 
+int Unit::nid = 0 ;
+
 Unit::Unit(Team team, UnitType utype, size_t x, size_t y):
-    Element(T_UNIT, team, x,y), unitType(utype), health(100), ammo(0), fuel(1), vision(1){
+    Element(T_UNIT, team, x,y), id(nid), unitType(utype), health(100), ammo(0), fuel(1), vision(1){
+    nid ++ ;
     switch(unitType){
         case UT_INFANTRY          : ammo = 99 ; fuel = 99 ; vision = 2 ; break ;
         case UT_MECH              : ammo = 6  ; fuel = 70 ; vision = 2 ; break ;
@@ -39,7 +42,8 @@ Unit::Unit(Team team, UnitType utype, size_t x, size_t y):
     moved = false ;
 }
 Unit::Unit(int team, int utype, size_t x, size_t y):
-    Element(T_UNIT, NONE, x,y), unitType(UT_NONE), health(100), ammo(0), fuel(1), vision(1){
+    Element(T_UNIT, NONE, x,y), id(nid), unitType(UT_NONE), health(100), ammo(0), fuel(1), vision(1){
+    nid ++ ;
     switch(team){
         case 1 :    this->team = PLAYER1 ;  break ;
         case 2 :    this->team = PLAYER2 ;  break ;
@@ -156,12 +160,14 @@ void Unit::debug(int mode)const{
     if(mode == 0 ){
         std::cout<< "Unit::";
         Element::debug();
+        std::cout<< "id : " << id << endl ;
         std::cout<< "unitType : "<<unitType <<std::endl ;
         std::cout<< "health : "<<health <<std::endl ;
         std::cout<< "ammo : "<<ammo <<std::endl ;
         std::cout<< "fuel : "<<fuel <<std::endl ;
         std::cout<< "vision : "<<vision <<std::endl ;
     }else{
+        std::cout<< "id : " << id << endl ;
         switch(unitType){
             case UT_INFANTRY          : cout<<"Infantry"    ; break ;
             case UT_MECH              : cout<<"Mech"        ; break ;
@@ -194,4 +200,8 @@ void Unit::debug(int mode)const{
         }
         cout << "x:"<<x <<" y:"<<y << " hp:"<<health <<endl ;
     }
+}
+
+int Unit::getId()const{
+    return id ;
 }

@@ -10,6 +10,7 @@ namespace state {
   class Player;
   class ElementTab;
   class Element;
+  class Unit;
   class Building;
   class Cell;
 }
@@ -56,6 +57,7 @@ namespace state {
     void eraseUnit (size_t x, size_t y);
     void eraseUnit (Element* unit);
     void eraseUnit (int i);
+    Unit* getUnitId (int id);
     // Setters and Getters
     const size_t& getW() const;
     void setW(const size_t& w);

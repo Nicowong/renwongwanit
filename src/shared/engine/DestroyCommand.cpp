@@ -9,9 +9,12 @@ using namespace std ;
 using namespace engine ;
 
 
-DestroyCommand::DestroyCommand (state::Unit& unit): unit(unit){
-
+DestroyCommand::DestroyCommand (state::Unit& unit): unitId(unit.getId()), unit(unit){
 }
+
+DestroyCommand::DestroyCommand(state::State& state, int unitId): unitId(unitId), unit(*(state.getUnitId(unitId))){
+}
+
 CommandTypeId DestroyCommand::getCommandTypeId() const{
     return COM_DESTROY ;
 }
