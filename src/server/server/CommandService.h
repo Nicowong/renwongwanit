@@ -4,6 +4,9 @@
 
 #include <json/json.h>
 
+namespace state {
+  class State;
+};
 namespace engine {
   class Engine;
 };
@@ -14,6 +17,7 @@ namespace server {
 
 #include "HttpStatus.h"
 #include "AbstractService.h"
+#include "state/State.h"
 #include "Game.h"
 #include "engine/Engine.h"
 
@@ -24,6 +28,7 @@ namespace server {
     // Associations
     // Attributes
   private:
+    state::State& state;
     engine::Engine& engine;
     // Operations
   public:

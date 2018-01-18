@@ -2,10 +2,12 @@
 
 using namespace engine;
 using namespace server;
+using namespace state;
 
-CommandService::CommandService(Engine& engine): AbstractService("/command"),engine(engine){
-    engine.getCurrentCommands();
+CommandService::CommandService(Engine& engine): AbstractService("/command"),
+        engine(engine),state(state){
 }
+
 
 Engine& CommandService::getEngine(){
     return engine;
@@ -30,7 +32,7 @@ HttpStatus CommandService::get(Json::Value& out, int id) const{
 HttpStatus CommandService::put(Json::Value& out, const Json::Value& in)
 {
     engine::Command* cmd = nullptr;
-    switch(in["CommandTypeId"]){
+    /*switch(in["CommandTypeId"]){
         case COM_ATTACK:   
             cmd = new engine::AttackCommand((in["attId"]),(in["defId"]));
             break;
@@ -65,7 +67,7 @@ HttpStatus CommandService::put(Json::Value& out, const Json::Value& in)
             throw ServiceException(HttpStatus::BAD_REQUEST, "Error command");
             break;
             
-    }
+    }*/
     engine.addCommand(cmd);
     engine.update();
     out["id"] = engine.getCurrentCommands().size()-1;
