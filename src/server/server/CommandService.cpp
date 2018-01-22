@@ -10,7 +10,7 @@ CommandService::CommandService(): AbstractService("/command"){
 HttpStatus CommandService::get(Json::Value& out, int id)const{
 	if(id < 0){
 		//cout << "getCommand with id<0" << endl ;
-		for(size_t i = 0 ; i < coms.size() ; i++){
+		for(int i = 0 ; i < (int)coms.size() ; i++){
 			//cout << "i:" << i << "coms.size():" << coms.size() << endl ;
 			out[i] = coms[i];
 		}
